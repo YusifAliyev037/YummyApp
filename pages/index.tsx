@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
         <div></div>
 
-        <p className=" text-red-700">
+        <p className=" text-4xl">
           Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
