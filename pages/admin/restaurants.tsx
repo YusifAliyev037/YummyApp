@@ -8,49 +8,54 @@ import {
   Box,
   InputRightElement,
 } from '@chakra-ui/react';
+import PushModul from '@/shared/AdminComponents/PushModul';
 
 const Restaurants = () => {
   return (
-    <Box bg='#27283C' minHeight='100vh' display='flex' flexDirection='column'>
-      <Box className='bg-darkBlue10' minHeight="100vh" display="flex" flexDirection="column"> 
-        <Header />
-        <Box display='flex' justifyContent='flex-end' p='10'>
-          <Box
-            bg='#27283C'
-            borderWidth='0.5px'
-            borderRadius={16}
-            top={80}
-            width={1108}
-            height={73}
+    <Box
+      className='bg-darkBlue10'
+      minHeight='100vh'
+    >
+      <Header />
+
+      <Box className='flex my-4 mx-8'>
+        <PushModul />
+
+        <Box
+          bg='#27283C'
+
+          className='flex items-center w-5/6 px-8 '
+          borderRadius={16}
+          height={73}
+        >
+          <Text color='white'>Restaurants</Text>
+          <InputGroup
+            // display='flex'
+            // justifyContent='flex-end'
+            // alignItems='center'
+            className='flex justify-end items-center gap-7'
           >
-            <Text color='white'>Restaurants</Text>
-            <InputGroup
-              display='flex'
-              justifyContent='flex-end'
-              alignItems='center'
+            <Select
+              bgColor='#5A5B70'
+              borderRadius={20}
+              width={200}
+              height={35}
+              placeholder='Select category'
+              mr='2'
             >
-              <Select
-                bgColor='#5A5B70'
+              <option value='Papa Johns'>Papa John's</option>
+              <option value='Burger King'>Burger King</option>
+              <option value='Mcdonalds'>McDonald's</option>
+            </Select>
+            <Box>
+              <Button
                 borderRadius={20}
-                width={200}
-                height={35}
-                placeholder='Select category'
-                mr='2'
+                colorScheme='pink'
               >
-                <option value='Papa Johns'>Papa John's</option>
-                <option value='Burger King'>Burger King</option>
-                <option value='Mcdonalds'>McDonald's</option>
-              </Select>
-              <Box>
-                <Button
-                  borderRadius={20}
-                  colorScheme='pink'
-                >
-                  + ADD RESTAURANTS
-                </Button>
-              </Box>
-            </InputGroup>
-          </Box>
+                + ADD RESTAURANTS
+              </Button>
+            </Box>
+          </InputGroup>
         </Box>
       </Box>
     </Box>
