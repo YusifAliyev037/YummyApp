@@ -1,4 +1,5 @@
 import Header from "@/shared/AdminComponents/Header";
+import PushModul from "@/shared/AdminComponents/PushModul";
 import MetaSeo from "@/shared/MetaSeo";
 import { Box, Button } from "@chakra-ui/react";
 import type { NextPage } from "next";
@@ -13,6 +14,7 @@ const AdminDashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+      <PushModul/>
       
 
       <h1>Welcome to Admin page</h1>

@@ -17,7 +17,10 @@ module.exports = {
       white10:"#f5f5f5",
 
       orange:"#EAAB00",
-      pink:"#c035a2"
+      pink:"#c035a2",
+      pink10:"#c74feb",
+      pink20:"#FCDDEC",
+      pink30:"#d25ff5"
 
     },
     screens: {
@@ -31,6 +34,7 @@ module.exports = {
       xxl:"1440px",
     },
     extend: {
+      
     },
   },
   plugins: [],

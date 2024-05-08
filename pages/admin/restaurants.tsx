@@ -11,12 +11,16 @@ import React from 'react';
 
 const Restaurants = () => {
   return (
+
     <Box
       bg='#27283C'
       minHeight='100vh'
       display='flex'
       flexDirection='column'
     >
+
+    <Box className=' bg-darkBlue10' minHeight="100vh" display="flex" flexDirection="column"> 
+
       <Header />
       <Box
         display='flex'
