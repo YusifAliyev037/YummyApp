@@ -7,30 +7,36 @@ function PushModul() {
     
   return (
     <Box className=' bg-pink10 w-1/6 rounded-xl p-4 h-3/5 m-5'>
-        <Stack as="ul" className=' w-1/2 flex justify-center'>
-            <Button className=' bg-transparent' as="li">
+        <Box as="ul"  className=' w-1/2   mx-6  '>
+            <Button className='flex gap-7' colorScheme='none' as="li">
+            <Image width={18} alt='products' height={18} src="/dashboard.svg"/>
                 Dashboard
             </Button>
-            <Button as="li">
+            <Button className='flex gap-7' colorScheme='none' as="li">
                 <Image width={18} alt='products' height={18} src="/products.svg"/>
                 Products
             </Button>
-            <Button as="li">
+            <Button className='flex gap-7' colorScheme='none' as="li">
+            <Image width={18} alt='products' height={18} src="/restaurants.svg"/>
                 Restaurants
             </Button>
-            <Button as="li">
+            <Button className='flex gap-7' colorScheme='none' as="li">
+            <Image width={18} alt='products' height={18} src="/category.svg"/>
                 Category
             </Button>
-            <Button as="li">
+            <Button className='flex gap-7' colorScheme='none' as="li">
+            <Image width={18} alt='products' height={18} src="/orders.svg"/>
                 Orders
             </Button>
-            <Button as="li">
+            <Button className='flex gap-7' colorScheme='none' as="li">
+            <Image width={18} alt='products' height={18} src="/offer.svg"/>
                 Offer
             </Button>
-            <Button as="li">
+            <Button className='flex gap-7' colorScheme='none' as="li">
+            <Image width={18} alt='products' height={18} src="/logout.svg"/>
                 Logout
             </Button>
-        </Stack>
+        </Box>
 
     </Box>
   )
