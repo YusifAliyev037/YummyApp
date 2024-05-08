@@ -17,7 +17,8 @@ module.exports = {
       white10:"#f5f5f5",
 
       orange:"#EAAB00",
-      pink:"#c035a2"
+      pink:"#c035a2",
+      pink10:"#c74feb"
 
     },
     screens: {
@@ -31,6 +32,7 @@ module.exports = {
       xxl:"1440px",
     },
     extend: {
+      
     },
   },
   plugins: [],
