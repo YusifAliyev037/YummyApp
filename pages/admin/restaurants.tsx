@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from '@/shared/AdminComponents/Header';
 import {
   InputGroup,
@@ -7,39 +8,32 @@ import {
   Box,
   InputRightElement,
 } from '@chakra-ui/react';
-import React from 'react';
+import PushModul from '@/shared/AdminComponents/PushModul';
 
 const Restaurants = () => {
   return (
-
     <Box
-      bg='#27283C'
+      className='bg-darkBlue10'
       minHeight='100vh'
-      display='flex'
-      flexDirection='column'
     >
-
-    <Box className=' bg-darkBlue10' minHeight="100vh" display="flex" flexDirection="column"> 
-
       <Header />
-      <Box
-        display='flex'
-        justifyContent='flex-end'
-        p='10'
-      >
+
+      <Box className='flex my-4 mx-8'>
+        <PushModul />
+
         <Box
           bg='#27283C'
-          borderWidth='0.5px'
+
+          className='flex items-center w-5/6 px-8 '
           borderRadius={16}
-          top={80}
-          width={1108}
           height={73}
         >
           <Text color='white'>Restaurants</Text>
           <InputGroup
-            display='flex'
-            justifyContent='flex-end'
-            alignItems='center'
+            // display='flex'
+            // justifyContent='flex-end'
+            // alignItems='center'
+            className='flex justify-end items-center gap-7'
           >
             <Select
               bgColor='#5A5B70'
@@ -49,9 +43,9 @@ const Restaurants = () => {
               placeholder='Select category'
               mr='2'
             >
-              <option value='breakfast'>Breakfast</option>
-              <option value='lunch'>Lunch</option>
-              <option value='dinner'>Dinner</option>
+              <option value='Papa Johns'>Papa John's</option>
+              <option value='Burger King'>Burger King</option>
+              <option value='Mcdonalds'>McDonald's</option>
             </Select>
             <Box>
               <Button
