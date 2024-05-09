@@ -3,6 +3,7 @@ import Header from "@/shared/AdminComponents/Header";
 import LineCharts from "@/shared/AdminComponents/LineChart";
 import PieCharts from "@/shared/AdminComponents/PieChart";
 import PushModul from "@/shared/AdminComponents/PushModul";
+import RiskBar from "@/shared/AdminComponents/RiskBar";
 import MetaSeo from "@/shared/MetaSeo";
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
@@ -24,8 +25,10 @@ const AdminDashboard: NextPage = () => {
     <PieCharts/>
     <LineCharts/>
       </Box>
+      <Box className="flex justify-end gap-3">
+    <RiskBar/>
     <BarCharts/>
-      
+      </Box>
       
       
 

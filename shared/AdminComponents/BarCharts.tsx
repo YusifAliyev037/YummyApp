@@ -18,42 +18,42 @@ import {
 
   const data = [
     {
-      name: 'Page A',
+      name: 'Papa Jhons',
       uv: 590,
       pv: 800,
       amt: 1400,
       cnt: 490,
     },
     {
-      name: 'Page B',
+      name: 'Pizza Hut',
       uv: 868,
       pv: 967,
       amt: 1506,
       cnt: 590,
     },
     {
-      name: 'Page C',
+      name: `Domino's`,
       uv: 1397,
       pv: 1098,
       amt: 989,
       cnt: 350,
     },
     {
-      name: 'Page D',
+      name: 'Pizza Mizza',
       uv: 1480,
       pv: 1200,
       amt: 1228,
       cnt: 480,
     },
     {
-      name: 'Page E',
+      name: 'Pizza Inn',
       uv: 1520,
       pv: 1108,
       amt: 1100,
       cnt: 460,
     },
     {
-      name: 'Page F',
+      name: 'City Pizza',
       uv: 1400,
       pv: 680,
       amt: 1700,
@@ -68,7 +68,7 @@ import {
 const BarCharts: React.FC = () => {
   return (
     
-        <ResponsiveContainer width={400} height={400} className="bg-darkBlue20 rounded-2xl p-5">
+        <ResponsiveContainer width={400} height={400} className="bg-darkBlue20 rounded-2xl p-5 m-4">
           <ComposedChart
             width={500}
             height={400}

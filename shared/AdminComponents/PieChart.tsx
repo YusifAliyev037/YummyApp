@@ -1,4 +1,3 @@
-import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
@@ -42,6 +41,7 @@ function PieCharts() {
     <>
         <ResponsiveContainer width={400} height={400} className='mt-20 bg-darkBlue20 h-96 m-4 rounded-2xl'>
         <PieChart width={400} height={400}>
+         
           <Pie
             data={data}
             cx="50%"
@@ -61,7 +61,7 @@ function PieCharts() {
             ))}
           </Pie>
         </PieChart>
-        </ResponsiveContainer>
+      </ResponsiveContainer>
     </>
   );
 }
