@@ -8,7 +8,7 @@ function PushModul() {
 
     
   return (
-    <Box className=' bg-pink10 w-1/6 rounded-xl p-4 h-3/5 m-5'>
+    <Box className=' mt-20 bg-pink10 w-1/6 rounded-xl h-96 p-4  m-5'>
         <Box as="ul"  className=' w-1/2  mx-6  '>
             <Button onClick={()=> push("/admin")}  borderRadius="none" className='flex gap-7 w-40 float-start text-pink20 cursor-pointer hover:bg-pink30' colorScheme='none' as="li">
             <Image width={18} alt='products' height={18} src="/dashboard.svg"/>
