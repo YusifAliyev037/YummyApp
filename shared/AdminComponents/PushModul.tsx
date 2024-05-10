@@ -10,7 +10,7 @@ function PushModul() {
 
     
   return (
-    <Box className=' mt-20 bg-pink10 w-1/6 rounded-xl h-96 p-4  m-5'>
+    <Box  as='section' className='  mt-20 bg-pink10 w-64 rounded-xl h-96 p-4  m-5'>
         <Box as="ul"  className=' w-1/2  mx-6  '>
             <Button
              onClick={()=> push("/admin")}  
