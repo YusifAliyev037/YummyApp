@@ -25,13 +25,10 @@ module.exports = {
       pink10: '#c74feb',
       pink20: '#FCDDEC',
       pink30: '#d25ff5',
-<<<<<<< Updated upstream
 
-      blue10:"#00b2a9"
-=======
+      blue10:"#00b2a9",
       grey10:'C7C7C7',
       blue10:'38394E',
->>>>>>> Stashed changes
     },
     screens: {
       xs: '320px',
