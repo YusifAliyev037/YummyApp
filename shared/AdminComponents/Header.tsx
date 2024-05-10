@@ -17,7 +17,7 @@ function Header() {
       <Box className='flex gap-5 items-center'>
         <Button size="xs" borderRadius="20px" colorScheme='pink' className='text-white10' style={{ boxShadow: '0px 4px 4px 0px rgba(39, 174, 96, 0.2)' }}>+ ADD PRODUCT</Button>
         <Box>
-          <Image width={41} height={41} src="/englishlang.svg" alt="English Language" />
+          <Image width={41} height={41} src="/eng.svg" alt="English Language" />
         </Box>
         <Box>
           <Image width={41} height={41} src="/user.png" alt="English Language" />
