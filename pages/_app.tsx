@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <Component {...pageProps} />
-      <ProgressBar height='4px' color='#fffd00'/>
+      <ProgressBar height='4px' color='#8b1fab'/>
 
     </ChakraProvider>
   )
