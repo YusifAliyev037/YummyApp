@@ -29,10 +29,6 @@ const AdminDashboard: NextPage = () => {
     <RiskBar/>
     <BarCharts/>
       </Box>
-      
-      
-
-      <h1>Welcome to Admin page</h1>
     </Box>
   );
 };
