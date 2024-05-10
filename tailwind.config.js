@@ -12,8 +12,12 @@ module.exports = {
     colors: {
       darkBlue10: '#1E1E30',
       darkBlue20: '#27283C',
+      darkblue30:"#38394e",
+
+      gray10: '#c7c7c7',
 
       white10: '#f5f5f5',
+      white20: '#fffefe',
 
       orange: '#EAAB00',
 
