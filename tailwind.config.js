@@ -31,6 +31,7 @@ module.exports = {
       grey10:'C7C7C7',
       gray20: "#5a5b70",
       blue10:'38394E',
+      blue20:"#00B2A9",
     },
     screens: {
       xs: '320px',
