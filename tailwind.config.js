@@ -16,6 +16,7 @@ module.exports = {
 
       gray10: '#c7c7c7',
 
+      white:"#ffffff",
       white10: '#f5f5f5',
       white20: '#fffefe',
 
@@ -28,6 +29,7 @@ module.exports = {
 
       blue10:"#00b2a9",
       grey10:'C7C7C7',
+      gray20: "#5a5b70",
       blue10:'38394E',
     },
     screens: {
