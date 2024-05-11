@@ -3,12 +3,19 @@ import { Box, Button, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useRef } from 'react';
 
 
 
 function login() {
-  const {push} = useRouter()
+  const {push}: {push: Function} = useRouter();
+
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const date:Date | any = new Date()
+
   
 
   return (
