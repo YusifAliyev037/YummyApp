@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCmrtMRa9_ydMuxrby9nboGZLOonLn2twk",
   authDomain: "yummyapp-f2354.firebaseapp.com",
