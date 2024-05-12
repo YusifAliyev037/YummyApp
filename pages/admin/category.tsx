@@ -1,6 +1,7 @@
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
-import TableForOrder from '@/shared/AdminComponents/Table';
+
+
 import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
 import React from 'react';
 
@@ -9,82 +10,23 @@ function category() {
     'ID',
     'Image',
     'Name',
-    'Slog',
-  
+    'Slog',  
   ];
+  
   let testData = [
     {
       Id: 9177,
       Image: '',
       Name: 'Pizza',
-      Slog: 'Yummy Pizza',
-     
+      Slog: 'Yummy Pizza',     
     },
     {
       Id: 9178,
       Image: '',
       Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
+      Slog: 'Sendvic',   
     },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    
-    },
-
- 
+    // Diğer testData öğeleri buraya eklenecek
   ];
 
   return (
@@ -92,7 +34,6 @@ function category() {
       <Header />
       <Box display='flex'>
         <PushModul />
-
         <Box>
           <Box
             bg='#27283C'
@@ -109,8 +50,8 @@ function category() {
               </Box>
             </InputGroup>
           </Box>
+
           <Box height={'464px'} overflow={'auto'}>
-          <TableForOrder order={testData} name={TableNames} />
 
           </Box>
         </Box>
