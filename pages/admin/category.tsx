@@ -99,13 +99,12 @@ function category() {
         >
           <Box
             bg='#27283C'
-            className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8'
+            className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8 '
             borderRadius={16}
             height={73}
           >
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
-            
               <Box>
                 <Button
                   borderRadius={14}
@@ -116,13 +115,19 @@ function category() {
               </Box>
             </InputGroup>
           </Box>
-          <Box height={"464px"} overflow={"auto"} className='mr-8'>
-         <TableCategory  order={testData} name={TableNames} />
-         </Box>
-         
+          <Box
+            height={'464px'}
+            overflow={'auto'}
+            className='mr-8'
+          >
+            <TableCategory
+              order={testData}
+              name={TableNames}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>
   );
-};
+}
 export default category;
