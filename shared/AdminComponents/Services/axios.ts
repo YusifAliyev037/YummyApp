@@ -32,3 +32,17 @@ export const completeLogin = async (form:FormRegister) => {
         
     }
 }
+
+
+// //!category
+
+// export type FormCategory = {
+//     name: string | undefined;
+//     slug: string |undefined;
+//     img_url: string | undefined
+  
+// }
+
+// export const category = async( form:FormCategory) =>{
+//     try{const response = await instanceAxios.post("/category")}
+// }

@@ -14,7 +14,7 @@ function PushModul() {
         <Box as="ul"  className=' w-1/2  mx-6  '>
             <Button
              onClick={()=> push("/admin")}  
-             className='flex gap-7 w-40 float-start text-pink20 cursor-pointer hover:bg-pink30' 
+             className='flex gap-7  float-start text-pink20 cursor-pointer hover:bg-pink30' 
              colorScheme='none' 
              style={{ backgroundColor: isActive("/admin") }} 
              as="li">
@@ -24,7 +24,7 @@ function PushModul() {
             <Button 
             onClick={()=> push("/admin/products")} 
             style={{ backgroundColor: isActive("/admin/products") }} 
-            className='flex gap-7 w-40 text-pink20 cursor-pointer hover:bg-pink30' 
+            className='flex gap-7  text-pink20 cursor-pointer hover:bg-pink30' 
             colorScheme='none' 
             as="li">
                 <Image width={18} alt='products' height={18} src="/products.svg"/>
@@ -33,7 +33,7 @@ function PushModul() {
             <Button
              onClick={()=> push("/admin/restaurants")} 
              style={{ backgroundColor: isActive("/admin/restaurants") }} 
-             className=' flex gap-7 w-40 text-pink20 cursor-pointer hover:bg-pink30' 
+             className=' flex gap-7  text-pink20 cursor-pointer hover:bg-pink30' 
              colorScheme='none' 
              as="li">
             <Image width={18} alt='products' height={18} src="/restaurants.svg"/>
@@ -42,7 +42,7 @@ function PushModul() {
             <Button
              style={{ backgroundColor: isActive("/admin/category") }} 
              onClick={()=> push("/admin/category")} 
-             className='flex gap-7 w-40 text-pink20 cursor-pointer hover:bg-pink30' 
+             className='flex gap-7  text-pink20 cursor-pointer hover:bg-pink30' 
              colorScheme='none' 
              as="li">
             <Image width={18} alt='products' height={18} src="/category.svg"/>
@@ -51,7 +51,7 @@ function PushModul() {
             <Button
              style={{ backgroundColor: isActive("/admin/orders") }} 
              onClick={()=> push("/admin/orders")} 
-             className='flex  gap-7 w-40 text-pink20 cursor-pointer hover:bg-pink30' 
+             className='flex  gap-7  text-pink20 cursor-pointer hover:bg-pink30' 
              colorScheme='none' 
              as="li">
             <Image width={18} alt='products' height={18} src="/orders.svg"/>
@@ -60,7 +60,7 @@ function PushModul() {
             <Button
              style={{ backgroundColor: isActive("/admin/offer") }} 
              onClick={()=> push("/admin/offer")} 
-             className='flex gap-7 w-40 text-pink20 cursor-pointer hover:bg-pink30' 
+             className='flex gap-7  text-pink20 cursor-pointer hover:bg-pink30' 
              colorScheme='none'
              as="li">
             <Image width={18} alt='products' height={18} src="/offer.svg"/>
@@ -69,7 +69,7 @@ function PushModul() {
             <Button
              style={{ backgroundColor: isActive("/admin/login") }} 
              onClick={()=> push("/admin/login")} 
-             className='flex gap-7 w-40  text-pink20 cursor-pointer hover:bg-pink30' 
+             className='flex gap-7   text-pink20 cursor-pointer hover:bg-pink30' 
              colorScheme='none' 
              as="li">
             <Image width={18} alt='products' height={18} src="/logout.svg"/>
