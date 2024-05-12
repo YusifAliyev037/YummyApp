@@ -16,12 +16,10 @@ import {
 import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
 import Head from 'next/head';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { FC } from 'react';
 
-
-
-const Restaurants = () => {
-  
+const Restaurants: FC = () => {
   const cards = new Array(5).fill(null);
 
   return (
@@ -99,7 +97,7 @@ const Restaurants = () => {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing='2'>
-                  <Button variant='solid' colorScheme='blue' leftIcon={<EditIcon />} 
+                    <Button variant='solid' colorScheme='blue' leftIcon={<EditIcon />} 
                     >
                       
                     </Button>
