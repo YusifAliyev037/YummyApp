@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 const baseURL = "/api"
 
 
@@ -27,6 +28,7 @@ export const completeLogin = async (form:FormRegister) => {
         const response = await instanceAxios.post("/auth/signin", form);
         return response
     }catch(error){
+        toast.error("Chek your infomation!")
    
        console.log(error);
         

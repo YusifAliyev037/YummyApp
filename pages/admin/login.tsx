@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef } from 'react';
+import { ToastContainer } from 'react-toastify';
         
 
 
@@ -115,7 +116,7 @@ function Adminlogin() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Box as='header' className=' mx-8 py-14'>
-        {/* <ToastContainer/> */}
+        <ToastContainer/>
         <Text className='font-extrabold text-[28px] text-white10' as="h1">
           Yummy    
           <span className='text-orange'>
