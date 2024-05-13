@@ -16,13 +16,20 @@ import {
 import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
 import Head from 'next/head';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { FC, useState } from 'react';
+import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 
-
-
-const Restaurants = () => {
-  
+const Restaurants: FC = () => {
   const cards = new Array(5).fill(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
+  const handleDeleteButtonClick = () => {
+    setIsDeleteModalOpen(true); 
+  };
+  
+  const handleCloseModal = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <Box className=' bg-darkBlue10 h-screen p-2'>
@@ -52,7 +59,7 @@ const Restaurants = () => {
         >
           <Box
             bg='#27283C'
-            className='flex items-center mb-12 w-5/5 px-8 mt-20 '
+            className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8'
             borderRadius={16}
             height={73}
           >
@@ -99,21 +106,26 @@ const Restaurants = () => {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing='2'>
-                  <Button variant='solid' colorScheme='blue' leftIcon={<EditIcon />} 
+                    <Button variant='solid' colorScheme='blue' leftIcon={<EditIcon />} 
                     >
                       
                     </Button>
                     <Button variant='ghost' colorScheme='red' leftIcon={<DeleteIcon />} 
+                     onClick={handleDeleteButtonClick}
                     >
                       
                     </Button>
                   </ButtonGroup>
                 </CardFooter>
+                
               </Card>
             ))}
           </Box>
         </Box>
       </Box>
+      {
+      isDeleteModalOpen && <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} />
+      }
     </Box>
   );
 };
