@@ -107,6 +107,7 @@ const Restaurants: FC = () => {
                     </Button>
                   </ButtonGroup>
                 </CardFooter>
+                
               </Card>
             ))}
           </Box>
