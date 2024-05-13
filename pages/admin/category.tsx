@@ -6,9 +6,10 @@ import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import React from 'react';
 
-function category() {
-  let TableNames = ['ID', 'Image', 'Name', 'Slog'];
-  let testData = [
+function Category() {
+  const tableNames = ['ID', 'Image', 'Name', 'Slog'];
+
+  const testData = [
     {
       Id: 9177,
       Image: '',
@@ -26,83 +27,27 @@ function category() {
       Image: '',
       Name: 'Fries',
       Slog: 'Fries',
-    },
-    {
-      Id: 9177,
-      Image: '',
-      Name: 'Pizza',
-      Slog: 'Yummy-pizza',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Fries',
-      Slog: 'Fries',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'pizza',
-      Slog: 'Yummy-Pizza',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Fries',
-      Slog: 'Fries',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
     },
   ];
 
   return (
-    <Box className=' bg-darkBlue10 h-screen p-2'>
-      <Box as='header'>
-        <Head>
-          <title>Category</title>
-          <MetaSeo
-            title='Category'
-            desc='Category Page'
-          />
-          <link
-            rel='icon'
-            href='/favicon.ico'
-          />
-        </Head>
-        <Header />
-      </Box>
-      <Box
-        as='main'
-        className='flex  '
-      >
+    <Box className='bg-darkBlue10 h-screen p-2'>
+      <Head>
+        <title>Category</title>
+        <MetaSeo
+          title='Category'
+          desc='Category Page'
+        />
+        <link
+          rel='icon'
+          href='/favicon.ico'
+        />
+      </Head>
+      <Header />
+      <Box className='flex'>
         <PushModul />
-
-        <Box
-          as='section'
-          className='w-full'
-        >
-          <Box
-            bg='#27283C'
-            className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8 '
-            borderRadius={16}
-            height={73}
-          >
+        <Box className='w-full'>
+          <Box className='bg-darkBlue10 flex items-center mb-12 w-full px-8 mt-20 mr-8 rounded-lg h-16'>
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
               <Box>
@@ -122,7 +67,7 @@ function category() {
           >
             <TableCategory
               order={testData}
-              name={TableNames}
+              name={tableNames}
             />
           </Box>
         </Box>
@@ -130,4 +75,5 @@ function category() {
     </Box>
   );
 }
-export default category;
+
+export default Category;
