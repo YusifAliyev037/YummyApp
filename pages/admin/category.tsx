@@ -7,7 +7,12 @@ import Head from 'next/head';
 import React from 'react';
 
 function Category() {
-  const tableNames = ['ID', 'Image', 'Name', 'Slog'];
+  const TableNames = [
+    'ID',
+    'Image',
+    'Name',
+    'Slog',
+  ];
 
   const testData = [
     {
@@ -28,6 +33,24 @@ function Category() {
       Name: 'Fries',
       Slog: 'Fries',
     },
+    {
+      Id: 9177,
+      Image: '',
+      Name: 'Pizza',
+      Slog: 'Yummy-pizza',
+    },
+    {
+      Id: 9178,
+      Image: '',
+      Name: 'Sendvic',
+      Slog: 'Sendvic',
+    },
+    {
+      Id: 9178,
+      Image: '',
+      Name: 'Sendvic',
+      Slog: 'Sendvic',
+    },
   ];
 
   return (
@@ -44,31 +67,22 @@ function Category() {
         />
       </Head>
       <Header />
-      <Box className='flex'>
+      <Box as='main' className='flex'>
         <PushModul />
         <Box className='w-full'>
-          <Box className='bg-darkBlue10 flex items-center mb-12 w-full px-8 mt-20 mr-8 rounded-lg h-16'>
+          <Box
+            bg='#27283C'
+            className='flex items-center mb-12 w-full px-8 mt-20 mr-8 rounded-lg h-16'
+          >
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
-              <Box>
-                <Button
-                  borderRadius={14}
-                  colorScheme='pink'
-                >
-                  + ADD RESTAURANTS
-                </Button>
-              </Box>
+              <Button borderRadius={14} colorScheme='pink'>
+                + ADD RESTAURANTS
+              </Button>
             </InputGroup>
           </Box>
-          <Box
-            height={'464px'}
-            overflow={'auto'}
-            className='mr-8'
-          >
-            <TableCategory
-              order={testData}
-              name={tableNames}
-            />
+          <Box height={'464px'} overflow={'auto'} className='mr-8'>
+            <TableCategory order={testData} name={TableNames} />
           </Box>
         </Box>
       </Box>

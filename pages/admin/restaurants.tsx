@@ -17,10 +17,19 @@ import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
 import Head from 'next/head';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 
 const Restaurants: FC = () => {
   const cards = new Array(5).fill(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
+  const handleDeleteButtonClick = () => {
+    setIsDeleteModalOpen(true); 
+  };
+  
+  const handleCloseModal = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <Box className=' bg-darkBlue10 h-screen p-2'>
@@ -102,6 +111,7 @@ const Restaurants: FC = () => {
                       
                     </Button>
                     <Button variant='ghost' colorScheme='red' leftIcon={<DeleteIcon />} 
+                     onClick={handleDeleteButtonClick}
                     >
                       
                     </Button>
@@ -113,6 +123,9 @@ const Restaurants: FC = () => {
           </Box>
         </Box>
       </Box>
+      {
+      isDeleteModalOpen && <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} />
+      }
     </Box>
   );
 };
