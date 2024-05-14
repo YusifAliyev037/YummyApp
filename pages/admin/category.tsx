@@ -106,7 +106,7 @@ function Category() {
             </InputGroup>
           </Box>
           <Box height={'464px'} overflow={'auto'} >
-            <TableCategory order={testData} name={TableNames} />
+            <TableCategory  />
           </Box>
         </Box>
       </Box>
