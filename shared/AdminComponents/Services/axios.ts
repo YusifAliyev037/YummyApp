@@ -1,5 +1,5 @@
 import axios from "axios";
-import { toast } from "react-toastify";
+import { error } from "console";
 const baseURL = "/api"
 
 
@@ -11,6 +11,13 @@ const instanceAxios = axios.create({
         "Content-Type":"application/json",
     }
 });
+
+export type Form = {
+    name: string | undefined;
+    slug: string |undefined;
+    img_url: string | undefined
+  
+}
 
 
 
@@ -28,7 +35,7 @@ export const completeLogin = async (form:FormRegister) => {
         const response = await instanceAxios.post("/auth/signin", form);
         return response
     }catch(error){
-        toast.error("Chek your infomation!")
+        alert("Chek your infomation!")
    
        console.log(error);
         
@@ -38,14 +45,22 @@ export const completeLogin = async (form:FormRegister) => {
 
 // //!category
 
-// export type FormCategory = {
-//     name: string | undefined;
-//     slug: string |undefined;
-//     img_url: string | undefined
-  
-// }
+
 
 // export const category = async( form:FormCategory) =>{
 //     try{const response = await instanceAxios.post("/category")}
 // }
+
+
+
+export async function getCategories () {
+    try{const response = await instanceAxios.get("/category")
+
+    return response
+
+    }catch{error}(
+        console.log(error)
+        
+    )
+}
 
