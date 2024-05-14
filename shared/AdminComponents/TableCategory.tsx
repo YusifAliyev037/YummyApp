@@ -28,6 +28,7 @@ const TableCategory: React.FC = () => {
     fetchCategories();
   }, []);
 
+
   return (
     <div className='m-3'>
       <table className='w-full bg-white'>
@@ -86,6 +87,7 @@ const TableCategory: React.FC = () => {
       </table>
     </div>
   );
+ 
 };
 
 export default TableCategory;
