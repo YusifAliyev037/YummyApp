@@ -10,15 +10,18 @@ interface CategoryType {
   slug: string;
 }
 
-const TableCategory: React.FC = () => {
+interface Props {
+  customIds?:number[];
+}
+
+const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
   async function fetchCategories() {
     try {
       const res = await getCategories();
       setCategories(res?.data.result.data);
-       console.log(res?.data);
-       
+      console.log(res?.data);
     } catch (err) {
       console.log(err);
     }
@@ -28,22 +31,21 @@ const TableCategory: React.FC = () => {
     fetchCategories();
   }, []);
 
-
   return (
     <div className='m-3'>
       <table className='w-full bg-white'>
         <thead>
           <tr>
-           <th className='py-4'>ID</th>
-           <th className='py-4'>Image</th>
-           <th className='py-4'>Name</th>
-           <th className='py-4'>Slug</th>
+            <th className='py-4'>ID</th>
+            <th className='py-4'>Image</th>
+            <th className='py-4'>Name</th>
+            <th className='py-4'>Slug</th>
           </tr>
         </thead>
         <tbody>
           {categories.map((item, index) => (
             <tr key={index}>
-              <td className='text-center h-12 text-base'>{item.id}</td>
+              <td className='text-center h-12 text-base'>{customIds ? customIds[index] + 9170 : index + 9170}</td>
               <td className='text-center h-12 text-base'>
                 {item.name ? (
                   <Box
@@ -56,7 +58,7 @@ const TableCategory: React.FC = () => {
                     <img
                       src={item.img_url}
                       alt={item.name}
-                      style={{ width: '40px', height: '40px', objectFit:"cover"}}
+                      style={{ width: '40px', height: '40px', objectFit: 'cover' }}
                     />
                   </Box>
                 ) : (
@@ -87,7 +89,6 @@ const TableCategory: React.FC = () => {
       </table>
     </div>
   );
- 
 };
 
 export default TableCategory;

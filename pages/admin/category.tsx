@@ -8,7 +8,7 @@ import React from 'react';
 
 function Category() {
  
-
+  const customIds = Array.from({ length: 10 }, (_, i) => i);
  
 
   return (
@@ -40,7 +40,7 @@ function Category() {
             </InputGroup>
           </Box>
           <Box height={'464px'} overflow={'auto'} >
-            <TableCategory  />
+            <TableCategory customIds={customIds}  />
           </Box>
         </Box>
       </Box>
