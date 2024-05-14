@@ -15,6 +15,8 @@ interface Order {
 }
 
 const TableCategory: React.FC<Props> = ({ name, order }) => {
+//admin
+    
   return (
     <div className='m-3'>
       <table className='w-full bg-white'>
@@ -84,6 +86,7 @@ const TableCategory: React.FC<Props> = ({ name, order }) => {
       </table>
     </div>
   );
+ 
 };
 
 export default TableCategory;
