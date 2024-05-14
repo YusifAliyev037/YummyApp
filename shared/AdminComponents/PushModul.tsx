@@ -24,7 +24,7 @@ function PushModul() {
                 </Button>
                 <Button
                     onClick={() => push("/admin/products")}
-                    className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52 '
+                    className='flex gap-7 w-52 text-pink20 justify-start cursor-pointer hover:bg-pink30 hover:w-52 '
                     colorScheme='none'
                     style={{ justifyContent:"flex-start",backgroundColor: isActive("/admin/products") }}
                     as="li"
