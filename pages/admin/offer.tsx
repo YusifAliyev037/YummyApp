@@ -1,5 +1,3 @@
-
-
 import AdminModal from '@/shared/AdminComponents/AdminModal';
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
@@ -7,12 +5,18 @@ import TableCategory from '@/shared/AdminComponents/TableCategory';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React from 'react';
 
-function offer() {
-  
-  let TableNames = ['ID', 'Image', 'Title', 'Descriptions'];
-  let testData = [
+interface TestData {
+  Id: number;
+  Image: string;
+  Name: string;
+  Slog: string;
+}
+
+const Offer: React.FC = () => {
+  const TableNames: string[] = ['ID', 'Image', 'Title', 'Descriptions'];
+  const testData: TestData[] = [
     {
       Id: 9177,
       Image: '',
@@ -77,25 +81,18 @@ function offer() {
 
   return (
     <Box className=' bg-darkBlue10 h-screen  z-5'>
-         <AdminModal/>
+      <AdminModal />
       <Box as='header'>
-      <Head>
-        <title>Offer</title>
-       <MetaSeo title="Offer" desc="Offer Page"/>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+        <Head>
+          <title>Offer</title>
+          <MetaSeo title="Offer" desc="Offer Page" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <Header />
       </Box>
-      <Box
-        as='main'
-        className='flex  '
-      >
+      <Box as='main' className='flex'>
         <PushModul />
-
-        <Box
-          as='section'
-          className='w-full'
-        >
+        <Box as='section' className='w-full'>
           <Box
             bg='#27283C'
             className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8'
@@ -104,10 +101,8 @@ function offer() {
           >
             <Text color='white'>Offer</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
-             
-            
               <Box>
-                <Button 
+                <Button
                   borderRadius={14}
                   colorScheme='pink'
                 >
@@ -117,14 +112,12 @@ function offer() {
             </InputGroup>
           </Box>
           <Box height={"464px"} overflow={"auto"} className='mr-8'>
-         <TableCategory  order={testData} name={TableNames} />
-         </Box>
-         
+            {/* <TableCategory order={testData} name={TableNames} /> */}
+          </Box>
         </Box>
       </Box>
-   
-     
     </Box>
   );
 };
-export default offer;
+
+export default Offer;
