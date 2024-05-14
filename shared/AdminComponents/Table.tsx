@@ -34,7 +34,7 @@ const TableForOrder: React.FC<Props> = ({ name, order }) => {
                 <Thead>
                     <Tr>
                         {name.map((item, index) => (
-                            <Th height={"70px"} fontSize={"10px"}    textAlign={"center"} key={index}>{item}</Th>
+                            <Th height={"70px"} fontSize={"12px"} padding={"0px"}    textAlign={"center"} key={index}>{item}</Th>
                         ))}
                     </Tr>
                 </Thead>

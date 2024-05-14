@@ -1,14 +1,20 @@
 import Header from '@/shared/AdminComponents/Header'
 import PushModul from '@/shared/AdminComponents/PushModul'
 import TableForOrder from '@/shared/AdminComponents/Table'
+import MetaSeo from '@/shared/MetaSeo'
 import { Box, Flex, Text, flexbox } from '@chakra-ui/react'
+import Head from 'next/head'
 import React from 'react'
 function orders() {
   let TableNames=["ID","Customer ID","Time","Delivery Address","Amount","Payment Method","Contact"]
   let testData=[{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"}]
   return(
     <Box  className="bg-darkBlue10 h-screen"> 
-   
+   <Head>
+        <title>Orders</title>
+       <MetaSeo title="Orders" desc="Orders Page"/>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
     <Header />
     <Box display={"flex"} >
       <PushModul />

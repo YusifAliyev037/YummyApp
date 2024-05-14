@@ -34,8 +34,8 @@ const TableCategory: React.FC<Props> = ({ name, order }) => {
                             <td className="text-center h-12 text-base">{item.Name}</td>
                             <td className="text-center h-12 text-base">{item.Slog}</td>
                             <td className="text-right">
-                                <IconButton aria-label="Edit" icon={<EditIcon />} size="sm" />
-                                <IconButton aria-label="Delete" icon={<DeleteIcon />} size="sm" />
+                                <IconButton aria-label="Edit" icon={<EditIcon color={"blue"} />} size="sm" />
+                                <IconButton aria-label="Delete" icon={<DeleteIcon color={"red"} />} size="sm" />
                             </td>
                         </tr>
                     ))}
