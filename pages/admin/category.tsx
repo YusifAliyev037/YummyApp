@@ -93,19 +93,19 @@ function Category() {
       <Header />
       <Box as='main' className='flex'>
         <PushModul />
-        <Box className='w-full'>
+        <Box className='w-full mr-8'>
           <Box
             bg='#27283C'
-            className='flex items-center mb-12 w-full px-8 mt-20 mr-8 rounded-lg h-16'
+            className='flex items-center mb-12 w-full px-8 mt-20 rounded-lg h-16 '
           >
             <Text color='white'>Category</Text>
-            <InputGroup className='flex justify-end items-center gap-7'>
+            <InputGroup className='flex justify-end  items-center gap-7'>
               <Button borderRadius={14} colorScheme='pink'>
                 + ADD RESTAURANTS
               </Button>
             </InputGroup>
           </Box>
-          <Box height={'464px'} overflow={'auto'} className='mr-8'>
+          <Box height={'464px'} overflow={'auto'} >
             <TableCategory order={testData} name={TableNames} />
           </Box>
         </Box>

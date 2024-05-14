@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from '@chakra-ui/react';
+import { Box, IconButton } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
 interface Props {
@@ -41,7 +41,7 @@ const TableCategory: React.FC<Props> = ({ name, order }) => {
                 style={{ verticalAlign: 'middle' }}
               >
                 {item.Image ? (
-                  <div
+                  <Box
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -53,7 +53,7 @@ const TableCategory: React.FC<Props> = ({ name, order }) => {
                       alt={item.Name}
                       style={{ width: '40px', height: '40px' }}
                     />
-                  </div>
+                  </Box>
                 ) : (
                   'No Image'
                 )}
