@@ -10,7 +10,7 @@ function PushModul() {
 
     return (
         <Box as='section' className='mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5 '>
-            <Box as="ul" className='w-1/2 w-64 flex flex-col  '>
+            <Box as="ul" className=' w-64 flex flex-col  '>
                 <Button
                     onClick={() => push("/admin")}
                     className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52 '
@@ -34,7 +34,7 @@ function PushModul() {
                 </Button>
                 <Button
                     onClick={() => push("/admin/restaurants")}
-                    className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52 '
+                    className='flex gap-7 ju w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52 '
                     colorScheme='none'
                     style={{ justifyContent:"flex-start",backgroundColor: isActive("/admin/restaurants") }}
                     as="li"
