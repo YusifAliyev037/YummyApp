@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Flex, Image, Input, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button,  Image, Input, Text, Textarea } from '@chakra-ui/react';
 
 function AdminModal() {
 
@@ -9,7 +9,7 @@ function AdminModal() {
 
   return (
 <Box
- 
+ ////modall
   width="66%"
   backgroundColor="#38394E"
   className={`h-full z-20  flex flex-col gap-[20px] container mx-auto px-8 fixed`}
@@ -81,7 +81,7 @@ Add your Offer information
 </Box>
 
  
-  <Box display={"flex"} justifyContent={"center"} gap={"42px"} borderTop={"2px"} color={"#43445A"} padding={"16px"}  >
+  <Box display={"flex"} justifyContent={"center"} gap={"41px"} borderTop={"2px"} color={"#43445A"} padding={"16px"}  >
       <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#43445A"} >
       Cancel
 

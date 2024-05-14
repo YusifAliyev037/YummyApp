@@ -15,7 +15,7 @@ interface Order {
 }
 
 const TableCategory: React.FC<Props> = ({ name, order }) => {
-
+//admin
     
   return (
     <div className='m-3'>
