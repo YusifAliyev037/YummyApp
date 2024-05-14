@@ -36,19 +36,46 @@ const TableCategory: React.FC<Props> = ({ name, order }) => {
           {order.map((item, index) => (
             <tr key={index}>
               <td className='text-center h-12 text-base'>{item.Id}</td>
-              <td className='text-center h-12 text-base'>{item.Image}</td>
+              <td
+                className='text-center h-12 text-base'
+                style={{ verticalAlign: 'middle' }}
+              >
+                {item.Image ? (
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <img
+                      src={item.Image}
+                      alt={item.Name}
+                      style={{ width: '40px', height: '40px' }}
+                    />
+                  </div>
+                ) : (
+                  'No Image'
+                )}
+              </td>
               <td className='text-center h-12 text-base'>{item.Name}</td>
               <td className='text-center h-12 text-base'>{item.Slog}</td>
-              <td className='text-right'>
+              <td className='text-right pr-2 g-2'>
                 <IconButton
                   aria-label='Edit'
                   icon={<EditIcon />}
                   size='sm'
+                  color='teal'
+                  variant="unstyled"
+                  
                 />
                 <IconButton
                   aria-label='Delete'
                   icon={<DeleteIcon />}
                   size='sm'
+                  color='red'
+                  variant="unstyled"
+                  
                 />
               </td>
             </tr>

@@ -22,11 +22,11 @@ import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 
 const Restaurants: FC = () => {
   const cards = new Array(5).fill(null);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const handleDeleteButtonClick = () => {
-    setIsDeleteModalOpen(true); 
+    setIsDeleteModalOpen(true);
   };
-  
+
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
   };
@@ -87,10 +87,13 @@ const Restaurants: FC = () => {
               </Box>
             </InputGroup>
           </Box>
-          
-          <Box className="flex flex-wrap gap-4">
+
+          <Box className='flex flex-wrap gap-4'>
             {cards.map((_, index) => (
-              <Card key={index} className='h-72 w-48 mb-4'>
+              <Card
+                key={index}
+                className='h-72 w-48 mb-4'
+              >
                 <CardBody>
                   <Image
                     className='w-full'
@@ -106,26 +109,26 @@ const Restaurants: FC = () => {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing='2'>
-                    <Button variant='solid' colorScheme='blue' leftIcon={<EditIcon />} 
-                    >
-                      
-                    </Button>
-                    <Button variant='ghost' colorScheme='red' leftIcon={<DeleteIcon />} 
-                     onClick={handleDeleteButtonClick}
-                    >
-                      
-                    </Button>
+                    <Button
+                      leftIcon={<EditIcon style={{ color: '#00B2A9' }} />}
+                    ></Button>
+                    <Button
+                      leftIcon={<DeleteIcon style={{ color: '#EB5757' }} />}
+                      onClick={handleDeleteButtonClick}
+                    ></Button>
                   </ButtonGroup>
                 </CardFooter>
-                
               </Card>
             ))}
           </Box>
         </Box>
       </Box>
-      {
-      isDeleteModalOpen && <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} />
-      }
+      {isDeleteModalOpen && (
+        <ModulDelete
+          isOpen={isDeleteModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
     </Box>
   );
 };

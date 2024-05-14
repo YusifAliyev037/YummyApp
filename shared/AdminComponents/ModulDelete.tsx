@@ -35,8 +35,8 @@ import {
           isCentered 
         >
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader className='text-center'>
+          <ModalContent >
+            <ModalHeader className='text-center ' >
               Are you sure it’s deleted ?
             </ModalHeader>
             <ModalCloseButton />
