@@ -21,7 +21,7 @@ function products() {
       <Box as='section' className='w-full'>
       <Box
           bg='#27283C'
-          className='flex items-center mb-12 w-5/5 px-8 mt-20 '
+          className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8'
           borderRadius={16}
           height={73}
         >

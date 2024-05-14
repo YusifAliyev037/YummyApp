@@ -28,9 +28,9 @@ module.exports = {
       pink30: '#d25ff5',
 
       blue10:"#00b2a9",
-      grey10:'C7C7C7',
+      grey10:'#C7C7C7',
       gray20: "#5a5b70",
-      blue10:'38394E',
+      blue10:'#38394E',
       blue20:"#00B2A9",
     },
     screens: {
