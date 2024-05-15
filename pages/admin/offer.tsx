@@ -1,7 +1,8 @@
 import AdminModal from '@/shared/AdminComponents/AdminModal';
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
-import OfferInputs from '@/shared/AdminComponents/Services/offerInputs';
+import OfferInputs from '@/shared/AdminComponents/Services/OfferInputs';
+
 import TableCategory from '@/shared/AdminComponents/TableCategory';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
