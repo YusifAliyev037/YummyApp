@@ -14,10 +14,12 @@ import {
 
 interface ModulDeleteProps {
   isOpen: boolean;
+
   onClose: () => void;
+  onConfirm: () => void;
 }
 
-const ModulDelete: React.FC<ModulDeleteProps> = ({ isOpen, onClose }) => {
+const ModulDelete: React.FC<ModulDeleteProps> = ({ isOpen, onClose,onConfirm }) => {
   const finalRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -63,7 +65,7 @@ const ModulDelete: React.FC<ModulDeleteProps> = ({ isOpen, onClose }) => {
               Cancel
             </Button>
 
-            <Button className='w-28 text-white' colorScheme='red'>
+            <Button className='w-28 text-white' colorScheme='red' onClick={onConfirm}>
               Delete
             </Button>
           </ModalFooter>

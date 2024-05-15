@@ -45,7 +45,7 @@ export async function getCategories() {
       console.error(error);
     }
   }
-
+// Restaurant
 
 export type Restaurant = {
   id?: string;
@@ -61,5 +61,14 @@ export async function getRestaurants() {
   } catch (error) {
     console.error('Error while fetching restaurants:', error);
     throw new Error('Failed to fetch restaurants!');
+  }
+}
+export async function deleteRestaurant(restaurantId: string) {
+  try {
+    const response = await instanceAxios.delete(`/restuarants/${restaurantId}`);
+    return response;
+  } catch (error) {
+    console.error(`Error while deleting restaurant with ID ${restaurantId}:`, error);
+    throw new Error('Failed to delete restaurant!');
   }
 }
