@@ -1,0 +1,167 @@
+.clientHeader {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 60px;
+  background-color: var(--color-light-gray);
+}
+
+.clientHeader h1 {
+  /* position: absolute; */
+  width: 131px;
+  height: 29.53px;
+  /* left: 87px; */
+  /* top: 82.07px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Mukta;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 29.53px; /* Adjusted to match the height */
+  letter-spacing: 3%;
+  color: var(--color-black); /* Use provided black color */
+  margin-right: auto; /* Pushes the logo to the left */
+}
+
+.clientHeader h2 {
+  color: var(--color-red);
+  padding-right: 30px;
+  /* position: absolute; */
+  /* width: 131px; */
+  /* height: 29.53px; */
+  /* left: 87px; */
+  /* top: 82.07px; */
+  display: flex;
+  padding-left: 1px;
+  flex-direction: row;
+  /* align-items: center; */
+  font-family: Mukta;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 29.53px;
+  /* letter-spacing: 3%; */
+  margin-right: 5px; /* Pushes the logo to the left */
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.navList li {
+  margin-right: 40px; /* Increased padding between nav menu buttons */
+}
+
+.navList a {
+  color: var(--color-gray); /* Default color */
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500; /* Medium bold */
+  line-height: 28px;
+}
+
+.navList a:hover {
+  color: var(--color-red); /* Hover color */
+}
+
+.navList a.active {
+  color: var(--color-red); /* Active color */
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Add orange dot styles */
+.orangeDot {
+  color: orange;
+}
+
+.searchUtility {
+  display: flex;
+  align-items: center;
+  margin-right: 30px; /* Padding between search input, language select, and signup button */
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchInput {
+  padding: 8px 12px;
+  border: 1px solid var(--color-gray);
+  padding-right: 30px;
+}
+
+.searchButton {
+  background-color: var(--color-dark-red);
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.utility {
+  display: flex;
+  align-items: center;
+  padding-left: 30px; /* Padding between search input, language select, and signup button */
+}
+
+.signupButton {
+  background-color: var(--color-dark-red);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px; /* Rounded corners */
+  cursor: pointer;
+}
+
+.languageSelect {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-right: 30px; /* Padding between language select and signup button */
+  position: relative; /* Set position to relative */
+}
+
+.languageIcon {
+  cursor: pointer; /* Add cursor pointer */
+}
+
+.languageIcon img {
+  width: 50px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 50%; /* Make it a circle */
+  margin-right: 10px; /* Adjust spacing between flags */
+  transition: transform 0.3s ease; /* Add transition effect */
+}
+
+.languageIcon:hover img {
+  transform: scale(1.1); /* Increase size on hover */
+}
+
+.dropdown {
+  position: absolute; /* Set position to absolute */
+  top: calc(
+    100% + 10px
+  ); /* Adjust the top position to match the height of the language icon */
+  left: 0; /* Align with the left edge of the language icon */
+  display: none; /* Initially hide the dropdown */
+  padding: 10px; /* Add padding to the dropdown */
+  background-color: var(--color-light-gray); /* Set background color */
+  border: 1px solid var(--color-gray); /* Add border */
+  border-radius: 5px; /* Add border radius */
+}
+
+.languageIcon.active + .dropdown {
+  display: block; /* Show dropdown when language icon is active */
+}
