@@ -46,10 +46,7 @@ export async function getCategories() {
     }
   }
 
-
-export async function delCategories(id:string){
-    
-}  
+  
   
 export type Restaurant = {
   id?: number;
