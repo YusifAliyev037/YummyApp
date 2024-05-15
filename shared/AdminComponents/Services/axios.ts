@@ -36,7 +36,7 @@ export const completeLogin = async (form: FormRegister) => {
   }
 };
 
-// //!category
+ //!category
 export async function getCategories() {
     try {
       const response = await instanceAxios.get('/category');
@@ -45,6 +45,11 @@ export async function getCategories() {
       console.error(error);
     }
   }
+
+
+export async function delCategories(id:string){
+    
+}  
   
 export type Restaurant = {
   id?: number;
