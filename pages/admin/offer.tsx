@@ -103,6 +103,7 @@ const Offer: React.FC = () => {
             borderRadius={16}
             height={73}
           >
+            
             <Text color='white'>Offer</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
               <Box>
