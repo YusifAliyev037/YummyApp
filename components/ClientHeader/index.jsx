@@ -24,7 +24,7 @@ const ClientHeader = () => {
             <a href="#">Home</a>
           </li>
           <li>
-            <a href="#">Restaurant</a>
+            <a href="#">Restaurants</a>
           </li>
           <li>
             <a href="#">About Us</a>
@@ -60,16 +60,12 @@ const ClientHeader = () => {
               }`}
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <img
-                src="/azerbaijan.png"
-                alt="Az"
-                className={styles.languageImage}
-              />
+              <img src="/usuk.png" alt="Eng" className={styles.languageImage} />
               {showDropdown && (
                 <div className={styles.dropdown}>
                   <img
-                    src="/usuk.png"
-                    alt="Eng"
+                    src="/azerbaijan.png"
+                    alt="Az"
                     className={styles.languageImage}
                   />
                   <img
