@@ -40,20 +40,22 @@ export const completeLogin = async (form: FormRegister) => {
 export async function getCategories() {
     try {
       const response = await instanceAxios.get('/category');
-      return response;
+      return response
     } catch (error) {
       console.error(error);
     }
   }
-  
+//  Restaurants 
 export type Restaurant = {
-  id?: number;
+  id?: string;
   name?: string;
+  image?:string;
+  cuisine?:string;
 };
 
 export async function getRestaurants() {
   try {
-    const response = await instanceAxios.get('/restaurants');
+    const response = await instanceAxios.get('/restuarants');
     return response
   } catch (error) {
     console.error('Error while fetching restaurants:', error);
