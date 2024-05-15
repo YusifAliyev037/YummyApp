@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, IconButton } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { getCategories } from './Services/axios';
+import ModulDelete from './ModulDelete';
 
 interface CategoryType {
   id: number;
@@ -16,6 +17,17 @@ interface Props {
 
 const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
+
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+
+
+ const handleDeleteButton  = () =>{
+      setDeleteModal(true)
+  }
+
+ const handleCloseModal = () =>{
+  setDeleteModal(false)
+ } 
 
   async function fetchCategories() {
     try {
@@ -81,10 +93,19 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
                   size='sm'
                   color='red'
                   variant='unstyled'
+                  onClick={handleDeleteButton}
                 />
               </td>
             </tr>
           ))}
+
+          
+          {deleteModal && (
+          <ModulDelete
+          isOpen={deleteModal}
+          onClose={handleCloseModal}
+          />
+          )}
         </tbody>
       </table>
     </div>
