@@ -1,11 +1,12 @@
 import AdminModal from '@/shared/AdminComponents/AdminModal';
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
+import OfferInputs from '@/shared/AdminComponents/Services/offerInputs';
 import TableCategory from '@/shared/AdminComponents/TableCategory';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface TestData {
   Id: number;
@@ -79,9 +80,11 @@ const Offer: React.FC = () => {
     },
   ];
 
+  const[hidden,Sethidden]=useState(true)
+
   return (
     <Box className=' bg-darkBlue10 h-screen  z-5'>
-      <AdminModal />
+      <AdminModal hidden={hidden} Sethidden={Sethidden} addName={"Add Offer"} imgName={"Upload  image"} informationName={"Add your Offer information"} component={<OfferInputs/>} />
       <Box as='header'>
         <Head>
           <title>Offer</title>
@@ -105,6 +108,7 @@ const Offer: React.FC = () => {
                 <Button
                   borderRadius={14}
                   colorScheme='pink'
+                  onClick={() => Sethidden(prev => !prev)}
                 >
                   + ADD RESTAURANTS
                 </Button>
