@@ -18,7 +18,8 @@ interface Props {
 const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+
 
  const handleDeleteButton  = () =>{
       setDeleteModal(true)
@@ -97,6 +98,8 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
               </td>
             </tr>
           ))}
+
+          
           {deleteModal && (
           <ModulDelete
           isOpen={deleteModal}

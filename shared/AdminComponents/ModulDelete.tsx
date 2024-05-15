@@ -10,7 +10,6 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  useDisclosure,
 } from '@chakra-ui/react';
 
 interface ModulDeleteProps {
@@ -19,7 +18,6 @@ interface ModulDeleteProps {
 }
 
 const ModulDelete: React.FC<ModulDeleteProps> = ({ isOpen, onClose }) => {
-  const { onOpen } = useDisclosure();
   const finalRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -30,7 +28,7 @@ const ModulDelete: React.FC<ModulDeleteProps> = ({ isOpen, onClose }) => {
         tabIndex={-1}
         aria-label='Focus moved to this box'
       >
-        Some other content that'll receive focus on close.
+        
       </Box>
 
       <Modal
