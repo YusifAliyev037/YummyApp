@@ -9,9 +9,8 @@ import {
   CardBody,
   Image,
   Stack,
-  Divider,
-  ButtonGroup,
   IconButton,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
@@ -19,27 +18,30 @@ import Head from 'next/head';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { FC, useEffect, useState } from 'react';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
-import { getRestaurants } from '@/shared/AdminComponents/Services/axios';
-
-export type Restaurant = {
-  id?: string;
-  name?: string;
-  address?: string;
-  img_url?: string;
-  cuisine?: string;
-  delivery_min?: number;
-  delivery_price?: number;
-};
+import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; // Import Restaurant type
 
 const Restaurants: FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [restaurantToDelete, setRestaurantToDelete] = useState<Restaurant | null>(null);
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteButtonClick = (restaurant: Restaurant) => {
+    setRestaurantToDelete(restaurant);
     setIsDeleteModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDeleteConfirmed = async () => {
+    if (!restaurantToDelete) return;
+    try {
+      await deleteRestaurant(restaurantToDelete.id);
+      setRestaurants(restaurants.filter((res) => res.id !== restaurantToDelete.id));
+    } catch (error) {
+      console.log(error);
+    }
     setIsDeleteModalOpen(false);
   };
 
@@ -85,9 +87,11 @@ const Restaurants: FC = () => {
                 placeholder='Select Category'
                 mr='2'
               >
-                <option value='Pizza'>Pizza</option>
-                <option value='Burgers'>Burgers</option>
-                <option value='Juices'>Juices</option>
+                {restaurants.map((restaurant, index) => (
+                  <option key={index} value={restaurant.name}>
+                    {restaurant.name}
+                  </option>
+                ))}
               </Select>
               <Box>
                 <Button borderRadius={14} colorScheme='pink'>
@@ -96,7 +100,6 @@ const Restaurants: FC = () => {
               </Box>
             </InputGroup>
           </Box>
-
           <Box className='flex flex-wrap gap-4'>
             {restaurants?.map((restaurant) => (
               <Card
@@ -115,11 +118,6 @@ const Restaurants: FC = () => {
                   <Stack ml='2' spacing='1' flex='1'>
                     <Text fontSize='sm' fontWeight='bold'>
                       {restaurant.name}
-                    </Text>
-                    {/* <Text fontSize='text-[5px]'>{restaurant.address}</Text> */}
-                    {/* <Text fontSize='text-[5px]'>Cuisine: {restaurant.cuisine}</Text> */}
-                    <Text fontSize='text-[5px]'>
-                      {/* Delivery Min: {restaurant.delivery_min} min */}
                     </Text>
                     <Text fontSize='text-[5px]'>
                       Delivery Price: ${restaurant.delivery_price}
@@ -146,7 +144,7 @@ const Restaurants: FC = () => {
                       fontSize='12px'
                       variant='ghost'
                       colorScheme='red'
-                      onClick={handleDeleteButtonClick}
+                      onClick={() => handleDeleteButtonClick(restaurant)}
                     />
                   </ButtonGroup>
                 </CardBody>
@@ -156,7 +154,7 @@ const Restaurants: FC = () => {
         </Box>
       </Box>
       {isDeleteModalOpen && (
-        <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} />
+        <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={handleDeleteConfirmed} />
       )}
     </Box>
   );
