@@ -40,28 +40,35 @@ export const completeLogin = async (form: FormRegister) => {
 export async function getCategories() {
     try {
       const response = await instanceAxios.get('/category');
-      return response;
+      return response
     } catch (error) {
       console.error(error);
     }
   }
+// Restaurant
 
-
-export async function delCategories(id:string){
-    
-}  
-  
 export type Restaurant = {
-  id?: number;
+  id?: string;
   name?: string;
+  image?:string;
+  cuisine?:string;
 };
 
 export async function getRestaurants() {
   try {
-    const response = await instanceAxios.get('/restaurants');
+    const response = await instanceAxios.get('/restuarants');
     return response
   } catch (error) {
     console.error('Error while fetching restaurants:', error);
     throw new Error('Failed to fetch restaurants!');
+  }
+}
+export async function deleteRestaurant(restaurantId: string) {
+  try {
+    const response = await instanceAxios.delete(`/restuarants/${restaurantId}`);
+    return response;
+  } catch (error) {
+    console.error(`Error while deleting restaurant with ID ${restaurantId}:`, error);
+    throw new Error('Failed to delete restaurant!');
   }
 }
