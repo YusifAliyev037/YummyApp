@@ -103,11 +103,13 @@ const Offer: React.FC = () => {
             borderRadius={16}
             height={73}
           >
+            
+
             <Text color='white'>Offer</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
               <Box>
                 <Button
-                  borderRadius={14}
+                  borderRadius={13gi}
                   colorScheme='pink'
                   onClick={() => Sethidden(prev => !prev)}
                 >
