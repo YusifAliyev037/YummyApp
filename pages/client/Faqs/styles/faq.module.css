@@ -1,0 +1,24 @@
+.faqCont h4 {
+  color: #00051b;
+  font-family: Roboto;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  text-align: center;
+  margin-top: 90px;
+}
+
+/* .faqMoreBtn {
+  color: white;
+  font-size: 20px;
+  font-family: var(--fontInter);
+  background-color: var(--mainBlue);
+  font-weight: 500;
+  word-wrap: break-word;
+  width: 149px;
+  height: 54px;
+  border-radius: 8px;
+  margin-left: 650px;
+  margin-bottom: 88px;
+} */
