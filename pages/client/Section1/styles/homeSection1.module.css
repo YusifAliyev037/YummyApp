@@ -92,26 +92,29 @@
 .right {
   flex: 1;
   padding-top: 30px;
-}
-
-.bigburger {
-  background-color: var(--color-black);
-  border-radius: 50px;
-  height: 500px;
-  width: 580px;
+  padding-bottom: 160px;
   position: relative;
 }
 
+.bigburger {
+  border-radius: 50px;
+  height: 500px;
+  width: 680px;
+  position: relative;
+  padding-right: 30px;
+  /* padding-bottom: 80px; */
+}
+
 .burgersec {
-  width: 1000px;
-  height: 600px;
-  padding-bottom: 60px;
+  width: 650px;
+  /* height: 600px; */
+  padding-bottom: 70px;
 }
 
 .buttons {
   margin-top: 20px;
 }
-
+/* 
 .smallBoxes {
   display: flex;
   margin-top: 20px;
@@ -159,4 +162,4 @@
 .smallBox3 {
   bottom: 50px;
   right: 50px;
-}
+} */
