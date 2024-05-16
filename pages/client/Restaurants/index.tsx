@@ -4,7 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import ClientHeader from "@/components/ClientHeader";
 
-const Faqs = () => {
+const Restaurant = () => {
   return (
     <>
       <ClientHeader />
@@ -12,4 +12,4 @@ const Faqs = () => {
   );
 };
 
-export default Faqs;
+export default Restaurant;
