@@ -96,10 +96,17 @@ const Restaurants: FC = () => {
               >
                 <CardBody>
                   <Image
+<<<<<<< Updated upstream
                     className='w-full'
                     src='https://photos.prnewswire.com/prnfull/20151019/278424LOGO'
                     alt='Green double couch with wooden legs'
                     borderRadius='lg'
+=======
+                    className='w-[65px] h-[65px] object-cover'
+                    src={restaurant.img_url || 'https://media.traveler.es/photos/6137726a7ad90bc43bae0055/master/pass/123930.jpg'}
+                    alt={restaurant.name}
+                    borderRadius='md'
+>>>>>>> Stashed changes
                   />
                   <Stack
                     mt='6'
