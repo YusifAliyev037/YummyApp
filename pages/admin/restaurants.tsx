@@ -9,21 +9,24 @@ import {
   CardBody,
   Image,
   Stack,
-  Divider,
-  CardFooter,
+  IconButton,
   ButtonGroup,
 } from '@chakra-ui/react';
 import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
 import Head from 'next/head';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
+import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; // Import Restaurant type
 
 const Restaurants: FC = () => {
-  const cards = new Array(5).fill(null);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const handleDeleteButtonClick = () => {
+  const [restaurantToDelete, setRestaurantToDelete] = useState<Restaurant | null>(null);
+
+  const handleDeleteButtonClick = (restaurant: Restaurant) => {
+    setRestaurantToDelete(restaurant);
     setIsDeleteModalOpen(true);
   };
 
@@ -31,35 +34,46 @@ const Restaurants: FC = () => {
     setIsDeleteModalOpen(false);
   };
 
+  const handleDeleteConfirmed = async () => {
+    if (!restaurantToDelete) return;
+    try {
+      await deleteRestaurant(restaurantToDelete.id);
+      setRestaurants(restaurants.filter((res) => res.id !== restaurantToDelete.id));
+    } catch (error) {
+      console.log(error);
+    }
+    setIsDeleteModalOpen(false);
+  };
+
+  async function fetchRestaurants() {
+    try {
+      const res = await getRestaurants();
+      setRestaurants(res?.data?.result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchRestaurants();
+  }, []);
+
   return (
-    <Box className=' bg-darkBlue10 h-screen p-2'>
+    <Box className='bg-darkBlue10 h-screen p-2'>
       <Box as='header'>
         <Head>
           <title>Restaurants</title>
-          <MetaSeo
-            title='Restaurants'
-            desc='Restaurants Page'
-          />
-          <link
-            rel='icon'
-            href='/favicon.ico'
-          />
+          <MetaSeo title='Restaurants' desc='Restaurants Page' />
+          <link rel='icon' href='/favicon.ico' />
         </Head>
         <Header />
       </Box>
-      <Box
-        as='main'
-        className='flex  '
-      >
+      <Box as='main' className='flex'>
         <PushModul />
-
-        <Box
-          as='section'
-          className='w-full'
-        >
+        <Box as='section' className='w-full'>
           <Box
             bg='#27283C'
-            className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8'
+            className='flex items-center mb-12 w-full px-8 mt-20 mr-8'
             borderRadius={16}
             height={73}
           >
@@ -70,71 +84,84 @@ const Restaurants: FC = () => {
                 borderRadius={14}
                 width={200}
                 height={35}
-                placeholder='Select category'
+                placeholder='Select Category'
                 mr='2'
               >
-                <option value='Piiza'>Pizza</option>
-                <option value='Burgers'>Burgers</option>
-                <option value='Juices'>Juices</option>
+                {restaurants.map((restaurant, index) => (
+                  <option key={index} value={restaurant.name}>
+                    {restaurant.name}
+                  </option>
+                ))}
               </Select>
               <Box>
-                <Button
-                  borderRadius={14}
-                  colorScheme='pink'
-                >
-                  + ADD RESTAURANTS
+                <Button borderRadius={14} colorScheme='pink'>
+                  + Add Restaurants
                 </Button>
               </Box>
             </InputGroup>
           </Box>
-
           <Box className='flex flex-wrap gap-4'>
-            {cards.map((_, index) => (
+            {restaurants?.map((restaurant) => (
               <Card
-                key={index}
-                className='h-72 w-48 mb-4'
+                key={restaurant.id}
+                className='w-[247px] h-[83px] flex flex-col justify-center p-2'
+                boxShadow='lg'
+                borderRadius='lg'
               >
-                <CardBody>
+                <CardBody className='flex items-center p-0'>
                   <Image
-<<<<<<< Updated upstream
+
                     className='w-full'
                     src='https://photos.prnewswire.com/prnfull/20151019/278424LOGO'
                     alt='Green double couch with wooden legs'
                     borderRadius='lg'
-=======
+
                     className='w-[65px] h-[65px] object-cover'
                     src={restaurant.img_url || 'https://media.traveler.es/photos/6137726a7ad90bc43bae0055/master/pass/123930.jpg'}
                     alt={restaurant.name}
                     borderRadius='md'
->>>>>>> Stashed changes
+
                   />
-                  <Stack
-                    mt='6'
-                    spacing='3'
-                  ></Stack>
-                </CardBody>
-                <Divider />
-                <CardFooter>
-                  <ButtonGroup spacing='2'>
-                    <Button
-                      leftIcon={<EditIcon style={{ color: '#00B2A9' }} />}
-                    ></Button>
-                    <Button
-                      leftIcon={<DeleteIcon style={{ color: '#EB5757' }} />}
-                      onClick={handleDeleteButtonClick}
-                    ></Button>
+                  <Stack ml='2' spacing='1' flex='1'>
+                    <Text fontSize='sm' fontWeight='bold'>
+                      {restaurant.name}
+                    </Text>
+                    <Text fontSize='text-[5px]'>
+                      Delivery Price: ${restaurant.delivery_price}
+                    </Text>
+                  </Stack>
+                  <ButtonGroup
+                    spacing='1'
+                    flexDirection='column'
+                    justifyContent='center'
+                    ml='auto'
+                  >
+                    <IconButton
+                      aria-label='Edit'
+                      icon={<EditIcon />}
+                      size='xs'
+                      fontSize='12px'
+                      variant='ghost'
+                      colorScheme='teal'
+                    />
+                    <IconButton
+                      aria-label='Delete'
+                      icon={<DeleteIcon />}
+                      size='xs'
+                      fontSize='12px'
+                      variant='ghost'
+                      colorScheme='red'
+                      onClick={() => handleDeleteButtonClick(restaurant)}
+                    />
                   </ButtonGroup>
-                </CardFooter>
+                </CardBody>
               </Card>
             ))}
           </Box>
         </Box>
       </Box>
       {isDeleteModalOpen && (
-        <ModulDelete
-          isOpen={isDeleteModalOpen}
-          onClose={handleCloseModal}
-        />
+        <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={handleDeleteConfirmed} />
       )}
     </Box>
   );

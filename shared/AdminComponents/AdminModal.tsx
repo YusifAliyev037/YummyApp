@@ -1,7 +1,37 @@
-import React, { useState } from 'react';
+
+
+import React, { useEffect } from 'react';
 import { Box, Button,  Image, Input, Text, Textarea } from '@chakra-ui/react';
 
-function AdminModal() {
+
+interface Props{
+  hidden:boolean;
+  Sethidden: React.Dispatch<React.SetStateAction<boolean>>;
+  addName:String;
+  imgName:String;
+  informationName:String;
+  component: JSX.Element;
+
+
+}
+const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informationName,component }) => {
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const modal = document.getElementById('admin-modal');
+      if (modal && !modal.contains(event.target as Node)) {
+        Sethidden(true);
+      }
+    };
+
+    if (!hidden) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [hidden, Sethidden]);
+  
 
 
 
@@ -9,10 +39,10 @@ function AdminModal() {
 
   return (
 <Box
- ////modall
+  id="admin-modal"
   width="66%"
   backgroundColor="#38394E"
-  className={`h-full z-20  flex flex-col gap-[20px] container mx-auto px-8 fixed`}
+  className={`h-full z-20  flex flex-col gap-[20px] container mx-auto px-8 ${hidden?"hidden":"fixed"}`}
   justifyContent={"space-between"}
   
   style={{ right: 0 }}
@@ -21,7 +51,7 @@ function AdminModal() {
 <Box className=' gap-[78px] flex flex-col container mx-auto px-8'>
 <Box className='  pt-[28px]'>
     <Text color={"#C7C7C7"} className="font-roboto text-2xl font-medium leading-6 tracking-tighter text-left" >
-      Add Offer
+      {addName}
 
     </Text>
   </Box>
@@ -29,7 +59,7 @@ function AdminModal() {
 
   <Box justifyContent={"space-between"} className='flex  '>
     <Text color={"#C7C7C7"} className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left">
-    Upload  image
+    {imgName}
     </Text>
     <Box backgroundColor={"#43445A"}  className='w-[60%] h-[122px] rounded-[14px] flex justify-center items-center  '>
      <Box className='flex flex-col'>
@@ -47,32 +77,10 @@ function AdminModal() {
   
   <Box  justifyContent={"space-between"} className='flex  ' >
     <Text color={"#C7C7C7"} className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left" >
-Add your Offer information
+{informationName}
     </Text>
 
-   <Box backgroundColor={"#43445A"}  className='w-[60%]   rounded-[14px] flex flex-col  ' >
-
-
-    <Box className='p-[23px] flex flex-col gap-[16px]'>
-      <Text  color={"#C7C7C7"}  className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left" >
-        Tittle
-      </Text>
-      <Input _placeholder={{color:"#F2F2F2",fontFamily:"Roboto",fontWeight:"500",bgSize:"26px"}} background={"#5A5B70"} border={"none"} borderRadius={"18px"} height={"46px"} placeholder='Do you like Pizza at Papa John’s? '   />
-    </Box>
-
-
-
-    <Box className='p-[23px] flex flex-col gap-[16px] ' >
-    <Text color={"#C7C7C7"} className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left" >
-    Description
-      </Text>
-      <Textarea background={"#5A5B70"} border={"none"} _placeholder={{color:"#F2F2F2",fontFamily:"Roboto",fontWeight:"500",bgSize:"26px"}} borderRadius={"24px"} height={"108px"} placeholder='Yes you like pizza,Yummy '  />
-
-    </Box>
-    
-
-
-   </Box>
+{component}
 
   </Box>
 
@@ -82,13 +90,13 @@ Add your Offer information
 
  
   <Box display={"flex"} justifyContent={"center"} gap={"41px"} borderTop={"2px"} color={"#43445A"} padding={"16px"}  >
-      <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#43445A"} >
+      <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#43445A"} onClick={()=>Sethidden((prev)=>!prev)} >
       Cancel
 
       </Button>
 
 
-      <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#C035A2"}  >
+      <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#C035A2"} onClick={()=>Sethidden((prev)=>!prev)}   >
       Create  Offer
         
       </Button>
