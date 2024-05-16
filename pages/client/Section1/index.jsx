@@ -18,14 +18,19 @@ function HomeSection1() {
       <div className={styles.right}>
         <div className={styles.bigburger}>
           {" "}
-          <img
+          {/* <img
             className={styles.burgersec}
             src="/burgersec.png"
+            alt="Big Image"
+          /> */}
+          <img
+            className={styles.burgersec}
+            src="/hsection1.png"
             alt="Big Image"
           />
         </div>
 
-        <div className={styles.smallBoxes}>
+        {/* <div className={styles.smallBoxes}>
           <div className={styles.smallBox1}>
             <img src="/fries.png" alt="Small Image 1" />
             <p>Text 1</p>
@@ -40,7 +45,7 @@ function HomeSection1() {
             <img src="/cheseeburger.png" alt="Small Image 3" />
             <p>Text 3</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
