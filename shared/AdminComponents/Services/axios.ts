@@ -36,7 +36,7 @@ export const completeLogin = async (form: FormRegister) => {
   }
 };
 
- //!category
+ //?category
 export async function getCategories() {
     try {
       const response = await instanceAxios.get('/category');
@@ -45,13 +45,27 @@ export async function getCategories() {
       console.error(error);
     }
   }
+
+
+   //!catergoryDelete
+
+ export async function delCategories(id:string){
+  try{
+    const response = await instanceAxios.delete(`/category/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
 // Restaurant
 
 export type Restaurant = {
-  id?: string;
+  id: string;
   name?: string;
-  image?:string;
+  img_url?:string;
   cuisine?:string;
+  delivery_price:number
 };
 
 export async function getRestaurants() {

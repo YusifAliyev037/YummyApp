@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, IconButton } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { getCategories } from './Services/axios';
+import { delCategories, getCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
 
 interface CategoryType {
-  id: number;
+  id: string;
   img_url: string;
   name: string;
   slug: string;
@@ -19,9 +19,11 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [categoryId, setCategoryId] = useState<CategoryType | null>(null)
 
 
- const handleDeleteButton  = () =>{
+ const handleDeleteButton  = (categoryId:CategoryType) =>{
+  setCategoryId(categoryId)
       setDeleteModal(true)
   }
 
@@ -42,6 +44,18 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  async function deleteCategory(){
+    if(!categoryId) return;
+    try{
+      await delCategories(categoryId.id)
+      setCategories(categories.filter((res)=> res.id !==categoryId.id))
+    }catch(error){
+      console.log(error);
+      
+    }
+    setDeleteModal(false)
+  }
 
   return (
     <div className='m-3'>
@@ -93,7 +107,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
                   size='sm'
                   color='red'
                   variant='unstyled'
-                  onClick={handleDeleteButton}
+                  onClick={()=>handleDeleteButton(item)}
                 />
               </td>
             </tr>
@@ -104,6 +118,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
           <ModulDelete
           isOpen={deleteModal}
           onClose={handleCloseModal}
+          onConfirm={deleteCategory}
           />
           )}
         </tbody>
