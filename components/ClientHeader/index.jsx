@@ -27,13 +27,13 @@ const ClientHeader = () => {
             <a href="#">Restaurants</a>
           </li>
           <li>
-            <a href="#">About Us</a>
+            <a href="/aboutus">About Us</a>
           </li>
           <li>
-            <a href="#">How it works</a>
+            <a href="/howitworks">How it works</a>
           </li>
           <li>
-            <a href="#">FAQs</a>
+            <a href="/faqs">FAQs</a>
           </li>
         </ul>
       </nav>

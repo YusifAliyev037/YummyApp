@@ -10,4 +10,8 @@ export const ROUTER = {
   OFFER: "/offer",
   USERS_HASH_PASSWORD: "/users-hash-password",
   HOME: "/",
+  NOTFOUND: "?",
+  ABOUTUS: "/aboutus",
+  FAQS: "faqs",
+  HOWITWORKS: "howitworks",
 };
