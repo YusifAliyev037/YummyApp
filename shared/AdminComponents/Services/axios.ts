@@ -61,12 +61,18 @@ export async function getCategories() {
 // Restaurant
 
 export type Restaurant = {
+
+  
+
+
   id: string;
   name?: string;
   img_url?:string;
   cuisine?:string;
   delivery_price:number
+
 };
+
 
 export async function getRestaurants() {
   try {
