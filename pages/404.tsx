@@ -3,9 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
-import ClientHeader from "@/components/ClientHeader";
+import ClientHeader from "../shared/ClientComponent/ClientHeader";
 
-const HOWITWORKS = () => {
+const NOTFOUND = () => {
   
 
   return (
@@ -18,4 +18,4 @@ const HOWITWORKS = () => {
   );
 };
 
-export default HOWITWORKS;
+export default NOTFOUND;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles/clientHeader.module.css";
-import { ROUTER } from "../../server/constant/router";
+// import { ROUTER } from "../../server/constant/router";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/router";
 
@@ -23,7 +23,7 @@ const ClientHeader = () => {
       <h2>.</h2>
 
       <nav>
-        <ul className={styles.navList}>
+        {/* <ul className={styles.navList}>
           <li onClick={() => push(ROUTER.HOME)}>
             <a>Home</a>
           </li>
@@ -39,7 +39,7 @@ const ClientHeader = () => {
           <li onClick={() => push(ROUTER.FAQS)}>
             <a>FAQs</a>
           </li>
-        </ul>
+        </ul> */}
       </nav>
       <div className={styles.searchUtility}>
         <form
