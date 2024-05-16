@@ -9,4 +9,5 @@ export const ROUTER = {
   CATEGORY: "/category",
   OFFER: "/offer",
   USERS_HASH_PASSWORD: "/users-hash-password",
+  HOME: "/",
 };

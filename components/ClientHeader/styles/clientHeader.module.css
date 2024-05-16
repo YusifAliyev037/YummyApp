@@ -1,0 +1,153 @@
+.clientHeader {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 60px;
+  background-color: var(--color-light-gray);
+}
+
+.clientHeader h1 {
+  width: 131px;
+  height: 29.53px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: Mukta;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 29.53px;
+  letter-spacing: 3%;
+  color: var(--color-black);
+  margin-right: auto;
+}
+
+.clientHeader h2 {
+  color: var(--color-red);
+  padding-right: 30px;
+  display: flex;
+  padding-left: 1px;
+  flex-direction: row;
+  font-family: Mukta;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 29.53px;
+  margin-right: 5px;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.navList li {
+  margin-right: 40px;
+}
+
+.navList a {
+  color: var(--color-gray);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.navList a:hover {
+  color: var(--color-red);
+}
+
+.navList a.active {
+  color: var(--color-red);
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.orangeDot {
+  color: orange;
+}
+
+.searchUtility {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchInput {
+  padding: 8px 12px;
+  border: 1px solid var(--color-gray);
+  padding-right: 30px;
+}
+
+.searchButton {
+  background-color: var(--color-dark-red);
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.utility {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.signupButton {
+  background-color: var(--color-dark-red);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.languageSelect {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  position: relative;
+}
+
+.languageIcon {
+  cursor: pointer;
+}
+
+.languageIcon img {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.languageIcon:hover img {
+  transform: scale(1.1);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  display: none;
+  padding: 10px;
+  background-color: var(--color-light-gray);
+  border: 1px solid var(--color-gray);
+  border-radius: 5px;
+}
+
+.languageIcon.active + .dropdown {
+  display: block;
+}
