@@ -20,6 +20,7 @@ import { FC, useEffect, useState } from 'react';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; // Import Restaurant type
 import AdminModal from '@/shared/AdminComponents/AdminModal';
+import EditRestaurantModal from '@/shared/AdminComponents/EditRestaurantModal';
 
 import AddRestaurantInputs from '@/shared/AdminComponents/AddRestaurantInputs';
 
@@ -28,6 +29,7 @@ const Restaurants: FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [restaurantToDelete, setRestaurantToDelete] = useState<Restaurant | null>(null);
   const[hidden,Sethidden]=useState(true)
+  const [editRestaurantModalHidden, setEditRestaurantModalHidden] = useState(true);
 
   const handleDeleteButtonClick = (restaurant: Restaurant) => {
     setRestaurantToDelete(restaurant);
@@ -37,9 +39,13 @@ const Restaurants: FC = () => {
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
   };
-const hansleRestaurantClick=()=>{
+const handleRestaurantClick=()=>{
   Sethidden(false)
 }
+const handleEditRestaurantClick = () => {
+  setEditRestaurantModalHidden(false);
+};
+
   const handleDeleteConfirmed = async () => {
     if (!restaurantToDelete) return;
     try {
@@ -77,6 +83,8 @@ const hansleRestaurantClick=()=>{
         </Head>
         <Header />
         <AdminModal hidden={hidden} Sethidden={Sethidden}addName={"Add Restuarant "} imgName={"Upload  image"} informationName={"Add your Restuarants information"} component={<AddRestaurantInputs/>}/>
+        <AdminModal hidden={editRestaurantModalHidden} Sethidden={setEditRestaurantModalHidden} addName={"Edit Restaurant"} imgName={"Upload Image"} informationName={"Edit your Restaurant's information"} component={<EditRestaurantModal />} />
+
       </Box>
       <Box as='main' className='flex'>
         <PushModul />
@@ -104,7 +112,7 @@ const hansleRestaurantClick=()=>{
                 ))}
               </Select>
               <Box>
-                <Button borderRadius={14} colorScheme='pink' onClick={hansleRestaurantClick}>
+                <Button borderRadius={14} colorScheme='pink' onClick={handleRestaurantClick}>
                   + ADD RESTAURANT
                 </Button>
               </Box>
@@ -153,6 +161,8 @@ const hansleRestaurantClick=()=>{
                       fontSize='12px'
                       variant='ghost'
                       colorScheme='teal'
+                      onClick={handleEditRestaurantClick}
+
                     />
                     <IconButton
                       aria-label='Delete'
