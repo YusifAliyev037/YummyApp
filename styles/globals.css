@@ -1,9 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-red: #d73f30;
+  --color-dark-red: #d63626;
+  --color-gray: #828282;
+  --color-light-gray: #f3f4f6;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
 
 html,
 body {
@@ -16,7 +24,6 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  
 }
 
 * {

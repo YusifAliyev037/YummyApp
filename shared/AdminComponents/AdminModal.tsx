@@ -1,7 +1,7 @@
 
 
 import React, { useEffect } from 'react';
-import { Box, Button,  Image, Input, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button,  Image, Text } from '@chakra-ui/react';
 
 
 interface Props{
@@ -40,17 +40,14 @@ const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informa
   return (
 <Box
   id="admin-modal"
-  width="66%"
-  backgroundColor="#38394E"
-  className={`h-full z-20  flex flex-col gap-[20px] container mx-auto px-8 ${hidden?"hidden":"fixed"}`}
+  className={`h-full z-20 w-2/3 bg-blue10 flex flex-col  container mx-auto px-8 ${hidden?"hidden":"fixed"}`}
   justifyContent={"space-between"}
-  
   style={{ right: 0 }}
 >
 
-<Box className=' gap-[78px] flex flex-col container mx-auto px-8'>
+<Box className=' gap-[40px] flex flex-col container mx-auto px-8'>
 <Box className='  pt-[28px]'>
-    <Text color={"#C7C7C7"} className="font-roboto text-2xl font-medium leading-6 tracking-tighter text-left" >
+    <Text  className="font-roboto text-gray10 text-2xl font-medium leading-6 tracking-tighter text-left" >
       {addName}
 
     </Text>
@@ -58,13 +55,13 @@ const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informa
 
 
   <Box justifyContent={"space-between"} className='flex  '>
-    <Text color={"#C7C7C7"} className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left">
+    <Text  className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
     {imgName}
     </Text>
-    <Box backgroundColor={"#43445A"}  className='w-[60%] h-[122px] rounded-[14px] flex justify-center items-center  '>
+    <Box   className='w-[60%] bg-gray20 h-[122px] rounded-[14px] flex justify-center items-center  '>
      <Box className='flex flex-col'>
      <Image src='/upload.svg' />
-      <Text color={"#C7C7C7"} className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left"  >
+      <Text  className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left"  >
       upload
       </Text>
      </Box>
@@ -76,7 +73,7 @@ const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informa
 
   
   <Box  justifyContent={"space-between"} className='flex  ' >
-    <Text color={"#C7C7C7"} className="font-roboto text-lg font-medium leading-6 tracking-tighter text-left" >
+    <Text  className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left" >
 {informationName}
     </Text>
 
@@ -89,14 +86,21 @@ const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informa
 </Box>
 
  
-  <Box display={"flex"} justifyContent={"center"} gap={"41px"} borderTop={"2px"} color={"#43445A"} padding={"16px"}  >
-      <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#43445A"} onClick={()=>Sethidden((prev)=>!prev)} >
+  <Box 
+  className=' flex content-center gap-10 p-4 border-t-2 border-t-gray20'
+    >
+      <Button
+      width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"}
+       background={"#43445A"}
+       onClick={()=>Sethidden((prev)=>!prev)} >
       Cancel
 
       </Button>
 
 
-      <Button width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#C035A2"} onClick={()=>Sethidden((prev)=>!prev)}   >
+      <Button 
+      width={"400px"} height={"50px"} borderRadius={"14px"} color={"#FFFFFF"} background={"#C035A2"} 
+      onClick={()=>Sethidden((prev)=>!prev)}   >
       Create  Offer
         
       </Button>

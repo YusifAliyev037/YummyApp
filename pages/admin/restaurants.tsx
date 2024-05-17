@@ -18,12 +18,17 @@ import Head from 'next/head';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { FC, useEffect, useState } from 'react';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
-import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; // Import Restaurant type
+import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; 
+import AdminModal from '@/shared/AdminComponents/AdminModal';
+import EditRestaurantModal from '@/shared/AdminComponents/EditRestaurantModal';
+import AddRestaurantInputs from '@/shared/AdminComponents/AddRestaurantInputs';
 
 const Restaurants: FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [restaurantToDelete, setRestaurantToDelete] = useState<Restaurant | null>(null);
+  const [hidden, Sethidden] = useState(true);
+  const [editRestaurantModalHidden, setEditRestaurantModalHidden] = useState(true);
 
   const handleDeleteButtonClick = (restaurant: Restaurant) => {
     setRestaurantToDelete(restaurant);
@@ -32,6 +37,14 @@ const Restaurants: FC = () => {
 
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
+  };
+
+  const handleRestaurantClick = () => {
+    Sethidden(false);
+  };
+
+  const handleEditRestaurantClick = () => {
+    setEditRestaurantModalHidden(false);
   };
 
   const handleDeleteConfirmed = async () => {
@@ -59,33 +72,36 @@ const Restaurants: FC = () => {
   }, []);
 
   return (
-    <Box className='bg-darkBlue10 h-screen p-2'>
-      <Box as='header'>
+    <Box className="bg-darkBlue10 min-h-screen p-2">
+      <Box as="header">
         <Head>
           <title>Restaurants</title>
-          <MetaSeo title='Restaurants' desc='Restaurants Page' />
-          <link rel='icon' href='/favicon.ico' />
+          <MetaSeo title="Restaurants" desc="Restaurants Page" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
+        <AdminModal hidden={hidden} Sethidden={Sethidden} addName={"Add Restaurant"} imgName={"Upload image"} informationName={"Add your Restaurant's information"} component={<AddRestaurantInputs />} />
+        <AdminModal hidden={editRestaurantModalHidden} Sethidden={setEditRestaurantModalHidden} addName={"Edit Restaurant"} imgName={"Upload Image"} informationName={"Edit your Restaurant's information"} component={<EditRestaurantModal />} />
       </Box>
-      <Box as='main' className='flex'>
-        <PushModul />
-        <Box as='section' className='w-full'>
+      <Box as="main" className="flex flex-col md:flex-row">
+        <PushModul  />
+        <Box as="section" className="w-full md:mr-8">
           <Box
-            bg='#27283C'
-            className='flex items-center mb-12 w-full px-8 mt-20 mr-8'
-            borderRadius={16}
+            bg="#27283C"
+            className="relative flex flex-col md:flex-row items-center mb-12 w-full px-8 mt-20 rounded-lg"
             height={73}
           >
-            <Text color='white'>Restaurants</Text>
-            <InputGroup className='flex justify-end items-center gap-7'>
+            <Text color="white" className="absolute left-8 md:relative mb-2 md:bottom-auto md:left-auto w-32 md:mb-0">
+              Restaurants
+            </Text>
+            <InputGroup className="flex flex-wrap justify-end items-center gap-7 w-full md:w-auto mt-4 md:mt-0">
               <Select
-                bgColor='#5A5B70'
+                bgColor="#5A5B70"
                 borderRadius={14}
                 width={200}
                 height={35}
-                placeholder='Select Category'
-                mr='2'
+                placeholder="Select Category"
+                className="hidden md:block w-full md:w-auto"
               >
                 {restaurants.map((restaurant, index) => (
                   <option key={index} value={restaurant.name}>
@@ -93,57 +109,58 @@ const Restaurants: FC = () => {
                   </option>
                 ))}
               </Select>
-              <Box>
-                <Button borderRadius={14} colorScheme='pink'>
-                  + Add Restaurants
+              <Box className="w-full md:w-auto">
+                <Button borderRadius={14} colorScheme="pink" onClick={handleRestaurantClick} className="w-full md:w-auto">
+                  + ADD RESTAURANT
                 </Button>
               </Box>
             </InputGroup>
           </Box>
-          <Box className='flex flex-wrap gap-4'>
+          <Box className="flex flex-wrap gap-4">
             {restaurants?.map((restaurant) => (
               <Card
                 key={restaurant.id}
-                className='w-[247px] h-[83px] flex flex-col justify-center p-2'
-                boxShadow='lg'
-                borderRadius='lg'
+                className="w-full md:w-[247px] h-[83px] flex flex-col justify-center p-2"
+                boxShadow="lg"
+                borderRadius="lg"
               >
-                <CardBody className='flex items-center p-0'>
+                <CardBody className="flex items-center p-0">
                   <Image
-                    className='w-[65px] h-[65px] object-cover'
-                    src={restaurant.img_url || '/default-image.jpg'}
+                    className="w-[65px] h-[65px] object-cover"
+                    src={restaurant.img_url || 'https://media.traveler.es/photos/6137726a7ad90bc43bae0055/master/pass/123930.jpg'}
                     alt={restaurant.name}
-                    borderRadius='md'
+                    borderRadius="md"
                   />
-                  <Stack ml='2' spacing='1' flex='1'>
-                    <Text fontSize='sm' fontWeight='bold'>
+                  <Stack ml="2" spacing="1" flex="1">
+                    <Text fontSize="sm" fontWeight="bold">
                       {restaurant.name}
                     </Text>
-                    <Text fontSize='text-[5px]'>
+                    <Text fontSize="text-[5px]">
                       Delivery Price: ${restaurant.delivery_price}
                     </Text>
                   </Stack>
                   <ButtonGroup
-                    spacing='1'
-                    flexDirection='column'
-                    justifyContent='center'
-                    ml='auto'
+                    spacing="1"
+                    flexDirection="column"
+                    justifyContent="center"
+                    ml="auto"
                   >
                     <IconButton
-                      aria-label='Edit'
+                      aria-label="Edit"
                       icon={<EditIcon />}
-                      size='xs'
-                      fontSize='12px'
-                      variant='ghost'
-                      colorScheme='teal'
+                      size="xs"
+                      fontSize="12px"
+                      variant="ghost"
+                      colorScheme="teal"
+                      onClick={handleEditRestaurantClick}
                     />
                     <IconButton
-                      aria-label='Delete'
+                      aria-label="Delete"
                       icon={<DeleteIcon />}
-                      size='xs'
-                      fontSize='12px'
-                      variant='ghost'
-                      colorScheme='red'
+                      size="xs"
+                      fontSize="12px"
+                      variant="ghost"
+                      colorScheme="red"
                       onClick={() => handleDeleteButtonClick(restaurant)}
                     />
                   </ButtonGroup>
