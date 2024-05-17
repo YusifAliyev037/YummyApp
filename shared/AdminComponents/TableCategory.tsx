@@ -4,6 +4,7 @@ import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { Form, delCategories, getCategories, updateCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
 import { useDispatch } from 'react-redux';
+import { fillCategory } from '../redux/global/globalSlice';
 
 interface CategoryType {
   id: string;
@@ -116,6 +117,8 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
         }
         return item
       })
+    dispatch(fillCategory(updatedData))
+
     }
 
 
