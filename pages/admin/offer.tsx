@@ -4,10 +4,12 @@ import PushModul from '@/shared/AdminComponents/PushModul';
 import OfferInputs from '@/shared/AdminComponents/Services/OfferInputs';
 
 import TableCategory from '@/shared/AdminComponents/TableCategory';
+import offerTable from '@/shared/AdminComponents/OfferTable';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useState } from 'react';
+import OfferTable from '@/shared/AdminComponents/OfferTable';
 
 interface TestData {
   Id: number;
@@ -17,7 +19,7 @@ interface TestData {
 }
 
 const Offer: React.FC = () => {
-  const TableNames: string[] = ['ID', 'Image', 'Title', 'Descriptions'];
+
   const testData: TestData[] = [
     {
       Id: 9177,
@@ -118,7 +120,9 @@ const Offer: React.FC = () => {
             </InputGroup>
           </Box>
           <Box height={"464px"} overflow={"auto"} className='mr-8'>
-            {/* <TableCategory order={testData} name={TableNames} /> */}
+            //bura  <OfferTable
+             testData={testData} />
+
           </Box>
         </Box>
       </Box>
