@@ -1,6 +1,9 @@
 import React from 'react'
 
 function AddCategoryInput() {
+
+    
+
   return (
     <div className="bg-[#43445A] w-[60%] rounded-xl flex flex-col max-h-[400px]">
     <div className="p-[23px] flex flex-col gap-[8px]">
