@@ -1,11 +1,45 @@
 import Header from '@/shared/AdminComponents/Header'
 import PushModul from '@/shared/AdminComponents/PushModul'
+import { Category, Products, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
-import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function products() {
+  const [products, setProducts] = useState<Products[]>([]);
+  const [category, setCategory] = useState<Category[]>([]);
+  async function fetchProducts () {
+    try{
+      const res=await getProducts();
+      setProducts(res?.data?.result?.data)
+    }
+    catch{
+
+    }
+    
+  }
+  async function fetchCategory () {
+    try{
+      const res=await getCategories();
+     
+      
+      setCategory(res?.data?.result?.data)
+    }
+    catch{
+
+    }
+    
+  }
+  useEffect(()=>{
+    fetchProducts()
+    fetchCategory()
+
+  },[])
+
+  console.log(products);
+  
   return (
     <Box className=' bg-darkBlue10 h-screen p-2'>
       <Box as='header'>
@@ -35,9 +69,13 @@ function products() {
               placeholder='Select category'
               mr='2'
             >
-              <option value='Piiza'>Pizza</option>
-              <option value='Burgers'>Burgers</option>
-              <option value='Juices'>Juices</option>
+            
+           {category.map((item,id)=>{
+            return(
+              <option key={id} value='Piiza'>{item.name}</option>
+
+            )
+           })}
             </Select>
             <Box>
               <Button
@@ -53,26 +91,58 @@ function products() {
             </Box>
           </InputGroup>
         </Box>
-        <Card className=' h-72 w-48'>
-         <CardBody>
-    <Image
-      src='/pizza.svg'
-      alt='Pizza'
-      borderRadius='sm'
-    />
-    <Stack mt='1' spacing='3'>
-      <Heading size='md'>Margarita</Heading>
-      <Text>
-        Papa Jhon's
-      </Text>
-      <Text className=' text-blue10' fontSize='2xl'>
-        $16
-      </Text>
-      
-    </Stack>
-  </CardBody>
-  
-        </Card>
+       <Box className='flex gap-10'>
+       {products.map((item,index)=>{
+  return(
+    <Card key={index} className=' h-72 w-48'>
+    <CardBody>
+<Image
+ src={item.img_url}
+ alt={item.name}
+ borderRadius='sm'
+/>
+<Stack mt='1' spacing='3'>
+ <Heading size='md'>{item.name}</Heading>
+ <Text>
+   {item.description}
+ </Text>
+<Box className="flex">
+<Text className=' text-blue10' fontSize='2xl'>
+</Text>
+   {item.price}
+   <ButtonGroup
+                    spacing='1'
+                    display={"flex"}
+                    ml='auto'
+                  >
+                    <IconButton
+                      aria-label='Edit'
+                      icon={<EditIcon />}
+                      size='xs'
+                      fontSize='24px'
+                      variant='ghost'
+                      colorScheme='teal'
+                    />
+                    <IconButton
+                      aria-label='Delete'
+                      icon={<DeleteIcon />}
+                      size='xs'
+                      fontSize='24px'
+                      variant='ghost'
+                      colorScheme='red'
+                   
+                    />
+                  </ButtonGroup>
+
+</Box>
+ 
+</Stack>
+</CardBody>
+
+   </Card>
+  )
+})}
+       </Box>
       </Box>
       </Box>
     </Box>
