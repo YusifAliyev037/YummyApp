@@ -18,7 +18,7 @@ import Head from 'next/head';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { FC, useEffect, useState } from 'react';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
-import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; // Import Restaurant type
+import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; 
 import AdminModal from '@/shared/AdminComponents/AdminModal';
 
 import AddRestaurantInputs from '@/shared/AdminComponents/AddRestaurantInputs';

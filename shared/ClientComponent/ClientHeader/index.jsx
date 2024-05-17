@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./styles/clientHeader.module.css";
-// import { ROUTER } from "../../server/constant/router";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/router";
 
