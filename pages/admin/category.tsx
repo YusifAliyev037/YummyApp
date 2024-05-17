@@ -1,14 +1,23 @@
+import AddCategoryInput from '@/shared/AdminComponents/AddCategoryInput';
+import AdminModal from '@/shared/AdminComponents/AdminModal';
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
 import TableCategory from '@/shared/AdminComponents/TableCategory';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 
 function Category() {
  
   const customIds = Array.from({ length: 10 }, (_, i) => i);
+
+  const[hidden,setHidden]=useState(true)
+
+  const handleAddCategory = () =>(
+    setHidden(false)
+  )
+
  
 
   return (
@@ -25,6 +34,8 @@ function Category() {
         />
       </Head>
       <Header />
+      <AdminModal hidden={hidden} Sethidden={setHidden}addName={"Add Category "} imgName={"Upload  image"} informationName={"Add your Category information"} component={<AddCategoryInput/>} />
+      
       <Box as='main' className='flex'>
         <PushModul />
         <Box className='w-full mr-8'>
@@ -34,7 +45,7 @@ function Category() {
           >
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end  items-center gap-7'>
-              <Button borderRadius={14} colorScheme='pink'>
+              <Button borderRadius={14} colorScheme='pink' onClick={handleAddCategory}>
                 + ADD CATEGORY
               </Button>
             </InputGroup>
