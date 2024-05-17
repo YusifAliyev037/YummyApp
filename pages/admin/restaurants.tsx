@@ -19,11 +19,15 @@ import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { FC, useEffect, useState } from 'react';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; // Import Restaurant type
+import AdminModal from '@/shared/AdminComponents/AdminModal';
+
+import AddRestaurantInputs from '@/shared/AdminComponents/AddRestaurantInputs';
 
 const Restaurants: FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [restaurantToDelete, setRestaurantToDelete] = useState<Restaurant | null>(null);
+  const[hidden,Sethidden]=useState(true)
 
   const handleDeleteButtonClick = (restaurant: Restaurant) => {
     setRestaurantToDelete(restaurant);
@@ -33,7 +37,9 @@ const Restaurants: FC = () => {
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
   };
-
+const hansleRestaurantClick=()=>{
+  Sethidden(false)
+}
   const handleDeleteConfirmed = async () => {
     if (!restaurantToDelete) return;
     try {
@@ -58,6 +64,9 @@ const Restaurants: FC = () => {
     fetchRestaurants();
   }, []);
 
+
+
+
   return (
     <Box className='bg-darkBlue10 h-screen p-2'>
       <Box as='header'>
@@ -67,13 +76,14 @@ const Restaurants: FC = () => {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <Header />
+        <AdminModal hidden={hidden} Sethidden={Sethidden}addName={"Add Restuarant "} imgName={"Upload  image"} informationName={"Add your Restuarants information"} component={<AddRestaurantInputs/>}/>
       </Box>
       <Box as='main' className='flex'>
         <PushModul />
-        <Box as='section' className='w-full'>
+        <Box as='section' className='w-full mr-8'>
           <Box
             bg='#27283C'
-            className='flex items-center mb-12 w-full px-8 mt-20 mr-8'
+            className='flex items-center mb-12 w-full px-8 mt-20 '
             borderRadius={16}
             height={73}
           >
@@ -94,8 +104,8 @@ const Restaurants: FC = () => {
                 ))}
               </Select>
               <Box>
-                <Button borderRadius={14} colorScheme='pink'>
-                  + Add Restaurants
+                <Button borderRadius={14} colorScheme='pink' onClick={hansleRestaurantClick}>
+                  + ADD RESTAURANT
                 </Button>
               </Box>
             </InputGroup>
@@ -111,10 +121,10 @@ const Restaurants: FC = () => {
                 <CardBody className='flex items-center p-0'>
                   <Image
 
-                    className='w-full'
-                    src='https://photos.prnewswire.com/prnfull/20151019/278424LOGO'
-                    alt='Green double couch with wooden legs'
-                    borderRadius='lg'
+                    // className='w-full'
+                    // src='https://photos.prnewswire.com/prnfull/20151019/278424LOGO'
+                    // alt='Green double couch with wooden legs'
+                    // borderRadius='lg'
 
                     className='w-[65px] h-[65px] object-cover'
                     src={restaurant.img_url || 'https://media.traveler.es/photos/6137726a7ad90bc43bae0055/master/pass/123930.jpg'}

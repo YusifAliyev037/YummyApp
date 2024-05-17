@@ -104,7 +104,7 @@ const Offer: React.FC = () => {
             height={73}
           >
             
-            <Text color='white'>Offer</Text>
+            <Text color='white'>Offers</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
               <Box>
                 <Button
@@ -112,7 +112,7 @@ const Offer: React.FC = () => {
                   colorScheme='pink'
                   onClick={() => Sethidden(prev => !prev)}
                 >
-                  + ADD RESTAURANTS
+                  + ADD OFFER
                 </Button>
               </Box>
             </InputGroup>

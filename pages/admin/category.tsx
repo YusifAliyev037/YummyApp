@@ -35,7 +35,7 @@ function Category() {
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end  items-center gap-7'>
               <Button borderRadius={14} colorScheme='pink'>
-                + ADD RESTAURANTS
+                + ADD CATEGORY
               </Button>
             </InputGroup>
           </Box>

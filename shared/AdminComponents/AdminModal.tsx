@@ -42,13 +42,13 @@ const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informa
   id="admin-modal"
   width="66%"
   backgroundColor="#38394E"
-  className={`h-full z-20  flex flex-col gap-[20px] container mx-auto px-8 ${hidden?"hidden":"fixed"}`}
+  className={`h-full z-20  flex flex-col  container mx-auto px-8 ${hidden?"hidden":"fixed"}`}
   justifyContent={"space-between"}
   
   style={{ right: 0 }}
 >
 
-<Box className=' gap-[78px] flex flex-col container mx-auto px-8'>
+<Box className=' gap-[50px] flex flex-col container mx-auto px-8'>
 <Box className='  pt-[28px]'>
     <Text color={"#C7C7C7"} className="font-roboto text-2xl font-medium leading-6 tracking-tighter text-left" >
       {addName}
