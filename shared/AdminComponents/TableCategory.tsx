@@ -3,6 +3,7 @@ import { Box, IconButton, useToast } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { Form, delCategories, getCategories, updateCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
+import { useDispatch } from 'react-redux';
 
 interface CategoryType {
   id: string;
@@ -24,6 +25,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
 
   const imgRef = useRef<HTMLInputElement>(null);
 
+  const dispatch = useDispatch()
 
   const toast = useToast()
 
