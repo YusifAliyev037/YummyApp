@@ -23,7 +23,7 @@ function orders() {
         <Box display={"flex"} justifyContent={"flex-end"} height={"660px"} flexDirection={"column" } gap={"41px"}>
         <Box bg={"#27283C"} height={"73px"} borderRadius={"14px"} display={"flex"} alignItems={"center"} >
           <Text color="#F2F2F2DE" fontSize="21px" fontFamily="Roboto" lineHeight="21px" paddingLeft={"33px"} >
-            Order
+            Orders
           </Text>
           </Box>
          <Box height={"464px"} overflow={"auto"}>

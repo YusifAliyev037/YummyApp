@@ -83,6 +83,8 @@ export async function getRestaurants() {
     throw new Error('Failed to fetch restaurants!');
   }
 }
+
+
 export async function deleteRestaurant(restaurantId: string) {
   try {
     const response = await instanceAxios.delete(`/restuarants/${restaurantId}`);
@@ -92,3 +94,7 @@ export async function deleteRestaurant(restaurantId: string) {
     throw new Error('Failed to delete restaurant!');
   }
 }
+
+
+
+
