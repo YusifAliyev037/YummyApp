@@ -58,6 +58,19 @@ export async function getCategories() {
     
   }
 }
+
+//* categoryUpdate
+  export async function updateCategories(id:string, form:Form){
+    try{
+      const response = await instanceAxios.post(`/category/${id}`, form)
+      return response 
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+
+
 // Restaurant
 
 export type Restaurant = {
