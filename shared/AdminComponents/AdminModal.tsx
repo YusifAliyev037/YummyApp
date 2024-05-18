@@ -18,53 +18,21 @@ const AdminModal: React.FC<Props> = ({
   informationName,
   component,
 }) => {
-
-   
-
-  const handleClose = () => {
-    Sethidden(true);
-  };
-
+  
   return (
     <Box
       id="admin-modal"
-      className={`h-full z-20 w-2/3 bg-blue10 flex flex-col container mx-auto px-8 ${hidden ? "hidden" : "fixed"}`}
+      className={`h-full z-20 w-2/3 bg-blue10 flex flex-col container mx-auto px-8 ${
+        hidden ? "hidden" : "fixed"
+      }`}
       justifyContent={"space-between"}
       style={{ right: 0 }}
     >
-
       <Box className="pt-[28px]">
         <Text className="font-roboto text-gray10 text-2xl font-medium leading-6 tracking-tighter text-left">
           {addName}
         </Text>
       </Box>
-
-      <Box className="relative gap-[40px] flex flex-col container mx-auto px-8">
-        {/* Kapama butonunu etkinleştirmek isterseniz, aşağıdaki yorum satırlarını kaldırın */}
-        {/* <Button
-          onClick={handleClose}
-          className="absolute"
-          style={{
-            width: "27px",
-            height: "27px",
-            left: "10px",
-            top: "10px",
-            backgroundColor: "rgb(199, 79, 235)",
-            color: "white",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          X
-        </Button> */}
-        <Box className="pt-[28px]">
-          <Text className="font-roboto text-gray10 text-2xl font-medium leading-6 tracking-tighter text-left">
-            {addName}
-          </Text>
-        </Box>
-
 
       <Box justifyContent={"space-between"} className="flex">
         <Text className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
@@ -94,7 +62,7 @@ const AdminModal: React.FC<Props> = ({
           borderRadius={"14px"}
           color={"#FFFFFF"}
           background={"#43445A"}
-          onClick={() => Sethidden(true)}
+          onClick={() => Sethidden((prev) => !prev)}
         >
           Cancel
         </Button>
@@ -104,7 +72,7 @@ const AdminModal: React.FC<Props> = ({
           borderRadius={"14px"}
           color={"#FFFFFF"}
           background={"#C035A2"}
-          onClick={() => Sethidden(false)}
+          onClick={() => Sethidden((prev) => !prev)}
         >
           Create
         </Button>
