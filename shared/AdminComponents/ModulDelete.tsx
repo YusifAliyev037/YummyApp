@@ -16,7 +16,7 @@ interface ModulDeleteProps {
   isOpen: boolean;
 
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm?: () => void;
 }
 
 const ModulDelete: React.FC<ModulDeleteProps> = ({ isOpen, onClose,onConfirm }) => {
