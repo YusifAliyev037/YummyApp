@@ -40,6 +40,62 @@ const AdminModal: React.FC<Props> = ({
   };
 
   return (
+
+<Box
+  id="admin-modal"
+  className={`h-full z-20 w-2/3 bg-blue10 flex flex-col  container mx-auto px-8 ${hidden?"hidden":"fixed"}`}
+  justifyContent={"space-between"}
+  style={{ right: 0 }}
+>
+
+<Box className=' gap-[40px] flex flex-col container mx-auto px-8'>
+<Box className='  pt-[28px]'>
+    <Text  className="font-roboto text-gray10 text-2xl font-medium leading-6 tracking-tighter text-left" >
+      {addName}
+
+    </Text>
+  </Box>
+
+
+  <Box justifyContent={"space-between"} className='flex  '>
+    <Text  className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
+    {imgName}
+    </Text>
+    <Box   className='w-[60%] bg-gray20 h-[122px] rounded-[14px] flex justify-center items-center  '>
+     <Box className='flex flex-col'>
+     <Image src='/upload.svg' />
+      <Text  className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left"  >
+      upload
+      </Text>
+     </Box>
+    </Box>
+
+  </Box>
+
+
+
+  
+  <Box  justifyContent={"space-between"} className='flex  ' >
+    <Text  className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left" >
+{informationName}
+    </Text>
+
+{component}
+
+
+
+
+
+  </Box>
+
+
+
+</Box>
+
+ 
+  <Box 
+  className=' flex content-center gap-10 p-4 border-t-2 border-t-gray20'
+
     <Box
       id="admin-modal"
       className={`h-full z-20 w-2/3 bg-blue10 flex flex-col container mx-auto px-8 ${
@@ -47,9 +103,10 @@ const AdminModal: React.FC<Props> = ({
       }`}
       justifyContent={"space-between"}
       style={{ right: 0 }}
+
     >
       <Box className="relative gap-[40px] flex flex-col container mx-auto px-8">
-        <Button
+        {/* <Button
           onClick={handleClose}
           className="absolute"
           style={{
@@ -66,7 +123,7 @@ const AdminModal: React.FC<Props> = ({
           }}
         >
           X
-        </Button>
+        </Button> */}
         <Box className="pt-[28px]">
           <Text className="font-roboto text-gray10 text-2xl font-medium leading-6 tracking-tighter text-left">
             {addName}

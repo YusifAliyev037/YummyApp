@@ -1,4 +1,5 @@
 import Header from '@/shared/AdminComponents/Header'
+import ModulDelete from '@/shared/AdminComponents/ModulDelete'
 import PushModul from '@/shared/AdminComponents/PushModul'
 import { Category, Products, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
@@ -10,6 +11,10 @@ import React, { useEffect, useState } from 'react'
 function products() {
   const [products, setProducts] = useState<Products[]>([]);
   const [category, setCategory] = useState<Category[]>([]);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const handleCloseModal = () => {
+    setIsDeleteModalOpen(false);
+  };
   async function fetchProducts () {
     try{
       const res=await getProducts();
@@ -66,7 +71,7 @@ function products() {
               borderRadius={20}
               width={200}
               height={35}
-              placeholder='Select category'
+              placeholder='Productg type'
               mr='2'
             >
             
@@ -78,16 +83,7 @@ function products() {
            })}
             </Select>
             <Box>
-              <Button
-                borderRadius={20}
-                colorScheme='pink'
-                style={{ boxShadow: '0px 4px 4px 0px rgba(39, 174, 96, 0.2)' }}
-
-              >
-                
-                {/* <SearchIcon/> */}
-                Search
-              </Button>
+            
             </Box>
           </InputGroup>
         </Box>
@@ -100,20 +96,24 @@ function products() {
  src={item.img_url}
  alt={item.name}
  borderRadius='sm'
+ height={"160px"}
+ width={"160px"}
 />
 <Stack mt='1' spacing='3'>
- <Heading size='md'>{item.name}</Heading>
- <Text>
+ <Text color={"#1E1E30"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"24px"} size={"18px"}  >{item.name}</Text>
+ <Text color={"#8E8E93"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"24px"} size={"14px"}  >
    {item.description}
  </Text>
 <Box className="flex">
-<Text className=' text-blue10' fontSize='2xl'>
+<Text color={" #00B2A9"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"24px"} size={"12px"}   >
+${item.price} 
 </Text>
-   {item.price}
+
    <ButtonGroup
                     spacing='1'
                     display={"flex"}
                     ml='auto'
+                    gap={"8px"}
                   >
                     <IconButton
                       aria-label='Edit'
@@ -145,6 +145,9 @@ function products() {
        </Box>
       </Box>
       </Box>
+        
+
+
     </Box>
   )
 }
