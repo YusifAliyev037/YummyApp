@@ -18,22 +18,8 @@ const AdminModal: React.FC<Props> = ({
   informationName,
   component,
 }) => {
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      const modal = document.getElementById("admin-modal");
-      if (modal && !modal.contains(event.target as Node)) {
-        Sethidden(true);
-      }
-    };
 
-    if (!hidden) {
-      document.addEventListener("mousedown", handleOutsideClick);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, [hidden, Sethidden]);
+   
 
   const handleClose = () => {
     Sethidden(true);

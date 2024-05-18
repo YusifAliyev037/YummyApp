@@ -135,7 +135,19 @@ export async function getProducts() {
     return response
   } catch (error) {
     console.error('Error while fetching restaurants:', error);
-    throw new Error('Failed to fetch restaurants!');
+    throw new Error('Failed to fetch products!');
   }
 }
 
+
+export async function deleteProducts(id:string) {
+  try{
+    const response=await instanceAxios.delete(`/products/${id}`)
+    return response
+  }
+  catch (error) {
+    console.error(`Error while deleting product with ID ${id}:`, error);
+    throw new Error('Failed to delete product!');
+  }
+  
+}
