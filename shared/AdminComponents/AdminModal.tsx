@@ -49,7 +49,7 @@ const AdminModal: React.FC<Props> = ({
       style={{ right: 0 }}
     >
       <Box className="relative gap-[40px] flex flex-col container mx-auto px-8">
-        <Button
+        {/* <Button
           onClick={handleClose}
           className="absolute"
           style={{
@@ -66,7 +66,7 @@ const AdminModal: React.FC<Props> = ({
           }}
         >
           X
-        </Button>
+        </Button> */}
         <Box className="pt-[28px]">
           <Text className="font-roboto text-gray10 text-2xl font-medium leading-6 tracking-tighter text-left">
             {addName}

@@ -3,7 +3,7 @@ import React from 'react';
 function AddRestaurantInputs() {
   return (
     <div className="bg-[#43445A]  w-full md:w-[60%] overflow-y-scroll rounded-[14px] flex flex-col max-h-[400px] ">
-      <div className="flex  px-6 flex-col gap-2 md:gap-4">
+      <div className="flex  px-6 flex-col gap-2 ">
         <p className="font-roboto text-lg text-gray10 p-2 font-medium leading-6 tracking-tighter text-left">
           Name
         </p>
@@ -12,7 +12,7 @@ function AddRestaurantInputs() {
           placeholder="Fast Food, Drink, Ice Cream, Sea Food?" 
         />
       </div>
-      <div className="flex px-6 flex-col gap-2 md:gap-4 ">
+      <div className="flex px-6 flex-col gap-2 ">
         <p className="font-roboto text-lg text-gray10 p-2 font-medium leading-6 tracking-tighter text-left">
           Cuisine
         </p>
@@ -21,7 +21,7 @@ function AddRestaurantInputs() {
           placeholder="Yes you like pizza, Yummy" 
         />
       </div>
-      <div className="flex px-6 flex-col gap-2 md:gap-4 ">
+      <div className="flex px-6 flex-col gap-2  ">
         <p className="font-roboto text-lg text-gray10 p-2 font-medium leading-6 tracking-tighter text-left">
           Delivery Price $
         </p>
@@ -30,7 +30,7 @@ function AddRestaurantInputs() {
           placeholder="5" 
         />
       </div>
-      <div className="flex px-6 flex-col gap-2 md:gap-4 ">
+      <div className="flex px-6 flex-col gap-2  ">
         <p className="font-roboto text-lg text-gray10 p-2 font-medium leading-6 tracking-tighter text-left">
           Delivery Min
         </p>
@@ -39,7 +39,7 @@ function AddRestaurantInputs() {
           placeholder="11" 
         />
       </div>
-      <div className="flex px-6 flex-col gap-2 md:gap-4 ">
+      <div className="flex px-6 flex-col gap-2  ">
         <p className="font-roboto text-lg text-gray10 font-medium leading-6 tracking-tighter text-left">
           Address
         </p>
@@ -48,7 +48,7 @@ function AddRestaurantInputs() {
           placeholder="Do you like Pizza Nizami street 45 Baku Azerbaijan?" 
         />
       </div>
-      <div className="flex px-6 flex-col gap-2 md:gap-4 ">
+      <div className="flex px-6 flex-col gap-2  ">
         <p className="font-roboto text-lg text-gray10 font-medium leading-6 tracking-tighter text-left">
           Category
         </p>
