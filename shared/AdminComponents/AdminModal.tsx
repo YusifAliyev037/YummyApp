@@ -79,6 +79,10 @@ const AdminModal: React.FC<Props> = ({ hidden, Sethidden,addName,imgName,informa
 
 {component}
 
+
+
+
+
   </Box>
 
 

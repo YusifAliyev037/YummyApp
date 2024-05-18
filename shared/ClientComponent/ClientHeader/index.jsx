@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles/clientHeader.module.css";
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/router";
 
 const ClientHeader = () => {
@@ -52,7 +52,7 @@ const ClientHeader = () => {
             className={styles.searchInput}
           />
           <button type="submit" className={styles.searchButton}>
-            <FaSearch />
+            {/* <FaSearch /> */}
           </button>
         </form>
         <div className={styles.utility}>
