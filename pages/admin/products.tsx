@@ -1,10 +1,11 @@
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
 import PushModul from '@/shared/AdminComponents/PushModul'
-import { Category, Products, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
+import { Category, Products, deleteProducts, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
+import { log } from 'console'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 
@@ -12,6 +13,7 @@ function products() {
   const [products, setProducts] = useState<Products[]>([]);
   const [category, setCategory] = useState<Category[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
   };
@@ -43,10 +45,39 @@ function products() {
 
   },[])
 
-  console.log(products);
+  function handleDeleteId(product:Products){
+    setIsDeleteModalOpen(true)
+    setIsDeleteModalId(product)
+    
+  }
+
+
+  
+  function handleDeleteProduct(product:Products){
+
+   
+    console.log(product);
+    
+      if (product.id) {
+        deleteProducts(product.id);
+        setProducts(products.filter((res)=>res.id !==isDeleteModalId?.id))
+        setIsDeleteModalId({})
+        setIsDeleteModalOpen(false)
+
+
+
+    } else {
+        console.error("Product id is undefined");
+    }
+      
+    
+    
+      
+    }
   
   return (
-    <Box className=' bg-darkBlue10 h-screen p-2'>
+    <Box className=' bg-darkBlue10 h-screen '>
+      <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>handleDeleteProduct(isDeleteModalId)} />
       <Box as='header'>
       <Head>
         <title>Products</title>
@@ -87,7 +118,7 @@ function products() {
             </Box>
           </InputGroup>
         </Box>
-       <Box className='flex gap-10'>
+       <Box className='flex gap-8'>
        {products.map((item,index)=>{
   return(
     <Card key={index} className=' h-72 w-48'>
@@ -130,6 +161,7 @@ ${item.price}
                       fontSize='24px'
                       variant='ghost'
                       colorScheme='red'
+                      onClick={()=>handleDeleteId(item) }
                    
                     />
                   </ButtonGroup>

@@ -72,7 +72,7 @@ const Restaurants: FC = () => {
   }, []);
 
   return (
-    <Box className="bg-darkBlue10 min-h-screen p-2">
+    <Box className="bg-darkBlue10 min-h-screen ">
       <Box as="header">
         <Head>
           <title>Restaurants</title>
@@ -88,7 +88,7 @@ const Restaurants: FC = () => {
         <Box as="section" className="w-full md:mr-8">
           <Box
             bg="#27283C"
-            className="relative flex flex-col md:flex-row items-center mb-12 w-full px-8 mt-20 rounded-lg"
+            className="relative flex flex-col md:flex-row items-center mb-12 w-full px-8 mt-20 rounded-xl"
             height={73}
           >
             <Text color="white" className="absolute left-8 md:relative mb-2 md:bottom-auto md:left-auto w-32 md:mb-0">
