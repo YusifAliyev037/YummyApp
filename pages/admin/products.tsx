@@ -76,7 +76,7 @@ function products() {
     }
   
   return (
-    <Box className=' bg-darkBlue10 h-screen p-2'>
+    <Box className=' bg-darkBlue10 h-screen '>
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>handleDeleteProduct(isDeleteModalId)} />
       <Box as='header'>
       <Head>

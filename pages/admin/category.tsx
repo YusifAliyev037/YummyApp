@@ -21,7 +21,7 @@ function Category() {
  
 
   return (
-    <Box className='bg-darkBlue10 h-screen p-2'>
+    <Box className='bg-darkBlue10 h-screen '>
       <Head>
         <title>Category</title>
         <MetaSeo
