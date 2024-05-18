@@ -29,7 +29,8 @@ export const globalSlice = createSlice({
     reducers:{
             fillCategory:(state, action:PayloadAction<CategoryItem[]>) =>{
                 state.category = [...action.payload]
-            } 
+            }
+ 
 
     }
 })

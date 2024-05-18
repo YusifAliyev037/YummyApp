@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Button, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Image, Input, Text } from "@chakra-ui/react";
 
 interface Props {
   hidden: boolean;
@@ -7,7 +7,10 @@ interface Props {
   addName: String;
   imgName: String;
   informationName: String;
-  component: JSX.Element;
+  component?: JSX.Element;
+ 
+  
+  
 }
 
 const AdminModal: React.FC<Props> = ({
@@ -17,6 +20,7 @@ const AdminModal: React.FC<Props> = ({
   imgName,
   informationName,
   component,
+  
 }) => {
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -90,7 +94,8 @@ const AdminModal: React.FC<Props> = ({
           <Text className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
             {informationName}
           </Text>
-
+          
+      
           {component}
         </Box>
       </Box>
