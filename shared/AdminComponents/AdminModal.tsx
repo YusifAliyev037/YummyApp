@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+
+
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 
 interface Props {
@@ -7,7 +8,8 @@ interface Props {
   addName: String;
   imgName: String;
   informationName: String;
-  component: JSX.Element;
+  // component: JSX.Element;
+  component:React.ReactNode;
 }
 
 const AdminModal: React.FC<Props> = ({
@@ -38,7 +40,7 @@ const AdminModal: React.FC<Props> = ({
         <Text className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
           {imgName}
         </Text>
-        <Box className="w-[60%] bg-gray20 h-[122px] rounded-[14px] flex justify-center items-center">
+        <Box className="w-[60%] bg-gray20 h-[121px] rounded-[14px] flex justify-center items-center">
           <Box className="flex flex-col">
             <Image src="/upload.svg" />
             <Text className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
@@ -82,4 +84,3 @@ const AdminModal: React.FC<Props> = ({
 };
 
 export default AdminModal;
-
