@@ -1,22 +1,44 @@
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
+import Pagination from '@/shared/AdminComponents/Pagination'
 import PushModul from '@/shared/AdminComponents/PushModul'
 import { Category, Products, deleteProducts, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
-import { log } from 'console'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
+
+
 
 function products() {
   const [products, setProducts] = useState<Products[]>([]);
   const [category, setCategory] = useState<Category[]>([]);
+  const[pages,setPages]=useState<number>(0)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
   };
+
+  function getPages(pageNumber: number) {
+    setPages(pageNumber)   
+  }
+  let b
+  if(pages+1==1){
+    b=0
+
+  }
+  else{
+    b=pages*5
+  }
+
+  let pagesData=products.slice(b,(pages+1)*5)
+  console.log(pagesData);
+  console.log(products);
+  
+  
+  
   async function fetchProducts () {
     try{
       const res=await getProducts();
@@ -53,31 +75,26 @@ function products() {
 
 
   
-  function handleDeleteProduct(product:Products){
-
-   
+  function handleDeleteProduct(product: Products) {
     console.log(product);
     
-      if (product.id) {
+    if (product.id) {
         deleteProducts(product.id);
-        setProducts(products.filter((res)=>res.id !==isDeleteModalId?.id))
-        setIsDeleteModalId({})
-        setIsDeleteModalOpen(false)
-
-
-
+        setProducts(products.filter((res) => res.id !== product.id));
+        setIsDeleteModalId(null);
+        setIsDeleteModalOpen(false);
     } else {
         console.error("Product id is undefined");
     }
-      
-    
-    
-      
-    }
+}
   
   return (
     <Box className=' bg-darkBlue10 h-screen '>
-      <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>handleDeleteProduct(isDeleteModalId)} />
+      <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
+        if (isDeleteModalId !== null) {
+          handleDeleteProduct(isDeleteModalId);
+      }
+      }} />
       <Box as='header'>
       <Head>
         <title>Products</title>
@@ -119,67 +136,59 @@ function products() {
           </InputGroup>
         </Box>
        <Box className='flex gap-8'>
-       {products.map((item,index)=>{
+       {pagesData.map((item,index)=>{
   return(
-    <Card key={index} className=' h-72 w-48'>
-    <CardBody>
-<Image
- src={item.img_url}
- alt={item.name}
- borderRadius='sm'
- height={"160px"}
- width={"160px"}
-/>
-<Stack mt='1' spacing='3'>
- <Text color={"#1E1E30"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"24px"} size={"18px"}  >{item.name}</Text>
- <Text color={"#8E8E93"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"24px"} size={"14px"}  >
-   {item.description}
- </Text>
-<Box className="flex">
-<Text color={" #00B2A9"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"24px"} size={"12px"}   >
-${item.price} 
-</Text>
+    <Card key={index} className='h-72 w-48'>
+  <CardBody>
+    <Image
+      src={item.img_url}
+      alt={item.name}
+      borderRadius='sm'
+      height={"160px"}
+      width={"160px"}
+    />
+    <Stack spacing='4' height="100%">
+      <Text color={"#1E1E30"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"18px"} height="24px">{item.name}</Text>
+      <Text color={"#8E8E93"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"14px"} height="24px">{item.description}</Text>
+      <Box className="flex">
+        <Text color={"#00B2A9"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"12px"} height="24px">${item.price}</Text>
+        <ButtonGroup spacing='1' display={"flex"} ml='auto' gap={"8px"}>
+          <IconButton
+            aria-label='Edit'
+            icon={<EditIcon />}
+            size='xs'
+            fontSize='24px'
+            variant='ghost'
+            colorScheme='teal'
+          />
+          <IconButton
+            aria-label='Delete'
+            icon={<DeleteIcon />}
+            size='xs'
+            fontSize='24px'
+            variant='ghost'
+            colorScheme='red'
+            onClick={()=>handleDeleteId(item)}
+          />
+        </ButtonGroup>
+      </Box>
+    </Stack>
+  </CardBody>
+</Card>
 
-   <ButtonGroup
-                    spacing='1'
-                    display={"flex"}
-                    ml='auto'
-                    gap={"8px"}
-                  >
-                    <IconButton
-                      aria-label='Edit'
-                      icon={<EditIcon />}
-                      size='xs'
-                      fontSize='24px'
-                      variant='ghost'
-                      colorScheme='teal'
-                    />
-                    <IconButton
-                      aria-label='Delete'
-                      icon={<DeleteIcon />}
-                      size='xs'
-                      fontSize='24px'
-                      variant='ghost'
-                      colorScheme='red'
-                      onClick={()=>handleDeleteId(item) }
-                   
-                    />
-                  </ButtonGroup>
-
-</Box>
- 
-</Stack>
-</CardBody>
-
-   </Card>
   )
 })}
        </Box>
+       
       </Box>
+    
       </Box>
-        
 
-
+      
+    
+      <Pagination  getPages={getPages} length={Math.ceil(products.length/5)} />
+      
+      
     </Box>
   )
 }
