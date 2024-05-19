@@ -16,63 +16,78 @@ import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
 import Head from 'next/head';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
-import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios'; 
 import AdminModal from '@/shared/AdminComponents/AdminModal';
 import EditRestaurantModal from '@/shared/AdminComponents/EditRestaurantModal';
 import AddRestaurantInputs from '@/shared/AdminComponents/AddRestaurantInputs';
+import {
+  setRestaurants,
+  removeRestaurant as removeRestaurantAction,
+  setIsDeleteModalOpen,
+  setRestaurantToDelete,
+  Sethidden,
+  setEditRestaurantModalHidden,
+} from '@/shared/redux/global/globalSlice';
+import { RootState } from '@/shared/redux/store';
+import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios';
 
 const Restaurants: FC = () => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [restaurantToDelete, setRestaurantToDelete] = useState<Restaurant | null>(null);
-  const [hidden, Sethidden] = useState(true);
-  const [editRestaurantModalHidden, setEditRestaurantModalHidden] = useState(true);
+  const dispatch = useDispatch();
+  const restaurants = useSelector((state: RootState) => state.global.restaurant);
+  const isDeleteModalOpen = useSelector((state: RootState) => state.global.isDeleteModalOpen);
+  const restaurantToDelete = useSelector((state: RootState) => state.global.restaurantToDelete);
+  const hidden = useSelector((state: RootState) => state.global.hidden);
+  const editRestaurantModalHidden = useSelector((state: RootState) => state.global.editRestaurantModalHidden);
 
   const handleDeleteButtonClick = (restaurant: Restaurant) => {
-    setRestaurantToDelete(restaurant);
-    setIsDeleteModalOpen(true);
+    dispatch(setRestaurantToDelete(restaurant));
+    dispatch(setIsDeleteModalOpen(true));
   };
 
   const handleCloseModal = () => {
-    setIsDeleteModalOpen(false);
+    dispatch(setIsDeleteModalOpen(false));
   };
 
   const handleRestaurantClick = () => {
-    Sethidden(false);
+    dispatch(Sethidden(false));
   };
 
   const handleEditRestaurantClick = () => {
-    setEditRestaurantModalHidden(false);
+    dispatch(setEditRestaurantModalHidden(false));
   };
 
   const handleDeleteConfirmed = async () => {
     if (!restaurantToDelete) return;
     try {
       await deleteRestaurant(restaurantToDelete.id);
-      setRestaurants(restaurants.filter((res) => res.id !== restaurantToDelete.id));
+     
+      const updatedRestaurants = restaurants.filter(
+        (restaurant) => restaurant.id !== restaurantToDelete.id
+      );
+   
+      dispatch(setRestaurants(updatedRestaurants));
     } catch (error) {
       console.log(error);
     }
-    setIsDeleteModalOpen(false);
+    dispatch(setIsDeleteModalOpen(false));
   };
 
-  async function fetchRestaurants() {
-    try {
-      const res = await getRestaurants();
-      setRestaurants(res?.data?.result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
+    async function fetchRestaurants() {
+      try {
+        const res = await getRestaurants();
+        dispatch(setRestaurants(res?.data?.result.data || []));
+      } catch (error) {
+        console.log(error);
+      }
+    }
     fetchRestaurants();
-  }, []);
+  }, [dispatch]);
 
   return (
-    <Box className="bg-darkBlue10 min-h-screen ">
+    <Box className="bg-darkBlue10 min-h-screen">
       <Box as="header">
         <Head>
           <title>Restaurants</title>
@@ -80,11 +95,25 @@ const Restaurants: FC = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <AdminModal hidden={hidden} Sethidden={Sethidden} addName={"Add Restaurant"} imgName={"Upload image"} informationName={"Add your Restaurant's information"} component={<AddRestaurantInputs />} />
-        <AdminModal hidden={editRestaurantModalHidden} Sethidden={setEditRestaurantModalHidden} addName={"Edit Restaurant"} imgName={"Upload Image"} informationName={"Edit your Restaurant's information"} component={<EditRestaurantModal />} />
+        <AdminModal
+          hidden={hidden}
+          Sethidden={(value: boolean | ((prev: boolean) => boolean)) => dispatch(Sethidden(typeof value === 'function' ? value(hidden) : value))}
+          addName={"Add Restaurant"}
+          imgName={"Upload image"}
+          informationName={"Add your Restaurant's information"}
+          component={<AddRestaurantInputs />}
+        />
+        <AdminModal
+          hidden={editRestaurantModalHidden}
+          Sethidden={(value: boolean | ((prev: boolean) => boolean)) => dispatch(setEditRestaurantModalHidden(typeof value === 'function' ? value(editRestaurantModalHidden) : value))}
+          addName={"Edit Restaurant"}
+          imgName={"Upload Image"}
+          informationName={"Edit your Restaurant's information"}
+          component={<EditRestaurantModal />}
+        />
       </Box>
       <Box as="main" className="flex flex-col md:flex-row">
-        <PushModul  />
+        <PushModul />
         <Box as="section" className="w-full md:mr-8">
           <Box
             bg="#27283C"
