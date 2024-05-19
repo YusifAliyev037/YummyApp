@@ -81,6 +81,18 @@ export async function getCategories() {
     }
   }
 
+  //* categoryPost
+
+  export async function postCategory(form:Form){
+    try{
+      const response = await instanceAxios.post("/category", form)
+      return response
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+
 
 // Restaurant
 
