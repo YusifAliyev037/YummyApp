@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
 import { Box, IconButton, useToast } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { Form, delCategories, getCategories, updateCategories } from './Services/axios';
+import {  delCategories, getCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
 import { useDispatch } from 'react-redux';
 import { fillCategory } from '../redux/global/globalSlice';
 
-interface CategoryType {
+export interface CategoryType {
   id: string;
   img_url: string;
   name: string;
@@ -20,11 +20,7 @@ interface Props {
 const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
-  const categoryRef = useRef<HTMLInputElement>(null);
 
-  const slugRef = useRef<HTMLInputElement>(null);
-
-  const imgRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch()
 
@@ -34,6 +30,10 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
 
   const [categoryId, setCategoryId] = useState<CategoryType | null>(null)
 
+  
+  
+
+  dispatch(fillCategory(categories))
 
  const handleDeleteButton  = (categoryId:CategoryType) =>{
   setCategoryId(categoryId)
@@ -78,60 +78,10 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     setDeleteModal(false)
   }
 
-  async function updateCategory(){
-    const category = categoryRef?.current?.value;
-    const slug = slugRef?.current?.value;
-    const img = imgRef?.current?.value;
-
-
-    const form: Form = {
-      name:category,
-      slug,
-      img_url: img
-    };
-
-    if( !isInputValid(category, slug, img)){
-      toast({
-        title: "Please fill all the inputs!!",
-        status:"success",
-        duration:2000,
-        position:"top-right",
-        variant:"subtle"
-      });
-    }
-
-    const res = await updateCategories(categoryId?.id ?? '', form);
-
-    if(res?.status === 200){
-      toast({
-        title: "Category updated successfully!",
-        status:"success",
-        duration:2000,
-        position:"top-right",
-        variant:"subtle"
-      });
-
-      const updatedData = categories.map((item:any) =>{
-        if(item.id === categoryId?.id){
-          return res.data.data
-        }
-        return item
-      })
-    dispatch(fillCategory(updatedData))
-
-    }
-
-
-  }
+ 
 
   
-  function isInputValid(
-    category: string | undefined,
-    slug: string | undefined,
-    img: string | undefined
-  ): boolean {
-    return !!category && !!slug && !!img;
-  }
+ 
 
   return (
     <div className='m-3'>
