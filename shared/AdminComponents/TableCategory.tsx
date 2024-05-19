@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
 import { Box, IconButton, useToast } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { Form, delCategories, getCategories, updateCategories } from './Services/axios';
+import {  delCategories, getCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
 import { useDispatch } from 'react-redux';
 import { fillCategory } from '../redux/global/globalSlice';
