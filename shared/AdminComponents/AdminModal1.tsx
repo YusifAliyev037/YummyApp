@@ -3,6 +3,8 @@ import { ImageInput } from "./ImageInput";
 import { AdminModalInput } from "./AdminModalInput1";
 import { Button } from "./Button";
 import Image from "next/image";
+// import { ref} from "firebase/storage"
+
 
 
 interface Props {
@@ -45,6 +47,8 @@ export const AdminModal1 = ({
     if (!name) {
       return;
     }
+
+
    
   }
   return (
