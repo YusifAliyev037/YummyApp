@@ -6,6 +6,7 @@ import { Category, Products, deleteProducts, getCategories, getProducts } from '
 import MetaSeo from '@/shared/MetaSeo'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
+
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 
@@ -80,9 +81,18 @@ function products() {
     
     if (product.id) {
         deleteProducts(product.id);
+
         setProducts(products.filter((res) => res.id !== product.id));
         setIsDeleteModalId(null);
         setIsDeleteModalOpen(false);
+
+        setProducts(products.filter((res)=>res.id !==isDeleteModalId?.id))
+        setIsDeleteModalId(null)
+        setIsDeleteModalOpen(false)
+
+
+
+
     } else {
         console.error("Product id is undefined");
     }
@@ -90,11 +100,23 @@ function products() {
   
   return (
     <Box className=' bg-darkBlue10 h-screen '>
+
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
         if (isDeleteModalId !== null) {
           handleDeleteProduct(isDeleteModalId);
       }
       }} />
+
+    <ModulDelete 
+  isOpen={isDeleteModalOpen} 
+  onClose={handleCloseModal} 
+  onConfirm={() => {
+    if (isDeleteModalId) {
+      handleDeleteProduct(isDeleteModalId);
+    }
+  }} 
+/>
+
       <Box as='header'>
       <Head>
         <title>Products</title>
