@@ -1,8 +1,8 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useState } from "react";
-import AdminModal from "./AdminModal"; // Adjust the import path as necessary
-import AddProductsInputs from "./AddProductsInputs"; // Adjust the import path as necessary
+import AdminModal from "./AdminModal"; 
+import AddProductsInputs from "./AddProductsInputs"; 
 
 function Header() {
   const [hidden, Sethidden] = useState(true);

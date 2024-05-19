@@ -1,5 +1,6 @@
 import AddCategoryInput from '@/shared/AdminComponents/AddCategoryInput';
 import AdminModal from '@/shared/AdminComponents/AdminModal';
+import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
 import TableCategory from '@/shared/AdminComponents/TableCategory';
@@ -13,6 +14,9 @@ function Category() {
   const customIds = Array.from({ length: 10 }, (_, i) => i);
 
   const[hidden,setHidden]=useState(true)
+  function changeHidden(): void {
+    setHidden((prev: boolean) => !prev);
+  }
 
   const handleAddCategory = () =>(
     setHidden(false)
@@ -34,8 +38,16 @@ function Category() {
         />
       </Head>
       <Header />
-      <AdminModal hidden={hidden} Sethidden={setHidden}addName={"Add Category "} imgName={"Upload  image"} informationName={"Add your Category information"} component={<AddCategoryInput/>} />
-      
+      {/* <AdminModal hidden={hidden} Sethidden={setHidden}addName={"Add Category "} imgName={"Upload  image"} informationName={"Add your Category information"} component={<AddCategoryInput/>}  /> */}
+      <AdminModal1
+      onClickClose={changeHidden}
+      mod="1"
+      p="Add Category  "
+      p1="Upload  image"
+      p2="Add your Category information"
+      btn='Create Category'
+      hidden={hidden}
+      />
       <Box as='main' className='flex'>
         <PushModul />
         <Box className='w-full mr-8'>
