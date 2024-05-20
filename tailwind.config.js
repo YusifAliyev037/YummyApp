@@ -45,6 +45,7 @@ module.exports = {
       red100: "rgb(214, 54, 38)",
       white: "#ffffff",
       orange100: "rgb(251, 147, 0);",
+      orange200: "rgb(255, 182, 79);",
     },
     screens: {
       xs: "320px",
@@ -60,6 +61,7 @@ module.exports = {
       rotate: {
         22.82: "22.82deg",
         25.74: "-25.74deg",
+        170.57: "170.57deg",
       },
       width: {
         350: "350px",
