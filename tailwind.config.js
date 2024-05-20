@@ -34,11 +34,13 @@ module.exports = {
       blue10: "#38394E",
       blue20: "#00B2A9",
 
+      gray100: "#d0d0d0",
       gray200: "#f3f4f6",
       gray300: "rgb(130, 130, 130)",
       gray400: "#7e7e7e",
       black: "#000000",
       red500: "#DC2626",
+      red100: "rgb(214, 54, 38)",
       white: "#ffffff",
       black200: "rgb(24, 22, 23)",
     },
@@ -52,7 +54,21 @@ module.exports = {
       xl: "1280px",
       xxl: "1440px",
     },
-    extend: {},
+    extend: {
+      rotate: {
+        22.82: "22.82deg",
+        25.74: "-25.74deg",
+      },
+      width: {
+        420: "350px",
+      },
+      height: {
+        560: "420px",
+      },
+      borderRadius: {
+        "50px": "50px",
+      },
+    },
   },
   plugins: [],
 };
