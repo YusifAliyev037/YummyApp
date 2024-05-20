@@ -15,6 +15,10 @@ import HomeSection5 from "../shared/ClientComponent/Section5/index";
 const Home = () => {
   return (
     <>
+      <Head>
+        <title>Home</title>
+        <meta name="description" content="Home" />
+      </Head>
       <ClientHeader />
       <HomeSection1 />
       <HomeSection2 />

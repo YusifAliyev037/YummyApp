@@ -46,6 +46,7 @@ module.exports = {
       white: "#ffffff",
       orange100: "rgb(251, 147, 0);",
       orange200: "rgb(255, 182, 79);",
+      yellow100: "rgb(223, 179, 0);",
     },
     screens: {
       xs: "320px",
@@ -73,7 +74,8 @@ module.exports = {
       },
       borderRadius: {
         50: "50px",
-        30: "50px",
+        30: "30px",
+        20: "20px",
       },
       padding: {
         140: "140px",
