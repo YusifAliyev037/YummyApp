@@ -5,7 +5,9 @@ const HomeSection2: React.FC = () => {
     <div className="px-8 py-32">
       <div className="text-center">
         <h1 className="text-4xl font-bold">Features</h1>
+
         <p className="text-lg text-gray300 mt-4 max-w-[800px] ml-[320px] mr-[320px]">
+
           Lorem ipsum is placeholder text commonly used in the graphic , print,
           and publishing industries for previewing layouts and visual mockups.
         </p>

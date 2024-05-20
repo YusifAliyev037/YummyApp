@@ -40,7 +40,7 @@ const data = [
   ];
 function RiskBar() {
     return (
-        <ResponsiveContainer className=" bg-darkBlue20 rounded-2xl mt-4" width={730} height={403}>
+        <ResponsiveContainer className=" bg-darkBlue20 rounded-2xl mt-4 mr-5 " width={730} height={403}>
           <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
             <PolarGrid />
             <PolarAngleAxis dataKey="subject" />

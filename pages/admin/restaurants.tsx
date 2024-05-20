@@ -33,13 +33,16 @@ import {
 import { RootState } from '@/shared/redux/store';
 import { deleteRestaurant, getRestaurants, Restaurant } from '@/shared/AdminComponents/Services/axios';
 
+
 const Restaurants: FC = () => {
   const dispatch = useDispatch();
+
   const restaurants = useSelector((state: RootState) => state.global.restaurant);
   const isDeleteModalOpen = useSelector((state: RootState) => state.global.isDeleteModalOpen);
   const restaurantToDelete = useSelector((state: RootState) => state.global.restaurantToDelete);
   const hidden = useSelector((state: RootState) => state.global.hidden);
   const editRestaurantModalHidden = useSelector((state: RootState) => state.global.editRestaurantModalHidden);
+
 
   const handleDeleteButtonClick = (restaurant: Restaurant) => {
     dispatch(setRestaurantToDelete(restaurant));
