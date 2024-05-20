@@ -10,7 +10,7 @@ const ClientHeader: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center mt-8 ml-8 mr-8 px-15 py-15 mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
+    <div className="flex items-center  mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
       <h1 className="font-mukta text-4xl font-extrabold text-black mr-auto pr-35">
         Yummy<span className="text-red500">.</span>
       </h1>
