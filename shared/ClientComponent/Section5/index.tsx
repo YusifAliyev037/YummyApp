@@ -3,7 +3,6 @@ import React from "react";
 const HomeSection5: React.FC = () => {
   return (
     <div className="w-1060 h-370 ml-[190px] mr-[190px] mb-[100px] bg-gray500 rounded-[50px] flex items-center justify-between p-8">
-      {/* Left Side Image */}
       <div className="w-1/4">
         <img
           src="/margarita.jpg"
@@ -11,7 +10,7 @@ const HomeSection5: React.FC = () => {
           className="w-[200px] h-[200px] object-contain rounded-[50px]"
         />
       </div>
-      {/* Center Content */}
+
       <div className="flex flex-col items-center text-center">
         <h2 className="font-roboto text-[50px] pb-[40px] font-medium leading-[70px] tracking-wide text-center text-white text-2xl font-bold mb-4">
           Discover Restaurants Near From you
@@ -20,7 +19,7 @@ const HomeSection5: React.FC = () => {
           Explore now
         </button>
       </div>
-      {/* Right Side Image */}
+
       <div className="w-1/4">
         <img
           src="/burgersec.png"
