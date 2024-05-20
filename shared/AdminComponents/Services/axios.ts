@@ -36,118 +36,110 @@ export const completeLogin = async (form: FormRegister) => {
   }
 };
 
-
- export type Category={
+export type Category = {
   id?: string;
   name?: string;
-  img_url?:string;
-  slug?:string;
-  created?:number;
-
- }
-
-
+  img_url?: string;
+  slug?: string;
+  created?: number;
+};
 
 export async function getCategories() {
-    try {
-      const response = await instanceAxios.get('/category');
-      return response
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    const response = await instanceAxios.get('/category');
+    return response;
+  } catch (error) {
+    console.error(error);
   }
+}
 
+//!catergoryDelete
 
-   //!catergoryDelete
-
- export async function delCategories(id:string){
-  try{
+export async function delCategories(id: string) {
+  try {
     const response = await instanceAxios.delete(`/category/${id}`);
-    return response
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
 //* categoryUpdate
-  export async function updateCategories(id:string, form:Form){
-    try{
-      const response = await instanceAxios.post(`/category/${id}`, form)
-      return response 
-    }catch(error){
-      console.log(error);
-      
-    }
+export async function updateCategories(id: string, form: Form) {
+  try {
+    const response = await instanceAxios.post(`/category/${id}`, form);
+    return response;
+  } catch (error) {
+    console.log(error);
   }
-
+}
 
 // Restaurant
 
 export type Restaurant = {
-
-  
-
-
   id: string;
   name?: string;
-  img_url?:string;
-  cuisine?:string;
-  delivery_price:number
-
+  img_url?: string;
+  cuisine?: string;
+  delivery_price: number;
 };
-
 
 export async function getRestaurants() {
   try {
     const response = await instanceAxios.get('/restuarants');
-    return response
+    return response;
   } catch (error) {
     console.error('Error while fetching restaurants:', error);
     throw new Error('Failed to fetch restaurants!');
   }
 }
 
-
 export async function deleteRestaurant(restaurantId: string) {
   try {
     const response = await instanceAxios.delete(`/restuarants/${restaurantId}`);
     return response;
   } catch (error) {
-    console.error(`Error while deleting restaurant with ID ${restaurantId}:`, error);
+    console.error(
+      `Error while deleting restaurant with ID ${restaurantId}:`,
+      error
+    );
     throw new Error('Failed to delete restaurant!');
   }
 }
 
-
-export type Products={
-  id?: string,
-  img_url?: string,
-  price?: number,
-  name?: string,
-  description?: string,
-  rest_id?:string,
-
+export async function updateRestaurant(id: string, form: Form) {
+  try {
+    const response = await instanceAxios.post(`/restuarants/${id}`, form);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+export type Products = {
+  id?: string;
+  img_url?: string;
+  price?: number;
+  name?: string;
+  description?: string;
+  rest_id?: string;
+};
 export async function getProducts() {
   try {
     const response = await instanceAxios.get('/products');
-    return response
+    return response;
   } catch (error) {
     console.error('Error while fetching restaurants:', error);
     throw new Error('Failed to fetch products!');
   }
 }
 
-
-export async function deleteProducts(id:string) {
-  try{
-    const response=await instanceAxios.delete(`/products/${id}`)
-    return response
-  }
-  catch (error) {
+export async function deleteProducts(id: string) {
+  try {
+    const response = await instanceAxios.delete(`/products/${id}`);
+    return response;
+  } catch (error) {
     console.error(`Error while deleting product with ID ${id}:`, error);
     throw new Error('Failed to delete product!');
   }
-  
 }
