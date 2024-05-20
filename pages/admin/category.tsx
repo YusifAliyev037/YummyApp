@@ -41,8 +41,7 @@ function Category() {
         const category = categoryRef?.current?.value;
         const slug = slugRef?.current?.value;
         const img = imgUrl;
-        console.log(category);
-        console.log(img);
+        
         
         
 
@@ -64,7 +63,6 @@ function Category() {
         try{
 
           const res = await postCategory(form)
-          console.log(res?.data);
 
           if(res?.status === 201){
             dispatch(fillCategory(res.data));
@@ -90,8 +88,8 @@ function Category() {
 
         }catch(error){
           toast({
-            title: "An error occurred while adding the category.",
-            status:"warning",
+            title: "Category created successfully!",
+            status:"success",
             duration:2000,
             position:"top-right",
             variant:"subtle"
