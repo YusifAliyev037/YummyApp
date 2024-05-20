@@ -29,7 +29,7 @@ const Faq: React.FC = () => {
           <div className="pt-32 px-4">
             <div className="mx-auto MyWidth-800">
               <div className="mx-auto h-127 bg-white rounded-xl divide-y divide-black/5 shadow-lg">
-                <Disclosure as="div" className="p-6 mb-4" defaultOpen={true}>
+                <Disclosure as="div" className="p-6 mb-4" defaultOpen={false}>
                   <DisclosureButton className="group flex w-full items-center justify-between">
                     <span className="text-2xl font-medium text-black group-data-[hover]:text-black/80">
                       How to contact with Customer Service?

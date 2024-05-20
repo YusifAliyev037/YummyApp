@@ -2,8 +2,8 @@ import React from "react";
 
 function HomeSection1() {
   return (
-    <div className="     px-[30px] ">
-      <div className="bg-gray200 mx-6 md:mx-0 md:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between">
+    <div className="px-[30px] ">
+      <div className="bg-gray200 mx-6 md:mx-0 md:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
         <div className="md:w-1/2 md:mr-8">
           <h1 className="text-4xl md:text-6xl font-bold text-black mb-4">
             Our Food site makes it easy to find local food
