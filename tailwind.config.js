@@ -35,9 +35,12 @@ module.exports = {
       blue20: "#00B2A9",
 
       gray200: "#f3f4f6",
+      gray300: "rgb(130, 130, 130)",
+      gray400: "#7e7e7e",
       black: "#000000",
       red500: "#DC2626",
       white: "#ffffff",
+      black200: "rgb(24, 22, 23)",
     },
     screens: {
       xs: "320px",

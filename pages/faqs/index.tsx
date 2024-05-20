@@ -9,6 +9,7 @@ import Head from "next/head";
 import Image from "next/image";
 import axios from "axios";
 import ClientHeader from "../../shared/ClientComponent/ClientHeader";
+import ClientFooter from "../../shared/ClientComponent/ClientFooter";
 
 const Faq: React.FC = () => {
   return (
@@ -99,6 +100,7 @@ const Faq: React.FC = () => {
           </div>
         </div>
       </div>
+      <ClientFooter />
     </>
   );
 };
