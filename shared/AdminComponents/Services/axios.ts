@@ -64,10 +64,22 @@ export async function delCategories(id: string) {
   }
 }
 
+//*editCategory 
+
+export async function getEditCategies(id:string) {
+  try{
+    const response = await instanceAxios.get(`/category/${id}`)
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
 //* categoryUpdate
 export async function updateCategories(id: string, form: Form) {
   try {
-    const response = await instanceAxios.post(`/category/${id}`, form);
+    const response = await instanceAxios.put(`/category/${id}`, form);
     return response;
   } catch (error) {
     console.log(error);
