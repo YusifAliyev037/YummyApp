@@ -3,8 +3,8 @@ import { ImageInput } from "./ImageInput";
 import { AdminModalInput } from "./AdminModalInput1";
 import { Button } from "./Button";
 import Image from "next/image";
-// import { ref} from "firebase/storage"
-
+import { ref, uploadBytes,getDownloadURL } from "firebase/storage"
+import {fileStorage} from "../../server/configs/firebase"
 
 
 interface Props {
@@ -47,6 +47,22 @@ export const AdminModal1 = ({
     if (!name) {
       return;
     }
+
+    const imageRef = ref(fileStorage, `files/images/${name}`);
+
+    const file = e?.target?.files?.[0];
+    if(!file){
+        return
+    }
+
+    uploadBytes(imageRef, file).then((snapshot) =>{
+        setImgOnload(true);
+        getDownloadURL(snapshot.ref).then((url) =>{
+            setImgOnload(false);
+            setImgUrl(url);
+            getImgUrl(url)
+        })
+    })
 
 
    
