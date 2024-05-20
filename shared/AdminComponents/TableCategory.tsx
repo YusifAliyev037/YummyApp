@@ -3,7 +3,7 @@ import { Box, IconButton, useToast } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import {  delCategories, getCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fillCategory } from '../redux/global/globalSlice';
 
 export interface CategoryType {
@@ -32,8 +32,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
 
   
   
-
-  dispatch(fillCategory(categories))
+  const catRed:CategoryType[] = useSelector((state:any) => state.global.category)
 
  const handleDeleteButton  = (categoryId:CategoryType) =>{
   setCategoryId(categoryId)
@@ -47,8 +46,8 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   async function fetchCategories() {
     try {
       const res = await getCategories();
-      setCategories(res?.data.result.data);
-      console.log(res?.data);
+      const categoryArr = res?.data.result.data;
+      dispatch(fillCategory(categoryArr))
     } catch (err) {
       console.log(err);
     }
@@ -58,25 +57,46 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     fetchCategories();
   }, []);
 
-  async function deleteCategory(){
-    if(!categoryId) return;
-    try{
-      await delCategories(categoryId.id)
-      setCategories(categories.filter((res)=> res.id !==categoryId.id))
+  async function deleteCategory() {
+    if (!categoryId || !categoryId.id) {
       toast({
-        title: "Category in successfully!",
-        status:"success",
-        duration:2000,
-        position:"top-right",
-        variant:"subtle"
+        title: "No category selected for deletion.",
+        status: "error",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle",
       });
-
-    }catch(error){
-      console.log(error);
-      
+      return;
     }
-    setDeleteModal(false)
+
+    try {
+      const res = await delCategories(categoryId.id);
+      if (res?.status === 204) {
+        const deletedArray = catRed.filter((item) => item.id !== categoryId.id);
+        dispatch(fillCategory(deletedArray));
+        toast({
+          title: "Category deleted successfully!",
+          status: "success",
+          duration: 2000,
+          position: "top-right",
+          variant: "subtle",
+        });
+      } else {
+        throw new Error('Failed to delete category');
+      }
+    } catch (error) {
+      toast({
+        title: "Failed to delete category.",
+        status: "error",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle",
+      });
+    } finally {
+      setDeleteModal(false);
+    }
   }
+
 
  
 
@@ -95,7 +115,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
           </tr>
         </thead>
         <tbody>
-          {categories.map((item, index) => (
+          {catRed?.map((item, index) => (
             <tr key={index}>
               <td className='text-center h-12 text-base'>{customIds ? customIds[index] + 9170 : index + 9170}</td>
               <td className='text-center h-12 text-base'>

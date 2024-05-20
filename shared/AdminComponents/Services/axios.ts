@@ -72,7 +72,22 @@ export async function updateCategories(id: string, form: Form) {
   } catch (error) {
     console.log(error);
   }
+
 }
+
+
+  //* categoryPost
+
+  export async function postCategory(form:Form){
+    try{
+      const response = await instanceAxios.post("/category", form)
+      return response
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+
 
 // Restaurant
 
