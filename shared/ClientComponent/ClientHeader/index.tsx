@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 
 const ClientHeader: React.FC = () => {
-  const { push } = useRouter();
+  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const isActive = (route: string) => {
+    return router.pathname === route ? "text-red500" : "text-black";
+  };
 
   return (
     <div className="flex items-center mt-8 ml-8 mr-8 px-15 py-15 mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
@@ -13,37 +17,57 @@ const ClientHeader: React.FC = () => {
 
       <nav style={{ paddingRight: "40px" }}>
         <ul className="flex list-none p-0 m-0">
-          <li className="mr-10 cursor-pointer" onClick={() => push("/")}>
-            <a className="text-black text-lg font-medium hover:text-red500">
+          <li className="mr-10 cursor-pointer" onClick={() => router.push("/")}>
+            <a
+              className={`text-lg font-medium hover:text-red500 ${isActive(
+                "/"
+              )}`}
+            >
               Home
             </a>
           </li>
           <li
             className="mr-10 cursor-pointer"
-            onClick={() => push("/restaurants")}
+            onClick={() => router.push("/restaurants")}
           >
-            <a className="text-black text-lg font-medium hover:text-red500">
+            <a
+              className={`text-lg font-medium hover:text-red500 ${isActive(
+                "/restaurants"
+              )}`}
+            >
               Restaurants
             </a>
           </li>
           <li
             className="mr-10 cursor-pointer"
-            onClick={() => push("/about-us")}
+            onClick={() => router.push("/about-us")}
           >
-            <a className="text-black text-lg font-medium hover:text-red500">
+            <a
+              className={`text-lg font-medium hover:text-red500 ${isActive(
+                "/about-us"
+              )}`}
+            >
               About Us
             </a>
           </li>
           <li
             className="mr-10 cursor-pointer"
-            onClick={() => push("/how-it-works")}
+            onClick={() => router.push("/how-it-works")}
           >
-            <a className="text-black text-lg font-medium hover:text-red500">
+            <a
+              className={`text-lg font-medium hover:text-red500 ${isActive(
+                "/how-it-works"
+              )}`}
+            >
               How it works
             </a>
           </li>
-          <li className="cursor-pointer" onClick={() => push("/faqs")}>
-            <a className="text-black text-lg font-medium hover:text-red500">
+          <li className="cursor-pointer" onClick={() => router.push("/faqs")}>
+            <a
+              className={`text-lg font-medium hover:text-red500 ${isActive(
+                "/faqs"
+              )}`}
+            >
               FAQs
             </a>
           </li>
