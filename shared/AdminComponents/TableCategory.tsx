@@ -1,10 +1,11 @@
-import React, { useEffect,  useState } from 'react';
+import React, { useEffect,  useRef,  useState } from 'react';
 import { Box, IconButton, useToast } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import {  delCategories, getCategories } from './Services/axios';
+import {  delCategories, getCategories, updateCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillCategory } from '../redux/global/globalSlice';
+import { AdminModal1 } from './AdminModal1';
 
 export interface CategoryType {
   id: string;
@@ -19,12 +20,21 @@ interface Props {
 
 const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
-
-
-
   const dispatch = useDispatch()
 
-  const toast = useToast()
+  const toast = useToast() 
+
+  const categoryRef = useRef<HTMLInputElement>(null);
+
+  const slugRef = useRef<HTMLInputElement>(null);
+  
+  const imgRef = useRef<HTMLInputElement>(null);
+
+  const [imgUrl, setImgUrl] = useState<string>("");
+
+  const[hidden,setHidden]=useState(true)
+
+
 
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
@@ -33,6 +43,67 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   
   
   const catRed:CategoryType[] = useSelector((state:any) => state.global.category)
+
+  
+  function changeHidden(): void {
+    setHidden((prev: boolean) => !prev);
+  }
+
+  function getImgUrl(url: string): void {
+    
+    setImgUrl(url);
+  }
+  
+  async function updateCategory(){
+    const category = categoryRef?.current?.value;
+    const slug = slugRef?.current?.value;
+    const img = imgRef?.current?.value;
+
+
+    const form: Form = {
+      name:category,
+      slug,
+      img_url: img
+    };
+
+    if( !isInputValid(category, slug, img)){
+      toast({
+        title: "Please fill all the inputs!!",
+        status:"success",
+        duration:2000,
+        position:"top-right",
+        variant:"subtle"
+      });
+    }
+
+    const res = await updateCategories(categorys.id ?? '', form);
+
+    if(res?.status === 200){
+      toast({
+        title: "Category updated successfully!",
+        status:"success",
+        duration:2000,
+        position:"top-right",
+        variant:"subtle"
+      });
+
+      const updatedData = categorys.map((item:any) =>{
+        if(item.id === category?.id){
+          return res.data.data
+        }
+        return item
+      })
+
+    }
+
+  }
+  function isInputValid(
+    category: string | undefined,
+    slug: string | undefined,
+    img: string | undefined
+  ): boolean {
+    return !!category && !!slug && !!img;
+  }
 
  const handleDeleteButton  = (categoryId:CategoryType) =>{
   setCategoryId(categoryId)
@@ -98,6 +169,10 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   }
 
 
+  const handleEditCategory = () =>(
+    setHidden(false)
+  )
+
  
 
   
@@ -105,6 +180,20 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
 
   return (
     <div className='m-3'>
+      <AdminModal1
+      onClickClose={changeHidden}
+      mod="1"
+      p="Edit Category  "
+      p1="Upload  image"
+      p2="Edit your Category information"
+      btn='Upload Category'
+      hidden={hidden}
+      ButtonOnClick={updateCategory}
+      categoryRef={categoryRef}
+      imgRef={imgRef}
+      slugRef={slugRef}
+      getImgUrl={getImgUrl}
+      />
       <table className='w-full bg-white'>
         <thead>
           <tr>
@@ -146,6 +235,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
                   size='sm'
                   color='teal'
                   variant='unstyled'
+                  onClick={handleEditCategory}
                 />
                 <IconButton
                   aria-label='Delete'
