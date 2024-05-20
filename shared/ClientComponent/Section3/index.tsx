@@ -17,11 +17,11 @@ const HomeSection3: React.FC = () => {
           </p>
         </div>
         <div className="w-full md:w-1/2 pt-[30px] pr-[150px] flex items-center justify-center">
-          <div className="relative w-420 h-560 rotate-22.82 bg-red100 rounded-[50px] overflow-visible">
+          <div className="relative w-350 h-420 rotate-22.82 bg-red100 rounded-50 overflow-visible">
             <img
               src="/twister.svg"
               alt="Image 1"
-              className="w-[540px] h-[440px] absolute inset-0 transform scale-125 object-contain rounded-[50px]"
+              className="w-[540px] h-[440px] absolute inset-0 transform scale-125 object-contain rounded-50"
             />
           </div>
         </div>
@@ -41,11 +41,11 @@ const HomeSection3: React.FC = () => {
           </p>
         </div>
         <div className="w-full md:w-1/2 pl-[30px] flex items-center justify-center">
-          <div className="relative w-420 h-560 rotate-25.74 bg-red100 rounded-[50px] overflow-visible">
+          <div className="relative w-350 h-420 rotate-25.74 bg-red100 rounded-50 overflow-visible">
             <img
               src="/margarita.jpg"
               alt="Image 2"
-              className="w-[350px] h-[430px] absolute inset-0 transform scale-125 object-contain rounded-[50px]"
+              className="w-[350px] h-[430px] absolute inset-0 transform scale-125 object-contain rounded-50"
             />
           </div>
         </div>
@@ -65,11 +65,11 @@ const HomeSection3: React.FC = () => {
           </p>
         </div>
         <div className="w-full md:w-1/2 pr-[150px] pb-[100px] flex items-center justify-center">
-          <div className="relative w-420 h-560 rotate-22.82 bg-red100 rounded-[50px] overflow-visible">
+          <div className="relative w-350 h-420 rotate-22.82 bg-red100 rounded-50 overflow-visible">
             <img
               src="fries.jpg"
               alt="Image 3"
-              className="w-[570px] h-[360px] absolute inset-0 transform scale-125 object-contain rounded-[50px]"
+              className="w-[570px] h-[360px] absolute inset-0 transform scale-125 object-contain rounded-50"
             />
           </div>
         </div>

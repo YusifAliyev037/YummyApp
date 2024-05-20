@@ -38,11 +38,13 @@ module.exports = {
       gray200: "#f3f4f6",
       gray300: "rgb(130, 130, 130)",
       gray400: "#7e7e7e",
+      gray500: "rgb(39, 39, 39)",
       black: "#000000",
+      black200: "rgb(24, 22, 23)",
       red500: "#DC2626",
       red100: "rgb(214, 54, 38)",
       white: "#ffffff",
-      black200: "rgb(24, 22, 23)",
+      orange100: "rgb(251, 147, 0);",
     },
     screens: {
       xs: "320px",
@@ -60,13 +62,19 @@ module.exports = {
         25.74: "-25.74deg",
       },
       width: {
-        420: "350px",
+        350: "350px",
+        1060: "1060px",
       },
       height: {
-        560: "420px",
+        420: "420px",
+        370: "370px",
       },
       borderRadius: {
-        "50px": "50px",
+        50: "50px",
+        30: "50px",
+      },
+      padding: {
+        140: "140px",
       },
     },
   },
