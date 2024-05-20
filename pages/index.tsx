@@ -8,6 +8,7 @@ import ClientFooter from "../shared/ClientComponent/ClientFooter";
 
 import HomeSection1 from "../shared/ClientComponent/Section1/index";
 import HomeSection2 from "../shared/ClientComponent/Section2/index";
+import HomeSection4 from "../shared/ClientComponent/Section4/index";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <ClientHeader />
       <HomeSection1 />
       <HomeSection2 />
+      <HomeSection4 />
       <ClientFooter />
     </>
   );
