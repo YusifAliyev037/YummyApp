@@ -82,9 +82,8 @@ export async function updateCategories(id: string, form: Form) {
     const response = await instanceAxios.put(`/category/${id}`, form);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error('Error updating category:', error);
   }
-
 }
 
 
