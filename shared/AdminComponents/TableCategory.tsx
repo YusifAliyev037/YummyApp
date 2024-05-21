@@ -33,6 +33,8 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
 
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [categoryId, setCategoryId] = useState<CategoryType | null>(null);
+  const [activeId, setActiveId] = useState('');
+  
 
   const catRed: CategoryType[] = useSelector((state: any) => state.global.category);
 
@@ -44,25 +46,38 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     setImgUrl(url);
   };
 
-  async function handleEditCategory (id: string)  {
-    setCategoryId(categories.find((category) => category.id === id) || null);
+  async function handleEditCategory(id: string) {
+    setActiveId(id)
     setHidden(false);
      
-    const res = await getEditCategies(id)
+    const res = await getEditCategies(id);
+    console.log(res);
+    
     
     if(res?.status === 200) {
-      const currentData = res?.data.result.data
+      const currentData = res?.data.result.data;
+      if(categoryRef.current && slugRef.current && imgRef.current) {
+        (categoryRef.current as {value: string}).value = currentData?.name || "";
+        (slugRef.current as {value: string}).value = currentData?.slug || "";
+        (imgRef.current as {src: string}).src = currentData?.img_url || ""; 
+      }
     }
   };
 
-  const updateCategory = async () => {
-    const category = categoryRef.current?.value;
-    const slug = slugRef.current?.value;
-    const img = imgRef.current?.value;
+  async function updateCategory  ()  {
+    const category = categoryRef?.current?.value;
+    const slug = slugRef?.current?.value;
+    const img = imgRef.current?.src;
+
+    const form: Form = {
+      name: category,
+      slug,
+      img_url: img,
+    };
 
     if (!isInputValid(category, slug, img)) {
       toast({
-        title: 'Please fill all the inputs!!',
+        title: 'Please fill all the inputs!',
         status: 'error',
         duration: 2000,
         position: 'top-right',
@@ -71,36 +86,34 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
       return;
     }
 
-    const form: Form = {
-      name: category!,
-      slug: slug!,
-      img_url: imgUrl,
-    };
+      const res = await updateCategories(activeId, form);
+      // const res = await updateCategories(categoryId?.id , form);
 
-    try {
-      const res = await updateCategories(categoryId?.id ?? '', form);
       if (res?.status === 200) {
-        toast({
-          title: 'Category updated successfully!',
-          status: 'success',
-          duration: 2000,
-          position: 'top-right',
-          variant: 'subtle',
-        });
-
-        const updatedData = catRed.map((item) => (item.id === categoryId?.id ? res.data.data : item));
-        dispatch(fillCategory(updatedData));
-      }
-    } catch (error) {
-      toast({
-        title: 'Failed to update category.',
-        status: 'error',
-        duration: 2000,
-        position: 'top-right',
-        variant: 'subtle',
-      });
+            toast({
+              title: 'Category updated successfully!',
+              status: 'success',
+              duration: 2000,
+              position: 'top-right',
+              variant: 'subtle',
+            });
+            changeHidden();
+            const updatedData = catRed.map((item: any) => {
+              if(item.id === activeId){
+                return res.data.data
+              }
+              return item
+              })
+        dispatch(fillCategory(updatedData))
+              
     }
   };
+
+  
+
+
+   
+ 
 
   const isInputValid = (
     category: string | undefined,
