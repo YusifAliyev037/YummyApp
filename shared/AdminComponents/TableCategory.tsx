@@ -19,7 +19,6 @@ interface Props {
 }
 
 const TableCategory: React.FC<Props> = ({ customIds }) => {
-  const [categories, setCategories] = useState<CategoryType[]>([]);
   const dispatch = useDispatch();
 
   const toast = useToast();
@@ -87,7 +86,6 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     }
 
       const res = await updateCategories(activeId, form);
-      // const res = await updateCategories(categoryId?.id , form);
 
       if (res?.status === 200) {
             toast({
@@ -109,11 +107,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     }
   };
 
-  
 
-
-   
- 
 
   const isInputValid = (
     category: string | undefined,
