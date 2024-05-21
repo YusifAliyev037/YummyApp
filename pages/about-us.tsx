@@ -29,14 +29,14 @@ const AboutUs: NextPage = () => {
         </div>
 
         {/* Right Section */}
-        <div className=" w-[687px] h-[407px] ">
+        <div className=" w-[687px] h-[407px] mt-[100px] ">
           {/* Background Image */}
           <img
             src="/orangebackground.svg"
             alt="Background Image"
             //  className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute top-[414px] bottom-[-460px] left-[752px] right-[-752px] rounded-20 shadow-md bg-white w-[244px] h-[171px] ">
+          <div className="absolute top-[514px] bottom-[-460px] left-[722px] right-[-722px] rounded-20 shadow-md bg-white w-[244px] h-[181px] ">
             <img
               src="/aboutuspizza.svg"
               alt="Product Image"
@@ -55,7 +55,7 @@ const AboutUs: NextPage = () => {
             <p className="ml-[25px] text-lg font-bold">$7.90</p>
           </div>
 
-          <div className="absolute top-[187px] bottom-[-233px] left-[970px] right-[-970px] rounded-20shadow-md bg-white w-[274px] h-[171px] ">
+          <div className="absolute top-[287px] bottom-[-233px] left-[960px] right-[-960px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
             <img
               src="/hamburger.svg"
               alt="Product Image"
@@ -76,7 +76,7 @@ const AboutUs: NextPage = () => {
             <p className="ml-[25px] text-lg font-bold">$5.90</p>
           </div>
 
-          <div className=" absolute top-[495px] bottom-[-552px] left-[1060px] right-[-1060px] rounded-20 shadow-md bg-white w-[274px] h-[171px] ">
+          <div className=" absolute top-[605px] bottom-[-552px] left-[1010px] right-[-1010px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
             <img
               src="/tomatosoup.svg"
               alt="Product Image"
@@ -97,7 +97,7 @@ const AboutUs: NextPage = () => {
             <p className="text-lg ml-[25px] font-bold">$7.90</p>
           </div>
 
-          <div className="absolute  top-[698px] bottom-[-744px] left-[730px] right-[-730px] rounded-20 shadow-md bg-white w-[274px] h-[171px] ">
+          <div className="absolute  top-[798px] bottom-[-744px] left-[710px] right-[-710px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
             <img
               src="/coffee.svg"
               alt="Product Image"
