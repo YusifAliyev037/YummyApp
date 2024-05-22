@@ -43,7 +43,7 @@ const AdminModal: React.FC<Props> = ({
         <Box className="w-[60%] bg-gray20 h-[121px] rounded-[14px] flex justify-center items-center">
           <Box className="flex flex-col">
             <Image src="/upload.svg" />
-            <Text className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left">
+            <Text className="font-roboto text-gray10 text-lg font-medium leading-6 tracking-tighter text-left cu">
               upload
             </Text>
           </Box>

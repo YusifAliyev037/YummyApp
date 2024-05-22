@@ -133,9 +133,9 @@ export async function deleteRestaurant(restaurantId: string) {
   }
 }
 
-export async function updateRestaurant(id: string, form: Form) {
+export async function AddRestaurant( form: Form) {
   try {
-    const response = await instanceAxios.post(`/restuarants/${id}`, form);
+    const response = await instanceAxios.put(`/restuarants`, form);
     return response;
   } catch (error) {
     console.log(error);
