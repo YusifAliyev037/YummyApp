@@ -3,27 +3,19 @@ import Image from "next/image";
 import React, { useState } from "react";
 import AdminModal from "./AdminModal"; 
 import AddProductsInputs from "./AddProductsInputs"; 
-import PushModul from "./PushModul";
 
 function Header() {
   const [hidden, Sethidden] = useState(true);
 
-  const [navhidden, Setnavhidden] = useState(true);
-
-
   const handleAddProductClick = () => {
     Sethidden(false);
   };
-  const handlenavbar = () => {
-    Setnavhidden(false)
-  }
 
   return (
     <Box className="flex justify-between fixed top-0 left-0 right-0 z-10 bg-darkBlue20 py-3 pl-5 pr-4 h-16 mx-6 rounded-b-xl">
       <Box className=" flex items-center gap-4">
       <Box>
         <Image
-        onClick={handlenavbar}
         className=" block md:hidden cursor-pointer"
          height={40} 
          width={40} 
@@ -63,10 +55,7 @@ function Header() {
           <Text className="text-white10 hidden md:block  ">Admin</Text>
         </Box>
       </Box>
-      <PushModul
-      hidden={navhidden}
-      setHidden={Setnavhidden}
-      />
+
       <AdminModal
         hidden={hidden}
         Sethidden={Sethidden}

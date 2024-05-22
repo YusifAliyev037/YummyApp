@@ -4,23 +4,18 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 interface Props {
-    hidden?: boolean;
-    setHidden?:React.Dispatch<React.SetStateAction<boolean>>;
+    hidden: boolean;
+    setHidden:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PushModul: React.FC<Props> = ({
-    hidden,
-    setHidden
-}) => {
+function PushModul() {
 
     const { push, asPath } = useRouter();
 
     const isActive = (path:string) => (asPath === path ? "#d25ff5" : "none");
 
     return (
-        <Box as='section' className={`mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5 hidden md:block ${
-            hidden ? "hidden" : "fixed"
-          }`}>
+        <Box as='section' className='mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5 hidden md:block '>
             <Box as="ul" className=' w-64 flex flex-col  '>
                 <Button
                     onClick={() => push("/admin")}
