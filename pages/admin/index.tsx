@@ -13,22 +13,23 @@ const AdminDashboard: NextPage = () => {
 
   
   return (
-    <Box  className=" bg-darkBlue10 relative">
+    <Box  className=" bg-darkBlue10 relative ">
       <Head>
         <title>Dashboard</title>
        <MetaSeo title="Dashboard" desc="Welcome to admin main page!"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <Box className="flex">
-      <PushModul/>
-    <PieCharts/>
-    <LineCharts/>
+      <Box className="flex ">
+        <PushModul/>
+        <PieCharts/>
+        <LineCharts/>
       </Box>
       <Box className="flex justify-end gap-3">
     <RiskBar/>
     <BarCharts/>
       </Box>
+      
     </Box>
   );
 };
