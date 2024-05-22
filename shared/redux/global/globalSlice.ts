@@ -14,8 +14,10 @@ interface CategoryState {
   restaurantToDelete: Restaurant | null;
   hidden: boolean;
   editRestaurantModalHidden: boolean;
- 
 }
+
+
+  
 
 const initialState: CategoryState = {
   category: [],
@@ -24,20 +26,17 @@ const initialState: CategoryState = {
   restaurantToDelete: null,
   hidden: true,
   editRestaurantModalHidden: true,
-  
 };
-
-console.log(initialState);
 
 export const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
     fillCategory: (state, action: PayloadAction<CategoryItem[]>) => {
-      state.category = [...action.payload];
+      state.category = action.payload;
     },
     setRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
-      state.restaurant = [...action.payload];
+      state.restaurant = action.payload;
     },
     addRestaurant: (state, action: PayloadAction<Restaurant>) => {
       state.restaurant.push(action.payload);
@@ -45,30 +44,23 @@ export const globalSlice = createSlice({
     setIsDeleteModalOpen: (state, action: PayloadAction<boolean>) => {
       state.isDeleteModalOpen = action.payload;
     },
-    setRestaurantToDelete: (
-      state,
-      action: PayloadAction<Restaurant | null>
-    ) => {
+    setRestaurantToDelete: (state, action: PayloadAction<Restaurant | null>) => {
       state.restaurantToDelete = action.payload;
     },
-    Sethidden: (state, action: PayloadAction<boolean>) => {
+    setHidden: (state, action: PayloadAction<boolean>) => {
       state.hidden = action.payload;
     },
     setEditRestaurantModalHidden: (state, action: PayloadAction<boolean>) => {
       state.editRestaurantModalHidden = action.payload;
     },
     updateRestaurant: (state, action: PayloadAction<Restaurant>) => {
-      const index = state.restaurant.findIndex(
-        (r) => r.id === action.payload.id
-      );
+      const index = state.restaurant.findIndex((r) => r.id === action.payload.id);
       if (index !== -1) {
         state.restaurant[index] = action.payload;
       }
     },
     removeRestaurant: (state, action: PayloadAction<string>) => {
-      state.restaurant = state.restaurant.filter(
-        (r) => r.id !== action.payload
-      );
+      state.restaurant = state.restaurant.filter((r) => r.id !== action.payload);
     },
   },
 });
@@ -81,8 +73,7 @@ export const {
   removeRestaurant,
   setIsDeleteModalOpen,
   setRestaurantToDelete,
-  Sethidden,
-
+  setHidden,
   setEditRestaurantModalHidden,
 } = globalSlice.actions;
 
