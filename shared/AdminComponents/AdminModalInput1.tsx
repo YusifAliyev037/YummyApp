@@ -16,7 +16,7 @@ export const AdminModalInput = ({
       <p className=" text-gray10 font-medium text-base">{p}</p>
       <input
         ref={useRef}
-        className="   bg-darkBlue20 rounded-2xl font-medium text-base  text-whiteLight pl-5 py-3  capitalize "
+        className="  text-white  bg-darkBlue20 rounded-2xl font-medium text-base  text-whiteLight pl-5 py-3  capitalize "
         type={type}
       />
     </div>
