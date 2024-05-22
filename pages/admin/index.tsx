@@ -20,7 +20,8 @@ const AdminDashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <Box className="flex ">
+      <Box className=" ">
+      <Box className="flex  md: flex-row">
         <PushModul/>
         <PieCharts/>
         <LineCharts/>
@@ -29,7 +30,7 @@ const AdminDashboard: NextPage = () => {
     <RiskBar/>
     <BarCharts/>
       </Box>
-      
+      </Box>
     </Box>
   );
 };
