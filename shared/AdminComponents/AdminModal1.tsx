@@ -5,6 +5,7 @@ import { Button } from "./Button";
 import Image from "next/image";
 import { ref, uploadBytes,getDownloadURL } from "firebase/storage"
 import {fileStorage} from "../../server/configs/firebase"
+import { AdminModalDropdown } from "./AdminModalDropdown";
 
 
 interface Props {
@@ -15,8 +16,7 @@ interface Props {
   btn?: string;
   hidden?: boolean;
   categoryRef?: any;
-  setHidden?: (hidden: boolean) => void; 
-
+  arr?:string[],
   ButtonOnClick?: () => void;
   onClickClose?: () => void;
   getImgUrl?: any;
@@ -38,9 +38,9 @@ export const AdminModal1 = ({
   p1 = "Upload your product image",
   p2 = "Add your Product description and necessary information",
   mod = "1",
+  arr,
   btn = "Create Product",
   hidden = true,
-  setHidden,
   ButtonOnClick,
   onClickClose,
   categoryRef,
@@ -146,7 +146,12 @@ export const AdminModal1 = ({
                 <AdminModalInput useRef={priceRef} p="Delivery Price $" type="number" />
                 <AdminModalInput useRef={deliveryMinRef} p="Delivery Min" type="number" />
                 <AdminModalInput useRef={addressRef} p="Address" />
-                <AdminModalInput useRef={categoryIdRef} p="Category" />
+                <AdminModalDropdown
+                className=" w-full bg-gray20 rounded-2xl font-medium text-base text-white30 pl-3 py-4 "
+                arr={arr}
+                useRef={categoryIdRef}
+                p="Category"
+                />
               </div>
             )}
           

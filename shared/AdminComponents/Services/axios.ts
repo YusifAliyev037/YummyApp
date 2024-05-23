@@ -103,11 +103,14 @@ export async function updateCategories(id: string, form: Form) {
 // Restaurant
 
 export type Restaurant = {
-  id: string;
-  name?: string;
-  img_url?: string;
-  cuisine?: string;
-  delivery_price: number;
+  id: string | any;
+  name?: string | any;
+  img_url?: string | undefined;
+  address?:string | undefined;
+  cuisine?: string | undefined;
+  delivery_price: number | any;
+  category_id: string | number | undefined;
+  delivery_min: string | number | undefined;
 };
 
 export async function getRestaurants() {

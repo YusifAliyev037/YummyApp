@@ -35,7 +35,7 @@ export const globalSlice = createSlice({
     fillCategory: (state, action: PayloadAction<CategoryItem[]>) => {
       state.category = action.payload;
     },
-    setRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
+    fillRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
       state.restaurant = action.payload;
     },
     addRestaurant: (state, action: PayloadAction<Restaurant>) => {
@@ -67,7 +67,7 @@ export const globalSlice = createSlice({
 
 export const {
   fillCategory,
-  setRestaurants,
+  fillRestaurants,
   addRestaurant,
   updateRestaurant,
   removeRestaurant,
