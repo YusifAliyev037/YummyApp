@@ -11,6 +11,7 @@ import {
   Stack,
   IconButton,
   ButtonGroup,
+  useToast,
 } from '@chakra-ui/react';
 import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
@@ -21,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 
 import {
-  setRestaurants,
+  fillRestaurants,
   removeRestaurant as removeRestaurantAction,
   setIsDeleteModalOpen,
   setRestaurantToDelete,
@@ -38,15 +39,16 @@ import {
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 
 const Restaurants: FC = () => {
+
+  const toast = useToast()
+
   const dispatch = useDispatch();
-  const categoryIdRef = useRef<HTMLInputElement>(null);
-  const addressRef = useRef<HTMLInputElement>(null);
-  const cuisineRef = useRef<HTMLInputElement>(null);
-  const priceRef = useRef<HTMLInputElement>(null);
-  const deliveryMinRef = useRef<HTMLInputElement>(null);
-  const resNameRef = useRef<HTMLInputElement>(null);
-  const [hidden, setHidden] = useState(true);
-  const [imgUrl, setImgUrl] = useState<string>('');
+
+  const [data, setData] = useState([]);
+
+  const [data2, setData2] = useState([]);
+
+  const [hidden, setHidden] = useState<boolean>(true);
 
   const restaurants = useSelector(
     (state: RootState) => state.global.restaurant
@@ -58,26 +60,120 @@ const Restaurants: FC = () => {
     (state: RootState) => state.global.restaurantToDelete
   );
 
-  const handleDeleteButtonClick = (restaurant: Restaurant) => {
-    dispatch(setRestaurantToDelete(restaurant));
-    dispatch(setIsDeleteModalOpen(true));
-  };
+  // const handleDeleteButtonClick = (restaurant: Restaurant) => {
+  //   dispatch(setRestaurantToDelete(restaurant));
+  //   dispatch(setIsDeleteModalOpen(true));
+  // };
 
   const handleCloseModal = () => {
     dispatch(setIsDeleteModalOpen(false));
   };
 
   const changeHidden = (): void => {
-    setHidden((prev: Boolean) => !prev);
+    setHidden((prev) => !prev);
   };
-  const handleEditRestaurantClick = () => {
-    dispatch(setEditRestaurantModalHidden(false));
-  };
-  const handleRestaurantClick = () => setHidden(false);
 
-  function getImgUrl(url: string): void {
+ 
+
+  async function fetchRestaurants() {
+
+    const res = await getRestaurants();
+    setData(res?.data.result.data)
+    setData2(res?.data.result.data)
+
+    const categoryArr = res?.data.result.data
+
+    dispatch(fillRestaurants(categoryArr))
+  }
+
+  useEffect(()=>{
+    fetchRestaurants()
+  },[])
+
+  const categoryIdRef = useRef<HTMLInputElement>(null);
+  const addressRef = useRef<HTMLInputElement>(null);
+  const cuisineRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const deliveryMinRef = useRef<HTMLInputElement>(null);
+  const ImgRef = useRef<HTMLInputElement>(null);
+  const resNameRef = useRef<HTMLInputElement>(null);
+  const [imgUrl, setImgUrl] = useState<string>('');
+
+   function getImgUrl(url: string): void {
     setImgUrl(url);
   }
+
+   // const handleCreateRestaurant = async () => {
+  //   const newRestaurant = {
+  //     name: resNameRef.current?.value,
+  //     address: addressRef.current?.value,
+  //     category_id: categoryIdRef.current?.value,
+  //     cuisine: cuisineRef.current?.value,
+  //     price: priceRef.current?.value,
+  //     delivery_min: deliveryMinRef.current?.value,
+  //     img_url: imgUrl,
+  //   };
+
+  //   try {
+  //     const response = await AddRestaurant(newRestaurant);
+  //     dispatch(setRestaurants([...restaurants, response.data]));
+  //     setHidden(true);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+
+  async function handleCreateRestaurant (){
+    
+    const resName:any = resNameRef.current?.value;
+    const address: any =  addressRef.current?.value;
+    const category_id: any = categoryIdRef.current?.value;
+    const cuisine: any =  cuisineRef.current?.value;
+    const price: any =  priceRef.current?.value;
+    const delivery_min: any = deliveryMinRef.current?.value;
+    const img_url:any = imgUrl;
+
+    if(!isInputValid (
+      resName,
+      address,
+      category_id,
+      cuisine,
+      price,
+      delivery_min,
+      img_url
+    )){
+      toast({
+        title: "Please fill all the inputs!",
+        status:"warning",
+        duration:2000,
+        position:"top-right",
+        variant:"subtle"
+      });
+
+    }
+ 
+
+  const form:Restaurant = {
+    name: resName,
+    category_id:category_id,
+    img_url:img_url,
+    cuisine:cuisine,
+    delivery_min:delivery_min,
+    delivery_price:price,
+    address:address,
+
+
+  };
+}
+
+
+  // const handleEditRestaurantClick = () => {
+  //   dispatch(setEditRestaurantModalHidden(false));
+  // };
+  const handleRestaurantClick = () => setHidden(false);
+
+ 
 
   const handleDeleteConfirmed = async () => {
     if (!restaurantToDelete) return;
@@ -88,44 +184,37 @@ const Restaurants: FC = () => {
         (restaurant) => restaurant.id !== restaurantToDelete.id
       );
 
-      dispatch(setRestaurants(updatedRestaurants));
+      dispatch(fillRestaurants(updatedRestaurants));
     } catch (error) {
       console.log(error);
     }
     dispatch(setIsDeleteModalOpen(false));
   };
 
-  const handleCreateRestaurant = async () => {
-    const newRestaurant = {
-      name: resNameRef.current?.value,
-      address: addressRef.current?.value,
-      category_id: categoryIdRef.current?.value,
-      cuisine: cuisineRef.current?.value,
-      price: priceRef.current?.value,
-      delivery_min: deliveryMinRef.current?.value,
-      img_url: imgUrl,
-    };
 
-    try {
-      const response = await AddRestaurant(newRestaurant);
-      dispatch(setRestaurants([...restaurants, response.data]));
-      setHidden(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  function isInputValid(
+    resName:string,
+    address:string,
+    category_id:number | undefined,
+    cuisine:string,
+    price:number,
+    delivery_min:number,
+    img_url:any
+  ):boolean{
+    return(
+      !!resName &&
+      !!address &&
+      !!category_id &&
+      !!cuisine &&
+      !!price &&
+      !!delivery_min &&
+      !!img_url
+    )
+  }
 
-  useEffect(() => {
-    async function fetchRestaurants() {
-      try {
-        const res = await getRestaurants();
-        dispatch(setRestaurants(res?.data?.result.data || []));
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchRestaurants();
-  }, [dispatch]);
+ 
+
+ 
 
   return (
     <Box className='bg-darkBlue10 min-h-screen'>
@@ -143,51 +232,24 @@ const Restaurants: FC = () => {
         </Head>
         <Header />
         <AdminModal1
+          // arr={}
           mod='2'
           p='Add Restaurant  '
           p1='Upload  image'
           p2='Add your Restaurant information'
           btn='Create Restaurant'
-          getImgUrl={getImgUrl}
-          hidden={hidden}
-          onClickClose={changeHidden}
-          categoryIdRef={categoryIdRef}
-          addressRef={addressRef}
-          cuisineRef={cuisineRef}
-          priceRef={priceRef}
-          deliveryMinRef={deliveryMinRef}
-          resNameRef={resNameRef}
-          onButtonClick={handleCreateRestaurant} 
+          // getImgUrl={getImgUrl}
+          // hidden={hidden}
+          // onClickClose={changeHidden}
+          // categoryIdRef={categoryIdRef}
+          // addressRef={addressRef}
+          // cuisineRef={cuisineRef}
+          // priceRef={priceRef}
+          // deliveryMinRef={deliveryMinRef}
+          // resNameRef={resNameRef}
+          // onButtonClick={handleCreateRestaurant} 
         />
-        {/* <AdminModal1
-          hidden={editRestaurantModalHidden}
-          SetHidden={(value: boolean | ((prev: boolean) => boolean)) =>
-            dispatch(
-              setEditRestaurantModalHidden(
-                typeof value === 'function'
-                  ? value(editRestaurantModalHidden)
-                  : value
-              )
-            )
-          }
-          addName={'Edit Restaurant'}
-          imgName={'Upload Image'}
-          informationName={"Edit your Restaurant's information"}
-
-          mod='2'
-          p='Add Restaurant  '
-          p1='Upload  image'
-          p2='Add your Restaurant information'
-          btn='Create Restaurant'
-          hidden={hidden}
-          // // ButtonOnClick={addCategory}
-          categoryIdRef={categoryIdRef}
-          addressRef={addressRef}
-          cuisineRef={cuisineRef}
-          priceRef={priceRef}
-          deliveryMinRef={deliveryMinRef}
-          resNamRef={resNameRef}
-        /> */}
+     
       </Box>
       <Box
         as='main'
@@ -240,7 +302,7 @@ const Restaurants: FC = () => {
             </InputGroup>
           </Box>
           <Box className='flex flex-wrap gap-4'>
-            {restaurants?.map((restaurant) => (
+            {/* {restaurants?.map((restaurant) => (
               <Card
                 key={restaurant.id}
                 className='w-full md:w-[247px] h-[83px] flex flex-col justify-center p-2'
@@ -299,7 +361,7 @@ const Restaurants: FC = () => {
                   </ButtonGroup>
                 </CardBody>
               </Card>
-            ))}
+            ))} */}
           </Box>
         </Box>
       </Box>

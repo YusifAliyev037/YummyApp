@@ -5,7 +5,6 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./shared/**/*.{js,ts,jsx,tsx,mdx}",
 
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -20,6 +19,7 @@ module.exports = {
       white: "#ffffff",
       white10: "#f5f5f5",
       white20: "#fffefe",
+      white30:"#f2f2f2",
 
       orange: "#EAAB00",
 
