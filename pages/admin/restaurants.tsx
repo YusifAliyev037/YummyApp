@@ -31,6 +31,7 @@ import {
 } from '@/shared/redux/global/globalSlice';
 import { RootState } from '@/shared/redux/store';
 import {
+  Form,
   deleteRestaurant,
   getRestaurants,
   Restaurant,
@@ -103,26 +104,7 @@ const Restaurants: FC = () => {
     setImgUrl(url);
   }
 
-   // const handleCreateRestaurant = async () => {
-  //   const newRestaurant = {
-  //     name: resNameRef.current?.value,
-  //     address: addressRef.current?.value,
-  //     category_id: categoryIdRef.current?.value,
-  //     cuisine: cuisineRef.current?.value,
-  //     price: priceRef.current?.value,
-  //     delivery_min: deliveryMinRef.current?.value,
-  //     img_url: imgUrl,
-  //   };
-
-  //   try {
-  //     const response = await AddRestaurant(newRestaurant);
-  //     dispatch(setRestaurants([...restaurants, response.data]));
-  //     setHidden(true);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
+  
 
   async function handleCreateRestaurant (){
     
@@ -150,6 +132,7 @@ const Restaurants: FC = () => {
         position:"top-right",
         variant:"subtle"
       });
+      return
 
     }
  
@@ -165,6 +148,48 @@ const Restaurants: FC = () => {
 
 
   };
+
+  try{
+    const res = await AddRestaurant(form);
+
+    if(res?.status === 201){
+      dispatch(fillRestaurants(res.data));
+      if(
+        resNameRef?.current &&
+        cuisineRef?.current &&
+        categoryIdRef?.current &&
+        deliveryMinRef?.current &&
+        priceRef?.current &&
+        addressRef?.current
+      ){
+        resNameRef.current.value = "";
+        cuisineRef.current.value = "";
+        categoryIdRef.current.value = "";
+        deliveryMinRef.current.value = "";
+        priceRef.current.value = "";
+        addressRef.current.value = ""
+      }
+
+      setTimeout(()=>{
+        changeHidden()
+      },500);
+      toast({
+        title: "Restaurant created successfully!",
+        status:"success",
+        duration:2000,
+        position:"top-right",
+        variant:"subtle"
+      });
+    }
+  }catch(error){
+    toast({
+      title: "An error occurred while adding the restaurant.",
+      status:"warning",
+      duration:2000,
+      position:"top-right",
+      variant:"subtle"
+    });
+  }
 }
 
 
@@ -238,15 +263,15 @@ const Restaurants: FC = () => {
           p1='Upload  image'
           p2='Add your Restaurant information'
           btn='Create Restaurant'
-          // getImgUrl={getImgUrl}
-          // hidden={hidden}
-          // onClickClose={changeHidden}
-          // categoryIdRef={categoryIdRef}
-          // addressRef={addressRef}
-          // cuisineRef={cuisineRef}
-          // priceRef={priceRef}
-          // deliveryMinRef={deliveryMinRef}
-          // resNameRef={resNameRef}
+          getImgUrl={getImgUrl}
+          hidden={hidden}
+          onClickClose={changeHidden}
+          categoryIdRef={categoryIdRef}
+          addressRef={addressRef}
+          cuisineRef={cuisineRef}
+          priceRef={priceRef}
+          deliveryMinRef={deliveryMinRef}
+          resNameRef={resNameRef}
           // onButtonClick={handleCreateRestaurant} 
         />
      
