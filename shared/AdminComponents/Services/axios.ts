@@ -12,7 +12,7 @@ const instanceAxios = axios.create({
 
 export type Form = {
   name: string | undefined;
-  slug: string | undefined;
+  slug?: string | undefined;
   img_url: string | undefined;
 };
 
@@ -103,14 +103,14 @@ export async function updateCategories(id: string, form: Form) {
 // Restaurant
 
 export type Restaurant = {
-  id: string | any;
-  name?: string | any;
-  img_url?: string | undefined;
-  address?:string | undefined;
-  cuisine?: string | undefined;
-  delivery_price: number | any;
+  name: string | any;
   category_id: string | number | undefined;
+  img_url: string | undefined;
+  cuisine: string | undefined;
+  address:string | undefined;
   delivery_min: string | number | undefined;
+  delivery_price: number | any;
+  id?: string | any;
 };
 
 export async function getRestaurants() {
@@ -138,7 +138,7 @@ export async function deleteRestaurant(restaurantId: string) {
 
 export async function AddRestaurant( form: Form) {
   try {
-    const response = await instanceAxios.put(`/restuarants`, form);
+    const response = await instanceAxios.post(`/restuarants`, form);
     return response;
   } catch (error) {
     console.log(error);

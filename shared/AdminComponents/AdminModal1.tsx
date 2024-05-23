@@ -22,12 +22,12 @@ interface Props {
   getImgUrl?: any;
   slugRef?: any;
   imgRef?: any;
-  cuisineRef?: string;
-  priceRef?: number;
-  deliveryMinRef?: number;
-  addressRef?: string;
-  categoryIdRef?: string;
-  resNameRef?: string;
+  cuisineRef?: any;
+  priceRef?: any;
+  deliveryMinRef?: any;
+  addressRef?: any;
+  categoryIdRef?: any;
+  resNameRef?: any;
 
 
  
