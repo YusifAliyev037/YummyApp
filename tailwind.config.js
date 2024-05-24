@@ -44,7 +44,8 @@ module.exports = {
       black: "#000000",
       black200: "rgb(24, 22, 23)",
       red500: "#DC2626",
-      redUserModul: "#D63626",
+      redUserModul: "#ed5d53",
+      redUserModul10:"#D63626",
       userText:"#828282" ,
       
 
