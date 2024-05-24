@@ -9,12 +9,12 @@ const User = () => {
   return (
     <Box>
       <ClientHeader/>
-    <Box className='flex 'width={'100%'}>
+    <Box className='flex  ' width={'100%'} >
 
-        <Box width={'28%'}>
+        <Box width={'26%'} height='601px'>
         <UserModul />
         </Box>
-        <Box width={'72%'}>
+        <Box width={'74%'}>
         <Profile/>
         </Box>
    
