@@ -35,7 +35,8 @@ import {
   deleteRestaurant,
   getRestaurants,
   Restaurant,
-  AddRestaurant
+  AddRestaurant,
+  getCategories
 } from '@/shared/AdminComponents/Services/axios';
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 
@@ -45,15 +46,13 @@ const Restaurants: FC = () => {
 
   const dispatch = useDispatch();
 
-  const [data, setData] = useState([]);
-
-  const [data2, setData2] = useState([]);
-
+  const [data, setData] = useState<Restaurant[]>([]);
+  const [data2, setData2] = useState<Restaurant[]>([]);
   const [hidden, setHidden] = useState<boolean>(true);
+  const [resCategoryARR, setResCategoryARR] = useState<string[]>([]);
+  console.log(resCategoryARR);
 
-  const restaurants = useSelector(
-    (state: RootState) => state.global.restaurant
-  );
+  const restaurants: Restaurant[] = useSelector((state: RootState) => state.global.restaurant) || [];
   const isDeleteModalOpen = useSelector(
     (state: RootState) => state.global.isDeleteModalOpen
   );
@@ -61,10 +60,10 @@ const Restaurants: FC = () => {
     (state: RootState) => state.global.restaurantToDelete
   );
 
-  // const handleDeleteButtonClick = (restaurant: Restaurant) => {
-  //   dispatch(setRestaurantToDelete(restaurant));
-  //   dispatch(setIsDeleteModalOpen(true));
-  // };
+  const handleDeleteButtonClick = (restaurant: Restaurant) => {
+    dispatch(setRestaurantToDelete(restaurant));
+    dispatch(setIsDeleteModalOpen(true));
+  };
 
   const handleCloseModal = () => {
     dispatch(setIsDeleteModalOpen(false));
@@ -74,22 +73,21 @@ const Restaurants: FC = () => {
     setHidden((prev) => !prev);
   };
 
- 
-
   async function fetchRestaurants() {
-
-    const res = await getRestaurants();
-    setData(res?.data.result.data)
-    setData2(res?.data.result.data)
-
-    const categoryArr = res?.data.result.data
-
-    dispatch(fillRestaurants(categoryArr))
+    try {
+      const res = await getRestaurants();
+      const categoryArr = res?.data.result.data;
+      setData(categoryArr);
+      setData2(categoryArr);
+      dispatch(fillRestaurants(categoryArr)); // Ensure categoryArr is an array
+    } catch (error) {
+      console.error('Error fetching restaurants:', error);
+    }
   }
 
-  useEffect(()=>{
-    fetchRestaurants()
-  },[])
+  useEffect(() => {
+    fetchRestaurants();
+  }, []);
 
   const categoryIdRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<HTMLInputElement>(null);
@@ -100,23 +98,20 @@ const Restaurants: FC = () => {
   const resNameRef = useRef<HTMLInputElement>(null);
   const [imgUrl, setImgUrl] = useState<string>('');
 
-   function getImgUrl(url: string): void {
+  function getImgUrl(url: string): void {
     setImgUrl(url);
   }
 
-  
-
-  async function handleCreateRestaurant (){
-    
-    const resName:any = resNameRef.current?.value;
-    const address: any =  addressRef.current?.value;
+  async function handleCreateRestaurant() {
+    const resName: any = resNameRef.current?.value;
+    const address: any = addressRef.current?.value;
     const category_id: any = categoryIdRef.current?.value;
-    const cuisine: any =  cuisineRef.current?.value;
-    const price: any =  priceRef.current?.value;
+    const cuisine: any = cuisineRef.current?.value;
+    const price: any = priceRef.current?.value;
     const delivery_min: any = deliveryMinRef.current?.value;
-    const img_url:any = imgUrl;
+    const img_url: any = imgUrl;
 
-    if(!isInputValid (
+    if (!isInputValid(
       resName,
       address,
       category_id,
@@ -124,81 +119,71 @@ const Restaurants: FC = () => {
       price,
       delivery_min,
       img_url
-    )){
+    )) {
       toast({
         title: "Please fill all the inputs!",
-        status:"warning",
-        duration:2000,
-        position:"top-right",
-        variant:"subtle"
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
       });
       return
-
     }
- 
 
-  const form:Restaurant = {
-    name: resName,
-    category_id:category_id,
-    img_url:img_url,
-    cuisine:cuisine,
-    delivery_min:delivery_min,
-    delivery_price:price,
-    address:address,
+    const form: Restaurant = {
+      name: resName,
+      category_id: category_id,
+      img_url: img_url,
+      cuisine: cuisine,
+      delivery_min: delivery_min,
+      delivery_price: price,
+      address: address,
+    };
 
+    try {
+      const res = await AddRestaurant(form);
 
-  };
+      if (res?.status === 201) {
+        dispatch(fillRestaurants(res.data));
+        if (
+          resNameRef?.current &&
+          cuisineRef?.current &&
+          categoryIdRef?.current &&
+          deliveryMinRef?.current &&
+          priceRef?.current &&
+          addressRef?.current
+        ) {
+          resNameRef.current.value = "";
+          cuisineRef.current.value = "";
+          categoryIdRef.current.value = "";
+          deliveryMinRef.current.value = "";
+          priceRef.current.value = "";
+          addressRef.current.value = ""
+        }
 
-  try{
-    const res = await AddRestaurant(form);
-
-    if(res?.status === 201){
-      dispatch(fillRestaurants(res.data));
-      if(
-        resNameRef?.current &&
-        cuisineRef?.current &&
-        categoryIdRef?.current &&
-        deliveryMinRef?.current &&
-        priceRef?.current &&
-        addressRef?.current
-      ){
-        resNameRef.current.value = "";
-        cuisineRef.current.value = "";
-        categoryIdRef.current.value = "";
-        deliveryMinRef.current.value = "";
-        priceRef.current.value = "";
-        addressRef.current.value = ""
+        setTimeout(() => {
+          changeHidden()
+        }, 500);
+        toast({
+          title: "Restaurant created successfully!",
+          status: "success",
+          duration: 2000,
+          position: "top-right",
+          variant: "subtle"
+        });
       }
-
-      setTimeout(()=>{
-        changeHidden()
-      },500);
+    } catch (error) {
       toast({
-        title: "Restaurant created successfully!",
-        status:"success",
-        duration:2000,
-        position:"top-right",
-        variant:"subtle"
+        title: "An error occurred while adding the restaurant.",
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
       });
     }
-  }catch(error){
-    toast({
-      title: "An error occurred while adding the restaurant.",
-      status:"warning",
-      duration:2000,
-      position:"top-right",
-      variant:"subtle"
-    });
   }
-}
 
-
-  // const handleEditRestaurantClick = () => {
-  //   dispatch(setEditRestaurantModalHidden(false));
-  // };
   const handleRestaurantClick = () => setHidden(false);
-
- 
 
   const handleDeleteConfirmed = async () => {
     if (!restaurantToDelete) return;
@@ -216,17 +201,16 @@ const Restaurants: FC = () => {
     dispatch(setIsDeleteModalOpen(false));
   };
 
-
   function isInputValid(
-    resName:string,
-    address:string,
-    category_id:number | undefined,
-    cuisine:string,
-    price:number,
-    delivery_min:number,
-    img_url:any
-  ):boolean{
-    return(
+    resName: string,
+    address: string,
+    category_id: number | undefined,
+    cuisine: string,
+    price: number,
+    delivery_min: number,
+    img_url: any
+  ): boolean {
+    return (
       !!resName &&
       !!address &&
       !!category_id &&
@@ -237,9 +221,35 @@ const Restaurants: FC = () => {
     )
   }
 
- 
+  function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>): void {
+    const value = e.target.value;
 
- 
+    if (value == "all") {
+      dispatch(fillRestaurants(data2));
+      return
+    }
+
+    let newValue = data2.filter((item: any) => item?.category_id == value)
+
+    dispatch(fillRestaurants(newValue))
+  }
+
+  async function catigoriesRender2() {
+    try {
+      const response = await getCategories();
+      const categoryArr = response?.data.result.data;
+
+      let items = categoryArr.map((item: any) => item.name)
+
+      setResCategoryARR(items)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    catigoriesRender2()
+  }, [])
 
   return (
     <Box className='bg-darkBlue10 min-h-screen'>
@@ -257,7 +267,7 @@ const Restaurants: FC = () => {
         </Head>
         <Header />
         <AdminModal1
-          // arr={}
+          arr={resCategoryARR}
           mod='2'
           p='Add Restaurant  '
           p1='Upload  image'
@@ -272,9 +282,9 @@ const Restaurants: FC = () => {
           priceRef={priceRef}
           deliveryMinRef={deliveryMinRef}
           resNameRef={resNameRef}
-          // onButtonClick={handleCreateRestaurant} 
+          ButtonOnClick={handleCreateRestaurant}
+          imgRef={ImgRef}
         />
-     
       </Box>
       <Box
         as='main'
@@ -304,11 +314,12 @@ const Restaurants: FC = () => {
                 height={35}
                 placeholder='Select Category'
                 className='hidden md:block w-full md:w-auto'
+                onChange={handleSelectChange}
               >
-                {restaurants.map((restaurant, index) => (
+                {Array.isArray(restaurants) && restaurants.map((restaurant, index) => (
                   <option
                     key={index}
-                    value={restaurant.name}
+                    value={restaurant.category_id}
                   >
                     {restaurant.name}
                   </option>
@@ -327,7 +338,7 @@ const Restaurants: FC = () => {
             </InputGroup>
           </Box>
           <Box className='flex flex-wrap gap-4'>
-            {/* {restaurants?.map((restaurant) => (
+            {Array.isArray(restaurants) && restaurants.map((restaurant) => (
               <Card
                 key={restaurant.id}
                 className='w-full md:w-[247px] h-[83px] flex flex-col justify-center p-2'
@@ -372,7 +383,7 @@ const Restaurants: FC = () => {
                       fontSize='12px'
                       variant='ghost'
                       colorScheme='teal'
-                      onClick={handleEditRestaurantClick}
+                      // onClick={handleEditRestaurantClick}
                     />
                     <IconButton
                       aria-label='Delete'
@@ -386,7 +397,7 @@ const Restaurants: FC = () => {
                   </ButtonGroup>
                 </CardBody>
               </Card>
-            ))} */}
+            ))}
           </Box>
         </Box>
       </Box>
