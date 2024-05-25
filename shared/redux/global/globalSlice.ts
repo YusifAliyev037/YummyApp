@@ -75,6 +75,7 @@ export const globalSlice = createSlice({
 export const {
   fillCategory,
   fillRestaurants,
+  fillProducts,
   addRestaurant,
   updateRestaurant,
   removeRestaurant,
