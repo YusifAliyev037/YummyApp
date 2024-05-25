@@ -1,14 +1,16 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import AdminModal from './AdminModal';
-import AddProductsInputs from './AddProductsInputs';
+import { AdminModal1 } from './AdminModal1';
 
 function Header() {
-  const [hidden, Sethidden] = useState(true);
+  const [hidden, setHidden] = useState(true);
 
+  const changeHidden = (): void => {
+    setHidden((prev: boolean) => !prev);
+  };
   const handleAddProductClick = () => {
-    Sethidden(false);
+    setHidden(false);
   };
 
   return (
@@ -69,13 +71,20 @@ function Header() {
         </Box>
       </Box>
 
-      <AdminModal
-        hidden={hidden}
-        Sethidden={Sethidden}
-        addName={'Add Restaurant'}
-        imgName={'Upload your product image'}
-        informationName={'Add your Product description'}
-        component={<AddProductsInputs />}
+     
+      <AdminModal1
+      onClickClose={changeHidden}
+      mod='3'
+      p='Add Product'
+      p1='Upload  image'
+      p2='Add your Product information'
+      btn='Add Product'
+      hidden={hidden}
+      // ButtonOnClick={updateCategory}
+      // categoryRef={categoryRef}
+      // imgRef={imgRef}
+      // slugRef={slugRef}
+      // getImgUrl={getImgUrl}
       />
     </Box>
   );
