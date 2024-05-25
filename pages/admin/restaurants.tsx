@@ -26,8 +26,7 @@ import {
   removeRestaurant as removeRestaurantAction,
   setIsDeleteModalOpen,
   setRestaurantToDelete,
-  setHidden,
-  setEditRestaurantModalHidden,
+
 } from '@/shared/redux/global/globalSlice';
 import { RootState } from '@/shared/redux/store';
 import {
