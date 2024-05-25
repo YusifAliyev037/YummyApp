@@ -36,7 +36,9 @@ import {
   getRestaurants,
   Restaurant,
   AddRestaurant,
-  getCategories
+  getCategories,
+  getEditRestaurant,
+  updateRestaurant
 } from '@/shared/AdminComponents/Services/axios';
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 
@@ -49,9 +51,9 @@ const Restaurants: FC = () => {
   const [data, setData] = useState<Restaurant[]>([]);
   const [data2, setData2] = useState<Restaurant[]>([]);
   const [hidden, setHidden] = useState<boolean>(true);
+  const [editHidden, setEditHidden] = useState<boolean>(true);
   const [resCategoryARR, setResCategoryARR] = useState<string[]>([]);
-  console.log(resCategoryARR);
-
+  const [activeId, setActiveId] = useState('')
   const restaurants: Restaurant[] = useSelector((state: RootState) => state.global.restaurant) || [];
   const isDeleteModalOpen = useSelector(
     (state: RootState) => state.global.isDeleteModalOpen
@@ -72,6 +74,9 @@ const Restaurants: FC = () => {
   const changeHidden = (): void => {
     setHidden((prev) => !prev);
   };
+  const changeEditHidden = (): void => {
+    setEditHidden((prev) => !prev);
+  };
 
   async function fetchRestaurants() {
     try {
@@ -79,7 +84,7 @@ const Restaurants: FC = () => {
       const categoryArr = res?.data.result.data;
       setData(categoryArr);
       setData2(categoryArr);
-      dispatch(fillRestaurants(categoryArr)); // Ensure categoryArr is an array
+      dispatch(fillRestaurants(categoryArr)); 
     } catch (error) {
       console.error('Error fetching restaurants:', error);
     }
@@ -201,6 +206,95 @@ const Restaurants: FC = () => {
     dispatch(setIsDeleteModalOpen(false));
   };
 
+  async function handleEditRestaurant(id:string){
+    setActiveId(id);
+    setEditHidden(false)
+
+    const res = await getEditRestaurant(id);
+    console.log(res);
+
+    if(res?.status === 200){
+      const  currentData = res?.data.result.data;
+      if(cuisineRef.current && 
+        resNameRef.current && 
+        addressRef.current && 
+        deliveryMinRef.current && 
+        priceRef.current && 
+        ImgRef.current && 
+        categoryIdRef.current){
+         (resNameRef.current as {value: string}).value = currentData?.resName || "";
+         (addressRef.current as {value: string}).value = currentData?.address || "";
+         (deliveryMinRef.current as {value: string}).value = currentData?.delivery_min || "";
+         (priceRef.current as {value: string}).value = currentData?.price || "";
+         (ImgRef.current as {value: string}).value = currentData?.img_url || "";
+         (categoryIdRef.current as {value: string}).value = currentData?.category_id || "";
+         (cuisineRef.current as {value: string}).value = currentData?.cuisine || "";
+        }
+    }
+    
+  }
+
+  async function editRestaurant(){
+    const resName: any = resNameRef.current?.value;
+    const address:any = addressRef.current?.value;
+    const category_id:any = categoryIdRef.current?.value;
+    const cuisine:any = cuisineRef.current?.value;
+    const price:any = priceRef.current?.value;
+    const delivery_min:any = deliveryMinRef.current?.value;
+    const img_url:any = imgUrl;
+
+    const form: Restaurant = {
+      name: resName,
+      category_id: category_id,
+      img_url: img_url,
+      cuisine: cuisine,
+      delivery_min: delivery_min,
+      delivery_price: price,
+      address: address,
+    };
+
+    if(!isInputValid(
+      resName,
+      address,
+      category_id,
+      cuisine,
+      price,
+      delivery_min,
+      img_url
+    )){
+      toast({
+        title: 'Please fill all the inputs!',
+        status: 'error',
+        duration: 2000,
+        position: 'top-right',
+        variant: 'subtle',
+      });
+      return
+
+    }
+
+    const res = await updateRestaurant(activeId, form);
+
+    if( res?.status === 200){
+      toast({
+        title: 'Restaurant updated successfully!',
+        status: 'success',
+        duration: 2000,
+        position: 'top-right',
+        variant: 'subtle',
+      });
+      changeEditHidden();
+
+      const updatedRestaurants = restaurants.map((item:any)=>{
+        if(item.id === activeId){
+          return res.data.data
+        }
+        return item
+      })
+      dispatch(fillRestaurants(updatedRestaurants))
+    }
+  }
+
   function isInputValid(
     resName: string,
     address: string,
@@ -283,6 +377,25 @@ const Restaurants: FC = () => {
           deliveryMinRef={deliveryMinRef}
           resNameRef={resNameRef}
           ButtonOnClick={handleCreateRestaurant}
+          imgRef={ImgRef}
+        />
+        <AdminModal1
+          arr={resCategoryARR}
+          mod='2'
+          p='Edit Restaurant  '
+          p1='Upload  image'
+          p2='Update your Restaurant information'
+          btn='Update Restaurant'
+          getImgUrl={getImgUrl}
+          hidden={editHidden}
+          onClickClose={changeEditHidden}
+          categoryIdRef={categoryIdRef}
+          addressRef={addressRef}
+          cuisineRef={cuisineRef}
+          priceRef={priceRef}
+          deliveryMinRef={deliveryMinRef}
+          resNameRef={resNameRef}
+          ButtonOnClick={editRestaurant}
           imgRef={ImgRef}
         />
       </Box>
@@ -383,7 +496,7 @@ const Restaurants: FC = () => {
                       fontSize='12px'
                       variant='ghost'
                       colorScheme='teal'
-                      // onClick={handleEditRestaurantClick}
+                      onClick={restaurant.id}
                     />
                     <IconButton
                       aria-label='Delete'

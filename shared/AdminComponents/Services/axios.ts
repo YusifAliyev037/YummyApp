@@ -145,6 +145,30 @@ export async function AddRestaurant( form: Form) {
   }
 }
 
+//* editRestaurant
+
+export async function getEditRestaurant(id:string){
+  try{
+    const response = await instanceAxios.get(`/restuarants/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+//* updateRestaurants
+
+export async function updateRestaurant(id:string, form:Form){
+  try{
+    const response = await instanceAxios.put(`/restuarants/${id}`, form);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
 export type Products = {
   id?: string;
   img_url?: string;
