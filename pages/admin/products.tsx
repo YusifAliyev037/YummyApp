@@ -88,6 +88,7 @@ function Products() {
       setProducts(products.filter((res) => res.id !== isDeleteModalId?.id));
       setIsDeleteModalId(null);
       setIsDeleteModalOpen(false);
+      //toast
     } else {
       console.error("Product id is undefined");
     }
