@@ -48,10 +48,15 @@ const Restaurants: FC = () => {
   const dispatch = useDispatch();
 
   const [data, setData] = useState<Restaurant[]>([]);
+
   const [data2, setData2] = useState<Restaurant[]>([]);
+
   const [hidden, setHidden] = useState<boolean>(true);
+
   const [editHidden, setEditHidden] = useState<boolean>(true);
+
   const [resCategoryARR, setResCategoryARR] = useState<string[]>([]);
+  
   const [activeId, setActiveId] = useState('')
   const restaurants: Restaurant[] = useSelector((state: RootState) => state.global.restaurant) || [];
   const isDeleteModalOpen = useSelector(
@@ -495,7 +500,7 @@ const Restaurants: FC = () => {
                       fontSize='12px'
                       variant='ghost'
                       colorScheme='teal'
-                      onClick={restaurant.id}
+                      onClick={()=> handleEditRestaurant(restaurant.id)}
                     />
                     <IconButton
                       aria-label='Delete'

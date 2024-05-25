@@ -100,7 +100,7 @@ export async function updateCategories(id: string, form: Form) {
   }
 
 
-// Restaurant
+//! Restaurant
 
 export type Restaurant = {
   name: string | any;
@@ -194,5 +194,17 @@ export async function deleteProducts(id: string) {
   } catch (error) {
     console.error(`Error while deleting product with ID ${id}:`, error);
     throw new Error('Failed to delete product!');
+  }
+}
+
+//* createPost
+
+export async function addProducts(form:Products){
+  try{
+    const response = await instanceAxios.post(`/products`,form )
+    return response
+  }catch(error){
+    console.log(error);
+    
   }
 }
