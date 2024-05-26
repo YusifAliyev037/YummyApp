@@ -1,4 +1,3 @@
-// UserBasket.tsx
 import React from "react";
 import { Box, Text, Button, Image } from "@chakra-ui/react";
 import { FaShoppingBasket, FaTrashAlt } from "react-icons/fa";
