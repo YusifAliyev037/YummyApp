@@ -3,28 +3,44 @@ import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
 import Pagination from '@/shared/AdminComponents/Pagination'
 import PushModul from '@/shared/AdminComponents/PushModul'
-import { Category, Products, deleteProducts, getCategories, getProducts, getRestaurants } from '@/shared/AdminComponents/Services/axios'
+import { Category, Products, deleteProducts, getCategories, getProducts, getRestaurants, updateProduct } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
+import { fillProducts } from '@/shared/redux/global/globalSlice'
+import { RootState } from '@/shared/redux/store'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text, useToast } from '@chakra-ui/react'
 
 import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 function products() {
-  const [products, setProducts] = useState<Products[]>([]);
-  const [originalProducts, setOriginalProducts] = useState<Products[]>([]);
-  const [category, setCategory] = useState<Category[]>([]);
-  const [pages,setPages]=useState<number>(0)
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>('');
 
+  const toast = useToast()
+
+  const dispatch = useDispatch()
+
+  const [products, setProducts] = useState<Products[]>([]);
+  console.log("products", products);
+  
+
+  const [originalProducts, setOriginalProducts] = useState<Products[]>([]);
+
+  const [category, setCategory] = useState<Category[]>([]);
+
+  const [pages,setPages]=useState<number>(0)
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
+
+  const [imgUrl, setImgUrl] = useState<string>('');
 
   const [hidden, setHidden] = useState(true);
 
   const [restaurantArr, setRestaurantArr] =  useState<string[]>([]);
 
+  const [activeId, setActiveId] = useState('')
 
   let b;
 
@@ -34,6 +50,9 @@ function products() {
   const productRestaurantRef = useRef<HTMLInputElement>(null);
   const ImgRef = useRef<HTMLInputElement>(null);
 
+  const productsArr: Products[] = useSelector((state: RootState) => state.global.product) || [];
+  console.log("products", productsArr);
+   
   function getImgUrl(url: string): void {
     setImgUrl(url);
   }
@@ -41,9 +60,83 @@ function products() {
   const changeHidden = (): void => {
     setHidden((prev: boolean) => !prev);
   };
-  const handleEditProductClick = () => {
+  const handleEditProductClick = (id:any) => {
+    setActiveId(id)
     setHidden(false);
+    
+   
   };
+  async function editProduct(){
+    const proName:any = productNameRef.current?.value;
+    const proDesc:any = productDescRef.current?.value;
+    const proPrice:any = productPriceRef.current?.value;
+    const proRes:any = productRestaurantRef.current?.value;
+    const img_url: any = imgUrl
+
+    if(!isInputValid(
+      proName,
+      proDesc,
+      proRes,
+      img_url,
+      proPrice
+     )){
+      toast({
+        title: "Please fill all the inputs!",
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
+      });
+      return
+     }
+    
+     const form:Products ={
+      name:proName,
+      price:proPrice,
+      description:proDesc,
+      rest_id:proRes,
+      img_url:img_url
+     }
+
+
+    const res = await updateProduct(activeId, form)
+    if( res?.status === 200){
+      toast({
+        title: 'Restaurant updated successfully!',
+        status: 'success',
+        duration: 2000,
+        position: 'top-right',
+        variant: 'subtle',
+      });
+      changeHidden()
+
+      const updatedProduct = productsArr.map((item:any)=>{
+        if(item.id === activeId){
+          return res.data.data
+        }
+        return item
+      })
+      dispatch(fillProducts(updatedProduct))
+    
+    }
+  }
+
+  const isInputValid = (
+    proName:string | undefined,
+    proDesc:string | undefined,
+    proRes:string | undefined,
+    proPrice:number,
+    img_url: any
+  
+  
+  ): boolean => {
+    return( 
+    !!proName && 
+    !!proDesc &&
+    !!proRes &&
+    !!proPrice &&
+    !!img_url 
+  )};
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -60,6 +153,7 @@ function products() {
 
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
+
   };
 
   function getPages(pageNumber: number) {
@@ -75,13 +169,14 @@ function products() {
   console.log(b);
   
 
-  let pagesData=products.slice(b,(pages+1)*5);
+  let pagesData=productsArr.slice(b,(pages+1)*5);
   
   async function fetchProducts() {
     try {
       const res = await getProducts();
       const fetchedProducts = res?.data?.result?.data;
       setProducts(fetchedProducts);
+      dispatch(fillProducts(fetchedProducts))
       setOriginalProducts(fetchedProducts); 
     } catch(error) {
       console.error("Error fetching products: ", error);
@@ -166,7 +261,7 @@ function products() {
       p2='Edit your Product information'
       btn='Edit Product'
       hidden={hidden}
-      // ButtonOnClick={createProducts}
+      ButtonOnClick={editProduct}
       productNameRef={productNameRef}
       imgRef={ImgRef}
       productDescRef={productDescRef}
@@ -209,7 +304,7 @@ function products() {
                           fontSize='24px' 
                           variant='ghost' 
                           colorScheme='teal'
-                          onClick={handleEditProductClick} 
+                          onClick={()=>handleEditProductClick(item.id)} 
                           
                           />
                           <IconButton 
