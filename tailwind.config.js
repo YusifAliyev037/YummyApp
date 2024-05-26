@@ -19,9 +19,8 @@ module.exports = {
       white: "#ffffff",
       white10: "#f5f5f5",
       white20: "#fffefe",
-      white30:"#f2f2f2",
-      white40:" #F3F4F6",
-      
+      white30: "#f2f2f2",
+      white40: " #F3F4F6",
 
       orange: "#EAAB00",
 
@@ -43,12 +42,11 @@ module.exports = {
       gray500: "rgb(39, 39, 39)",
       black: "#000000",
       black200: "rgb(24, 22, 23)",
+      red400: "#d63626",
       red500: "#DC2626",
       redUserModul: "#ed5d53",
-      redUserModul10:"#D63626",
-      userText:"#828282" ,
-      
-
+      redUserModul10: "#D63626",
+      userText: "#828282",
 
       red100: "rgb(214, 54, 38)",
       white: "#ffffff",
