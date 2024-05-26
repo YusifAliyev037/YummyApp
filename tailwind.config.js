@@ -45,8 +45,14 @@ module.exports = {
       red400: "#d63626",
       red500: "#DC2626",
       redUserModul: "#ed5d53",
-      redUserModul10: "#D63626",
-      userText: "#828282",
+
+      redUserModul10:"#D63626",
+      userText:"#828282" ,
+      ordersBg:" #00072B",
+
+      
+
+
 
       red100: "rgb(214, 54, 38)",
       white: "#ffffff",
