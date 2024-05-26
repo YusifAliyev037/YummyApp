@@ -21,6 +21,7 @@ function UserModul() {
       height='515px'
     >
       <Box as='ul' className='flex flex-col mt-8'>
+        <Box mb='32px'>
         <Button
           onClick={() => push('/user')}
           className='flex gap-7 w-52 text-userText cursor-pointer hover:bg-redUserModul10 hover:w-52'
@@ -35,6 +36,8 @@ function UserModul() {
           <Image width={18} alt='profile' height={18} src='/profile.svg' />
           Profile
         </Button>
+        </Box>
+        <Box mb='32px'>
         <Button
           onClick={() => push('/user/basket')}
           className='flex gap-7 w-52 text-userText justify-start cursor-pointer hover:bg-redUserModul10 hover:w-52'
@@ -48,6 +51,8 @@ function UserModul() {
           <Image width={18} alt='basket' height={18} src='/basket.svg' />
           Your Basket
         </Button>
+        </Box>
+        <Box mb='32px'>
         <Button
           onClick={() => push('/user/orders')}
           className='flex gap-7 ju w-52 text-userText cursor-pointer hover:bg-redUserModul10 hover:w-52'
@@ -61,6 +66,8 @@ function UserModul() {
           <Image width={18} alt='orders' height={18} src='/basket.svg' />
           Your Orders
         </Button>
+        </Box>
+        <Box mb='32px'>
         <Button
           onClick={() => push('/user/checkout')}
           className='flex gap-7 w-52 text-userText cursor-pointer hover:bg-redUserModul10 hover:w-52'
@@ -74,6 +81,8 @@ function UserModul() {
           <Image width={18} alt='Checkout' height={18} src='/basket.svg' />
           Checkout
         </Button>
+        </Box>
+        <Box mb='32px'>
         <Button
           onClick={() => push('/user/logout')}
           className='flex gap-7 w-52 text-userText cursor-pointer hover:bg-redUserModul10 hover:w-52'
@@ -87,6 +96,7 @@ function UserModul() {
           <Image width={18} alt='Logout' height={18} src='/basket.svg' />
           Logout
         </Button>
+        </Box>
       </Box>
     </Box>
   );
