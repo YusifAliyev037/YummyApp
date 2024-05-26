@@ -197,7 +197,7 @@ export async function deleteProducts(id: string) {
   }
 }
 
-//* createPost
+//* createProduct
 
 export async function addProducts(form:Products){
   try{
@@ -207,4 +207,16 @@ export async function addProducts(form:Products){
     console.log(error);
     
   }
+}
+
+//* editproduct
+
+export async function updateProduct(id: string, form: Products){
+    try{
+      const response = await instanceAxios.put(`/products/${id}`, form)
+      return response
+    }catch(error){
+      console.log(error);
+      
+    }
 }

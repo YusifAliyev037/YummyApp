@@ -1,23 +1,49 @@
+import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1'
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
 import Pagination from '@/shared/AdminComponents/Pagination'
 import PushModul from '@/shared/AdminComponents/PushModul'
-import { Category, Products, deleteProducts, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
+import { Category, Products, deleteProducts, getCategories, getProducts, getRestaurants } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
 
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-function Products() {
+function products() {
   const [products, setProducts] = useState<Products[]>([]);
   const [originalProducts, setOriginalProducts] = useState<Products[]>([]);
   const [category, setCategory] = useState<Category[]>([]);
   const [pages,setPages]=useState<number>(0)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
+  const [imgUrl, setImgUrl] = useState<string>('');
+
+
+  const [hidden, setHidden] = useState(true);
+
+  const [restaurantArr, setRestaurantArr] =  useState<string[]>([]);
+
+
   let b;
+
+  const productNameRef = useRef<HTMLInputElement>(null);
+  const productDescRef = useRef<HTMLInputElement>(null);
+  const productPriceRef = useRef<HTMLInputElement>(null);
+  const productRestaurantRef = useRef<HTMLInputElement>(null);
+  const ImgRef = useRef<HTMLInputElement>(null);
+
+  function getImgUrl(url: string): void {
+    setImgUrl(url);
+  }
+
+  const changeHidden = (): void => {
+    setHidden((prev: boolean) => !prev);
+  };
+  const handleEditProductClick = () => {
+    setHidden(false);
+  };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -94,8 +120,26 @@ function Products() {
     }
   }
   
+  async function restaurantRender(){
+    try{
+      const response = await getRestaurants()
+      const restaurantArr = response?.data.result.data;
+  
+      let items = restaurantArr.map((item:any)=> item.name);
+  
+      setRestaurantArr(items)
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+  
+  useEffect(()=>{
+    restaurantRender()
+  },[])
   return (
     <Box className=' bg-darkBlue10 h-screen '>
+      
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
         if (isDeleteModalId !== null) {
           handleDeleteProduct(isDeleteModalId);
@@ -113,6 +157,23 @@ function Products() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header/>
+        <AdminModal1
+      arr={restaurantArr}
+      onClickClose={changeHidden}
+      mod='3'
+      p='Edit Product'
+      p1='Upload  image'
+      p2='Edit your Product information'
+      btn='Edit Product'
+      hidden={hidden}
+      // ButtonOnClick={createProducts}
+      productNameRef={productNameRef}
+      imgRef={ImgRef}
+      productDescRef={productDescRef}
+      productPriceRef={productPriceRef}
+      productRestaurantRef={productRestaurantRef}
+      getImgUrl={getImgUrl}
+/>
       </Box>
       <Box as='main' className='flex'>
         <PushModul />
@@ -140,8 +201,25 @@ function Products() {
                       <Box className="flex">
                         <Text color={"#00B2A9"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"12px"} height="24px">${item.price}</Text>
                         <ButtonGroup spacing='1' display={"flex"} ml='auto' gap={"8px"}>
-                          <IconButton aria-label='Edit' icon={<EditIcon />} size='xs' fontSize='24px' variant='ghost' colorScheme='teal' />
-                          <IconButton aria-label='Delete' icon={<DeleteIcon />} size='xs' fontSize='24px' variant='ghost' colorScheme='red' onClick={() => handleDeleteId(item)} />
+
+                          <IconButton 
+                          aria-label='Edit' 
+                          icon={<EditIcon/>} 
+                          size='xs' 
+                          fontSize='24px' 
+                          variant='ghost' 
+                          colorScheme='teal'
+                          onClick={handleEditProductClick} 
+                          
+                          />
+                          <IconButton 
+                          aria-label='Delete' 
+                          icon={<DeleteIcon/>} 
+                          size='xs' 
+                          fontSize='24px' 
+                          variant='ghost' 
+                          colorScheme='red' 
+                          onClick={() => handleDeleteId(item)} />
                         </ButtonGroup>
                       </Box>
                     </Stack>
@@ -158,4 +236,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default products;
