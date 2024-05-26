@@ -1,4 +1,3 @@
-import AdminModal from '@/shared/AdminComponents/AdminModal';
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
 import OfferInputs from '@/shared/AdminComponents/Services/OfferInputs';
@@ -87,7 +86,6 @@ const Offer: React.FC = () => {
 
   return (
     <Box className=' bg-darkBlue10 h-screen  z-5'>
-      <AdminModal hidden={hidden} Sethidden={Sethidden} addName={"Add Offer"} imgName={"Upload  image"} informationName={"Add your Offer information"} component={<OfferInputs/>} />
       <Box as='header'>
         <Head>
           <title>Offer</title>

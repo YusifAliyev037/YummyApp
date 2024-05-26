@@ -102,7 +102,7 @@ function products() {
     const res = await updateProduct(activeId, form)
     if( res?.status === 200){
       toast({
-        title: 'Restaurant updated successfully!',
+        title: 'Product updated successfully!',
         status: 'success',
         duration: 2000,
         position: 'top-right',
@@ -207,9 +207,17 @@ function products() {
       deleteProducts(product.id);
 
       setProducts(products.filter((res) => res.id !== isDeleteModalId?.id));
+      
+        toast({
+          title: 'Product updated successfully!',
+          status: 'success',
+          duration: 2000,
+          position: 'top-right',
+          variant: 'subtle',
+        });
       setIsDeleteModalId(null);
       setIsDeleteModalOpen(false);
-      //toast
+      
     } else {
       console.error("Product id is undefined");
     }
