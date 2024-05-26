@@ -32,7 +32,7 @@ const BasketItem = ({
 
 const UserBasket: React.FC = () => {
   return (
-    <Box className="relative w-[970px] h-[735px]  bg-gray200 mt-[15px] mr-[35px]  p-8 shadow-lg">
+    <Box className=" w-[970px] h-[735px]  bg-gray200 mt-[15px] mr-[35px]  p-8 shadow-lg">
       <Text className="text-2xl font-bold mb-4">Your Basket</Text>
 
       <div className="text-red500 mb-6 flex items-center justify-between">
