@@ -72,7 +72,7 @@ const Restaurants: FC = () => {
   }, []);
 
   return (
-    <Box className="bg-darkBlue10 min-h-screen p-2">
+    <Box className="bg-darkBlue10 min-h-screen p-2 ">
       <Box as="header">
         <Head>
           <title>Restaurants</title>
