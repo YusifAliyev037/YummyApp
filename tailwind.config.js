@@ -47,6 +47,8 @@ module.exports = {
       redUserModul: "#ed5d53",
       redUserModul10:"#D63626",
       userText:"#828282" ,
+      ordersBg:" #00072B",
+
       
 
 
