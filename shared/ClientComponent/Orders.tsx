@@ -1,15 +1,54 @@
 import { DeleteIcon, ViewIcon } from '@chakra-ui/icons';
+
 import {
   Box,
   ButtonGroup,
   IconButton,
 
   Text,
+  useDisclosure,
 
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
+import DeleteUserModul from './deleteUserModul';
 
-const OrdersTable = () => {
+interface Order {
+id:number;
+time:string;
+deliveryAddress:string;
+amount:number;
+paymentMethod: string;
+contact: string;
+}
+
+const OrdersTable:React.FC = () => {
+    const {isOpen,onOpen,onClose}=useDisclosure()
+    const[selectedOrder,setSelectedOrder]=useState<number | null >(null)
+
+
+    const handleDeleteClick=(orderId:number)=>{
+setSelectedOrder(orderId);
+onOpen();
+    };
+
+    const handleConfirmDelete=()=>{
+        console.log('Order deleted',selectedOrder);
+        onClose();
+        
+    };
+
+    const orders:Order[]=[
+
+{
+    id: 9177,
+    time: '022401',
+    deliveryAddress: '29 Eve Street, 543 Evenue Road, NY 87876',
+    amount: 249.7,
+    paymentMethod: 'Cash On Delivery',
+    contact: '994-51-410-3130',
+}
+
+    ]
   return (
     <Box className='flex flex-col  mt-4 mr-8   h-[550px] gap-9  bg-white40'>
       <Box className='ml-8 mt-10 '>
@@ -35,7 +74,8 @@ const OrdersTable = () => {
                     </tr>
                   </thead>
                   <tbody >
-                    <tr className='h-[60px] border-b-2 p-8 text-ordersBg'>
+                    {orders.map((order)=>(
+                    <tr key={order.id} className='h-[60px] border-b-2 p-8 text-ordersBg'>
                       <td className='w-[100px] text-center'>
                         9177
                       </td>
@@ -63,11 +103,13 @@ const OrdersTable = () => {
                                             color="red"
                                             aria-label="Delete"
                                             icon={<DeleteIcon />}
+                                           onClick={()=>handleDeleteClick(9177)}
                                           
                                         />
                                     </ButtonGroup>
                       </td> 
                     </tr>
+                    ))}
                     <tr className='h-[60px] border-b-2 p-8 text-ordersBg'>
                       <td className='w-[100px] text-center'>
                         9177
@@ -96,6 +138,7 @@ const OrdersTable = () => {
                                             color="red"
                                             aria-label="Delete"
                                             icon={<DeleteIcon />}
+                                            onClick={()=>handleDeleteClick(9177)}
                                           
                                         />
                                     </ButtonGroup>
@@ -103,6 +146,11 @@ const OrdersTable = () => {
                     </tr>
                   </tbody>
                 </table >
+                <DeleteUserModul
+                   isOpen={isOpen}
+                   onClose={onClose}
+                   onConfirm={handleConfirmDelete}
+                />
     </Box>
   );
 };
