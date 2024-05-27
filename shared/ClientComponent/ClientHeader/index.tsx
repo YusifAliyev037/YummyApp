@@ -80,7 +80,8 @@ const ClientHeader: React.FC = () => {
             type="text"
             name="searchQuery"
             placeholder="Search..."
-            className="p-2 border border-black pr-8"
+            className="p-2 border border-black pr-8 "
+            
           />
           <button
             type="submit"

@@ -3,26 +3,150 @@ import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
 import Pagination from '@/shared/AdminComponents/Pagination'
 import PushModul from '@/shared/AdminComponents/PushModul'
-import { Category, Products, deleteProducts, getCategories, getProducts } from '@/shared/AdminComponents/Services/axios'
+import { Category, Products, deleteProducts, getCategories, getProducts, getRestaurants, updateProduct } from '@/shared/AdminComponents/Services/axios'
 import MetaSeo from '@/shared/MetaSeo'
+import { fillProducts } from '@/shared/redux/global/globalSlice'
+import { RootState } from '@/shared/redux/store'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text, useToast } from '@chakra-ui/react'
 
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+function products() {
+
+  const toast = useToast()
+
+  const dispatch = useDispatch()
+
+<<<<<<< HEAD
 function Products() {
  
   const [imgUrl, setImgUrl] = useState<string>("");
+=======
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
   const [products, setProducts] = useState<Products[]>([]);
+  console.log("products", products);
+  
+
   const [originalProducts, setOriginalProducts] = useState<Products[]>([]);
+
   const [category, setCategory] = useState<Category[]>([]);
+
   const [pages,setPages]=useState<number>(0)
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
+
+  const [imgUrl, setImgUrl] = useState<string>('');
+
+  const [hidden, setHidden] = useState(true);
+
+  const [restaurantArr, setRestaurantArr] =  useState<string[]>([]);
+
+  const [activeId, setActiveId] = useState('')
+
   let b;
 
+<<<<<<< HEAD
   
+=======
+  const productNameRef = useRef<HTMLInputElement>(null);
+  const productDescRef = useRef<HTMLInputElement>(null);
+  const productPriceRef = useRef<HTMLInputElement>(null);
+  const productRestaurantRef = useRef<HTMLInputElement>(null);
+  const ImgRef = useRef<HTMLInputElement>(null);
+
+  const productsArr: Products[] = useSelector((state: RootState) => state.global.product) || [];
+  console.log("products", productsArr);
+   
+  function getImgUrl(url: string): void {
+    setImgUrl(url);
+  }
+
+  const changeHidden = (): void => {
+    setHidden((prev: boolean) => !prev);
+  };
+  const handleEditProductClick = (id:any) => {
+    setActiveId(id)
+    setHidden(false);
+    
+   
+  };
+  async function editProduct(){
+    const proName:any = productNameRef.current?.value;
+    const proDesc:any = productDescRef.current?.value;
+    const proPrice:any = productPriceRef.current?.value;
+    const proRes:any = productRestaurantRef.current?.value;
+    const img_url: any = imgUrl
+
+    if(!isInputValid(
+      proName,
+      proDesc,
+      proRes,
+      img_url,
+      proPrice
+     )){
+      toast({
+        title: "Please fill all the inputs!",
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
+      });
+      return
+     }
+    
+     const form:Products ={
+      name:proName,
+      price:proPrice,
+      description:proDesc,
+      rest_id:proRes,
+      img_url:img_url
+     }
+
+
+    const res = await updateProduct(activeId, form)
+    if( res?.status === 200){
+      toast({
+        title: 'Product updated successfully!',
+        status: 'success',
+        duration: 2000,
+        position: 'top-right',
+        variant: 'subtle',
+      });
+      changeHidden()
+
+      const updatedProduct = productsArr.map((item:any)=>{
+        if(item.id === activeId){
+          return res.data.data
+        }
+        return item
+      })
+      dispatch(fillProducts(updatedProduct))
+    
+    }
+  }
+
+  const isInputValid = (
+    proName:string | undefined,
+    proDesc:string | undefined,
+    proRes:string | undefined,
+    proPrice:number,
+    img_url: any
+  
+  
+  ): boolean => {
+    return( 
+    !!proName && 
+    !!proDesc &&
+    !!proRes &&
+    !!proPrice &&
+    !!img_url 
+  )};
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -44,6 +168,7 @@ function Products() {
 
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
+
   };
 
   function getPages(pageNumber: number) {
@@ -59,13 +184,14 @@ function Products() {
   console.log(b);
   
 
-  let pagesData=products.slice(b,(pages+1)*5);
+  let pagesData=productsArr.slice(b,(pages+1)*5);
   
   async function fetchProducts() {
     try {
       const res = await getProducts();
       const fetchedProducts = res?.data?.result?.data;
       setProducts(fetchedProducts);
+      dispatch(fillProducts(fetchedProducts))
       setOriginalProducts(fetchedProducts); 
     } catch(error) {
       console.error("Error fetching products: ", error);
@@ -100,16 +226,46 @@ function Products() {
       deleteProducts(product.id);
 
       setProducts(products.filter((res) => res.id !== isDeleteModalId?.id));
+      
+        toast({
+          title: 'Product updated successfully!',
+          status: 'success',
+          duration: 2000,
+          position: 'top-right',
+          variant: 'subtle',
+        });
       setIsDeleteModalId(null);
       setIsDeleteModalOpen(false);
+      
     } else {
       console.error("Product id is undefined");
     }
   }
   
+  async function restaurantRender(){
+    try{
+      const response = await getRestaurants()
+      const restaurantArr = response?.data.result.data;
+  
+      let items = restaurantArr.map((item:any)=> item.name);
+  
+      setRestaurantArr(items)
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+  
+  useEffect(()=>{
+    restaurantRender()
+  },[])
   return (
     <Box className=' bg-darkBlue10 h-screen '>
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
         if (isDeleteModalId !== null) {
           handleDeleteProduct(isDeleteModalId);
@@ -127,6 +283,23 @@ function Products() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header/>
+        <AdminModal1
+      arr={restaurantArr}
+      onClickClose={changeHidden}
+      mod='3'
+      p='Edit Product'
+      p1='Upload  image'
+      p2='Edit your Product information'
+      btn='Edit Product'
+      hidden={hidden}
+      ButtonOnClick={editProduct}
+      productNameRef={productNameRef}
+      imgRef={ImgRef}
+      productDescRef={productDescRef}
+      productPriceRef={productPriceRef}
+      productRestaurantRef={productRestaurantRef}
+      getImgUrl={getImgUrl}
+/>
       </Box>
       <Box as='main' className='flex'>
         <PushModul />
@@ -154,8 +327,25 @@ function Products() {
                       <Box className="flex">
                         <Text color={"#00B2A9"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"12px"} height="24px">${item.price}</Text>
                         <ButtonGroup spacing='1' display={"flex"} ml='auto' gap={"8px"}>
-                          <IconButton aria-label='Edit' icon={<EditIcon />} size='xs' fontSize='24px' variant='ghost' colorScheme='teal' />
-                          <IconButton aria-label='Delete' icon={<DeleteIcon />} size='xs' fontSize='24px' variant='ghost' colorScheme='red' onClick={() => handleDeleteId(item)} />
+
+                          <IconButton 
+                          aria-label='Edit' 
+                          icon={<EditIcon/>} 
+                          size='xs' 
+                          fontSize='24px' 
+                          variant='ghost' 
+                          colorScheme='teal'
+                          onClick={()=>handleEditProductClick(item.id)} 
+                          
+                          />
+                          <IconButton 
+                          aria-label='Delete' 
+                          icon={<DeleteIcon/>} 
+                          size='xs' 
+                          fontSize='24px' 
+                          variant='ghost' 
+                          colorScheme='red' 
+                          onClick={() => handleDeleteId(item)} />
                         </ButtonGroup>
                       </Box>
                     </Stack>
@@ -172,4 +362,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default products;

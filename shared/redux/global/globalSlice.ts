@@ -1,4 +1,4 @@
-import { Restaurant } from '@/shared/AdminComponents/Services/axios';
+import { Products, Restaurant } from '@/shared/AdminComponents/Services/axios';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface CategoryItem {
@@ -10,6 +10,7 @@ export interface CategoryItem {
 interface CategoryState {
   category: CategoryItem[];
   restaurant: Restaurant[];
+  product: Products[];
   isDeleteModalOpen: boolean;
   restaurantToDelete: Restaurant | null;
   hidden: boolean;
@@ -22,6 +23,7 @@ interface CategoryState {
 const initialState: CategoryState = {
   category: [],
   restaurant: [],
+  product:[],
   isDeleteModalOpen: false,
   restaurantToDelete: null,
   hidden: true,
@@ -38,6 +40,11 @@ export const globalSlice = createSlice({
     fillRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
       state.restaurant = action.payload;
     },
+
+    fillProducts: (state, action: PayloadAction<Restaurant[]>) => {
+      state.product = action.payload;
+    },
+  
     addRestaurant: (state, action: PayloadAction<Restaurant>) => {
       state.restaurant.push(action.payload);
     },
@@ -68,6 +75,7 @@ export const globalSlice = createSlice({
 export const {
   fillCategory,
   fillRestaurants,
+  fillProducts,
   addRestaurant,
   updateRestaurant,
   removeRestaurant,

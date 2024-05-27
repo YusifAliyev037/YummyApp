@@ -12,7 +12,7 @@ const instanceAxios = axios.create({
 
 export type Form = {
   name: string | undefined;
-  slug: string | undefined;
+  slug?: string | undefined;
   img_url: string | undefined;
 };
 
@@ -100,17 +100,17 @@ export async function updateCategories(id: string, form: Form) {
   }
 
 
-// Restaurant
+//! Restaurant
 
 export type Restaurant = {
-  id: string | any;
-  name?: string | any;
-  img_url?: string | undefined;
-  address?:string | undefined;
-  cuisine?: string | undefined;
-  delivery_price: number | any;
+  name: string | any;
   category_id: string | number | undefined;
+  img_url: string | undefined;
+  cuisine: string | undefined;
+  address:string | undefined;
   delivery_min: string | number | undefined;
+  delivery_price: number | any;
+  id?: string | any;
 };
 
 export async function getRestaurants() {
@@ -138,10 +138,34 @@ export async function deleteRestaurant(restaurantId: string) {
 
 export async function AddRestaurant( form: Form) {
   try {
-    const response = await instanceAxios.put(`/restuarants`, form);
+    const response = await instanceAxios.post(`/restuarants`, form);
     return response;
   } catch (error) {
     console.log(error);
+  }
+}
+
+//* editRestaurant
+
+export async function getEditRestaurant(id:string){
+  try{
+    const response = await instanceAxios.get(`/restuarants/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+//* updateRestaurants
+
+export async function updateRestaurant(id:string, form:Form){
+  try{
+    const response = await instanceAxios.put(`/restuarants/${id}`, form);
+    return response
+  }catch(error){
+    console.log(error);
+    
   }
 }
 
@@ -173,6 +197,7 @@ export async function deleteProducts(id: string) {
   }
 }
 
+<<<<<<< HEAD
 
 export const postRegisterData = async (form: FormRegister) => {
   try {
@@ -188,3 +213,28 @@ export const postRegisterData = async (form: FormRegister) => {
   return false
   }
 };
+=======
+//* createProduct
+
+export async function addProducts(form:Products){
+  try{
+    const response = await instanceAxios.post(`/products`,form )
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+//* editproduct
+
+export async function updateProduct(id: string, form: Products){
+    try{
+      const response = await instanceAxios.put(`/products/${id}`, form)
+      return response
+    }catch(error){
+      console.log(error);
+      
+    }
+}
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
