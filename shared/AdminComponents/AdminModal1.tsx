@@ -6,6 +6,8 @@ import Image from "next/image";
 import { ref, uploadBytes,getDownloadURL } from "firebase/storage"
 import {fileStorage} from "../../server/configs/firebase"
 import { AdminModalDropdown } from "./AdminModalDropdown";
+import { Select } from "@chakra-ui/react";
+import { Products } from "./Services/axios";
 
 
 interface Props {
@@ -28,6 +30,7 @@ interface Props {
   addressRef?: string;
   categoryIdRef?: string;
   resNameRef?: string;
+  category:Products[];
 
 
  
@@ -53,7 +56,7 @@ export const AdminModal1 = ({
   addressRef,
   categoryIdRef,
   resNameRef,
-  
+  category,
  
 }: Props) => {
   const [imgUrl, setImgUrl] = useState<any>("");
@@ -137,10 +140,12 @@ export const AdminModal1 = ({
               <div>
                 <AdminModalInput useRef={categoryRef} p="Name" />
                 <AdminModalInput useRef={slugRef} p="Slug" />
+              
               </div>
             )}
                {mod === "2" && (
               <div>
+              
                 <AdminModalInput useRef={resNameRef} p="Name" />
                 <AdminModalInput useRef={cuisineRef} p="Cuisine" />
                 <AdminModalInput useRef={priceRef} p="Delivery Price $" type="number" />
@@ -152,6 +157,25 @@ export const AdminModal1 = ({
                 useRef={categoryIdRef}
                 p="Category"
                 />
+              </div>
+            )}
+
+            
+            {mod === "3" && (
+              <div>
+                <AdminModalInput useRef={categoryRef} p="Name" />
+                <AdminModalInput useRef={slugRef} p="Price" />
+                <div className={` flex flex-col gap-2  `}>
+               
+                <Select  className="   bg-darkBlue20 rounded-2xl font-medium text-base  text-whiteLight pl-5 py-3  capitalize ">
+                {category.map((item, id) => {
+                  return <option key={id} value={item.id}>{item.name}</option>;
+                })}
+              </Select>
+          
+               </div>
+                
+              
               </div>
             )}
           

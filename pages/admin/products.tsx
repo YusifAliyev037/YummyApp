@@ -1,3 +1,4 @@
+import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1'
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
 import Pagination from '@/shared/AdminComponents/Pagination'
@@ -11,6 +12,8 @@ import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 
 function Products() {
+ 
+  const [imgUrl, setImgUrl] = useState<string>("");
   const [products, setProducts] = useState<Products[]>([]);
   const [originalProducts, setOriginalProducts] = useState<Products[]>([]);
   const [category, setCategory] = useState<Category[]>([]);
@@ -18,6 +21,8 @@ function Products() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleteModalId, setIsDeleteModalId] = useState<Products | null>(null);
   let b;
+
+  
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -31,6 +36,11 @@ function Products() {
       
     }
   };
+
+  function addCategory(){
+    console.log("salam");
+    
+  }
 
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
@@ -70,6 +80,10 @@ function Products() {
       console.error("Error fetching categories: ", error);
     }
   }
+  function getImgUrl(url: string): void {
+    
+    setImgUrl(url);
+  }
 
   useEffect(() => {
     fetchProducts();
@@ -95,6 +109,7 @@ function Products() {
   
   return (
     <Box className=' bg-darkBlue10 h-screen '>
+
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
         if (isDeleteModalId !== null) {
           handleDeleteProduct(isDeleteModalId);

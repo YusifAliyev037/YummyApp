@@ -27,12 +27,14 @@ module.exports = {
       pink10: "#c74feb",
       pink20: "#FCDDEC",
       pink30: "#d25ff5",
+      pink40:"#eb5757",
 
       blue10: "#00b2a9",
       grey10: "#C7C7C7",
       gray20: "#5a5b70",
       blue10: "#38394E",
       blue20: "#00B2A9",
+
 
       gray100: "#d0d0d0",
       gray200: "#f3f4f6",

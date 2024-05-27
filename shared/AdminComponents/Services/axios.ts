@@ -172,3 +172,19 @@ export async function deleteProducts(id: string) {
     throw new Error('Failed to delete product!');
   }
 }
+
+
+export const postRegisterData = async (form: FormRegister) => {
+  try {
+    
+    const response = await instanceAxios.post('/auth/signup', form);
+   
+    return response;
+    
+    
+  } catch (error) {
+   
+
+  return false
+  }
+};
