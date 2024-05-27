@@ -94,6 +94,7 @@ export const AdminModal1 = ({
       className={` fixed  z-10  w-full sm:w-3/4    sm:pl-12 ${
         hidden ? "  -right-full" : "right-0"
       }  transition-all duration-500 top-0 h-screen`}
+      
     >
       <button
         onClick={onClickClose}

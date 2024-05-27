@@ -383,6 +383,9 @@ const Restaurants: FC = () => {
           ButtonOnClick={handleCreateRestaurant}
           imgRef={ImgRef}
         />
+       
+
+        
         <AdminModal1
           arr={resCategoryARR}
           mod='2'
@@ -401,7 +404,9 @@ const Restaurants: FC = () => {
           resNameRef={resNameRef}
           ButtonOnClick={editRestaurant}
           imgRef={ImgRef}
+          
         />
+      
       </Box>
       <Box
         as='main'
