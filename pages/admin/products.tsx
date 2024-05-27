@@ -20,6 +20,12 @@ function products() {
 
   const dispatch = useDispatch()
 
+<<<<<<< HEAD
+function Products() {
+ 
+  const [imgUrl, setImgUrl] = useState<string>("");
+=======
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
   const [products, setProducts] = useState<Products[]>([]);
   console.log("products", products);
   
@@ -44,6 +50,9 @@ function products() {
 
   let b;
 
+<<<<<<< HEAD
+  
+=======
   const productNameRef = useRef<HTMLInputElement>(null);
   const productDescRef = useRef<HTMLInputElement>(null);
   const productPriceRef = useRef<HTMLInputElement>(null);
@@ -137,6 +146,7 @@ function products() {
     !!proPrice &&
     !!img_url 
   )};
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -150,6 +160,11 @@ function products() {
       
     }
   };
+
+  function addCategory(){
+    console.log("salam");
+    
+  }
 
   const handleCloseModal = () => {
     setIsDeleteModalOpen(false);
@@ -190,6 +205,10 @@ function products() {
     } catch(error) {
       console.error("Error fetching categories: ", error);
     }
+  }
+  function getImgUrl(url: string): void {
+    
+    setImgUrl(url);
   }
 
   useEffect(() => {
@@ -242,7 +261,11 @@ function products() {
   },[])
   return (
     <Box className=' bg-darkBlue10 h-screen '>
+<<<<<<< HEAD
+
+=======
       
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
         if (isDeleteModalId !== null) {
           handleDeleteProduct(isDeleteModalId);

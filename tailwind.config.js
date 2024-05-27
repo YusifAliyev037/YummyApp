@@ -24,10 +24,18 @@ module.exports = {
 
       orange: '#EAAB00',
 
+<<<<<<< HEAD
+      pink: "#c035a2",
+      pink10: "#c74feb",
+      pink20: "#FCDDEC",
+      pink30: "#d25ff5",
+      pink40:"#eb5757",
+=======
       pink: '#c035a2',
       pink10: '#c74feb',
       pink20: '#FCDDEC',
       pink30: '#d25ff5',
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
 
       blue10: '#00b2a9',
       grey10: '#C7C7C7',
@@ -35,6 +43,22 @@ module.exports = {
       blue10: '#38394E',
       blue20: '#00B2A9',
 
+<<<<<<< HEAD
+
+      gray100: "#d0d0d0",
+      gray200: "#f3f4f6",
+      gray300: "rgb(130, 130, 130)",
+      gray400: "#7e7e7e",
+      gray500: "rgb(39, 39, 39)",
+      black: "#000000",
+      black200: "rgb(24, 22, 23)",
+      red500: "#DC2626",
+      red100: "rgb(214, 54, 38)",
+      white: "#ffffff",
+      orange100: "rgb(251, 147, 0);",
+      orange200: "rgb(255, 182, 79);",
+      yellow100: "rgb(223, 179, 0);",
+=======
       gray100: '#d0d0d0',
       gray200: '#F3F4F6',
       gray300: 'rgb(130, 130, 130)',
@@ -55,6 +79,7 @@ module.exports = {
       orange100: 'rgb(251, 147, 0);',
       orange200: 'rgb(255, 182, 79);',
       yellow100: 'rgb(223, 179, 0);',
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
     },
     screens: {
       xs: '320px',

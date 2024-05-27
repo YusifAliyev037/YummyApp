@@ -6,6 +6,8 @@ import Image from "next/image";
 import { ref, uploadBytes,getDownloadURL } from "firebase/storage"
 import {fileStorage} from "../../server/configs/firebase"
 import { AdminModalDropdown } from "./AdminModalDropdown";
+import { Select } from "@chakra-ui/react";
+import { Products } from "./Services/axios";
 
 
 interface Props {
@@ -22,6 +24,18 @@ interface Props {
   getImgUrl?: any;
   slugRef?: any;
   imgRef?: any;
+<<<<<<< HEAD
+  cuisineRef?: string;
+  priceRef?: number;
+  deliveryMinRef?: number;
+  addressRef?: string;
+  categoryIdRef?: string;
+  resNameRef?: string;
+  category:Products[];
+
+
+ 
+=======
   cuisineRef?: any;
   priceRef?: any;
   deliveryMinRef?: any;
@@ -32,6 +46,7 @@ interface Props {
   productDescRef?:any;
   productPriceRef?:any;
   productRestaurantRef?:any
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
 }
 
 export const AdminModal1 = ({
@@ -54,10 +69,14 @@ export const AdminModal1 = ({
   addressRef,
   categoryIdRef,
   resNameRef,
+<<<<<<< HEAD
+  category,
+=======
   productNameRef,
   productDescRef,
   productPriceRef,
   productRestaurantRef
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
  
 }: Props) => {
   const [imgUrl, setImgUrl] = useState<any>("");
@@ -142,10 +161,12 @@ export const AdminModal1 = ({
               <div>
                 <AdminModalInput useRef={categoryRef} p="Name" />
                 <AdminModalInput useRef={slugRef} p="Slug" />
+              
               </div>
             )}
                {mod === "2" && (
               <div>
+              
                 <AdminModalInput useRef={resNameRef} p="Name" />
                 <AdminModalInput useRef={cuisineRef} p="Cuisine" />
                 <AdminModalInput useRef={priceRef} p="Delivery Price $" type="number" />
@@ -160,6 +181,25 @@ export const AdminModal1 = ({
               </div>
             )}
 
+<<<<<<< HEAD
+            
+            {mod === "3" && (
+              <div>
+                <AdminModalInput useRef={categoryRef} p="Name" />
+                <AdminModalInput useRef={slugRef} p="Price" />
+                <div className={` flex flex-col gap-2  `}>
+               
+                <Select  className="   bg-darkBlue20 rounded-2xl font-medium text-base  text-whiteLight pl-5 py-3  capitalize ">
+                {category.map((item, id) => {
+                  return <option key={id} value={item.id}>{item.name}</option>;
+                })}
+              </Select>
+          
+               </div>
+                
+              
+              </div>
+=======
             {mod === "3" && (
              <div>
              <AdminModalInput p="Name" useRef={productNameRef} />
@@ -172,6 +212,7 @@ export const AdminModal1 = ({
                className="w-full bg-darkBlue_4 rounded-2xl font-medium text-base text-whiteLight pl-3 py-4"
              />
            </div>
+>>>>>>> bdb519fa3d9d3b51811e041b260642d536c8d856
             )}
           
           </div>
