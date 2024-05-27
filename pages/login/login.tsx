@@ -191,7 +191,8 @@ console.log(passwordShow);
         </Text>
          </Box>
 
-        <Box className='flex flex-col gap-[68px]'>
+        <Box className='flex flex-col gap-[67px]'>
+          
 
        <Box className='flex flex-col gap-[30px]'>
        <Box>
