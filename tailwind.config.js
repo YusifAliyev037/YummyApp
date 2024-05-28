@@ -45,6 +45,7 @@ module.exports = {
       gray600:"rgb(79, 79, 79)",
       black: '#000000',
       black200: 'rgb(24, 22, 23)',
+      black300:"rgb(51, 51, 51)",
       red400: '#d63626',
       red500: '#DC2626',
       redUserModul: '#ed5d53',
