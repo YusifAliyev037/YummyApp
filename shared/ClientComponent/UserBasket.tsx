@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Button, Image } from "@chakra-ui/react";
+import { Box, Text, Image, Button } from "@chakra-ui/react";
 import { FaShoppingBasket, FaTrashAlt } from "react-icons/fa";
 
 const BasketItem = ({
@@ -31,6 +31,10 @@ const BasketItem = ({
 );
 
 const UserBasket: React.FC = () => {
+  const handleClick = () => {
+    // Add your checkout logic here
+    console.log("Checkout button clicked");
+  };
   return (
     <Box className=" w-[970px] h-[735px]  bg-gray200 mt-[15px] mr-[35px]  p-8 shadow-lg">
       <Text className="text-2xl font-bold mb-4">Your Basket</Text>
@@ -61,11 +65,14 @@ const UserBasket: React.FC = () => {
         quantity={3}
       />
 
-      <Box className="absolute bg-red400 text-white px-6 py-2 mt-[38px] w-[936px] h-[58px] rounded-30 flex justify-between items-center p-4  shadow-lg">
+      <Box
+        onClick={handleClick}
+        className="absolute bg-red400 cursor-pointer text-white px-6 py-2 mt-[38px] w-[936px] h-[58px] rounded-30 flex justify-between items-center p-4  shadow-lg"
+      >
         <Text className="text-xl font-semibold">Checkout</Text>
-        <Button className="text-xl font-semibold w-[189px] h-[43px] rounded-50 text-red500 ">
+        <button className="text-xl font-semibold w-[189px] h-[43px] text-red500 bg-white rounded-50">
           $34.40
-        </Button>
+        </button>
       </Box>
     </Box>
   );
