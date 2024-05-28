@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 function HomeSection1() {
+  const router = useRouter();
   return (
     <div className="px-[30px] ">
       <div className="bg-gray200 mx-6 md:mx-0 md:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
@@ -13,7 +15,7 @@ function HomeSection1() {
             and publishing industries for previewing layouts and visual mockups.
           </p>
           <div className="flex gap-8">
-            <button className="bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">
+            <button onClick={()=>router.push("/login/register")} className="bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">
               Register
             </button>
             <button className="border border-gray10 text-gray20 w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">

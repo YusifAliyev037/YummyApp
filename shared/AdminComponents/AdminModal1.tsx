@@ -193,5 +193,3 @@ export const AdminModal1 = ({
     </div>
   );
 };
-
-

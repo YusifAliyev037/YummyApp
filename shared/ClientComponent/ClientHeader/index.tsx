@@ -119,7 +119,7 @@ const ClientHeader: React.FC = () => {
             </div>
           </div>
 
-          <button className="bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer">
+          <button onClick={()=>router.push("/login/login")} className="bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer">
             Sign up
           </button>
         </div>
