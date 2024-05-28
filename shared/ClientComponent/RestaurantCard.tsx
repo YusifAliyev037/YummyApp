@@ -1,4 +1,4 @@
-import { Box, ButtonGroup, Card, CardBody, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Image, Stack, Text } from '@chakra-ui/react'
 // import Image from 'next/image'
 import React from 'react'
 
