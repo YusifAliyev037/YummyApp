@@ -28,12 +28,14 @@ module.exports = {
       pink10: '#c74feb',
       pink20: '#FCDDEC',
       pink30: '#d25ff5',
+      pink40: '#eb5757',
 
       blue10: '#00b2a9',
       grey10: '#C7C7C7',
       gray20: '#5a5b70',
       blue10: '#38394E',
       blue20: '#00B2A9',
+      
 
       gray100: '#d0d0d0',
       gray200: '#F3F4F6',
@@ -55,6 +57,7 @@ module.exports = {
       orange100: 'rgb(251, 147, 0);',
       orange200: 'rgb(255, 182, 79);',
       yellow100: 'rgb(223, 179, 0);',
+
     },
     screens: {
       xs: '320px',

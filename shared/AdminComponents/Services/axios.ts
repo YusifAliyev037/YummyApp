@@ -197,6 +197,21 @@ export async function deleteProducts(id: string) {
   }
 }
 
+export const postRegisterData = async (form: FormRegister) => {
+  try {
+    
+    const response = await instanceAxios.post('/auth/signup', form);
+   
+    return response;
+    
+    
+  } catch (error) {
+   
+
+  return false
+  }
+};
+
 //* createProduct
 
 export async function addProducts(form:Products){
@@ -220,3 +235,4 @@ export async function updateProduct(id: string, form: Products){
       
     }
 }
+

@@ -1,18 +1,20 @@
 
-import ClientFooter from '@/shared/ClientComponent/ClientFooter';
-import ClientHeader from "@/shared/ClientComponent/ClientHeader";
-import RestaurantNavbar from '@/shared/ClientComponent/RestaurantNavbar';
+import ClientHeader from '@/shared/ClientComponent/ClientHeader'
+import ClientFooter from '@/shared/ClientComponent/ClientFooter'
+import React from 'react'
+import RestaurantNavbar from '@/shared/ClientComponent/RestaurantNavbar'
 
-const Restaurant = () => {
+function index() {
   return (
     <>
-      <ClientHeader />
-    <RestaurantNavbar/>
-
-
-      <ClientFooter />
+        <ClientHeader/>
+        <RestaurantNavbar/>
+        
+        <ClientFooter/>
+      
     </>
-  );
-};
+  )
+}
 
-export default Restaurant;
+export default index
+
