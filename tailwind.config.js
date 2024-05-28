@@ -4,6 +4,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './shared/**/*.{js,ts,jsx,tsx,mdx}',
+
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -19,7 +20,7 @@ module.exports = {
       white10: '#f5f5f5',
       white20: '#fffefe',
       white30: '#f2f2f2',
-      white40: '#F3F4F6',
+      white40: ' #F3F4F6',
 
       orange: '#EAAB00',
 
@@ -32,13 +33,9 @@ module.exports = {
       blue10: '#00b2a9',
       grey10: '#C7C7C7',
       gray20: '#5a5b70',
+      blue10: '#38394E',
       blue20: '#00B2A9',
-
-      red100: 'rgb(214, 54, 38)',
-
-      orange100: 'rgb(251, 147, 0)',
-      orange200: 'rgb(255, 182, 79)',
-      yellow100: 'rgb(223, 179, 0)',
+      
 
       gray100: '#d0d0d0',
       gray200: '#F3F4F6',
@@ -50,9 +47,17 @@ module.exports = {
       red400: '#d63626',
       red500: '#DC2626',
       redUserModul: '#ed5d53',
+
       redUserModul10: '#D63626',
       userText: '#828282',
-      ordersBg: '#00072B',
+      ordersBg: ' #00072B',
+
+      red100: 'rgb(214, 54, 38)',
+      white: '#ffffff',
+      orange100: 'rgb(251, 147, 0);',
+      orange200: 'rgb(255, 182, 79);',
+      yellow100: 'rgb(223, 179, 0);',
+
     },
     screens: {
       xs: '320px',
