@@ -2,7 +2,6 @@ import { Box, Button } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { CategoryType } from '../AdminComponents/TableCategory';
 import { getCategories } from '../AdminComponents/Services/axios';
 
@@ -29,11 +28,7 @@ function RestaurantNavbar() {
     return (
         <Box
             as='section'
-            bg='whiteAlpha.40'
-            borderRadius='xl'
-            p={5}
-            m={7}
-            mt={4}
+            className='bg-white40 rounded-xl p-5 m-7 mt-4 '
             width='250px'
             height='650px'
         >
