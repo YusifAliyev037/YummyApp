@@ -16,8 +16,8 @@ function UserModul() {
   return (
     <Box
       as="section"
-      className="bg-white40 rounded-xl p-5 m-7 mt-4 "
-      width="350px"
+      className="bg-white40 rounded-xl p-5 ml-7 mt-4 "
+      width="325px"
       height="515px"
     >
       <Box as="ul" className="flex flex-col mt-8">

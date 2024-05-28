@@ -10,28 +10,29 @@ const BoxCheck1 = () => {
   const toggleCheck2 = () => setIsChecked2(!isChecked2);
   return (
     <Box
-      className='flex flex-col  mt-4 mr-8   gap-9  bg-white40'
+      className='flex flex-col  mt-4  bg-white40'
       width='618px'
       height='515px'
     >
-      <Box className='ml-12 mt-10 ' >
-        <Text className='w-40 h-8 text-color-#4F4F4F'>Checkout</Text>
+      <Box className='ml-10 mt-10 ' >
+        <Text marginBottom='23px'  fontSize='3xl' className=' text-color-#4F4F4F'>Checkout</Text>
       </Box>
-      <Box></Box>
-      <Box className='flex justify-center'>
+     
+      <Box className='flex justify-center' >
         <Box>
           <Box>
-            <Text className='text-color-#4F4F4F'>Delivery Address</Text>
+            <Text  className='text-color-#4F4F4F'>Delivery Address</Text>
             <Input
               width='542px'
               height='53px'
               bg='white'
               type='text'
               placeholder='Ataturk 45,Genclik Baku'
+              marginBottom='26px'
             />
           </Box>
           <Box >
-            <Text className='text-color-#4F4F4F'>Contact Number</Text>
+            <Text marginBottom='11px' className='text-color-#4F4F4F'>Contact Number</Text>
             <Input
             
               width='542px'
@@ -39,11 +40,12 @@ const BoxCheck1 = () => {
               bg='white'
               type='number'
               placeholder='+994'
+              marginBottom='25px'
             />
           </Box>
           <Box>
             <Box>
-              <Text className='text-color-#4F4F4F'>Payment Method</Text>
+              <Text marginBottom='21px' className='text-color-#4F4F4F'>Payment Method</Text>
             </Box>
             <Box
               display='flex'
@@ -55,7 +57,7 @@ const BoxCheck1 = () => {
                 width='33px'
                 height='33px'
                 borderRadius='full'
-                bg={isChecked1 ? '#6FCF97' : 'white'}
+                bg={isChecked1 ? '#ffff' : 'white'}
                 borderWidth='1px'
                 borderColor={isChecked1 ? '#6FCF97' : '#BDBDBD'}
                 onClick={toggleCheck1}
@@ -81,7 +83,7 @@ const BoxCheck1 = () => {
                 width='33px'
                 height='33px'
                 borderRadius='full'
-                bg={isChecked2 ? '#6FCF97' : 'white'}
+                bg={isChecked2 ? '#ffff'  : 'white'}
                 borderWidth='1px'
                 borderColor={isChecked2?'#6FCF97' : '#BDBDBD'}
                 onClick={toggleCheck2}

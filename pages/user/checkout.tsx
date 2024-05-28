@@ -10,11 +10,11 @@ const Checkout = () => {
   return (
     <Box>
         <ClientHeader/>
-<Box className='flex' width={'100%'}>
-  <Box width={'26%'} >
+<Box className='flex' height='790px' gap='18px'>
+  <Box  >
 <UserModul/>
 </Box>
-       <Box display='flex' width={'76%'}  >
+       <Box display='flex'  gap='20px' >
         <BoxCheck1/>
         <BoxCheck2/>
        </Box>
