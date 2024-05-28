@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { RootState } from "@/shared/redux/store";
+import { useSelector } from "react-redux";
+import { Box } from "@chakra-ui/react";
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
@@ -7,7 +10,13 @@ const ClientHeader: React.FC = () => {
 
   const isActive = (route: string) => {
     return router.pathname === route ? "text-red500" : "text-black";
+
   };
+
+  const loginState = useSelector((state: RootState) => state.global.login);
+  console.log(loginState);
+  const firstNameLetter = loginState.fullname ? loginState.fullname.toUpperCase()[0] : '';
+const usernameLetter = loginState.username ? loginState.username.toUpperCase()[0] : '';
 
   return (
     <div className="flex items-center  mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
@@ -119,9 +128,47 @@ const ClientHeader: React.FC = () => {
             </div>
           </div>
 
-          <button onClick={()=>router.push("/login/login")} className="bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer">
-            Sign up
-          </button>
+
+
+          {loginState?.username && loginState.username.length !== 0 ? (
+
+            <Box>
+              <Box className="flex items-center justify-center" width={"44px"} height={"44px"} backgroundColor={"#F178B6"} borderRadius={"22px"} >
+     <h1 className="font-roboto font-medium text-white text-center text-2xl leading-6 tracking-wide"  > {firstNameLetter + usernameLetter}</h1>
+       
+      
+    </Box>
+
+    <Box backgroundColor={"#FFFFFF"} width={"178px"} height={"234px"} >
+        <ul>
+          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black">
+          Profile
+          </li>
+          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
+          Your Basket
+          </li>
+          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
+          Your Orders
+          </li>
+          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
+          Checkout
+          </li>
+           <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
+           Logout
+           </li>
+        </ul>
+
+       </Box>
+
+            </Box>
+        
+    
+      ) : (
+        
+        <button onClick={()=>router.push("/login")} className="bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer">
+        Sign up
+      </button>
+      )}
         </div>
       </div>
     </div>

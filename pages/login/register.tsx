@@ -1,11 +1,13 @@
 import { postRegisterData } from '@/shared/AdminComponents/Services/axios';
 import MetaSeo from '@/shared/MetaSeo';
+
 import { Image } from '@chakra-ui/next-js';
 import { Box, Button, Flex, Input, Text, useToast } from '@chakra-ui/react';
 import { error } from 'console';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+
 
 
 
@@ -17,6 +19,9 @@ interface FormValues {
 }
 
 const register: React.FC = () => {
+
+
+  
  
   const [showDropdown, setShowDropdown] = useState(false);
   const[passwordShow,setpasswordShow]=useState(false)
@@ -211,7 +216,7 @@ const toast = useToast()
 
        <Box className='ml-[39px] ' >
        <Box className='flex justify-center gap-[65px] pb-[72px]'>
-        <Text  onClick={()=>router.push("/login/login")}  color={"#828282"} className="font-roboto text-lg font-normal leading-6 tracking-wide cursor-pointer " >
+        <Text  onClick={()=>router.push("/login")}  color={"#828282"} className="font-roboto text-lg font-normal leading-6 tracking-wide cursor-pointer " >
           Login
         </Text>
 

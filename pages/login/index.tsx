@@ -6,6 +6,10 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import { FormRegister, completeLogin } from '@/shared/AdminComponents/Services/axios';
 import { log } from 'console';
+import { useDispatch, useSelector } from 'react-redux';
+import { addlogin } from '@/shared/redux/global/globalSlice';
+
+
 
 
 
@@ -19,6 +23,7 @@ interface FormValues {
 const Login: React.FC = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const[passwordShow,setpasswordShow]=useState(false)
+  const dispatch = useDispatch();
 console.log(passwordShow);
 
   
@@ -80,8 +85,11 @@ console.log(passwordShow);
     };
 
     const res = await completeLogin(form);
-
-    console.log("res", res);
+    
+    
+    dispatch(addlogin(res?.data?.user))
+ 
+   
     
 
     if(res?.status === 200){
@@ -115,7 +123,11 @@ console.log(passwordShow);
       
     }
 
+    
+
     return;
+
+    
 
   }
   

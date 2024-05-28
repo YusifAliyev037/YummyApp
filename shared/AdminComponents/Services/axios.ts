@@ -26,6 +26,17 @@ export type FormRegister = {
   phone?: string | undefined;
 };
 
+export type FormRegisterGet = {
+  email?: string | undefined;
+  fullname?: string | undefined;
+  username?: string | undefined;
+  id?:string | undefined;
+  refresh_token?:string | undefined;
+  access_token?:string | undefined;
+};
+
+
+
 //! LOGIN
 
 export const completeLogin = async (form: FormRegister) => {
