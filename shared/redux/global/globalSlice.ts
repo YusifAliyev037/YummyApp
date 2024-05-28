@@ -36,9 +36,9 @@ export const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    fillCategory: (state, action: PayloadAction<CategoryItem[]>) => {
-      state.category = action.payload;
-    },
+    fillCategory: (state, action:PayloadAction<CategoryItem[]>) => {
+      state.category = [...action.payload]
+  },
     fillRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
       state.restaurant = action.payload;
     },
