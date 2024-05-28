@@ -1,5 +1,6 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import BoxCheck2 from './BoxCheck2';
 
 const BoxCheck1 = () => {
   const [isChecked1, setIsChecked1] = useState(false);
@@ -13,12 +14,12 @@ const BoxCheck1 = () => {
       width='618px'
       height='515px'
     >
-      <Box className='ml-12 mt-10 '>
+      <Box className='ml-12 mt-10 ' >
         <Text className='w-40 h-8 text-color-#4F4F4F'>Checkout</Text>
       </Box>
       <Box></Box>
       <Box className='flex justify-center'>
-        <Box ml='4'>
+        <Box>
           <Box>
             <Text className='text-color-#4F4F4F'>Delivery Address</Text>
             <Input
@@ -29,9 +30,10 @@ const BoxCheck1 = () => {
               placeholder='Ataturk 45,Genclik Baku'
             />
           </Box>
-          <Box marginTop='7px'>
+          <Box >
             <Text className='text-color-#4F4F4F'>Contact Number</Text>
             <Input
+            
               width='542px'
               height='53px'
               bg='white'
@@ -72,7 +74,8 @@ const BoxCheck1 = () => {
                 )}
                 </Box>
               
-                  <Text marginEnd='auto'>pay at the door</Text>
+                  <Text color=' #6FCF97;' marginEnd='auto' width='112px' height='21px'>pay at the door</Text>
+
               
                 <Box
                 width='33px'
@@ -98,7 +101,7 @@ const BoxCheck1 = () => {
                 )}
 
                 </Box>
-               <Text>pay at the door by credit card</Text>
+               <Text >pay at the door by credit card</Text>
             </Box>
             <Button
               marginTop='32px'
@@ -109,7 +112,9 @@ const BoxCheck1 = () => {
             >
               Checkout
             </Button>
+        
           </Box>
+         
         </Box>
       </Box>
     </Box>
