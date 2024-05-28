@@ -8,10 +8,10 @@ const BoxCheck2 = () => {
    mt='20px'
     width='397px'
     height='372px'
-
+gap='10px'
     boxShadow='md'
     borderRadius='md'
-    p='4'
+    p='9'
     display='flex'
     flexDirection='column'
     justifyContent='center'
