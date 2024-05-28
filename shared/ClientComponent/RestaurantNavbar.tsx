@@ -1,3 +1,4 @@
+
 import { Box, Button } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -89,6 +90,7 @@ function RestaurantNavbar() {
         </Box>
       </Box>
     );
+
 }
 
 export default RestaurantNavbar

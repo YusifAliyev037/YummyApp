@@ -1,3 +1,4 @@
+
 import ClientHeader from '@/shared/ClientComponent/ClientHeader'
 import ClientFooter from '@/shared/ClientComponent/ClientFooter'
 import React from 'react'
@@ -16,3 +17,4 @@ function index() {
 }
 
 export default index
+
