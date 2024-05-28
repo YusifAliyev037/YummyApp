@@ -36,6 +36,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   
 
   const catRed: CategoryType[] = useSelector((state: any) => state.global.category);
+  
 
   const changeHidden = (): void => {
     setHidden((prev: boolean) => !prev);
