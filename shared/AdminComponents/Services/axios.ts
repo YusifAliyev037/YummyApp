@@ -17,10 +17,13 @@ export type Form = {
 };
 
 export type FormRegister = {
-  email: string | undefined;
-  password: string | undefined;
+  
+  email?: string | undefined;
+  password?: string | undefined;
   fullname?: string | undefined;
   username?: string | undefined;
+  img_url?: string | undefined;
+  phone?: string | undefined;
 };
 
 //! LOGIN
@@ -35,6 +38,18 @@ export const completeLogin = async (form: FormRegister) => {
     console.log(error);
   }
 };
+
+// updateProfile
+
+export const updateProfile = async(form:FormRegister)=>{
+  try {
+    const response=await instanceAxios.put("/auth/user",form)
+    return response;
+  } catch (error) {
+    alert ('Check your information')
+    console.log(error)
+  }
+}
 
 export type Category = {
   id?: string;
@@ -64,15 +79,14 @@ export async function delCategories(id: string) {
   }
 }
 
-//*editCategory 
+//*editCategory
 
-export async function getEditCategies(id:string) {
-  try{
-    const response = await instanceAxios.get(`/category/${id}`)
-    return response
-  }catch(error){
+export async function getEditCategies(id: string) {
+  try {
+    const response = await instanceAxios.get(`/category/${id}`);
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
@@ -86,19 +100,16 @@ export async function updateCategories(id: string, form: Form) {
   }
 }
 
+//* categoryPost
 
-  //* categoryPost
-
-  export async function postCategory(form:Form){
-    try{
-      const response = await instanceAxios.post("/category", form)
-      return response
-    }catch(error){
-      console.log(error);
-      
-    }
+export async function postCategory(form: Form) {
+  try {
+    const response = await instanceAxios.post('/category', form);
+    return response;
+  } catch (error) {
+    console.log(error);
   }
-
+}
 
 //! Restaurant
 
@@ -107,7 +118,7 @@ export type Restaurant = {
   category_id: string | number | undefined;
   img_url: string | undefined;
   cuisine: string | undefined;
-  address:string | undefined;
+  address: string | undefined;
   delivery_min: string | number | undefined;
   delivery_price: number | any;
   id?: string | any;
@@ -136,7 +147,7 @@ export async function deleteRestaurant(restaurantId: string) {
   }
 }
 
-export async function AddRestaurant( form: Form) {
+export async function AddRestaurant(form: Form) {
   try {
     const response = await instanceAxios.post(`/restuarants`, form);
     return response;
@@ -147,25 +158,23 @@ export async function AddRestaurant( form: Form) {
 
 //* editRestaurant
 
-export async function getEditRestaurant(id:string){
-  try{
+export async function getEditRestaurant(id: string) {
+  try {
     const response = await instanceAxios.get(`/restuarants/${id}`);
-    return response
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
 //* updateRestaurants
 
-export async function updateRestaurant(id:string, form:Form){
-  try{
+export async function updateRestaurant(id: string, form: Form) {
+  try {
     const response = await instanceAxios.put(`/restuarants/${id}`, form);
-    return response
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
@@ -199,40 +208,32 @@ export async function deleteProducts(id: string) {
 
 export const postRegisterData = async (form: FormRegister) => {
   try {
-    
     const response = await instanceAxios.post('/auth/signup', form);
-   
-    return response;
-    
-    
-  } catch (error) {
-   
 
-  return false
+    return response;
+  } catch (error) {
+    return false;
   }
 };
 
 //* createProduct
 
-export async function addProducts(form:Products){
-  try{
-    const response = await instanceAxios.post(`/products`,form )
-    return response
-  }catch(error){
+export async function addProducts(form: Products) {
+  try {
+    const response = await instanceAxios.post(`/products`, form);
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
 //* editproduct
 
-export async function updateProduct(id: string, form: Products){
-    try{
-      const response = await instanceAxios.put(`/products/${id}`, form)
-      return response
-    }catch(error){
-      console.log(error);
-      
-    }
+export async function updateProduct(id: string, form: Products) {
+  try {
+    const response = await instanceAxios.put(`/products/${id}`, form);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
-

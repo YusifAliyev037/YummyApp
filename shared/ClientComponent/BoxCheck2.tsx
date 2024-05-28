@@ -17,11 +17,13 @@ const BoxCheck2 = () => {
     justifyContent='center'
     alignItems='center'
     textAlign='center'
+    color=' #828282'
     >
         <Text  fontSize='2xl' mb='2'>Your Order</Text>
       
         <Box mb='2' w='full' display='flex' justifyContent='space-between'>
-<Text >1x papa john's pizza restaurant</Text>
+<Text 
+ >1x papa john's pizza restaurant</Text>
 <Text >$11</Text>
         </Box>
         <Box mb='2' w='full' display='flex' justifyContent='space-between'>
