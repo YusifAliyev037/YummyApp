@@ -61,6 +61,16 @@ export const updateProfile = async(form:FormRegister)=>{
     console.log(error)
   }
 }
+// getProfileData
+export const getProfileData = async()=>{
+  try {
+    const response=await instanceAxios.get("/auth/user")
+    return response;
+  } catch (error) {
+    alert ('Check your information')
+    console.log(error)
+  }
+}
 
 export type Category = {
   id?: string;
