@@ -2,7 +2,6 @@ import { FormRegister, FormRegisterGet, Products, Restaurant } from '@/shared/Ad
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface CategoryItem {
-  id: string | undefined;
   name: string | undefined;
   slug: string | undefined;
   img_url: string | undefined;
@@ -38,19 +37,16 @@ export const globalSlice = createSlice({
   initialState,
   reducers: {
     fillCategory: (state, action: PayloadAction<CategoryItem[]>) => {
-      const newData = action.payload.filter(item => !state.category.some(existingItem => existingItem.id === item.id));
-      state.category = [...state.category, ...newData];
+      state.category = action.payload;
     },
-    
 
   
     fillRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
       state.restaurant = action.payload;
     },
 
-    fillProducts:(state, action: PayloadAction<Restaurant[]>) => {
-      const newData = action.payload.filter(item => !state.product.some(existingItem => existingItem.id === item.id));
-      state.product = [...state.category, ...newData];
+    fillProducts: (state, action: PayloadAction<Restaurant[]>) => {
+      state.product = action.payload;
     },
 
     

@@ -76,7 +76,6 @@ async function createProducts(){
   const res = await addProducts(form);
 
   if(res?.status === 201){
-    dispatch(fillProducts(res.data))
     if(productNameRef?.current &&
       productDescRef?.current &&
       productPriceRef?.current &&
