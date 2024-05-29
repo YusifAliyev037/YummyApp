@@ -51,6 +51,12 @@ export const globalSlice = createSlice({
     addlogin: (state, action: PayloadAction<FormRegisterGet>) => {
       state.login = action.payload;
     },
+    updateLogin: (state, action: PayloadAction<FormRegisterGet>) => {
+      state.login = {
+        ...state.login,
+        ...action.payload,
+      };
+    },
   
     addRestaurant: (state, action: PayloadAction<Restaurant>) => {
       state.restaurant.push(action.payload);
@@ -90,7 +96,8 @@ export const {
   setRestaurantToDelete,
   setHidden,
   setEditRestaurantModalHidden,
-  addlogin
+  addlogin,
+  updateLogin,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;

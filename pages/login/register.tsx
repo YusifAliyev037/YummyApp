@@ -3,18 +3,18 @@ import MetaSeo from '@/shared/MetaSeo';
 
 import { Image } from '@chakra-ui/next-js';
 import { Box, Button, Flex, Input, Text, useToast } from '@chakra-ui/react';
-import { error } from 'console';
+
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import {getProfileData} from 
+
 
 
 
 
 interface FormValues {
-  email: string | undefined;
-  password: string | undefined;
+  email?: string | undefined;
+  password?: string | undefined;
   fullname?: string | undefined;
   username?: string | undefined;
 }
@@ -112,8 +112,7 @@ const toast = useToast()
                 isClosable: true,
                 position: "top-right",
               });
-              // bunu men yazmisam(anar)
-              router.push('/profile')
+            
 
               setFormValues({
                 email: "",
