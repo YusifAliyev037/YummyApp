@@ -1,7 +1,7 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
 
 import React, { ChangeEvent, useState, FormEvent, useEffect } from 'react';
-import { FormRegisterGet, updateProfile } from '../AdminComponents/Services/axios';
+import {  updateProfile } from '../AdminComponents/Services/axios';
 import {  useSelector,useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { updateLogin } from '../redux/global/globalSlice';

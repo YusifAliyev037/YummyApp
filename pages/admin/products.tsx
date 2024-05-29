@@ -169,7 +169,7 @@ function products() {
   console.log(b);
   
 
-  let pagesData=productsArr.slice(b,(pages+1)*5);
+  let pagesData=productsArr?.slice(b,(pages+1)*5);
   
   async function fetchProducts() {
     try {
@@ -209,7 +209,7 @@ function products() {
       setProducts(products.filter((res) => res.id !== isDeleteModalId?.id));
       
         toast({
-          title: 'Product updated successfully!',
+          title: 'Product deleted successfully!',
           status: 'success',
           duration: 2000,
           position: 'top-right',

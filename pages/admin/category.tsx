@@ -65,8 +65,7 @@ function Category() {
 
           const res = await postCategory(form)
 
-          if(res?.status === 201){
-            dispatch(fillCategory(res.data));
+          if(res?.status === 201){            
             if(categoryRef.current && slugRef.current){
               categoryRef.current.value = '';
               slugRef.current.value = ''
