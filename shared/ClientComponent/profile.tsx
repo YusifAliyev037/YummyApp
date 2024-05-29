@@ -1,7 +1,8 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
-import axios from 'axios';
+
 import React, { ChangeEvent, useState, FormEvent } from 'react';
 import { updateProfile } from '../AdminComponents/Services/axios';
+import { useRouter } from 'next/router';
 interface FormRegister {
   contact?: string;
   username?: string;
@@ -25,6 +26,7 @@ const Profile = () => {
   })
   const [selectedImage, setSelectedImage] = useState<File|null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string|null>(null);
+  const router = useRouter();
 
    const handleInputChange=(e:ChangeEvent<HTMLInputElement>):void=>{
 const {name,value}=e.target;
@@ -78,6 +80,7 @@ console.log(formData);
           <Text width='164px' height='32px' color='#4F4F4F'>Profile</Text>
         </Box>
       <Box>
+
         
       <Box className='flex justify-center '>
           <label htmlFor="file-input">

@@ -7,6 +7,7 @@ import { error } from 'console';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import {getProfileData} from 
 
 
 
@@ -111,6 +112,8 @@ const toast = useToast()
                 isClosable: true,
                 position: "top-right",
               });
+              // bunu men yazmisam(anar)
+              router.push('/profile')
 
               setFormValues({
                 email: "",

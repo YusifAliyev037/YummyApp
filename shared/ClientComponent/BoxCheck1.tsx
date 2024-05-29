@@ -1,19 +1,37 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import BoxCheck2 from './BoxCheck2';
+import CheckoutOr from './CheckoutOr';
 
 const BoxCheck1 = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
+  const [showCheckoutOr, setShowCheckoutOr] = useState(false);
 
   const toggleCheck1 = () => setIsChecked1(!isChecked1);
   const toggleCheck2 = () => setIsChecked2(!isChecked2);
+const handleCheckout=()=>{
+  setShowCheckoutOr(true)
+}
+ 
   return (
-    <Box
+    
+    <Box className='flex' gap='19px' flexDirection='row-reverse'>
+ {!showCheckoutOr ? (
+         <>
+         
+      <Box>
+
+        <BoxCheck2/>
+      </Box>
+<Box
       className='flex flex-col  mt-4  bg-white40'
       width='618px'
       height='515px'
     >
+
+      
+
       <Box className='ml-10 mt-10 ' >
         <Text marginBottom='23px'  fontSize='3xl' className=' text-color-#4F4F4F'>Checkout</Text>
       </Box>
@@ -111,6 +129,7 @@ const BoxCheck1 = () => {
               height='53px'
               bg='#6FCF97'
               textColor='white'
+            onClick={handleCheckout}
             >
               Checkout
             </Button>
@@ -119,6 +138,14 @@ const BoxCheck1 = () => {
          
         </Box>
       </Box>
+    
+      
+     
+    </Box>
+    </>
+     ) : (
+      <CheckoutOr />
+    )}
     </Box>
   );
 };

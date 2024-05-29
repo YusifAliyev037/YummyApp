@@ -84,12 +84,12 @@ function UserModul() {
         </Box>
         <Box mb="32px">
           <Button
-            onClick={() => push("/user/logout")}
+            onClick={() => push("/login")}
             className="flex gap-7 w-52 text-userText cursor-pointer hover:bg-redUserModul10 hover:w-52"
             color="text-userText"
             style={{
               justifyContent: "flex-start",
-              backgroundColor: isActive("/user/logout"),
+              backgroundColor: isActive("/login"),
             }}
             as="li"
           >
