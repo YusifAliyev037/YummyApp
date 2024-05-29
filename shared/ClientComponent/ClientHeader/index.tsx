@@ -7,6 +7,7 @@ import { Box } from "@chakra-ui/react";
 const ClientHeader: React.FC = () => {
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
+  const[show,setShow]=useState(false)
 
   const isActive = (route: string) => {
     return router.pathname === route ? "text-red500" : "text-black";
@@ -132,35 +133,36 @@ const usernameLetter = loginState.username ? loginState.username.toUpperCase()[0
 
           {loginState?.username && loginState.username.length !== 0 ? (
 
-            <Box>
-              <Box className="flex items-center justify-center" width={"44px"} height={"44px"} backgroundColor={"#F178B6"} borderRadius={"22px"} >
-     <h1 className="font-roboto font-medium text-white text-center text-2xl leading-6 tracking-wide"  > {firstNameLetter + usernameLetter}</h1>
-       
-      
-    </Box>
+ <Box    className="relative flex flex-col items-center    ">
+   <Box onClick={()=>setShow(!show)} className="flex  items-center justify-center cursor-pointer " width={"44px"} height={"44px"} backgroundColor={"#F178B6"} borderRadius={"22px"} >
+    <h1 className="font-roboto font-medium text-white text-center text-2xl leading-6 tracking-wide">{firstNameLetter + usernameLetter}</h1>
+   
 
-    <Box backgroundColor={"#FFFFFF"} width={"178px"} height={"234px"} >
-        <ul>
-          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black">
-          Profile
-          </li>
-          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
-          Your Basket
-          </li>
-          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
-          Your Orders
-          </li>
-          <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
-          Checkout
-          </li>
-           <li className="font-roboto font-normal text-base leading-7 tracking-tighter text-black" >
-           Logout
-           </li>
-        </ul>
 
-       </Box>
 
-            </Box>
+</Box>
+
+   
+{show && (
+  <Box className="absolute top-14 z-10000" backgroundColor={"#FFFFFF"} width={"178px"}>
+    <ul className="space-y-2 pl-6 p-2">
+      <li onClick={() => router.push("/user")} className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300">Profile</li>
+      <li onClick={() => router.push("/user/basket")} className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300">Your Basket</li>
+      <li onClick={() => router.push("/user/orders")} className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300">Your Orders</li>
+      <li onClick={() => router.push("/user/checkout")} className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300">Checkout</li>
+      <li onClick={() => router.push("/login")} className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300">Logout</li>
+    </ul>
+  </Box>
+)}
+
+
+
+
+
+  </Box>
+
+
+
         
     
       ) : (
@@ -169,6 +171,8 @@ const usernameLetter = loginState.username ? loginState.username.toUpperCase()[0
         Sign up
       </button>
       )}
+
+
         </div>
       </div>
     </div>
