@@ -5,17 +5,14 @@ import PushModul from '@/shared/AdminComponents/PushModul';
 import { Form, postCategory } from '@/shared/AdminComponents/Services/axios';
 import TableCategory from '@/shared/AdminComponents/TableCategory';
 import MetaSeo from '@/shared/MetaSeo';
-import { fillCategory } from '@/shared/redux/global/globalSlice';
 import { Box, Button, InputGroup, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 function Category() {
  
   const customIds = Array.from({ length: 10 }, (_, i) => i);
 
-  const dispatch = useDispatch()
 
   const toast = useToast() 
 
@@ -65,8 +62,7 @@ function Category() {
 
           const res = await postCategory(form)
 
-          if(res?.status === 201){
-            dispatch(fillCategory(res.data));
+          if(res?.status === 201){            
             if(categoryRef.current && slugRef.current){
               categoryRef.current.value = '';
               slugRef.current.value = ''

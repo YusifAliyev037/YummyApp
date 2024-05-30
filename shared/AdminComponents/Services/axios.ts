@@ -24,6 +24,7 @@ export type FormRegister = {
   username?: string | undefined;
   img_url?: string | undefined;
   phone?: string | undefined;
+  access_token?:string | undefined;
 };
 
 export type FormRegisterGet = {
@@ -52,9 +53,35 @@ export const completeLogin = async (form: FormRegister) => {
 
 // updateProfile
 
-export const updateProfile = async(form:FormRegister)=>{
+// export const updateProfile = async(form:FormRegister)=>{
+//   try {
+//     const response=await instanceAxios.put("/auth/user",form)
+//     return response;
+//   } catch (error) {
+//     alert ('Check your information')
+//     console.log(error)
+//   }
+// }
+
+export const updateProfile = async (form: FormRegister, token: string) => {
   try {
-    const response=await instanceAxios.put("/auth/user",form)
+    const response = await instanceAxios.put("/auth/user", form, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response;
+  } catch (error) {
+    alert('Check your information');
+
+  }
+}
+
+
+// getProfileData
+export const getProfileData = async()=>{
+  try {
+    const response=await instanceAxios.get("/auth/user")
     return response;
   } catch (error) {
     alert ('Check your information')
@@ -252,6 +279,7 @@ export async function updateProduct(id: string, form: Products) {
   }
 }
 
+
 //* userBasket
 
 // get 
@@ -323,3 +351,69 @@ export async function clearBasket() {
     throw new Error('Failed to clear basket!');
   }
 }
+
+// !offer
+
+export type OfferValues = {
+  titleOffer?: string | undefined;
+  descOffer?: string | undefined;
+
+  id?:string | undefined
+  name?: string | undefined;
+  description?: string | undefined;
+
+  img_url?: string | undefined;
+};
+
+export async function getOffer(){
+  try{
+    const response = await instanceAxios.get("/offer");
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+export async function createOffer (OfferValues:OfferValues){
+  try{
+    const response =  instanceAxios.post("/offer", OfferValues);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+export async function getEditOffer (id:string){
+  try{
+    const response = instanceAxios.get(`/offer/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+
+export async function updateOffer (id:any, OfferValues:OfferValues){
+  try{
+    const response = instanceAxios.put(`/offer/${id}`, OfferValues);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+
+export async function delOffer(id:string){
+  try{
+    const response = instanceAxios.delete(`/offer/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+

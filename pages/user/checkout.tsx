@@ -16,7 +16,7 @@ const Checkout = () => {
 </Box>
        <Box display='flex'  gap='20px' >
         <BoxCheck1/>
-        <BoxCheck2/>
+      
        </Box>
 </Box>
     

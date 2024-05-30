@@ -1,7 +1,11 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
-import axios from 'axios';
-import React, { ChangeEvent, useState, FormEvent } from 'react';
-import { updateProfile } from '../AdminComponents/Services/axios';
+
+import React, { ChangeEvent, useState, FormEvent, useEffect } from 'react';
+import {  updateProfile } from '../AdminComponents/Services/axios';
+import {  useSelector,useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
+import { updateLogin } from '../redux/global/globalSlice';
+
 interface FormRegister {
   contact?: string;
   username?: string;
@@ -9,10 +13,22 @@ interface FormRegister {
   email?: string;
   address?: string;
   password?: string; 
+  access_token?:string | undefined;
+
+  
+  
 }
 const Profile = () => {
+  const dispatch = useDispatch();
+  const loginState = useSelector((state: RootState) => state.global.login);
 
 
+
+
+
+
+
+//  console.log(loginState);
  
   const [formData,setFormData]=useState<FormRegister>({
     contact:'',
@@ -25,9 +41,13 @@ const Profile = () => {
   })
   const [selectedImage, setSelectedImage] = useState<File|null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string|null>(null);
+ 
 
    const handleInputChange=(e:ChangeEvent<HTMLInputElement>):void=>{
 const {name,value}=e.target;
+if (name==='email'){
+  return;
+}
 setFormData((prevData)=>({
   ...prevData,[name]:value,
 }))
@@ -53,9 +73,19 @@ setFormData((prevData)=>({
       return;
     }
     try {
-      const response=await updateProfile(formData)
-      console.log('Profile updated successfully:',response);
+      if(formData.access_token){
+        const response=await updateProfile(formData,formData.access_token)
+        dispatch(updateLogin(response?.data ));
+      }
+     
       
+
+    
+
+      
+
+
+   
 setFormData({
   contact:'',
   username:'',
@@ -64,13 +94,25 @@ setFormData({
   address:'',
 
 })
-      console.log('Profile updated successfully:', response)
+
     } catch (error) {
       console.error('Error updating profile:', error);
     }
 console.log(formData);
 
    }
+console.log(formData);
+
+   
+   useEffect(() => {
+   
+    if (loginState !== formData) {
+      setFormData((prevData) => ({
+        ...prevData,
+        ...loginState
+      }));
+    }
+  }, [loginState]);
 
   return (
     <Box className='flex flex-col  mt-4 mr-8   h-[550px] gap-9  bg-white40'>
@@ -78,6 +120,7 @@ console.log(formData);
           <Text width='164px' height='32px' color='#4F4F4F'>Profile</Text>
         </Box>
       <Box>
+
         
       <Box className='flex justify-center '>
           <label htmlFor="file-input">
@@ -109,7 +152,7 @@ console.log(formData);
         <Box ml='4'>
           <Box>
             <Text color='#4F4F4F'>Email</Text>
-            <Input name='email' value= {formData.email} onChange={handleInputChange} width='444px' height='53px' bg='white' type='email' placeholder='aliyev@gmail.com' />
+            <Input name='email' value= {formData.email} onChange={handleInputChange} width='444px' height='53px' bg='white' type='email' placeholder='aliyev@gmail.com' focusBorderColor='red.500' />
           </Box>
           <Box marginTop='7px'>
             <Text color='#4F4F4F'>Address</Text>

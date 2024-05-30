@@ -3,7 +3,7 @@ import MetaSeo from '@/shared/MetaSeo';
 
 import { Image } from '@chakra-ui/next-js';
 import { Box, Button, Flex, Input, Text, useToast } from '@chakra-ui/react';
-import { error } from 'console';
+
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -11,9 +11,10 @@ import React, { useState } from 'react';
 
 
 
+
 interface FormValues {
-  email: string | undefined;
-  password: string | undefined;
+  email?: string | undefined;
+  password?: string | undefined;
   fullname?: string | undefined;
   username?: string | undefined;
 }
@@ -111,6 +112,7 @@ const toast = useToast()
                 isClosable: true,
                 position: "top-right",
               });
+            
 
               setFormValues({
                 email: "",
@@ -171,7 +173,7 @@ const toast = useToast()
       </Head>
       <header className='bg-pink40 flex items-center h-[122px] justify-between '>
 
-         <Text className="font-mukta font-extrabold text-3xl leading-6 tracking-wide text-white pl-[36px ]">
+         <Text className="font-mukta font-extrabold ml-9 text-3xl leading-6 tracking-wide text-white pl-[36px ]">
           Yummy.
 
          </Text>
