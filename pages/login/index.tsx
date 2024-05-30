@@ -149,7 +149,7 @@ console.log(passwordShow);
       </Head>
       <header className='bg-pink40 flex items-center h-[122px] justify-between '>
 
-         <Text className="font-mukta font-extrabold text-3xl leading-6 tracking-wide text-white pl-[36px ]">
+         <Text className="font-mukta font-extrabold ml-9 text-3xl leading-6 tracking-wide text-white pl-[36px ]">
           Yummy.
 
          </Text>
@@ -211,7 +211,7 @@ console.log(passwordShow);
        <Box className='flex flex-col gap-[30px]'>
        <Box>
             <Text color={"#4F4F4F"}  className="font-roboto text-base font-medium leading-6 tracking-wide pb-[10px]  ">
-              Username
+              Email
             </Text>
             <Input  ref={emailRef} name='email' borderRadius={"5px"} backgroundColor={"#FFE7E7"} height={"68px"} />
           </Box>
