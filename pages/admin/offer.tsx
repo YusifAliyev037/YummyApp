@@ -1,88 +1,105 @@
 import Header from '@/shared/AdminComponents/Header';
 import PushModul from '@/shared/AdminComponents/PushModul';
-import OfferInputs from '@/shared/AdminComponents/Services/OfferInputs';
-
-import TableCategory from '@/shared/AdminComponents/TableCategory';
-import offerTable from '@/shared/AdminComponents/OfferTable';
 import MetaSeo from '@/shared/MetaSeo';
-import { Box, Button, InputGroup, Text } from '@chakra-ui/react';
+import { Box, Button, InputGroup, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import OfferTable from '@/shared/AdminComponents/OfferTable';
+import { OfferValues, createOffer } from '@/shared/AdminComponents/Services/axios';
+import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 
-interface TestData {
-  Id: number;
-  Image: string;
-  Name: string;
-  Slog: string;
-}
+
 
 const Offer: React.FC = () => {
 
-  const testData: TestData[] = [
-    {
-      Id: 9177,
-      Image: '',
-      Name: 'Pizza',
-      Slog: 'Yummy-Pizza',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Fries',
-      Slog: 'Fries',
-    },
-    {
-      Id: 9177,
-      Image: '',
-      Name: 'Pizza',
-      Slog: 'Yummy-pizza',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Fries',
-      Slog: 'Fries',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'pizza',
-      Slog: 'Yummy-Pizza',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Fries',
-      Slog: 'Fries',
-    },
-    {
-      Id: 9178,
-      Image: '',
-      Name: 'Sendvic',
-      Slog: 'Sendvic',
-    },
-  ];
+  const toast = useToast();
 
-  const[hidden,Sethidden]=useState(true)
+  const offerNameRef = useRef<HTMLInputElement>(null);
+  const offerDescRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLInputElement>(null);
+
+  const [imgUrl, setImgUrl] = useState<string>("");
+
+  const[hidden,setHidden]=useState(true);
+
+  function changeHidden(): void {
+    setHidden((prev: boolean) => !prev);
+  }
+
+  function getImgUrl(url: string): void {
+    
+    setImgUrl(url);
+  }
+
+  async function addOffer(){
+    const offerName = offerNameRef?.current?.value;
+    const offerDesc = offerDescRef?.current?.value;
+    const img = imgUrl;
+
+    if( !isInputValid(offerName, offerDesc, img)){
+      toast({
+        title: "Please fill all the inputs!",
+        status:"warning",
+        duration:2000,
+        position:"top-right",
+        variant:"subtle"
+      });
+    }
+
+    const form: OfferValues = {
+      name:offerName,
+      description:offerDesc,
+      img_url:imgUrl
+    }
+
+    try{
+      
+      const res = await createOffer(form);
+
+      if(res?.status === 201){            
+        if(offerNameRef.current && offerDescRef.current){
+          offerNameRef.current.value = '';
+          offerDescRef.current.value = ''
+        }
+
+        setTimeout(() =>{
+          changeHidden()
+        }, 500);
+
+        toast({
+          title: "Offer created successfully!",
+          status:"success",
+          duration:2000,
+          position:"top-right",
+          variant:"subtle"
+        });
+
+      }
+    }catch(error){
+      toast({
+        title: "Something get wrong",
+        status:"success",
+        duration:2000,
+        position:"top-right",
+        variant:"subtle"
+      });
+      
+    }
+  }
+
+  
+  function isInputValid(
+    offerName: string | undefined,
+    offerDesc: string | undefined,
+    img: string | undefined
+  ): boolean {
+    return !!offerName && !!offerDesc && !!img;
+  }
+  
+
+  const handleAddOffer = () =>(
+    setHidden(false)
+  )
 
   return (
     <Box className=' bg-darkBlue10 h-screen  z-5'>
@@ -93,6 +110,20 @@ const Offer: React.FC = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
+        <AdminModal1
+        onClickClose={changeHidden}
+        mod="4"
+        p="Add Offer"
+        p1="Upload  image"
+        p2="Add your Offer information"
+        btn='Create Offer'
+        hidden={hidden}
+        ButtonOnClick={addOffer}
+        offerNameRef={offerNameRef}
+        imgRef={imgRef}
+        offerDescRef={offerDescRef}
+        getImgUrl={getImgUrl}
+        />
       </Box>
       <Box as='main' className='flex'>
         <PushModul />
@@ -110,7 +141,7 @@ const Offer: React.FC = () => {
                 <Button
                   borderRadius={14}
                   colorScheme='pink'
-                  onClick={() => Sethidden(prev => !prev)}
+                  onClick={handleAddOffer}
                 >
                   + ADD OFFER
                 </Button>
@@ -118,8 +149,8 @@ const Offer: React.FC = () => {
             </InputGroup>
           </Box>
           <Box height={"464px"} overflow={"auto"} className='mr-8'>
-            //bura  <OfferTable
-             testData={testData} />
+              <OfferTable
+              />
 
           </Box>
         </Box>

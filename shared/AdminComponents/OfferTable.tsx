@@ -1,32 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { Box, IconButton } from '@chakra-ui/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Box, IconButton, useToast } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { getCategories } from './Services/axios';
+import { OfferValues, getCategories } from './Services/axios';
 import ModulDelete from './ModulDelete';
+import { useDispatch, useSelector } from 'react-redux';
 
-interface CategoryType {
-  id: number;
-  img_url: string;
-  name: string;
-  slug: string;
-}
 
-interface TestData {
-    Id: number;
-    Image: string;
-    Name: string;
-    Slog: string;
-  }
-  
-  interface Props {
-    testData: TestData[];
-  }
 
-const OfferTable: React.FC<Props> = ({ testData }) => {
-  const [categories, setCategories] = useState<CategoryType[]>([]);
+
+
+const OfferTable: React.FC = () => {
+
+  const dispatch = useDispatch();
+
+  const toast = useToast();
+
+  const offerNameRef = useRef<HTMLInputElement>(null);
+  const offerDescRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLInputElement>(null);
+
+  const [imgUrl, setImgUrl] = useState<string>('');
+
+  const [hidden, setHidden] = useState(true);
 
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
- console.log(testData);
+
+  const [offerId, setOfferId] = useState('');
+
+  const [activeId, setActiveId] = useState('');
+
+  const offerRed:OfferValues[] = useSelector((state:any) => state.global.offer);
+
+  const changeHidden = (): void => {
+    setHidden((prev: boolean) => !prev);
+  };
+
+  const getImgUrl = (url: string): void => {
+    setImgUrl(url);
+  };
  
 
  const handleDeleteButton  = () =>{
@@ -50,7 +61,7 @@ const OfferTable: React.FC<Props> = ({ testData }) => {
           </tr>
         </thead>
         <tbody>
-          {testData.map((item, index) => (
+          {/* {testData.map((item, index) => (
             <tr key={index}>
               <td className='text-center h-12 text-base'>{item.Id}</td>
               <td className='text-center h-12 text-base'>
@@ -92,7 +103,7 @@ const OfferTable: React.FC<Props> = ({ testData }) => {
                 />
               </td>
             </tr>
-          ))}
+          ))} */}
 
           
           {deleteModal && (

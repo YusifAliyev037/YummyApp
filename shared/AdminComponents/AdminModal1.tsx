@@ -31,7 +31,9 @@ interface Props {
   productNameRef?:any;
   productDescRef?:any;
   productPriceRef?:any;
-  productRestaurantRef?:any
+  productRestaurantRef?:any;
+  offerNameRef?:any;
+  offerDescRef?:any
 }
 
 export const AdminModal1 = ({
@@ -57,7 +59,9 @@ export const AdminModal1 = ({
   productNameRef,
   productDescRef,
   productPriceRef,
-  productRestaurantRef
+  productRestaurantRef,
+  offerNameRef,
+  offerDescRef
  
 }: Props) => {
   const [imgUrl, setImgUrl] = useState<any>("");
@@ -172,6 +176,12 @@ export const AdminModal1 = ({
                className="w-full bg-darkBlue_4 rounded-2xl font-medium text-base text-whiteLight pl-3 py-4"
              />
            </div>
+            )}
+             {mod === "4" && (
+              <div>
+                <AdminModalInput useRef={offerNameRef} p="Title" />
+                <AdminModalInput useRef={offerDescRef} p="Description" />
+              </div>
             )}
           
           </div>

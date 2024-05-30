@@ -275,3 +275,67 @@ export async function updateProduct(id: string, form: Products) {
     console.log(error);
   }
 }
+
+// !offer
+
+export type OfferValues = {
+  titleOffer?: string | undefined;
+  descOffer?: string | undefined;
+
+  name?: string | undefined;
+  description?: string | undefined;
+
+  img_url?: string | undefined;
+};
+
+export async function getOffer(){
+  try{
+    const response = await instanceAxios.get("/offer");
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+export async function createOffer (OfferValues:OfferValues){
+  try{
+    const response =  instanceAxios.post("/offer", OfferValues);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+export async function getEditOffer (id:string){
+  try{
+    const response = instanceAxios.get(`/offer/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+
+export async function updateOffer (id:string, OfferValues:OfferValues){
+  try{
+    const response = instanceAxios.put(`/offer/${id}`, OfferValues);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+
+export async function delOffer(id:string){
+  try{
+    const response = instanceAxios.delete(`/offer/${id}`);
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
