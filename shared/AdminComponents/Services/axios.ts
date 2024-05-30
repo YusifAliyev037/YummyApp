@@ -24,6 +24,7 @@ export type FormRegister = {
   username?: string | undefined;
   img_url?: string | undefined;
   phone?: string | undefined;
+  access_token?:string | undefined;
 };
 
 export type FormRegisterGet = {
@@ -52,15 +53,31 @@ export const completeLogin = async (form: FormRegister) => {
 
 // updateProfile
 
-export const updateProfile = async(form:FormRegister)=>{
+// export const updateProfile = async(form:FormRegister)=>{
+//   try {
+//     const response=await instanceAxios.put("/auth/user",form)
+//     return response;
+//   } catch (error) {
+//     alert ('Check your information')
+//     console.log(error)
+//   }
+// }
+
+export const updateProfile = async (form: FormRegister, token: string) => {
   try {
-    const response=await instanceAxios.put("/auth/user",form)
+    const response = await instanceAxios.put("/auth/user", form, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response;
   } catch (error) {
-    alert ('Check your information')
-    console.log(error)
+    alert('Check your information');
+
   }
 }
+
+
 // getProfileData
 export const getProfileData = async()=>{
   try {

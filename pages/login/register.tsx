@@ -173,7 +173,7 @@ const toast = useToast()
       </Head>
       <header className='bg-pink40 flex items-center h-[122px] justify-between '>
 
-         <Text className="font-mukta font-extrabold text-3xl leading-6 tracking-wide text-white pl-[36px ]">
+         <Text className="font-mukta font-extrabold ml-9 text-3xl leading-6 tracking-wide text-white pl-[36px ]">
           Yummy.
 
          </Text>

@@ -1,10 +1,11 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
 
 import React, { ChangeEvent, useState, FormEvent, useEffect } from 'react';
-import { FormRegisterGet, updateProfile } from '../AdminComponents/Services/axios';
+import {  updateProfile } from '../AdminComponents/Services/axios';
 import {  useSelector,useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { updateLogin } from '../redux/global/globalSlice';
+
 interface FormRegister {
   contact?: string;
   username?: string;
@@ -12,12 +13,22 @@ interface FormRegister {
   email?: string;
   address?: string;
   password?: string; 
+  access_token?:string | undefined;
+
+  
+  
 }
 const Profile = () => {
   const dispatch = useDispatch();
   const loginState = useSelector((state: RootState) => state.global.login);
 
- console.log(loginState);
+
+
+
+
+
+
+//  console.log(loginState);
  
   const [formData,setFormData]=useState<FormRegister>({
     contact:'',
@@ -62,14 +73,19 @@ setFormData((prevData)=>({
       return;
     }
     try {
-      const response=await updateProfile(formData)
+      if(formData.access_token){
+        const response=await updateProfile(formData,formData.access_token)
+        dispatch(updateLogin(response?.data ));
+      }
+     
+      
 
-      dispatch(updateLogin(response?.data ));
+    
 
       
 
 
-      alert('Profile updated successfully!');
+   
 setFormData({
   contact:'',
   username:'',
@@ -78,13 +94,16 @@ setFormData({
   address:'',
 
 })
-      console.log('Profile updated successfully:', response)
+
     } catch (error) {
       console.error('Error updating profile:', error);
     }
 console.log(formData);
 
    }
+console.log(formData);
+
+   
    useEffect(() => {
    
     if (loginState !== formData) {
