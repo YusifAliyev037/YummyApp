@@ -76,8 +76,8 @@ module.exports = {
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
         wiggle: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(10px)" },
+          "0%, 100%": { transform: "translateY(0) translateX(0)" },
+          "50%": { transform: "translateY(5px) translateY(5px)" },
         },
       },
       animation: {

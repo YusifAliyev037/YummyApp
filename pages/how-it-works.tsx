@@ -12,11 +12,11 @@ const HOWITWORKS: NextPage = () => {
       </Head>
       <ClientHeader />
 
-      <div className="max-w-7xl mx-auto pt-[70px] px-4 py-8 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-        <h2 className="font-mukta text-3xl font-semibold text-black w-[273px] h-[36px] leading-30 tracking-tight">
+      <div className="animate-slideIn  max-w-7xl mx-auto pt-[70px] px-4 py-8 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+        <h2 className="hover:scale-105 font-mukta text-3xl font-semibold text-black w-[273px] h-[36px] leading-30 tracking-tight">
           How It Works
         </h2>
-        <p className="mt-2 max-w-2xl text-lg pt-[20px] mb-[30px] text-gray300 w-[1034px] h-[184px] font-roboto font-medium leading-35 tracking-tighter">
+        <p className="hover:scale-105 mt-2 max-w-2xl text-lg pt-[20px] mb-[30px] text-gray300 w-[1034px] h-[184px] font-roboto font-medium leading-35 tracking-tighter">
           Delivery may be extended during sale periods. Please refer to the
           checkout page for an updated estimate for your location. Kindly note
           that once you have placed an order, it is no longer possible to modify
@@ -28,7 +28,11 @@ const HOWITWORKS: NextPage = () => {
         </p>
 
         <div>
-          <img src="/howitworks.png" alt="How It Works Image" />
+          <img
+            src="/howitworks.png"
+            className="hover:scale-105"
+            alt="How It Works Image"
+          />
         </div>
       </div>
 

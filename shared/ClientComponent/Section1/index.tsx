@@ -17,11 +17,11 @@ function HomeSection1() {
           <div className="flex gap-8">
             <button
               onClick={() => router.push("/login/register")}
-              className="bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg md:text-2xl font-medium px-6 py-3"
+              className="hover:scale-105 bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg md:text-2xl font-medium px-6 py-3"
             >
               Register
             </button>
-            <button className="border border-gray300 text-gray300 md:text-2xl w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">
+            <button className="hover:scale-105 border border-gray300 text-gray300 md:text-2xl w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">
               Order Now
             </button>
           </div>
