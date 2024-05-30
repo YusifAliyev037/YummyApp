@@ -282,6 +282,7 @@ export type OfferValues = {
   titleOffer?: string | undefined;
   descOffer?: string | undefined;
 
+  id?:string | undefined
   name?: string | undefined;
   description?: string | undefined;
 
@@ -319,7 +320,7 @@ export async function getEditOffer (id:string){
 }
 
 
-export async function updateOffer (id:string, OfferValues:OfferValues){
+export async function updateOffer (id:any, OfferValues:OfferValues){
   try{
     const response = instanceAxios.put(`/offer/${id}`, OfferValues);
     return response
