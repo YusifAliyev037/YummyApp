@@ -1,35 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { FaShoppingBasket } from "react-icons/fa";
 import BasketItem from "./BasketItem";
+import {
+  getBasket,
+  addBasket,
+  deleteBasket,
+  clearBasket,
+  BasketItemProps,
+} from "../AdminComponents/Services/axios";
 
 const UserBasket: React.FC = () => {
-  const [basketItems, setBasketItems] = useState([
-    {
-      imageSrc: "/aboutuspizza.svg",
-      name: "Papa John’s Pizza",
-      price: 12.9,
-      quantity: 1,
-    },
-    {
-      imageSrc: "/hamburger.svg",
-      name: "Cheeseburger",
-      price: 7.9,
-      quantity: 2,
-    },
-    {
-      imageSrc: "/coffee.svg",
-      name: "Yummy Latte",
-      price: 3.5,
-      quantity: 3,
-    },
-    {
-      imageSrc: "/coffee.svg",
-      name: "Yummy Cappuccino",
-      price: 3.9,
-      quantity: 4,
-    },
-  ]);
+  const [basketItems, setBasketItems] = useState<BasketItemProps[]>([]);
+
+  useEffect(() => {
+    const fetchBasketItems = async () => {
+      try {
+        const data = await getBasket();
+        setBasketItems(data);
+        console.log(data, "data");
+      } catch (error) {
+        console.error("Error fetching basket items:", error);
+      }
+    };
+
+    fetchBasketItems();
+  }, []);
 
   const handleIncrease = (index: number) => {
     const newItems = [...basketItems];
@@ -45,9 +41,15 @@ const UserBasket: React.FC = () => {
     setBasketItems(newItems);
   };
 
-  const handleRemove = (index: number) => {
-    const newItems = basketItems.filter((_, i) => i !== index);
-    setBasketItems(newItems);
+  const handleRemove = async (index: number) => {
+    const item = basketItems[index];
+    try {
+      await deleteBasket(item.name);
+      const newItems = basketItems.filter((_, i) => i !== index);
+      setBasketItems(newItems);
+    } catch (error) {
+      console.error("Error removing item:", error);
+    }
   };
 
   const calculateTotal = () => {

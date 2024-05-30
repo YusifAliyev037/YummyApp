@@ -216,6 +216,9 @@ export async function updateRestaurant(id: string, form: Form) {
   }
 }
 
+
+
+
 export type Products = {
   id?: string;
   img_url?: string;
@@ -273,6 +276,79 @@ export async function updateProduct(id: string, form: Products) {
     return response;
   } catch (error) {
     console.log(error);
+  }
+}
+
+
+//* userBasket
+
+// get 
+export async function getBasket() {
+  try {
+    const response = await instanceAxios.get('/basket');
+    return response.data;
+  } catch (error) {
+    console.error('Error while fetching basket:', error);
+    throw new Error('Failed to fetch basket!');
+  }
+}
+
+
+// post 
+
+
+export type BasketItemProps = {
+  imageSrc: string;
+  name: string;
+  price: number;
+  quantity: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+  // onRemove: () => void;
+}
+
+
+export async function addBasket(form: BasketItemProps) {
+  try {
+    const response = await instanceAxios.post(`/basket/add`, form);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    // console.error('Error while adding to basket:', error);
+    // throw new Error('Failed to add to basket!');
+  }
+}
+
+
+
+// delete 
+
+export async function deleteBasket(itemId: string) {
+  try {
+    // const response = await instanceAxios.delete(`/basket/delete/${itemId}`);
+    const response = await instanceAxios.delete(`/basket/delete`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error while deleting basket item:`,
+      error
+    );
+    throw new Error('Failed to delete basket item!');
+  }
+}
+
+// clear
+
+export async function clearBasket() {
+  try {
+    const response = await instanceAxios.delete(`/basket/clear`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error while clearing basket :`,
+      error
+    );
+    throw new Error('Failed to clear basket!');
   }
 }
 
@@ -340,3 +416,4 @@ export async function delOffer(id:string){
     
   }
 }
+
