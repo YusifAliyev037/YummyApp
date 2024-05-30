@@ -6,6 +6,7 @@ import ModulDelete from './ModulDelete';
 import { useDispatch, useSelector } from 'react-redux';
 import { fillOffer } from '../redux/global/globalSlice';
 import { AdminModal1 } from './AdminModal1';
+import { shortText } from '../utils/shortText';
 
 
 
@@ -244,8 +245,8 @@ const deleteOffer = async () => {
                   'No Image'
                 )}
               </td>
-              <td className='text-center h-12 text-base'>{item.name}</td>
-              <td className='text-center h-12 text-base'>{item.description}</td>
+              <td className='text-center h-12 text-base'>{ shortText(item.name,20) }</td>
+              <td className='text-center h-12 text-base'>{  shortText(item.description,20)}</td>
               <td className='text-right pr-2 g-2'>
                 <IconButton
                   aria-label='Edit'
