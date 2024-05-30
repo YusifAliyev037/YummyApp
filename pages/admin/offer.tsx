@@ -120,8 +120,8 @@ const Offer: React.FC = () => {
         hidden={hidden}
         ButtonOnClick={addOffer}
         offerNameRef={offerNameRef}
-        imgRef={imgRef}
         offerDescRef={offerDescRef}
+        imgRef={imgRef}
         getImgUrl={getImgUrl}
         />
       </Box>
