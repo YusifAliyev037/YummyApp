@@ -53,15 +53,7 @@ export const completeLogin = async (form: FormRegister) => {
 
 // updateProfile
 
-// export const updateProfile = async(form:FormRegister)=>{
-//   try {
-//     const response=await instanceAxios.put("/auth/user",form)
-//     return response;
-//   } catch (error) {
-//     alert ('Check your information')
-//     console.log(error)
-//   }
-// }
+
 
 export const updateProfile = async (form: FormRegister, token: string) => {
   try {
