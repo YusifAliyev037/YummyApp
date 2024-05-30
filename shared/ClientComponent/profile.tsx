@@ -13,6 +13,10 @@ interface FormRegister {
   email?: string;
   address?: string;
   password?: string; 
+  access_token?:string | undefined;
+
+  
+  
 }
 const Profile = () => {
   const dispatch = useDispatch();
@@ -24,7 +28,7 @@ const Profile = () => {
 
 
 
- console.log(loginState);
+//  console.log(loginState);
  
   const [formData,setFormData]=useState<FormRegister>({
     contact:'',
@@ -69,14 +73,19 @@ setFormData((prevData)=>({
       return;
     }
     try {
-      const response=await updateProfile(formData)
+      if(formData.access_token){
+        const response=await updateProfile(formData,formData.access_token)
+        dispatch(updateLogin(response?.data ));
+      }
+     
+      
 
-      dispatch(updateLogin(response?.data ));
+    
 
       
 
 
-      alert('Profile updated successfully!');
+   
 setFormData({
   contact:'',
   username:'',
@@ -85,13 +94,16 @@ setFormData({
   address:'',
 
 })
-      console.log('Profile updated successfully:', response)
+
     } catch (error) {
       console.error('Error updating profile:', error);
     }
 console.log(formData);
 
    }
+console.log(formData);
+
+   
    useEffect(() => {
    
     if (loginState !== formData) {
