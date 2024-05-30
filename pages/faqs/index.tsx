@@ -15,7 +15,7 @@ const Faq: React.FC = () => {
   return (
     <>
       <ClientHeader />
-      <div className="faqCont">
+      <div className="animate-slideIn  faqCont">
         <h4 className="text-black font-roboto text-5xl font-medium leading-8 text-center mt-16">
           F.A.Q
         </h4>
