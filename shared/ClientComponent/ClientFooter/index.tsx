@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className="w-1/3">
           <div className="mb-4">
             <div className="mt-[100px] ml-[150px]">
-              <h1 className="font-mukta text-4xl font-extrabold text-white ">
+              <h1 className="hover:scale-105 font-mukta text-4xl font-extrabold text-white ">
                 Yummy<span className="text-orange">.</span>
               </h1>
             </div>
@@ -54,13 +54,13 @@ const Footer: React.FC = () => {
 
         <div className="w-2/3 flex justify-between mt-[140px] ml-[300px] mr-[130px]">
           <div>
-            <h3 className="font-bold mb-2">Popular</h3>
+            <h3 className="hover:scale-105 font-bold mb-2">Popular</h3>
             <nav>
               <ul>
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Programming
                   </a>
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Books for children
                   </a>
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Psychology
                   </a>
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Business
                   </a>
@@ -93,13 +93,13 @@ const Footer: React.FC = () => {
             </nav>
           </div>
           <div>
-            <h3 className="font-bold mb-2">Store</h3>
+            <h3 className="hover:scale-105 font-bold mb-2">Store</h3>
             <nav>
               <ul>
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Cash
                   </a>
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Delivery
                   </a>
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Payment
                   </a>
@@ -123,7 +123,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     About the store
                   </a>
@@ -132,13 +132,13 @@ const Footer: React.FC = () => {
             </nav>
           </div>
           <div>
-            <h3 className="font-bold mb-2">Support</h3>
+            <h3 className="hover:scale-105 font-bold mb-2">Support</h3>
             <nav>
               <ul>
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Help
                   </a>
@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Contacts
                   </a>
@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Purchase returns
                   </a>
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
                 <li className="group">
                   <a
                     href="#"
-                    className="text-gray400 hover:underline group-hover:text-orange"
+                    className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
                     Buyer help
                   </a>
@@ -176,11 +176,17 @@ const Footer: React.FC = () => {
         <p>
           All rights reserved © 2003-2024 Yummy
           <span className="text-orange">.</span>{" "}
-          <a href="#" className="text-white hover:underline hover:text-orange">
+          <a
+            href="#"
+            className="hover:scale-105 text-white hover:underline hover:text-orange"
+          >
             TERMS OF USE
           </a>{" "}
           |{" "}
-          <a href="#" className="text-white hover:underline hover:text-orange">
+          <a
+            href="#"
+            className="hover:scale-105 text-white hover:underline hover:text-orange"
+          >
             Privacy Policy
           </a>
         </p>

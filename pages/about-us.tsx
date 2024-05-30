@@ -12,12 +12,12 @@ const AboutUs: NextPage = () => {
       </Head>
       <ClientHeader />
 
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col lg:flex-row">
+      <div className="animate-slideIn max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col lg:flex-row">
         <div className="lg:w-1/2">
-          <h2 className="text-black mb-[30px] mt-[120px] font-mukta font-semibold text-3xl leading-30 tracking-tighter  w-[191px] h-[36px]">
+          <h2 className="hover:scale-105  text-black mb-[30px] mt-[120px] font-mukta font-semibold text-3xl leading-30 tracking-tighter  w-[191px] h-[36px]">
             About Us
           </h2>
-          <p className="text-gray300 mb-[620px] font-roboto font-medium text-lg leading-35 tracking-tighter  w-[565px] h-[184px]">
+          <p className="hover:scale-105  text-gray300 mb-[620px] font-roboto font-medium text-lg leading-35 tracking-tighter  w-[565px] h-[184px]">
             Lorem ipsum is placeholder text commonly used in the graphic, print,
             and publishing industries for previewing layouts and visual
             mockups.Lorem ipsum is placeholder text commonly used in the
@@ -36,7 +36,7 @@ const AboutUs: NextPage = () => {
             alt="Background Image"
             //  className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute top-[514px] bottom-[-460px] left-[722px] right-[-722px] rounded-20 shadow-md bg-white w-[244px] h-[181px] ">
+          <div className="hover:scale-105  absolute top-[514px] bottom-[-460px] left-[722px] right-[-722px] rounded-20 shadow-md bg-white w-[244px] h-[181px] ">
             <img
               src="/aboutuspizza.svg"
               alt="Product Image"
@@ -55,7 +55,7 @@ const AboutUs: NextPage = () => {
             <p className="ml-[25px] text-lg font-bold">$7.90</p>
           </div>
 
-          <div className="absolute top-[287px] bottom-[-233px] left-[960px] right-[-960px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
+          <div className="hover:scale-105  absolute top-[287px] bottom-[-233px] left-[960px] right-[-960px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
             <img
               src="/hamburger.svg"
               alt="Product Image"
@@ -76,7 +76,7 @@ const AboutUs: NextPage = () => {
             <p className="ml-[25px] text-lg font-bold">$5.90</p>
           </div>
 
-          <div className=" absolute top-[605px] bottom-[-552px] left-[1010px] right-[-1010px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
+          <div className="hover:scale-105  absolute top-[605px] bottom-[-552px] left-[1010px] right-[-1010px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
             <img
               src="/tomatosoup.svg"
               alt="Product Image"
@@ -97,7 +97,7 @@ const AboutUs: NextPage = () => {
             <p className="text-lg ml-[25px] font-bold">$7.90</p>
           </div>
 
-          <div className="absolute  top-[798px] bottom-[-744px] left-[710px] right-[-710px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
+          <div className="hover:scale-105  absolute  top-[798px] bottom-[-744px] left-[710px] right-[-710px] rounded-20 shadow-md bg-white w-[274px] h-[181px] ">
             <img
               src="/coffee.svg"
               alt="Product Image"

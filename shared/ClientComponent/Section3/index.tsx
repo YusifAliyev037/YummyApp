@@ -2,9 +2,9 @@ import React from "react";
 
 const HomeSection3: React.FC = () => {
   return (
-    <div className="space-y-12 pt-[100px]">
-      <div className="flex flex-col md:flex-row items-center md:items-start">
-        <div className="w-[650px] md:w-1/2 pl-[100px]">
+    <div className="animate-slideIn space-y-12 pt-[100px]">
+      <div className="hover:scale-105 flex flex-col md:flex-row items-center md:items-start">
+        <div className=" w-[650px] md:w-1/2 pl-[100px]">
           <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl text-black font-bold mb-4">
             Menu That Always Make You Fall In Love
           </h2>
@@ -27,7 +27,7 @@ const HomeSection3: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row-reverse items-center md:items-start pt-[150px]">
+      <div className="hover:scale-105 flex flex-col md:flex-row-reverse items-center md:items-start pt-[150px]">
         <div className="w-full md:w-1/2 pr-[170px]">
           <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl font-bold mb-4">
             Yummy Always Papa John’s Pizza. Agree?
@@ -51,7 +51,7 @@ const HomeSection3: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center md:items-start pt-[150px]">
+      <div className="hover:scale-105 flex flex-col md:flex-row items-center md:items-start pt-[150px]">
         <div className="w-full md:w-1/2 pl-[100px]">
           <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl font-bold mb-4">
             Do You Like French Fries? Mmm...
