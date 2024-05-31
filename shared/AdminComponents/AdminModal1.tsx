@@ -129,7 +129,7 @@ export const AdminModal1 = ({
               alt="img"
             />
           </div>
-          <div className=" w-full lg:w-2/3  h-38 pt-6 ">
+          <div className=" bg-gray20 rounded-2xl w-full lg:w-2/3  h-38 pt-6 ">
             <ImageInput onChange={getİmage} />
           </div>
         </div>
@@ -143,18 +143,18 @@ export const AdminModal1 = ({
           <div className=" w-full lg:w-2/3  pt-5 pl-5  pr-7 pb-7  rounded-2xl bg-darkBlue_5 max-h-[600px] overflow-y-auto ">
            
             {mod === "1" && (
-              <div>
-                <AdminModalInput useRef={categoryRef} p="Name" />
-                <AdminModalInput useRef={slugRef} p="Slug" />
+              <div className=" bg-gray20 p-4 rounded-2xl">
+                <AdminModalInput className=" text-white"  useRef={categoryRef} p="Name" />
+                <AdminModalInput className=" text-white" useRef={slugRef} p="Slug" />
               </div>
             )}
                {mod === "2" && (
-              <div>
-                <AdminModalInput useRef={resNameRef} p="Name" />
-                <AdminModalInput useRef={cuisineRef} p="Cuisine" />
-                <AdminModalInput useRef={priceRef} p="Delivery Price $" type="number" />
-                <AdminModalInput useRef={deliveryMinRef} p="Delivery Min" type="number" />
-                <AdminModalInput useRef={addressRef} p="Address" />
+              <div className=" bg-gray20 p-4 rounded-2xl">
+                <AdminModalInput className=" text-white" useRef={resNameRef} p="Name" />
+                <AdminModalInput className=" text-white" useRef={cuisineRef} p="Cuisine" />
+                <AdminModalInput className=" text-white" useRef={priceRef} p="Delivery Price $" type="number" />
+                <AdminModalInput className=" text-white" useRef={deliveryMinRef} p="Delivery Min" type="number" />
+                <AdminModalInput className=" text-white" useRef={addressRef} p="Address" />
                 <AdminModalDropdown
                 className=" w-full bg-gray20 rounded-2xl font-medium text-base text-white30 pl-3 py-4 "
                 arr={arr}
@@ -165,22 +165,22 @@ export const AdminModal1 = ({
             )}
 
             {mod === "3" && (
-             <div>
-             <AdminModalInput p="Name" useRef={productNameRef} />
-             <AdminModalInput p="Description" useRef={productDescRef} />
-             <AdminModalInput p="Price" useRef={productPriceRef} />
+             <div className=" bg-gray20 p-4 rounded-2xl">
+             <AdminModalInput className=" text-white" p="Name" useRef={productNameRef} />
+             <AdminModalInput className=" text-white" p="Description" useRef={productDescRef} />
+             <AdminModalInput className=" text-white" p="Price" useRef={productPriceRef} />
              <AdminModalDropdown
                useRef={productRestaurantRef}
                arr={arr}
                p="Restaurants"
-               className="w-full bg-darkBlue_4 rounded-2xl font-medium text-base text-whiteLight pl-3 py-4"
+               className="w-full bg-darkblue30 text-white rounded-2xl font-medium text-base text-whiteLight pl-3 py-4"
              />
            </div>
             )}
              {mod === "4" && (
-              <div>
-                <AdminModalInput useRef={offerNameRef} p="Title" />
-                <AdminModalInput useRef={offerDescRef} p="Description" />
+              <div className=" bg-gray20 p-4 rounded-2xl">
+                <AdminModalInput className=" text-white" useRef={offerNameRef} p="Title" />
+                <AdminModalInput className=" text-white" useRef={offerDescRef} p="Description" />
               </div>
             )}
           
