@@ -21,7 +21,9 @@ const HomeSection3: React.FC = () => {
   return (
     <div className="space-y-12 pt-[100px]">
       {offer?.map((item, index) => (
-        <div key={index} className="flex flex-col md:flex-row items-center md:items-start">
+        <div key={index}
+        className={`flex flex-col gap-2 md:flex-row items-center md:items-start ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+         >
           <div className="w-[650px] md:w-1/2 pl-[100px]">
             <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl text-black font-bold mb-4">
               {item.name}
