@@ -225,7 +225,7 @@ const deleteOffer = async () => {
         <tbody>
           {offerRed.map((item, index) => (
             <tr key={index}>
-              <td className='text-center h-12 text-base'>{item.id}</td>
+              <td className='text-center h-12 text-base'>{ shortText(item.id, 8)}</td>
               <td className='text-center h-12 text-base'>
                 {item.name ? (
                   <Box

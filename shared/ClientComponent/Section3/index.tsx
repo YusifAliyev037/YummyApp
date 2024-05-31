@@ -33,7 +33,7 @@ const HomeSection3: React.FC = () => {
           <div className="w-full md:w-1/2 pt-[30px] pr-[150px] flex items-center justify-center">
             <div className="relative w-350 h-420 rotate-22.82 bg-red100 rounded-50 overflow-visible">
               <img
-                // src="/twister.svg"
+                
                 src={item.img_url}
                 alt="Image 1"
                 className="w-[540px] h-[440px] absolute inset-0 transform scale-125 object-contain rounded-50"
