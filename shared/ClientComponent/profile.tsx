@@ -36,7 +36,7 @@ const Profile = () => {
     img_url: '',
   });
 
-  console.log(formData);
+ 
   
 
   const getİmage = (e: React.ChangeEvent<HTMLInputElement>) => {

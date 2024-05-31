@@ -8,6 +8,7 @@ import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useRef, useState } from 'react';
+// import {translate} from '../../lang/translate'
 
 function Category() {
  

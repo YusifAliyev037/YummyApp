@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import { RootState } from "@/shared/redux/store";
 import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
+import {translate} from '../../../public/lang/translate'
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
@@ -21,7 +22,21 @@ const ClientHeader: React.FC = () => {
   const usernameLetter = loginState.username
     ? loginState.username.toUpperCase()[0]
     : "";
+// translate
 
+
+const changeLanguage = (locale: string) => {
+  router.push(router.pathname, router.asPath, { locale });
+  localStorage.setItem('lang', locale);
+  setShowDropdown(false);
+};
+
+useEffect(() => {
+  const locale = localStorage.getItem('lang') || 'en';
+  router.push(router.pathname, router.asPath, { locale });
+}, []);
+
+const locale = router.locale || 'en';
   return (
     <div className="flex items-center  mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
       <h1 className="hover:scale-105 font-mukta text-4xl font-extrabold text-black mr-auto pr-35">
@@ -39,7 +54,7 @@ const ClientHeader: React.FC = () => {
                 "/"
               )}`}
             >
-              Home
+         {translate("Home", locale)}
             </a>
           </li>
           <li
@@ -51,7 +66,7 @@ const ClientHeader: React.FC = () => {
                 "/restaurants"
               )}`}
             >
-              Restaurants
+             {translate("Restaurants", locale)}
             </a>
           </li>
           <li
@@ -63,7 +78,8 @@ const ClientHeader: React.FC = () => {
                 "/about-us"
               )}`}
             >
-              About Us
+              {translate("About Us", locale)}
+              
             </a>
           </li>
           <li
@@ -75,7 +91,9 @@ const ClientHeader: React.FC = () => {
                 "/how-it-works"
               )}`}
             >
-              How it works
+              {translate("How it works", locale)}
+             
+              
             </a>
           </li>
           <li
@@ -87,7 +105,9 @@ const ClientHeader: React.FC = () => {
                 "/faqs"
               )}`}
             >
-              FAQs
+              {translate(" FAQs", locale)}
+
+             
             </a>
           </li>
         </ul>
@@ -101,7 +121,7 @@ const ClientHeader: React.FC = () => {
           <input
             type="text"
             name="searchQuery"
-            placeholder="Search..."
+            placeholder={translate("Search", locale)}
             className="p-2 border border-black pr-8 "
           />
           <button
@@ -122,6 +142,7 @@ const ClientHeader: React.FC = () => {
                 src="/usuk.png"
                 alt="Eng"
                 className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110"
+                onClick={() => changeLanguage('en')}
               />
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
@@ -129,11 +150,13 @@ const ClientHeader: React.FC = () => {
                     src="/azerbaijan.png"
                     alt="Az"
                     className="w-12 h-10 rounded-full mb-2"
+                    onClick={() => changeLanguage('az')}
                   />
                   <img
                     src="/russian.png"
                     alt="Rus"
                     className="w-12 h-10 rounded-full"
+                    onClick={() => changeLanguage('fr')}
                   />
                 </div>
               )}
@@ -166,31 +189,31 @@ const ClientHeader: React.FC = () => {
                       onClick={() => router.push("/user")}
                       className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
                     >
-                      Profile
+                      {translate("Profile", locale)}
                     </li>
                     <li
                       onClick={() => router.push("/user/basket")}
                       className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
                     >
-                      Your Basket
+                    {translate("Your Basket", locale)}
                     </li>
                     <li
                       onClick={() => router.push("/user/orders")}
                       className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
                     >
-                      Your Orders
+                       {translate("Your Orders", locale)}
                     </li>
                     <li
                       onClick={() => router.push("/user/checkout")}
                       className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
                     >
-                      Checkout
+                      {translate("Checkout", locale)}
                     </li>
                     <li
                       onClick={() => router.push("/login")}
                       className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
                     >
-                      Logout
+                      {translate("Logout", locale)}
                     </li>
                   </ul>
                 </Box>
@@ -201,7 +224,8 @@ const ClientHeader: React.FC = () => {
               onClick={() => router.push("/login")}
               className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
             >
-              Sign up
+               {translate("Sign up", locale)}
+             
             </button>
           )}
         </div>

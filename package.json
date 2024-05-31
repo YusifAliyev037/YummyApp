@@ -29,6 +29,7 @@
     "jsonwebtoken": "^9.0.1",
     "multiparty": "^4.2.3",
     "next": "^14.2.3",
+    "next-i18next": "^15.3.0",
     "next-nprogress-bar": "^2.3.11",
     "next-swagger-doc": "^0.4.0",
     "nextjs-cors": "^2.2.0",
