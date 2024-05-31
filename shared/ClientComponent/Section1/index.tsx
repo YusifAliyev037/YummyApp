@@ -1,28 +1,48 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import { translate } from "@/public/lang/translate";
+import { useEffect } from "react";
 
 function HomeSection1() {
+
   const router = useRouter();
+  const [locale, setLocale] = useState('en');
+
+  useEffect(() => {
+    const storedLocale = localStorage.getItem('lang');
+    if (storedLocale && ['en', 'az', 'fr'].includes(storedLocale)) {
+      setLocale(storedLocale);
+    } else {
+      localStorage.setItem('lang', 'en');
+      setLocale('en');
+    }
+  }, [router]);
   return (
     <div className="px-[30px] animate-slideIn ">
       <div className="bg-gray200 mx-6 md:mx-0 md:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
         <div className="md:w-1/2 md:mr-8">
           <h1 className="text-5xl md:text-6xl font-bold text-black leading-[90px] h-[155px] w-[653px] ">
-            Our Food site makes it easy to find local food
+          {translate('Our Food site makes it easy to find local food', locale)}
+           
           </h1>
           <p className="text-lg md:text-2xl mb-[45px] w-[510px] h-[105px] text-gray300 ">
-            Lorem ipsum is placeholder text commonly used in the graphic, print,
-            and publishing industries for previewing layouts and visual mockups.
+          {translate(" Lorem ipsum is placeholder text commonly used in the graphic, print,   and publishing industries for previewing layouts and visual mockups.",locale)}
+
+           
+         
           </p>
           <div className="flex gap-8">
             <button
               onClick={() => router.push("/login/register")}
               className="hover:scale-105 bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg md:text-2xl font-medium px-6 py-3"
             >
-              Register
+              {translate(' Register',locale)}
+           
             </button>
             <button className="hover:scale-105 border border-gray300 text-gray300 md:text-2xl w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">
-              Order Now
+            {translate('Order Now',locale)}
+
+           
             </button>
           </div>
         </div>
@@ -55,7 +75,8 @@ function HomeSection1() {
             />
 
             <h3 className=" w-[136px] h-[42px] mr-[-40px] text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
-              Mixed Pizza Yummy ...
+              {translate('Mixed Pizza Yummy ...',locale)}
+              
             </h3>
           </div>
 
@@ -69,7 +90,9 @@ function HomeSection1() {
             />
 
             <h3 className=" w-[136px] h-[42px] mr-[-40px] text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
-              French Fries Yummy ...
+            {translate(' French Fries Yummy ...',locale)}
+
+             
             </h3>
           </div>
 
@@ -83,7 +106,9 @@ function HomeSection1() {
             />
 
             <h3 className=" w-[136px] h-[42px] mr-[-40px] text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
-              Cheeseburger Yummy ...
+            {translate('Cheeseburger Yummy ...',locale)}
+              
+             
             </h3>
           </div>
         </div>
