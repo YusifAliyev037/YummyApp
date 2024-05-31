@@ -171,6 +171,7 @@ console.log(passwordShow);
                     src="/azerbaijan.png"
                     alt="Az"
                     className="w-12 h-10 rounded-full mb-2"
+                    
                   />
                   <img
                     src="/russian.png"
