@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { translate } from "@/public/lang/translate";
+import { useRouter } from "next/router";
 
 const Footer: React.FC = () => {
+  const router = useRouter();
+
+
+// const changeLanguage = (locale: string) => {
+
+//   router.push(router.pathname, router.asPath, { locale });
+//   localStorage.setItem('lang', locale);
+
+// };
+
+useEffect(() => {
+  const locale = localStorage.getItem('lang') || 'en';
+  router.push(router.pathname, router.asPath, { locale });
+}, []);
+
+const locale = router.locale || 'en';
   return (
     <footer className="bg-black200 text-white p-8">
       <div className="container mx-auto flex justify-between">
@@ -12,7 +30,8 @@ const Footer: React.FC = () => {
               </h1>
             </div>
             <p className="text-gray400 ml-[150px] mt-[10px]">
-              Lorem ipsum is placeholder text commonly used in the graphic
+              {translate(' Lorem ipsum is placeholder text commonly used in the graphic',locale)}
+             
             </p>
             <div className="flex space-x-4 mt-[20px] ml-[150px]">
               <a
@@ -54,7 +73,7 @@ const Footer: React.FC = () => {
 
         <div className="w-2/3 flex justify-between mt-[140px] ml-[300px] mr-[130px]">
           <div>
-            <h3 className="hover:scale-105 font-bold mb-2">Popular</h3>
+            <h3 className="hover:scale-105 font-bold mb-2">{translate('Popular', locale)}</h3>
             <nav>
               <ul>
                 <li className="group">
@@ -62,7 +81,8 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Programming
+                    {translate(' Programming',locale)}
+                   
                   </a>
                 </li>
                 <li className="group">
@@ -70,7 +90,8 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Books for children
+                    {translate(' Books for children',locale)}
+                   
                   </a>
                 </li>
                 <li className="group">
@@ -78,7 +99,9 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Psychology
+                    {translate('Psychology',locale)}
+
+                
                   </a>
                 </li>
                 <li className="group">
@@ -86,7 +109,9 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Business
+                    {translate('  Business',locale)}
+                    
+                  
                   </a>
                 </li>
               </ul>
@@ -101,7 +126,9 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Cash
+                    {translate('Cash',locale)}
+
+                    
                   </a>
                 </li>
                 <li className="group">
@@ -109,7 +136,9 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Delivery
+                    {translate('Delivery',locale)}
+
+                   
                   </a>
                 </li>
                 <li className="group">
@@ -117,7 +146,9 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    Payment
+                    {translate('Payment',locale)}
+
+                   
                   </a>
                 </li>
                 <li className="group">
@@ -125,7 +156,9 @@ const Footer: React.FC = () => {
                     href="#"
                     className="hover:scale-105 text-gray400 hover:underline group-hover:text-orange"
                   >
-                    About the store
+                    {translate(' About the store',locale)}
+
+                   
                   </a>
                 </li>
               </ul>

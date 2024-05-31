@@ -3,11 +3,12 @@ import { Image } from '@chakra-ui/next-js';
 import { Box, Button, Flex, Input, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FormRegister, completeLogin } from '@/shared/AdminComponents/Services/axios';
 import { log } from 'console';
 import { useDispatch, useSelector } from 'react-redux';
 import { addlogin } from '@/shared/redux/global/globalSlice';
+import { translate } from '@/public/lang/translate';
 
 
 
@@ -21,12 +22,14 @@ interface FormValues {
 }
 
 const Login: React.FC = () => {
+  
+
   const [showDropdown, setShowDropdown] = useState(false);
   const[passwordShow,setpasswordShow]=useState(false)
   const dispatch = useDispatch();
 console.log(passwordShow);
 
-  
+
   const toast = useToast()
 
   const {push}: {push: Function} = useRouter();
@@ -138,13 +141,25 @@ console.log(passwordShow);
     setShowDropdown(!showDropdown);
   };
   let router=useRouter()
+  const changeLanguage = (locale: string) => {
+    router.push(router.pathname, router.asPath, { locale });
+    localStorage.setItem('lang', locale);
+    setShowDropdown(false);
+  };
+
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
 
   return (
     <Box >
      <Box className='m-[33px] flex flex-col gap-[20px] '>
      <Head>
-        <title>Client Login</title>
-        <MetaSeo title='Client Login' desc='Welcome to Client Login!' />
+        <title>{translate("Client Login",locale)}</title>
+        <MetaSeo title={translate('Client Login' )}desc='Welcome to Client Login!' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <header className='bg-pink40 flex items-center h-[122px] justify-between '>
@@ -164,6 +179,8 @@ console.log(passwordShow);
                 src="/usuk.png"
                 alt="Eng"
                 className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110"
+                onClick={() => changeLanguage('en')}
+
               />
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md">
@@ -171,12 +188,16 @@ console.log(passwordShow);
                     src="/azerbaijan.png"
                     alt="Az"
                     className="w-12 h-10 rounded-full mb-2"
+                onClick={() => changeLanguage('az')}
+
                     
                   />
                   <img
                     src="/russian.png"
                     alt="Rus"
                     className="w-12 h-10 rounded-full"
+                onClick={() => changeLanguage('fr')}
+
                   />
                 </div>
               )}
@@ -196,11 +217,11 @@ console.log(passwordShow);
        <Box className='ml-[39px] ' >
        <Box className='flex justify-center gap-[65px] pb-[72px]'>
         <Text  className="font-roboto text-lg font-medium leading-6 tracking-wide text-pink40 cursor-pointer  " >
-          Login
+       { translate( "Login",locale)}
         </Text>
 
         <Text onClick={()=>router.push("/login/register")} color={"#828282"} className="font-roboto text-lg font-normal leading-6 tracking-wide cursor-pointer ">
-          Register
+         {translate(' Register')}
         </Text>
          </Box>
 
@@ -212,13 +233,16 @@ console.log(passwordShow);
        <Box className='flex flex-col gap-[30px]'>
        <Box>
             <Text color={"#4F4F4F"}  className="font-roboto text-base font-medium leading-6 tracking-wide pb-[10px]  ">
-              Email
+         {translate('Email',locale)}
+
+             
             </Text>
             <Input  ref={emailRef} name='email' borderRadius={"5px"} backgroundColor={"#FFE7E7"} height={"68px"} />
           </Box>
           <Box position="relative">
   <Text color="#4F4F4F" className="font-roboto text-base font-medium leading-6 tracking-wide pb-[10px]">
-    Password
+  {translate('Password')}
+
 
     
   </Text>
@@ -237,7 +261,8 @@ console.log(passwordShow);
 
        </Box>
           <Button onClick={login} backgroundColor={"#EB5757"} color={"#FFFFFF"} fontWeight={"500"} size={"22px"} lineHeight={"22px"} height={"68px"} width={"100%"}>
-              Log in
+          {translate('Login',locale)}
+
             </Button>
 
         </Box>

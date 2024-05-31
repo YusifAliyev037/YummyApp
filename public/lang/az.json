@@ -32,13 +32,20 @@
     "Title": "Başlıq",
     "From": "Dan",
     "User Name": "İstifadəçi adı",
-    "Full Name": "Tam Adı",
+
     "Login": "Daxil ol",
     "E-mail": "E-poçt",
     "Password": "Şifrə",
     "items": "məhsul",
     "Checkout": "Kassa",
     "Min": "Dəq",
+    "Client Register": "Müştəri Qeydiyyatı",
+   
+    "Register": "Qeydiyyat",
+    "Full Name": "Tam Ad",
+    "Username": "İstifadəçi Adı",
+    "Email": "E-poçt",
+
     "Select Restaurant": "Restoran seçin",
     "Select": "Seçin",
     "create product": "məhsul yarat",
@@ -108,7 +115,7 @@
     "Search": "Axtar",
     "Delivery": "Çatdırılma",
     "Go Back": "Geri",
-    "Register": "Qeydiyyat",
+
     "Order now": "Sifariş Et",
     "Features": "Xüsusiyyətlər",
     "Explore now": "İndi Kəşf Et",
@@ -135,6 +142,7 @@
     "Add your offer description and necesarry information": "Təklifinizin təsvirini və lazımi məlumatları əlavə edin",
     "Upload your restaurant image": "Restoran şəklinizi yükləyin",
     "Select Category": "Kateqoriya seç",
+    " Lorem ipsum is placeholder text commonly used in the graphic, print,   and publishing industries for previewing layouts and visual mockups.":" Lorem ipsum is placeholder text commonly used in the graphic, print,   and publishing industries for previewing layouts and visual mockups.",
     "Category Type": "Kateqoriya növü",
     "Add your restuarant description and necesarry information": "Restoranınızın təsvirini və lazımi məlumatı əlavə edin",
     "Edit Category": "Redaktə Et",

@@ -189,7 +189,7 @@ const locale = router.locale || 'en';
                       onClick={() => router.push("/user")}
                       className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
                     >
-                      {translate("Profile", locale)}
+                    {translate("Your Profile", locale)}
                     </li>
                     <li
                       onClick={() => router.push("/user/basket")}
@@ -224,7 +224,7 @@ const locale = router.locale || 'en';
               onClick={() => router.push("/login")}
               className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
             >
-               {translate("Sign up", locale)}
+               {translate("Login", locale)}
              
             </button>
           )}
