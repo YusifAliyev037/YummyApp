@@ -196,8 +196,14 @@ const ClientHeader: React.FC = () => {
                   <img
                     src="/russian.png"
                     alt="Rus"
-                    className="w-12 h-10 rounded-full"
+                    className="w-12 h-10 rounded-full mb-2"
                     onClick={() => changeLanguage("fr")}
+                  />
+                  <img
+                    src="de.png"
+                    alt="De"
+                    className="w-12 h-10 rounded-full mb-2"
+                    // onClick={() => changeLanguage("de")}
                   />
                 </div>
               )}
