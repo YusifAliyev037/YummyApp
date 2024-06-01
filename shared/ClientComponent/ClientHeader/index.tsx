@@ -199,12 +199,12 @@ const ClientHeader: React.FC = () => {
                     className="w-12 h-10 rounded-full mb-2"
                     onClick={() => changeLanguage("fr")}
                   />
-                  <img
-                    src="de.png"
+                  {/* <img
+                    src="/de.png"
                     alt="De"
                     className="w-12 h-10 rounded-full mb-2"
-                    // onClick={() => changeLanguage("de")}
-                  />
+                    onClick={() => changeLanguage("de")}
+                  /> */}
                 </div>
               )}
             </div>
