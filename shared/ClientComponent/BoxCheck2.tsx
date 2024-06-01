@@ -1,7 +1,16 @@
+import { translate } from '@/public/lang/translate';
 import { Box, Divider, Text } from '@chakra-ui/react'
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react'
 
 const BoxCheck2 = () => {
+        const router=useRouter()
+useEffect(() => {
+  const locale = localStorage.getItem('lang') || 'en';
+  router.push(router.pathname, router.asPath, { locale });
+}, []);
+
+const locale = router.locale || 'en';
   return (
     <Box 
     bg='#F3F4F6'
@@ -19,7 +28,7 @@ gap='10px'
     textAlign='center'
     color=' #828282'
     >
-        <Text  fontSize='2xl' mb='2'>Your Order</Text>
+        <Text  fontSize='2xl' mb='2'>{translate("Your Order",locale)}</Text>
       
         <Box mb='2' w='full' display='flex' justifyContent='space-between'>
 <Text 
@@ -45,7 +54,7 @@ gap='10px'
         </Box>
        <Divider borderColor='black' my='4'/>
         <Box  m='auto' w='full' display='flex' justifyContent='space-between'>
-            <Text fontWeight='bold'>Total</Text>
+            <Text fontWeight='bold'>{translate("Total",locale)}</Text>
             <Text fontWeight='bold'>$17</Text>
 
         </Box>
