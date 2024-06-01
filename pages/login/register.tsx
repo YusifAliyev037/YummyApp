@@ -174,7 +174,7 @@ const register: React.FC = () => {
                 onClick={handleDropdownClick}
               >
                 <img
-                  src='/usuk.png'
+                  src='/eng.png'
                   alt='Eng'
                   className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
                   onClick={() => changeLanguage('en')}

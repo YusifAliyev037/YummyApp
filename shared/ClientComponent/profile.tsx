@@ -6,6 +6,8 @@ import { RootState } from '../redux/store';
 import { addlogin, updateLogin } from '../redux/global/globalSlice';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { fileStorage } from "../../server/configs/firebase";
+import { useRouter } from 'next/router';
+import { translate } from '@/public/lang/translate';
 
 interface FormRegister {
   phone?: string;
@@ -115,7 +117,14 @@ const Profile = () => {
       }));
     }
   }, [loginState]);
-
+  // translate
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
   return (
     <Box className='flex flex-col  mt-4 mr-8   h-[550px] gap-9  bg-white40'>
       <Box className='ml-8 mt-10 '>
@@ -124,7 +133,8 @@ const Profile = () => {
           height='32px'
           color='#4F4F4F'
         >
-          Profile
+          {translate(" Profile",locale)}
+         
         </Text>
       </Box>
       <Box>
@@ -169,7 +179,7 @@ const Profile = () => {
             />
           </Box>
           <Box marginTop='7px'>
-            <Text color='#4F4F4F'>User Name</Text>
+            <Text color='#4F4F4F'>{translate("User Name",locale)}</Text>
             <Input
               name='username'
               value={formData.username}
@@ -182,7 +192,7 @@ const Profile = () => {
             />
           </Box>
           <Box marginTop='7px'>
-            <Text color='#4F4F4F'>Full Name</Text>
+            <Text color='#4F4F4F'>{translate("Full Name",locale)}</Text>
             <Input
               name='fullname'
               value={formData.fullname}
@@ -197,7 +207,7 @@ const Profile = () => {
         </Box>
         <Box ml='4'>
           <Box>
-            <Text color='#4F4F4F'>Email</Text>
+            <Text color='#4F4F4F'>{translate("Email",locale)}</Text>
             <Input
               name='email'
               value={formData.email}
@@ -211,7 +221,7 @@ const Profile = () => {
             />
           </Box>
           <Box marginTop='7px'>
-            <Text color='#4F4F4F'>Address</Text>
+            <Text color='#4F4F4F'>{translate("Address",locale)}</Text>
             <Input
               name='address'
               value={formData.address}
@@ -231,7 +241,8 @@ const Profile = () => {
             height='53px'
             bg='#6FCF97'
           >
-            Save
+            {translate("Save",locale)}
+            
           </Button>
         </Box>
       </Box>

@@ -7,9 +7,11 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DeleteUserModul from './DeleteUserModul';
+import { useRouter } from 'next/router';
+import { translate } from '@/public/lang/translate';
 
 interface Order {
   id: number;
@@ -44,6 +46,14 @@ const OrdersTable: React.FC = () => {
       contact: '994-51-410-3130',
     },
   ];
+
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
   return (
     <Box className='flex flex-col  mt-4 mr-8   h-[550px] gap-9  bg-white40'>
       <Box className='ml-8 mt-10 '>
@@ -52,18 +62,20 @@ const OrdersTable: React.FC = () => {
           height='32px'
           color='#4F4F4F'
         >
-          Your Orders
+          {translate("Your Orders",locale)}
+          
         </Text>
       </Box>
       <table className='bg-white m-5'>
         <thead className='h-[50px] border-b-2 text-ordersBg'>
           <tr className='p-8'>
-            <th className='w-[100px] text-center'>ID</th>
-            <th className='w-[120px] text-center'>Time</th>
-            <th className='w-[200px] text-center'>Delivery Address</th>
-            <th className='w-[150px] text-center'>Amount</th>
-            <th className='w-[150px] text-center'>Payment Method</th>
-            <th className='w-[150px] text-center'>Contact</th>
+            <th className='w-[100px] text-center'>{translate("ID",locale)}</th>
+            <th className='w-[120px] text-center'>{translate("Time",locale)}</th>
+            <th className='w-[120px] text-center'>{translate("Delivery Address",locale)}</th>
+
+            <th className='w-[150px] text-center'>{translate("Amount",locale)}</th>
+            <th className='w-[150px] text-center'>{translate("Payment Method",locale)}</th>
+            <th className='w-[150px] text-center'>{translate("Contact",locale)}</th>
           </tr>
         </thead>
         <tbody>
@@ -79,7 +91,7 @@ const OrdersTable: React.FC = () => {
                 29 Eve Street,543 Evenue Road,Ny 87876
               </td>
               <td className='w-[100px] text-center'>$249.7</td>
-              <td className='w-[100px] text-center'>Cash On Delivery</td>
+              <td className='w-[100px] text-center'>{translate("Cash On Delivery",locale)}</td>
               <td className='w-[100px] text-center'>994-51-410-3130</td>
               <td className='w-[140px] text-center'>
                 <ButtonGroup>
@@ -106,7 +118,7 @@ const OrdersTable: React.FC = () => {
               29 Eve Street,543 Evenue Road,Ny 87876
             </td>{' '}
             <td className='w-[100px] text-center'>$249.7</td>
-            <td className='w-[100px] text-center'>Cash On Delivery</td>
+            <td className='w-[100px] text-center'>{translate("Cash On Delivery",locale)}</td>
             <td className='w-[100px] text-center'>994-51-410-3130</td>
             <td className='w-[140px] text-center'>
               <ButtonGroup>
