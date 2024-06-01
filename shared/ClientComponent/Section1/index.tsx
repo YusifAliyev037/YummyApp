@@ -6,17 +6,25 @@ import { useEffect } from "react";
 function HomeSection1() {
 
   const router = useRouter();
-  const [locale, setLocale] = useState('en');
+  // const [locale, setLocale] = useState('en');
 
+
+
+  // useEffect(() => {
+  //   const storedLocale = localStorage.getItem('lang');
+  //   if (storedLocale && ['en', 'az',"de", 'fr'].includes(storedLocale)) {
+  //     setLocale(storedLocale);
+  //   } else {
+  //     localStorage.setItem('lang', 'en');
+  //     setLocale('en');
+  //   }
+  // }, [router]);
   useEffect(() => {
-    const storedLocale = localStorage.getItem('lang');
-    if (storedLocale && ['en', 'az', 'fr'].includes(storedLocale)) {
-      setLocale(storedLocale);
-    } else {
-      localStorage.setItem('lang', 'en');
-      setLocale('en');
-    }
-  }, [router]);
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
   return (
     <div className="px-[30px] animate-slideIn ">
       <div className="bg-gray200 mx-6 md:mx-0 md:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
