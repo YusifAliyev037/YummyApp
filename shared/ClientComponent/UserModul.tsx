@@ -1,7 +1,8 @@
 import { Box, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
+import { translate } from "@/public/lang/translate";
 
 interface Props {
   hidden: boolean;
@@ -10,9 +11,16 @@ interface Props {
 
 function UserModul() {
   const { push, asPath } = useRouter();
+  const router=useRouter()
+  
 
   const isActive = (path: string) => (asPath === path ? "#FFB5A5" : "none");
-
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
   return (
     <Box
       as="section"
@@ -34,7 +42,8 @@ function UserModul() {
             as="li"
           >
             <Image width={18} alt="profile" height={18} src="/profile.svg" />
-            Profile
+            {translate("Profile",locale)}
+          
           </Button>
         </Box>
         <Box mb="32px">
@@ -49,7 +58,8 @@ function UserModul() {
             as="li"
           >
             <Image width={18} alt="basket" height={18} src="/basket.svg" />
-            Your Basket
+            {translate("Your Basket",locale)}
+            
           </Button>
         </Box>
         <Box mb="32px">
@@ -64,7 +74,8 @@ function UserModul() {
             as="li"
           >
             <Image width={18} alt="orders" height={18} src="/basket.svg" />
-            Your Orders
+            {translate("Your Orders",locale)}
+        
           </Button>
         </Box>
         <Box mb="32px">
@@ -79,7 +90,8 @@ function UserModul() {
             as="li"
           >
             <Image width={18} alt="Checkout" height={18} src="/basket.svg" />
-            Checkout
+            {translate("Checkout",locale)}
+            
           </Button>
         </Box>
         <Box mb="32px">
@@ -94,7 +106,8 @@ function UserModul() {
             as="li"
           >
             <Image width={18} alt="Logout" height={18} src="/basket.svg" />
-            Logout
+            {translate("Logout",locale)}
+      
           </Button>
         </Box>
       </Box>

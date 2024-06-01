@@ -165,7 +165,8 @@ console.log(passwordShow);
       <header className='bg-pink40 flex items-center h-[122px] justify-between '>
 
          <Text className="font-mukta font-extrabold ml-9 text-3xl leading-6 tracking-wide text-white pl-[36px ]">
-          Yummy.
+          {translate("Yummy.",locale)}
+        
 
          </Text>
 
@@ -197,6 +198,13 @@ console.log(passwordShow);
                     alt="Rus"
                     className="w-12 h-10 rounded-full"
                 onClick={() => changeLanguage('fr')}
+
+                  />
+                     <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Flag_of_germany_800_480.png"
+                    alt="De"
+                    className="w-12 h-10 rounded-full"
+                onClick={() => changeLanguage('de')}
 
                   />
                 </div>
