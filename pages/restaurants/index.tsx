@@ -13,7 +13,6 @@ function index() {
           <ClientHeader />
         </Box>
         <Box as="main" className=" flex">
-          <RestaurantNavbar />
           <RestaurantCard />
         </Box>
         <Box as="footer">
