@@ -8,11 +8,13 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
+import { translate } from '@/public/lang/translate';
 
 function Adminlogin() {
+  const router=useRouter()
   const toast = useToast();
 
-  const { push } = useRouter();
+  const { push,locale } = useRouter();
 
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -102,11 +104,17 @@ function Adminlogin() {
 
     return;
   }
+  const changeLanguage = (locale: string) => {
+    router.push(router.pathname, router.asPath, { locale });
+    localStorage.setItem('lang', locale);
 
+  };
+
+ 
   return (
     <Box className=" bg-darkBlue10  pb-[330px]">
       <Head>
-        <title>Admin Login</title>
+        <title>{translate("Admin Login", locale)}</title>
         <MetaSeo title="Admin Login" desc="Welcome to Login for Admins!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -126,7 +134,7 @@ function Adminlogin() {
           className="bg-none md:bg-darkblue30 w-full md:w-1/3 h-auto md:h-96 flex justify-center gap-5 flex-col p-6 md:p-11"
         >
           <Text as="h2" className=" text-4xl text-center text-gray10 font-bold">
-            Welcome Admin
+          {translate("Welcome Admin", locale)}
           </Text>
           <input
             ref={emailRef}
@@ -144,7 +152,7 @@ function Adminlogin() {
             onClick={login}
             className=" bg-pink rounded py-3 text-white text-2xl font-medium"
           >
-            Sign In
+          {translate("Sign In", locale)}
           </button>
         </Box>
         <Box
@@ -157,6 +165,7 @@ function Adminlogin() {
             height={40}
             alt="eng"
             src="/eng.svg"
+            onClick={()=>changeLanguage('en')}
           />
           <Box className="flex items-center justify-center mt-4 md:mt-9">
             <Image
