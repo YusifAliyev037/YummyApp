@@ -409,3 +409,27 @@ export async function delOffer(id:string){
   }
 }
 
+// search
+
+// export async function search() {
+//   try {
+//     const response = await instanceAxios.get('/products');
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error while fetching search:', error);
+//     throw new Error('Failed to fetch search!');
+//   }
+// }
+
+
+export async function search(query: string): Promise<Products[]> {
+  try {
+    const response = await instanceAxios.get('/products', {
+      params: { query },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error while fetching search:', error);
+    throw new Error('Failed to fetch search!');
+  }
+}
