@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Box,
   Button,
@@ -11,6 +11,8 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { translate } from '@/public/lang/translate';
 
 interface DeleteUserModulProps {
   isOpen: boolean;
@@ -21,7 +23,13 @@ interface DeleteUserModulProps {
 
 const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onConfirm }) => {
   const finalRef = useRef<HTMLDivElement>(null);
-
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
   return (
     <>
       <Box
@@ -42,7 +50,8 @@ const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onCon
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className='text-center'>
-            Are you sure it’s deleted ?
+            {translate("Are you sure it’s deleted ?",locale)}
+          
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -62,11 +71,14 @@ const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onCon
               borderWidth='1px'
               borderColor='#BDBDBD'
             >
-              Cancel
+              {translate("Cancel",locale)}
+           
             </Button>
 
             <Button className='w-28 text-white' colorScheme='red' onClick={onConfirm}>
-              Delete
+            {translate("Delete",locale)}
+
+              
             </Button>
           </ModalFooter>
         </ModalContent>

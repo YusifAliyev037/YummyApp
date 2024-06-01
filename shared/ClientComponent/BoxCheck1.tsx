@@ -1,7 +1,9 @@
 import { Box, Button, Input, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BoxCheck2 from './BoxCheck2';
 import CheckoutOr from './CheckoutOr';
+import { translate } from '@/public/lang/translate';
+import { useRouter } from 'next/router';
 
 const BoxCheck1 = () => {
   const [isChecked1, setIsChecked1] = useState(false);
@@ -13,7 +15,14 @@ const BoxCheck1 = () => {
 const handleCheckout=()=>{
   setShowCheckoutOr(true)
 }
- 
+
+const router=useRouter()
+useEffect(() => {
+  const locale = localStorage.getItem('lang') || 'en';
+  router.push(router.pathname, router.asPath, { locale });
+}, []);
+
+const locale = router.locale || 'en';
   return (
     
     <Box className='flex' gap='19px' flexDirection='row-reverse'>
@@ -33,13 +42,13 @@ const handleCheckout=()=>{
       
 
       <Box className='ml-10 mt-10 ' >
-        <Text marginBottom='23px'  fontSize='3xl' className=' text-color-#4F4F4F'>Checkout</Text>
+        <Text marginBottom='23px'  fontSize='3xl' className=' text-color-#4F4F4F'>{translate("Checkout",locale)}</Text>
       </Box>
      
       <Box className='flex justify-center' >
         <Box>
           <Box>
-            <Text  className='text-color-#4F4F4F'>Delivery Address</Text>
+            <Text  className='text-color-#4F4F4F'>{translate("Delivery Address",locale)}</Text>
             <Input
               width='542px'
               height='53px'
@@ -50,7 +59,7 @@ const handleCheckout=()=>{
             />
           </Box>
           <Box >
-            <Text marginBottom='11px' className='text-color-#4F4F4F'>Contact Number</Text>
+            <Text marginBottom='11px' className='text-color-#4F4F4F'>{translate("Contact Number",locale)}</Text>
             <Input
             
               width='542px'
@@ -63,7 +72,7 @@ const handleCheckout=()=>{
           </Box>
           <Box>
             <Box>
-              <Text marginBottom='21px' className='text-color-#4F4F4F'>Payment Method</Text>
+              <Text marginBottom='21px' className='text-color-#4F4F4F'>{translate("Payment Method",locale)}</Text>
             </Box>
             <Box
               display='flex'
@@ -94,7 +103,7 @@ const handleCheckout=()=>{
                 )}
                 </Box>
               
-                  <Text color=' #6FCF97;' marginEnd='auto' width='112px' height='21px'>pay at the door</Text>
+                  <Text color=' #6FCF97;' marginEnd='auto' width='112px' height='21px'>{translate("pay at the door",locale)}</Text>
 
               
                 <Box
@@ -121,7 +130,7 @@ const handleCheckout=()=>{
                 )}
 
                 </Box>
-               <Text >pay at the door by credit card</Text>
+               <Text >{translate("pay at the door by credit card",locale)}</Text>
             </Box>
             <Button
               marginTop='32px'
@@ -131,7 +140,8 @@ const handleCheckout=()=>{
               textColor='white'
             onClick={handleCheckout}
             >
-              Checkout
+              {translate("Checkout",locale)}
+         
             </Button>
         
           </Box>

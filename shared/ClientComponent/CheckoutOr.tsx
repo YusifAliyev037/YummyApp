@@ -1,7 +1,15 @@
 import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 const CheckoutOr = () => {
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  
+  const locale = router.locale || 'en';
   return (
     <Box
       width='1031px'
@@ -30,6 +38,7 @@ const CheckoutOr = () => {
             fontSize='30px'
             color='#4F4F4F'
           >
+            
             Your order has been <br /> received
           </Text>
         </Box>
