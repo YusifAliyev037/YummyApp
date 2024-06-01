@@ -134,6 +134,7 @@ const Login: React.FC = () => {
   const locale = router.locale || "en";
 
   return (
+
     <Box>
       <Box className="m-[33px] flex flex-col gap-[20px] ">
         <Head>
@@ -186,6 +187,7 @@ const Login: React.FC = () => {
                   </div>
                 )}
               </div>
+
             </div>
           </div>
         </header>
