@@ -21,9 +21,12 @@ const HomeSection3: React.FC = () => {
   return (
     <div className="space-y-12 pt-[100px]">
       {offer?.map((item, index) => (
-        <div key={index}
-        className={`flex flex-col gap-2 md:flex-row items-center md:items-start ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}
-         >
+        <div
+          key={index}
+          className={`flex flex-col gap-2  pb-[120px] md:flex-row items-center md:items-start ${
+            index % 2 === 1 ? "md:flex-row-reverse" : ""
+          }`}
+        >
           <div className="w-[650px] md:w-1/2 pl-[100px]">
             <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl text-black font-bold mb-4">
               {item.name}
@@ -35,7 +38,6 @@ const HomeSection3: React.FC = () => {
           <div className="w-full md:w-1/2 pt-[30px] pr-[150px] flex items-center justify-center">
             <div className="relative w-350 h-420 rotate-22.82 bg-red100 rounded-50 overflow-visible">
               <img
-                
                 src={item.img_url}
                 alt="Image 1"
                 className="w-[540px] h-[440px] absolute inset-0 transform scale-125 object-contain rounded-50"
