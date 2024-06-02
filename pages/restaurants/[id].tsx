@@ -4,6 +4,7 @@ import { getEditRestaurant, Restaurant } from '@/shared/AdminComponents/Services
 import { Box, Text, Image, TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Tfoot, Button } from '@chakra-ui/react';
 import ClientHeader from "@/shared/ClientComponent/ClientHeader";
 import ClientFooter from "@/shared/ClientComponent/ClientFooter";
+import RestaurantIdBasket from '@/shared/ClientComponent/RestaurantIdBasket';
 
 const RestaurantPage: React.FC = () => {
   const router = useRouter();
@@ -28,7 +29,6 @@ const RestaurantPage: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  // Ensure restaurant is not null before accessing its properties
   const restaurantEntries = restaurant ? Object.entries(restaurant) : [];
   console.log(restaurantEntries);
   
@@ -68,7 +68,7 @@ const RestaurantPage: React.FC = () => {
           </Box>
         ))}
         <hr/>
-        <Box className=' mt-9'>
+        <Box className=' mt-9 flex gap-12'>
         <Box as='section' className=' w-2/3 bg-gray200'>
           <Text className=' text-center py-10 font-bold text-2xl text-gray700'>Products</Text>
           <Box className=' mb-44'>
@@ -187,11 +187,11 @@ const RestaurantPage: React.FC = () => {
   </Table>
 </TableContainer>
           </Box>
-          <Box>
-            
-          </Box>
+          
         </Box>
-        <Box as='section'></Box>
+        <Box className='w-1/3 '>
+            <RestaurantIdBasket/>
+          </Box>
       </Box>
         </Box>
       <ClientFooter />
