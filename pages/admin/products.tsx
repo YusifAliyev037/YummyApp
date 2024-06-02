@@ -1,3 +1,5 @@
+
+
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1'
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
@@ -241,7 +243,7 @@ function products() {
     restaurantRender()
   },[])
   return (
-    <Box className=' bg-darkBlue10 h-screen '>
+    <Box className='bg-darkBlue10 md:h-screen'>
       
       <ModulDelete isOpen={isDeleteModalOpen} onClose={handleCloseModal} onConfirm={()=>{
         if (isDeleteModalId !== null) {
@@ -280,11 +282,13 @@ function products() {
       </Box>
       <Box as='main' className='flex'>
         <PushModul />
-        <Box as='section' className='w-full'>
-          <Box bg='#27283C' className='flex items-center mb-12 w-5/5 px-8 mt-20 mr-8' borderRadius={16} height={73}>
-            <Text color='white'>Products</Text>
-            <InputGroup className='flex justify-end items-center gap-7'>
-              <Select bgColor='#5A5B70' borderRadius={20} width={200} height={35} placeholder='Product type' onChange={handleSelectChange} mr='2'>
+        <Box as='section' className='w-full flex flex-col justfy-center gap-[52px]'>
+          <Box bg='#27283C'   className='flex flex-col rounded-[4px] w-[100%]   h-[123px]   gap-[8px] md:flex-row justify-center md:items-center mt-[90px]  md:px-8 md:mt-20 md:mr-8 md:w-[95%] md:h-[73px] md:rounded-[16px]'>
+          <Text color={"#C7C7C7"} className='font-roboto pl-[59px] font-medium text-[18px] leading-[24px] tracking-tightest text-customGray'>
+  Products
+</Text>
+            <InputGroup className='flex md:justify-end justify-center items-center md:gap-7'>
+              <Select bgColor='#5A5B70' borderRadius={{base:"8px",md:"200px"}}  height={35} width={{base:"267px",md:"200px"}}   placeholder='Product type' onChange={handleSelectChange} mr='2'>
                 {category.map((item, id) => {
                   return <option key={id} value={item.id}>{item.name}</option>;
                 })}
@@ -292,12 +296,12 @@ function products() {
               <Box></Box>
             </InputGroup>
           </Box>
-          <Box className='flex gap-8'>
+          <Box className='flex flex-col items-center gap-[29px] mt-[20px] md:flex-row md:gap-8'>
             {pagesData.map((item, index) => {
               return (
-                <Card key={index} className='h-72 w-48'>
+                <Card key={index}   className='h-[311px] w-[236px] md:h-72 md:w-48'  >
                   <CardBody>
-                    <Image src={item.img_url} alt={item.name} borderRadius='sm' height={"160px"} width={"160px"} />
+                    <Image src={item.img_url} alt={item.name} borderRadius='sm' className='h-[179px] w-[193px] md:w-[160px] md:h-[160px]' />
                     <Stack spacing='4' height="100%">
                       <Text color={"#1E1E30"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"18px"} height="24px">{item.name}</Text>
                       <Text color={"#8E8E93"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"14px"} height="24px">{item.description}</Text>
@@ -333,10 +337,16 @@ function products() {
           </Box>
         </Box>
       </Box>
-      <Pagination  getPages={getPages} length={Math.ceil(products.length/5)} />
+    
+     <Pagination   getPages={getPages} length={Math.ceil(products.length/5)} />
+   
 
     </Box>
   );
 }
 
 export default products;
+
+
+
+
