@@ -71,7 +71,7 @@ const RestaurantPage: React.FC = () => {
         <Box className=' mt-9'>
         <Box as='section' className=' w-2/3 bg-gray200'>
           <Text className=' text-center py-10 font-bold text-2xl text-gray700'>Products</Text>
-          <Box>
+          <Box className=' mb-44'>
           <TableContainer>
   <Table variant='simple'>
     
@@ -186,6 +186,9 @@ const RestaurantPage: React.FC = () => {
     
   </Table>
 </TableContainer>
+          </Box>
+          <Box>
+            
           </Box>
         </Box>
         <Box as='section'></Box>
