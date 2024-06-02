@@ -8,7 +8,7 @@ import { search, Products } from "../../AdminComponents/Services/axios";
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
-  const [showDropdown, setShowDropdown] = useState(false);
+
   const [show, setShow] = useState(false);
 
   const isActive = (route: string) => {
@@ -23,11 +23,8 @@ const ClientHeader: React.FC = () => {
     ? loginState.username.toUpperCase()[0]
     : "";
 
-  const changeLanguage = (locale: string) => {
-    router.push(router.pathname, router.asPath, { locale });
-    localStorage.setItem("lang", locale);
-    setShowDropdown(false);
-  };
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
 
   useEffect(() => {
     const locale = localStorage.getItem("lang") || "en";
@@ -96,6 +93,23 @@ const ClientHeader: React.FC = () => {
   };
 
   const locale = router.locale || "en";
+
+  const changeLanguage = (locale: string) => {
+    setSelectedLanguage(locale);
+    router.push(router.pathname, router.asPath, { locale });
+    localStorage.setItem("lang", locale);
+    setShowDropdown(false);
+  };
+
+  const languageFlagMap: { [key: string]: string } = {
+    en: "/usuk.png",
+    az: "/azerbaijan.png",
+    fr: "/russian.png",
+  };
+
+  const availableLanguages = Object.keys(languageFlagMap).filter(
+    (lang) => lang !== selectedLanguage
+  );
 
   return (
     <div className="flex items-center mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
@@ -171,112 +185,100 @@ const ClientHeader: React.FC = () => {
       <div className="flex items-center mr-8" style={{ paddingLeft: "40px" }}>
         <SearchComponent />
 
-        <div className="flex items-center pl-8">
-          <div className="relative flex items-center mr-8">
-            <div
-              className={`cursor-pointer flex items-center ${
-                showDropdown ? "active" : ""
-              }`}
-              onClick={() => setShowDropdown(!showDropdown)}
-            >
-              <img
-                src="/usuk.png"
-                alt="Eng"
-                className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110"
-                onClick={() => changeLanguage("en")}
-              />
-              {showDropdown && (
-                <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+        <div className="relative flex items-center mr-8">
+          <div
+            className={`cursor-pointer flex items-center ${
+              showDropdown ? "active" : ""
+            }`}
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
+            <img
+              src={languageFlagMap[selectedLanguage]}
+              alt={selectedLanguage}
+              className="w-12 h-10 rounded-full transition-transform transform hover:scale-110"
+            />
+            {showDropdown && (
+              <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+                {availableLanguages.map((lang) => (
                   <img
-                    src="/azerbaijan.png"
-                    alt="Az"
+                    key={lang}
+                    src={languageFlagMap[lang]}
+                    alt={lang}
                     className="w-12 h-10 rounded-full mb-2"
-                    onClick={() => changeLanguage("az")}
+                    onClick={() => changeLanguage(lang)}
                   />
-                  <img
-                    src="/russian.png"
-                    alt="Rus"
-                    className="w-12 h-10 rounded-full mb-2"
-                    onClick={() => changeLanguage("fr")}
-                  />
-                  {/* <img
-                    src="/de.png"
-                    alt="De"
-                    className="w-12 h-10 rounded-full mb-2"
-                    onClick={() => changeLanguage("de")}
-                  /> */}
-                </div>
-              )}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
-
-          {loginState?.username && loginState.username.length !== 0 ? (
-            <Box className="relative flex flex-col items-center    ">
-              <Box
-                onClick={() => setShow(!show)}
-                className="flex  items-center justify-center cursor-pointer "
-                width={"44px"}
-                height={"44px"}
-                backgroundColor={"#F178B6"}
-                borderRadius={"22px"}
-              >
-                <h1 className="font-roboto font-medium text-white text-center text-2xl leading-6 tracking-wide">
-                  {firstNameLetter + usernameLetter}
-                </h1>
-              </Box>
-
-              {show && (
-                <Box
-                  className="absolute top-14 z-10000"
-                  backgroundColor={"#FFFFFF"}
-                  width={"178px"}
-                >
-                  <ul className="space-y-2 pl-6 p-2">
-                    <li
-                      onClick={() => router.push("/user")}
-                      className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
-                    >
-                      {translate("Your Profile", locale)}
-                    </li>
-                    <li
-                      onClick={() => router.push("/user/basket")}
-                      className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
-                    >
-                      {translate("Your Basket", locale)}
-                    </li>
-                    <li
-                      onClick={() => router.push("/user/orders")}
-                      className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
-                    >
-                      {translate("Your Orders", locale)}
-                    </li>
-                    <li
-                      onClick={() => router.push("/user/checkout")}
-                      className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
-                    >
-                      {translate("Checkout", locale)}
-                    </li>
-                    <li
-                      onClick={() => router.push("/login")}
-                      className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
-                    >
-                      {translate("Logout", locale)}
-                    </li>
-                  </ul>
-                </Box>
-              )}
-            </Box>
-          ) : (
-            <button
-              onClick={() => router.push("/login")}
-              className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
-            >
-              {translate("Login", locale)}
-            </button>
-          )}
         </div>
+        {loginState?.username && loginState.username.length !== 0 ? (
+          <Box className="relative flex flex-col items-center    ">
+            <Box
+              onClick={() => setShow(!show)}
+              className="flex  items-center justify-center cursor-pointer "
+              width={"44px"}
+              height={"44px"}
+              backgroundColor={"#F178B6"}
+              borderRadius={"22px"}
+            >
+              <h1 className="font-roboto font-medium text-white text-center text-2xl leading-6 tracking-wide">
+                {firstNameLetter + usernameLetter}
+              </h1>
+            </Box>
+
+            {show && (
+              <Box
+                className="absolute top-14 z-10000"
+                backgroundColor={"#FFFFFF"}
+                width={"178px"}
+              >
+                <ul className="space-y-2 pl-6 p-2">
+                  <li
+                    onClick={() => router.push("/user")}
+                    className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
+                  >
+                    {translate("Your Profile", locale)}
+                  </li>
+                  <li
+                    onClick={() => router.push("/user/basket")}
+                    className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
+                  >
+                    {translate("Your Basket", locale)}
+                  </li>
+                  <li
+                    onClick={() => router.push("/user/orders")}
+                    className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
+                  >
+                    {translate("Your Orders", locale)}
+                  </li>
+                  <li
+                    onClick={() => router.push("/user/checkout")}
+                    className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
+                  >
+                    {translate("Checkout", locale)}
+                  </li>
+                  <li
+                    onClick={() => router.push("/login")}
+                    className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
+                  >
+                    {translate("Logout", locale)}
+                  </li>
+                </ul>
+              </Box>
+            )}
+          </Box>
+        ) : (
+          <button
+            onClick={() => router.push("/login")}
+            className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
+          >
+            {translate("Login", locale)}
+          </button>
+        )}
       </div>
     </div>
+    // </div>
   );
 };
 
