@@ -45,6 +45,12 @@ const Login: React.FC = () => {
       : '{}'
   );
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      login();
+    }
+  };
+
   async function login() {
     const email = emailRef?.current?.value;
 
@@ -226,7 +232,7 @@ const Login: React.FC = () => {
                 </Text>
               </Box>
 
-              <Box className='flex flex-col gap-[67px]'>
+              <Box onKeyDown={handleKeyDown} className='flex flex-col gap-[67px]'>
                 <Box className='flex flex-col gap-[30px]'>
                   <Box>
                     <Text
