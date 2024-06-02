@@ -48,7 +48,9 @@ const Login: React.FC = () => {
   );
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
+
+    if (event.key === 'Enter') {
+
       login();
     }
   };
@@ -222,11 +224,10 @@ const Login: React.FC = () => {
                 </Text>
               </Box>
 
-              <Box
-                onKeyDown={handleKeyDown}
-                className="flex flex-col gap-[67px]"
-              >
-                <Box className="flex flex-col gap-[30px]">
+
+              <Box onKeyDown={handleKeyDown} className='flex flex-col gap-[67px]'>
+                <Box className='flex flex-col gap-[30px]'>
+
                   <Box>
                     <Text
                       color={"#4F4F4F"}
