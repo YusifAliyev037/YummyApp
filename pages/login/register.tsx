@@ -26,6 +26,12 @@ const register: React.FC = () => {
     username: '',
   });
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      addData()
+     
+    }
+  };
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormValues({
@@ -105,6 +111,7 @@ const register: React.FC = () => {
               fullname: '',
               username: '',
             });
+            router.push("/login")
           } else {
             toast({
               title: 'Error',
@@ -240,8 +247,8 @@ const register: React.FC = () => {
                 </Text>
               </Box>
 
-              <Box className='flex flex-col gap-[68px]'>
-                <Box className='flex flex-col gap-[30px]'>
+              <Box onKeyDown={handleKeyDown} className='flex flex-col gap-[68px]'>
+                <Box  className='flex flex-col gap-[30px]'>
                   <Box>
                     <Text
                       color={'#4F4F4F'}
