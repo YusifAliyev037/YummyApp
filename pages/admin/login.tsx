@@ -180,22 +180,32 @@ function Adminlogin() {
               }`}
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <img
-                src={languageFlagMap[selectedLanguage]}
-                alt={selectedLanguage}
-                className="w-12 h-10 rounded-full transition-transform transform hover:scale-110"
-              />
+        <img
+            src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : 'russian.png'}`}
+            alt={locale === 'en' ? 'Eng' : locale === 'az' ? 'Az' : 'Rus'}
+            className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
+            onClick={() => setShowDropdown(!showDropdown)}
+            />
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-                  {availableLanguages.map((lang) => (
+                <img
+            src='/usuk.png'
+            alt='Eng'
+            className='w-12 h-10 rounded-full mb-2'
+            onClick={() => changeLanguage('en')}
+          />
                     <img
-                      key={lang}
-                      src={languageFlagMap[lang]}
-                      alt={lang}
-                      className="w-12 h-10 rounded-full mb-2"
-                      onClick={() => changeLanguage(lang)}
+                      src='/azerbaijan.png'
+                      alt='Az'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('az')}
                     />
-                  ))}
+                    <img
+                      src='/russian.png'
+                      alt='Rus'
+                      className='w-12 h-10 rounded-full'
+                      onClick={() => changeLanguage('ru')}
+                    />
                 </div>
               )}
             </div>
