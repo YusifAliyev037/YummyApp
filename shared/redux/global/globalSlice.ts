@@ -49,7 +49,7 @@ export const globalSlice = createSlice({
       state.restaurant = action.payload;
     },
 
-    fillProducts: (state, action: PayloadAction<Restaurant[]>) => {
+    fillProducts: (state, action: PayloadAction<Products[]>) => {
       state.product = action.payload;
     },
 
