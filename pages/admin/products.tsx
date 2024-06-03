@@ -1,5 +1,3 @@
-
-
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1'
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
@@ -11,6 +9,7 @@ import { fillProducts } from '@/shared/redux/global/globalSlice'
 import { RootState } from '@/shared/redux/store'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, IconButton, Image, InputGroup, Select, Stack, Text, useToast } from '@chakra-ui/react'
+
 
 import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
@@ -143,11 +142,13 @@ function products() {
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     if (selectedValue.length==0) {     
-      setProducts(originalProducts); 
+      dispatch(fillProducts(originalProducts))
+     
       
     } else {
       const filteredProducts = originalProducts.filter((item) => item.rest_id === selectedValue);
-      setProducts(filteredProducts);
+      dispatch(fillProducts(filteredProducts))
+     
       setPages(0)
       
     }
@@ -163,12 +164,18 @@ function products() {
   }
 
 
+
   if(pages+1===1){
     b=0;
   } else {
     b=pages*5;
   }
-  console.log(b);
+  console.log("pages",pages);
+  console.log("bbb",b);
+  
+  
+  
+
   
 
   let pagesData=productsArr?.slice(b,(pages+1)*5);
@@ -207,8 +214,12 @@ function products() {
   function handleDeleteProduct(product: Products) {
     if (product.id) {
       deleteProducts(product.id);
+      let newdat=products.filter((res) => res.id !== isDeleteModalId?.id)
+      dispatch(fillProducts(newdat))
+      
+      
 
-      setProducts(products.filter((res) => res.id !== isDeleteModalId?.id));
+     
       
         toast({
           title: 'Product deleted successfully!',

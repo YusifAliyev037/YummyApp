@@ -57,11 +57,10 @@
   "ADD RESTAURANTS": "Restoran Əlavə Et",
   "Add restaurants": "Restoran Əlavə Et",
   "Restaurant Name": "Restoran Adı",
- 
-  
+
   "Edit Product": "Məhsulu redaktə et",
   "Edit Restaurant": "Restoranı Redaktə Et",
-  "Do You Like French Fries? Mmm...":"Kartof qızartması xoşunuza gəlirmi? Mmm...",
+  "Do You Like French Fries? Mmm...": "Kartof qızartması xoşunuza gəlirmi? Mmm...",
   "Add your Restaurant information": "Restoran Məlumatlarını Əlavə Et",
   "Upload your product image": "Məhsulun şəklini yüklə",
   "Upload your restaurants image": "Restoranın şəklini yüklə",
@@ -73,15 +72,15 @@
   "Are you sure it's deleted ?": "Silmək istədiyinizə əminsiniz mi?",
   "Attention! If you delete this product, it will not come back...": "Diqqət! Sildiyiniz məhsulu geri gətirmək mümkün olmayacaq...",
   "Name": "Ad",
-  "Store":"Mağaza",
-  " Support":"Dəstək",
-  "Buyer help":"Alıcı yardımı",
+  "Store": "Mağaza",
+  " Support": "Dəstək",
+  "Buyer help": "Alıcı yardımı",
   "attention_message": "Diqqət! Bu məhsulu silərsəniz, geri qayıtmayacaq...",
   "Are you sure it’s deleted ?": "Silindiyinə əminsinizmi?",
   "Cash On Delivery": "Çatdırılmada Nəğd",
-"Contacts":"Əlaqə",
-"Store":"Mağaza",
-"You are just one click away from Yummy's address!":"Yummy-nin ünvanından bir klik uzaqdasınız!",
+  "Contacts": "Əlaqə",
+  "Store": "Mağaza",
+  "You are just one click away from Yummy's address!": "Yummy-nin ünvanından bir klik uzaqdasınız!",
   "Support": "Dəstək",
   "Fresh Healthy Food": "Təzə Sağlam Qida",
   "home_section1_title": "Bizim Yemək saytı yerli yeməkləri tapmağı asanlaşdırır",
@@ -229,7 +228,7 @@
   "Must be 15 characters or less": " 15 və ya daha az simvol olmalıdır",
   "passwordFormik": "Ən azı bir hərf və ya rəqəm olmalıdır. Uzunluğu isə 5-10 arası",
   "Online": "Onlayn",
-  "FoodyChat": "FoodySöhbət",
+
   "All rights reserved © 2003-2024 Foody TERMS OF USE | Privacy Policy": "Bütün hüquqlar qorunur © 2003-2024 Foody İSTİFADƏ ŞƏRTLƏRİ | Gizlilik Siyasəti",
   "Delivery may be extended during sale periods. Please refer to the checkout page for an updated estimate for your location. Kindly note that once you have placed an order, it is no longer possible to modify your order. Taxes and duties are included in all product prices.It is possible to place an order with shipment to a different address than your home or billing address when paying with a credit card. Please note that Klarna payments require that your order is shipped to your registered home address.": "Satış müddətində çatdırılma uzadıla bilər. Məkanınız üçün yenilənmiş təxmin üçün yoxlama səhifəsinə baxın. Nəzərə alın ki, sifariş verdikdən sonra sifarişinizi dəyişdirmək artıq mümkün deyil. Vergilər və rüsumlar bütün məhsul qiymətlərinə daxildir. Kredit kartı ilə ödəniş edərkən evinizdən və ya faktura ünvanınızdan fərqli ünvana çatdırılma ilə sifariş vermək mümkündür. Nəzərə alın ki, Klarna ödənişləri sifarişinizin qeydiyyatdan keçmiş ev ünvanınıza göndərilməsini tələb edir."
 }

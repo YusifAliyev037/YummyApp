@@ -179,7 +179,7 @@ const Login: React.FC = () => {
             />
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-                                        <img
+                <img
             src='/usuk.png'
             alt='Eng'
             className='w-12 h-10 rounded-full mb-2'
@@ -226,7 +226,7 @@ const Login: React.FC = () => {
                   {translate(" Register")}
                 </Text>
               </Box>
-
+ 
 
               <Box onKeyDown={handleKeyDown} className='flex flex-col gap-[67px]'>
                 <Box className='flex flex-col gap-[30px]'>
