@@ -24,12 +24,14 @@ interface DeleteUserModulProps {
 const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onConfirm }) => {
   const finalRef = useRef<HTMLDivElement>(null);
   const router=useRouter()
+  
   useEffect(() => {
     const locale = localStorage.getItem('lang') || 'en';
     router.push(router.pathname, router.asPath, { locale });
   }, []);
   
   const locale = router.locale || 'en';
+  const translatedMessage = translate("attention_message", locale);
   return (
     <>
       <Box
@@ -55,10 +57,9 @@ const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onCon
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text className='text-center'>
-              Attention! If you delete this <br />product, it will not come
-              back...
-            </Text>
+          <ModalBody>
+      <div className="text-center" dangerouslySetInnerHTML={{ __html: translatedMessage }} />
+    </ModalBody>
           </ModalBody>
 
           <ModalFooter justifyContent='center'>

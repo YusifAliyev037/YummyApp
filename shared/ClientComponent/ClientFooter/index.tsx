@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
             </nav>
           </div>
           <div>
-            <h3 className='hover:scale-105 font-bold mb-2'>Store</h3>
+            <h3 className='hover:scale-105 font-bold mb-2'>{translate("Store",locale)}</h3>
             <nav>
               <ul>
                 <li className='group'>
@@ -172,7 +172,7 @@ const Footer: React.FC = () => {
                     href='#'
                     className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
                   >
-                    {translate('Contacts', locale)}
+                    {translate('Contact', locale)}
                   </a>
                 </li>
                 <li className='group'>

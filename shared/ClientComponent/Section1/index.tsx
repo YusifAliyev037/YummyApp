@@ -6,19 +6,9 @@ import { useEffect } from "react";
 function HomeSection1() {
 
   const router = useRouter();
-  // const [locale, setLocale] = useState('en');
+ 
 
 
-
-  // useEffect(() => {
-  //   const storedLocale = localStorage.getItem('lang');
-  //   if (storedLocale && ['en', 'az',"de", 'fr'].includes(storedLocale)) {
-  //     setLocale(storedLocale);
-  //   } else {
-  //     localStorage.setItem('lang', 'en');
-  //     setLocale('en');
-  //   }
-  // }, [router]);
   useEffect(() => {
     const locale = localStorage.getItem('lang') || 'en';
     router.push(router.pathname, router.asPath, { locale });
@@ -44,7 +34,7 @@ function HomeSection1() {
               onClick={() => router.push("/login/register")}
               className="hover:scale-105 bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg md:text-2xl font-medium px-6 py-3"
             >
-              {translate(' Register',locale)}
+              {translate('Register',locale)}
            
             </button>
             <button className="hover:scale-105 border border-gray300 text-gray300 md:text-2xl w-[220px] h-[70px] rounded-full text-lg font-medium px-6 py-3">
@@ -98,7 +88,7 @@ function HomeSection1() {
             />
 
             <h3 className=" w-[136px] h-[42px] mr-[-40px] text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
-            {translate(' French Fries Yummy ...',locale)}
+            {translate('French Fries Yummy ...',locale)}
 
              
             </h3>
