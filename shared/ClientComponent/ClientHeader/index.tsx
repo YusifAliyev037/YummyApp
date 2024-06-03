@@ -6,7 +6,9 @@ import { Box } from "@chakra-ui/react";
 import { translate } from "../../../public/lang/translate";
 import { search, Products } from "../../AdminComponents/Services/axios";
 
+
 const ClientHeader: React.FC = () => {
+
   const router = useRouter();
 
   const [show, setShow] = useState(false);
@@ -24,10 +26,11 @@ const ClientHeader: React.FC = () => {
     : "";
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
+
 
   useEffect(() => {
     const locale = localStorage.getItem("lang") || "en";
+
     router.push(router.pathname, router.asPath, { locale });
   }, []);
 
@@ -95,21 +98,11 @@ const ClientHeader: React.FC = () => {
   const locale = router.locale || "en";
 
   const changeLanguage = (locale: string) => {
-    setSelectedLanguage(locale);
+
     router.push(router.pathname, router.asPath, { locale });
     localStorage.setItem("lang", locale);
     setShowDropdown(false);
   };
-
-  const languageFlagMap: { [key: string]: string } = {
-    en: "/usuk.png",
-    az: "/azerbaijan.png",
-    fr: "/russian.png",
-  };
-
-  const availableLanguages = Object.keys(languageFlagMap).filter(
-    (lang) => lang !== selectedLanguage
-  );
 
   return (
     <div className="flex items-center mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
@@ -192,22 +185,32 @@ const ClientHeader: React.FC = () => {
             }`}
             onClick={() => setShowDropdown(!showDropdown)}
           >
-            <img
-              src={languageFlagMap[selectedLanguage]}
-              alt={selectedLanguage}
-              className="w-12 h-10 rounded-full transition-transform transform hover:scale-110"
+                <img
+            src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : 'russian.png'}`}
+            alt={locale === 'en' ? 'Eng' : locale === 'az' ? 'Az' : 'Rus'}
+            className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
+            onClick={() => setShowDropdown(!showDropdown)}
             />
-            {showDropdown && (
-              <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-                {availableLanguages.map((lang) => (
-                  <img
-                    key={lang}
-                    src={languageFlagMap[lang]}
-                    alt={lang}
-                    className="w-12 h-10 rounded-full mb-2"
-                    onClick={() => changeLanguage(lang)}
-                  />
-                ))}
+              {showDropdown && (
+                <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+                      <img
+            src='/usuk.png'
+            alt='Eng'
+            className='w-12 h-10 rounded-full mb-2'
+            onClick={() => changeLanguage('en')}
+          />
+                    <img
+                      src='/azerbaijan.png'
+                      alt='Az'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('az')}
+                    />
+                    <img
+                      src='/russian.png'
+                      alt='Rus'
+                      className='w-12 h-10 rounded-full'
+                      onClick={() => changeLanguage('fr')}
+                    />
               </div>
             )}
           </div>

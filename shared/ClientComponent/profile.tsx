@@ -149,7 +149,7 @@ const Profile = () => {
             ) : (
               <Box className='relative'>
                 <input onChange={getİmage} type='file' id='file' accept='image/*'
-                className='absalute opacity-0 cursor-pointer'
+                className='absolute opacity-0 cursor-pointer'
                 />
                 <img src="/uploaduser.svg" alt="Upload" />
               </Box>
@@ -164,7 +164,7 @@ const Profile = () => {
         </Box>
       </Box>
       <Box className='flex justify-center'>
-        <Box ml='4'>
+        <Box mr='8'>
           <Box>
             <Text color='#4F4F4F'>Contact</Text>
             <Input
@@ -205,7 +205,7 @@ const Profile = () => {
             />
           </Box>
         </Box>
-        <Box ml='4'>
+        <Box ml='8'>
           <Box>
             <Text color='#4F4F4F'>{translate("Email",locale)}</Text>
             <Input
