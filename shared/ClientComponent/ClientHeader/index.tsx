@@ -168,7 +168,7 @@ const ClientHeader: React.FC = () => {
                 "/faqs"
               )}`}
             >
-              {translate(" FAQs", locale)}
+              {translate("FAQs", locale)}
             </a>
           </li>
         </ul>
