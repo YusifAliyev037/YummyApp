@@ -1,3 +1,4 @@
+
 import BarCharts from "@/shared/AdminComponents/BarCharts";
 import Header from "@/shared/AdminComponents/Header";
 import LineCharts from "@/shared/AdminComponents/LineChart";
@@ -8,14 +9,22 @@ import MetaSeo from "@/shared/MetaSeo";
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-
+import { translate } from "@/public/lang/translate";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 const AdminDashboard: NextPage = () => {
+const router=useRouter()
 
-  
+useEffect(() => {
+  const locale = localStorage.getItem('lang') || 'en';
+  router.push(router.pathname, router.asPath, { locale });
+}, []);
+const locale = router.locale || 'en';
+
   return (
     <Box className="bg-darkBlue10 relative xxl:w-full ">
       <Head>
-        <title>Dashboard</title>
+        <title>{translate("Dashboard",locale)}</title>
         <MetaSeo title="Dashboard" desc="Welcome to admin main page!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

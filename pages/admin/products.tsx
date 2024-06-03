@@ -1,3 +1,4 @@
+import { translate } from '@/public/lang/translate'
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1'
 import Header from '@/shared/AdminComponents/Header'
 import ModulDelete from '@/shared/AdminComponents/ModulDelete'
@@ -12,6 +13,7 @@ import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading,
 
 
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -253,6 +255,13 @@ function products() {
   useEffect(()=>{
     restaurantRender()
   },[])
+
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  const locale = router.locale || 'en';
   return (
     <Box className='bg-darkBlue10 md:h-screen'>
       
@@ -268,7 +277,7 @@ function products() {
       }} />
       <Box as='header'>
         <Head>
-          <title>Products</title>
+          <title>{translate("Products",locale)}</title>
           <MetaSeo title="Products" desc="Products Page"/>
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -296,7 +305,8 @@ function products() {
         <Box as='section' className='w-full flex flex-col justfy-center gap-[52px]'>
           <Box bg='#27283C'   className='flex flex-col rounded-[4px] w-[100%]   h-[123px]   gap-[8px] md:flex-row justify-center md:items-center mt-[90px]  md:px-8 md:mt-20 md:mr-8 md:w-[95%] md:h-[73px] md:rounded-[16px]'>
           <Text color={"#C7C7C7"} className='font-roboto pl-[59px] font-medium text-[18px] leading-[24px] tracking-tightest text-customGray'>
-  Products
+            {translate("Products",locale)}
+  
 </Text>
             <InputGroup className='flex md:justify-end justify-center items-center md:gap-7'>
               <Select bgColor='#5A5B70' borderRadius={{base:"8px",md:"200px"}}  height={35} width={{base:"267px",md:"200px"}}   placeholder='Product type' onChange={handleSelectChange} mr='2'>

@@ -1,7 +1,8 @@
+import { translate } from '@/public/lang/translate';
 import { Box, Button } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
   hidden: boolean;
@@ -12,7 +13,12 @@ function PushModul() {
   const { push, asPath } = useRouter();
 
   const isActive = (path: string) => (asPath === path ? '#d25ff5' : 'none');
-
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  const locale = router.locale || 'en';
   return (
     <Box
       as='section'
@@ -38,7 +44,8 @@ function PushModul() {
             height={18}
             src='/dashboard.svg'
           />
-          Dashboard
+          {translate("Dashboard",locale)}
+          
         </Button>
         <Button
           onClick={() => push('/admin/products')}
@@ -56,7 +63,8 @@ function PushModul() {
             height={18}
             src='/products.svg'
           />
-          Products
+           {translate("Products",locale)}
+         
         </Button>
         <Button
           onClick={() => push('/admin/restaurants')}
@@ -74,7 +82,9 @@ function PushModul() {
             height={18}
             src='/restaurants.svg'
           />
-          Restaurants
+           {translate("Restaurants",locale)}
+
+          
         </Button>
         <Button
           onClick={() => push('/admin/category')}
@@ -92,7 +102,9 @@ function PushModul() {
             height={18}
             src='/category.svg'
           />
-          Category
+           {translate("Category",locale)}
+
+          
         </Button>
         <Button
           onClick={() => push('/admin/orders')}
@@ -110,7 +122,9 @@ function PushModul() {
             height={18}
             src='/orders.svg'
           />
-          Orders
+           {translate("Orders",locale)}
+
+          
         </Button>
         <Button
           onClick={() => push('/admin/offer')}
@@ -128,7 +142,9 @@ function PushModul() {
             height={18}
             src='/offer.svg'
           />
-          Offer
+           {translate("Offer",locale)}
+
+          
         </Button>
         <Button
           onClick={() => push('/admin/login')}
@@ -146,7 +162,9 @@ function PushModul() {
             height={18}
             src='/logout.svg'
           />
-          Logout
+           {translate("Logout",locale)}
+
+          
         </Button>
       </Box>
     </Box>

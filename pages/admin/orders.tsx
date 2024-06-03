@@ -1,17 +1,28 @@
+import { translate } from '@/public/lang/translate'
 import Header from '@/shared/AdminComponents/Header'
 import PushModul from '@/shared/AdminComponents/PushModul'
 import TableForOrder from '@/shared/AdminComponents/Table'
 import MetaSeo from '@/shared/MetaSeo'
 import { Box, Flex, Text, flexbox } from '@chakra-ui/react'
 import Head from 'next/head'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 function orders() {
   let TableNames=["ID","Customer ID","Time","Delivery Address","Amount","Payment Method","Contact"]
   let testData=[{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"},{id:9177,customerId:22401,time:"25 Dec 2021",adres:"29 eve street 543 avenue road ,ny87876",amount:"$249,7",payment:"Cash on delivery",contact:"994-51-410-3130"}]
+
+
+
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  const locale = router.locale || 'en';
   return(
     <Box  className="bg-darkBlue10 h-screen"> 
    <Head>
-        <title>Orders</title>
+        <title>{translate("Orders",locale)}</title>
        <MetaSeo title="Orders" desc="Orders Page"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -23,7 +34,8 @@ function orders() {
         <Box display={"flex"} justifyContent={"flex-end"} height={"660px"} flexDirection={"column" } gap={"41px"}>
         <Box bg={"#27283C"} height={"73px"} borderRadius={"14px"} display={"flex"} alignItems={"center"} >
           <Text color="#F2F2F2DE" fontSize="21px" fontFamily="Roboto" lineHeight="21px" paddingLeft={"33px"} >
-            Orders
+            {translate("Orders",locale)}
+           
           </Text>
           </Box>
          <Box height={"464px"} overflow={"auto"}>
