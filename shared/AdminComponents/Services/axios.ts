@@ -344,6 +344,20 @@ export async function clearBasket() {
   }
 }
 
+// ordersPost
+
+export async function postOrders(){
+  try{
+    const response = await instanceAxios.post("/orders");
+    return response
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+
+
 // !offer
 
 export type OfferValues = {
@@ -433,3 +447,4 @@ export async function search(query: string): Promise<Products[]> {
     throw new Error('Failed to fetch search!');
   }
 }
+

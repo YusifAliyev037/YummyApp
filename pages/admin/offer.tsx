@@ -3,10 +3,12 @@ import PushModul from '@/shared/AdminComponents/PushModul';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import OfferTable from '@/shared/AdminComponents/OfferTable';
 import { OfferValues, createOffer } from '@/shared/AdminComponents/Services/axios';
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
+import { useRouter } from 'next/router';
+import { translate } from '@/public/lang/translate';
 
 
 
@@ -100,7 +102,13 @@ const Offer: React.FC = () => {
   const handleAddOffer = () =>(
     setHidden(false)
   )
+  const router=useRouter()
 
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  const locale = router.locale || 'en';
   return (
     <Box className=' bg-darkBlue10 h-screen  z-5'>
       <Box as='header'>
@@ -143,7 +151,8 @@ const Offer: React.FC = () => {
                   colorScheme='pink'
                   onClick={handleAddOffer}
                 >
-                  + ADD OFFER
+                  {translate("+ ADD OFFER",locale)}
+              
                 </Button>
               </Box>
             </InputGroup>
