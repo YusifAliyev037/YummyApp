@@ -21,15 +21,20 @@ interface DeleteUserModulProps {
   onConfirm?: () => void;
 }
 
-const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onConfirm }) => {
+const DeleteUserModul: React.FC<DeleteUserModulProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+}) => {
   const finalRef = useRef<HTMLDivElement>(null);
-  const router=useRouter()
+  const router = useRouter();
   useEffect(() => {
     const locale = localStorage.getItem('lang') || 'en';
     router.push(router.pathname, router.asPath, { locale });
   }, []);
-  
+
   const locale = router.locale || 'en';
+  const translatedMessage = translate('attention_message', locale);
   return (
     <>
       <Box
@@ -37,9 +42,7 @@ const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onCon
         ref={finalRef}
         tabIndex={-1}
         aria-label='Focus moved to this box'
-      >
-        
-      </Box>
+      ></Box>
 
       <Modal
         finalFocusRef={finalRef}
@@ -50,15 +53,14 @@ const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onCon
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className='text-center'>
-            {translate("Are you sure it’s deleted ?",locale)}
-          
+            {translate('Are you sure it’s deleted ?', locale)}
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text className='text-center'>
-              Attention! If you delete this <br />product, it will not come
-              back...
-            </Text>
+            <div
+              className='text-center'
+              dangerouslySetInnerHTML={{ __html: translatedMessage }}
+            />
           </ModalBody>
 
           <ModalFooter justifyContent='center'>
@@ -71,14 +73,15 @@ const DeleteUserModul: React.FC<DeleteUserModulProps> = ({ isOpen, onClose,onCon
               borderWidth='1px'
               borderColor='#BDBDBD'
             >
-              {translate("Cancel",locale)}
-           
+              {translate('Cancel', locale)}
             </Button>
 
-            <Button className='w-28 text-white' colorScheme='red' onClick={onConfirm}>
-            {translate("Delete",locale)}
-
-              
+            <Button
+              className='w-28 text-white'
+              colorScheme='red'
+              onClick={onConfirm}
+            >
+              {translate('Delete', locale)}
             </Button>
           </ModalFooter>
         </ModalContent>

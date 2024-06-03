@@ -166,7 +166,7 @@ const Profile = () => {
       <Box className='flex justify-center'>
         <Box mr='8'>
           <Box>
-            <Text color='#4F4F4F'>Contact</Text>
+            <Text color='#4F4F4F'>{translate("Contact",locale)}</Text>
             <Input
               name='phone'
               value={formData.phone}

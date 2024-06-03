@@ -28,7 +28,7 @@ const HomeSection4: React.FC = () => {
       <div className="flex justify-center mt-20 space-x-8">
         <div className="hover:scale-105 w-72 h-96 border border-gray-200 rounded-lg flex flex-col items-center justify-center text-center px-8 py-6 shadow-md">
           <img src="/dubblechess.svg" alt="Feature 1" className="w-48 h-48" />
-          <h2 className="text-2xl font-semibold mt-4">{translate("Dubble Chees",locale)}</h2>
+          <h2 className="text-2xl font-semibold mt-4">{translate("Dubble Cheese",locale)}</h2>
 
           <p className="text-base text-gray300 mt-2">
             Lorem ipsum is placeholder text commonly used in the graphic

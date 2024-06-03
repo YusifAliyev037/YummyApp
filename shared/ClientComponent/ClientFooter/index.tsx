@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
             </div>
             <p className='text-gray400 ml-[150px] mt-[10px]'>
               {translate(
-                ' Lorem ipsum is placeholder text commonly used in the graphic',
+                "You are just one click away from Yummy's address!",
                 locale
               )}
             </p>
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
             </nav>
           </div>
           <div>
-            <h3 className='hover:scale-105 font-bold mb-2'>Store</h3>
+            <h3 className='hover:scale-105 font-bold mb-2'>{translate("Store",locale)}</h3>
             <nav>
               <ul>
                 <li className='group'>
