@@ -63,7 +63,7 @@ const data = [
 const BarCharts: React.FC = () => {
   return (
     <ResponsiveContainer
-      width={400}
+      width="100%"
       height={400}
       className='bg-darkBlue20 rounded-2xl p-5 m-4'
     >

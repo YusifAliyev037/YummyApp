@@ -39,8 +39,8 @@ const renderCustomizedLabel = ({
 function PieCharts() {
   return (
     <>
-        <ResponsiveContainer width={400} height={400} className='mt-20 bg-darkBlue20 h-96 m-4 rounded-2xl'>
-        <PieChart width={400} height={400}>
+        <ResponsiveContainer width="100%" height={400} className='mt-20 bg-darkBlue20 h-96 m-4 rounded-2xl'>
+        <PieChart >
          
           <Pie
             data={data}

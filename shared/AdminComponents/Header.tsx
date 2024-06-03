@@ -156,7 +156,7 @@ function Header() {
   );
 
   return (
-    <Box className="flex justify-between fixed top-0 left-0 right-0 z-10 bg-darkBlue20 py-3 pl-5 pr-4 h-16 mx-6 rounded-b-xl">
+    <Box className="flex justify-between fixed top-0 left-0 right-0 z-10 bg-darkBlue20 py-3 pl-5 pr-4 h-16 mx-6 rounded-b-xl ">
       <Box className=" flex items-center gap-4">
         <Box>
           <Image

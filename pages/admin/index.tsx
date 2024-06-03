@@ -13,23 +13,33 @@ const AdminDashboard: NextPage = () => {
 
   
   return (
-    <Box  className=" bg-darkBlue10 relative ">
+    <Box className="bg-darkBlue10 relative xxl:w-full ">
       <Head>
         <title>Dashboard</title>
-       <MetaSeo title="Dashboard" desc="Welcome to admin main page!"/>
+        <MetaSeo title="Dashboard" desc="Welcome to admin main page!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
-      <Box className="flex ">
-        <PushModul/>
-        <PieCharts/>
-        <LineCharts/>
+      <Header />
+      <Box className="flex flex-wrap gap-4 p-4 mr-8">
+       
+          <PushModul />
+     
+        <Box className="flex-1 min-w-[300px]">
+          <PieCharts />
+        </Box>
+        <Box className="flex-1 min-w-[300px]">
+          <LineCharts  />
+        </Box>
       </Box>
-      <Box className="flex justify-end gap-3">
-    <RiskBar/>
-    <BarCharts/>
+      <Box className="flex flex-wrap justify-end gap-4 p-4 mr-4">
+        <Box className=" text-white text-center text-xl pt-8 bg-darkBlue20 rounded-2xl w-64 h-24 ml-5 mt-80 hidden md:block ">Demo Version</Box>
+        <Box className="flex-1 min-w-[300px]">
+          <RiskBar />
+        </Box>
+        <Box className="flex-1 min-w-[300px]">
+          <BarCharts />
+        </Box>
       </Box>
-      
     </Box>
   );
 };
