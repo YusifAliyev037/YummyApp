@@ -149,7 +149,7 @@ const Profile = () => {
             ) : (
               <Box className='relative'>
                 <input onChange={getİmage} type='file' id='file' accept='image/*'
-                className='absalute opacity-0 cursor-pointer'
+                className='absolute opacity-0 cursor-pointer'
                 />
                 <img src="/uploaduser.svg" alt="Upload" />
               </Box>
