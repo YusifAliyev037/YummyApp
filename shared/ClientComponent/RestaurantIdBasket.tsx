@@ -12,7 +12,7 @@ function RestaurantIdBasket() {
         <div className="flex items-center gap-1">
           <Image
             boxSize={30}
-            src="/basketIconGray.svg"
+            // src="/basketIconGray.svg"
             alt="basket"
           />
           <p className="font-medium text-white50 text-lg mt-2">
