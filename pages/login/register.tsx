@@ -1,12 +1,14 @@
 import { translate } from '@/public/lang/translate';
 import { postRegisterData } from '@/shared/AdminComponents/Services/axios';
 import MetaSeo from '@/shared/MetaSeo';
+import { RootState } from '@/shared/redux/store';
 
 import { Box, Button, Flex, Input, Text, useToast } from '@chakra-ui/react';
 
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 interface FormValues {
   email?: string | undefined;
@@ -26,12 +28,14 @@ const register: React.FC = () => {
     username: '',
   });
 
+
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       addData()
      
     }
   };
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormValues({
@@ -46,7 +50,7 @@ const register: React.FC = () => {
   }
   const toast = useToast();
 
-  console.log(formValues);
+
   function addData() {
     if (formValues.fullname?.length == 0 || formValues.username?.length == 0) {
       console.log('bosu');
@@ -143,9 +147,14 @@ const register: React.FC = () => {
     if (router.locale !== locale) {
       router.push(router.pathname, router.asPath, { locale });
       localStorage.setItem('lang', locale);
+
       setShowDropdown(false);
+
     }
+
   };
+
+
 
   useEffect(() => {
     const locale = localStorage.getItem('lang') || 'en';
@@ -180,14 +189,20 @@ const register: React.FC = () => {
                 }`}
                 onClick={handleDropdownClick}
               >
+                 <img
+            src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : 'russian.png'}`}
+            alt={locale === 'en' ? 'Eng' : locale === 'az' ? 'Az' : 'Rus'}
+            className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
+            onClick={() => setShowDropdown(!showDropdown)}
+            />
+              {showDropdown && (
+                <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
                 <img
-                  src='/eng.png'
-                  alt='Eng'
-                  className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
-                  onClick={() => changeLanguage('en')}
-                />
-                {showDropdown && (
-                  <div className='absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md'>
+            src='/usuk.png'
+            alt='Eng'
+            className='w-12 h-10 rounded-full mb-2'
+            onClick={() => changeLanguage('en')}
+          />
                     <img
                       src='/azerbaijan.png'
                       alt='Az'
@@ -200,13 +215,7 @@ const register: React.FC = () => {
                       className='w-12 h-10 rounded-full'
                       onClick={() => changeLanguage('fr')}
                     />
-                    {/* <img
-                      src='/de.png'
-                      alt='De'
-
-                      className='w-12 h-10 rounded-full mb-2'
-                      onClick={() => changeLanguage('de')}
-                    /> */}
+              
                   </div>
                 )}
               </div>
