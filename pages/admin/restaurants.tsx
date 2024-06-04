@@ -30,6 +30,8 @@ import {
 } from '@/shared/AdminComponents/Services/axios';
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 import RestaurantCard from '@/shared/AdminComponents/RestaurantCard';
+import { useRouter } from 'next/router';
+import { translate } from '@/public/lang/translate';
 
 const Restaurants: FC = () => {
 
@@ -223,12 +225,17 @@ const Restaurants: FC = () => {
   useEffect(() => {
     catigoriesRender2()
   }, [])
-
+  const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  const locale = router.locale || 'en';
   return (
     <Box className='bg-darkBlue10 min-h-screen'>
       <Box as='header'>
         <Head>
-          <title>Restaurants</title>
+          <title>{translate("Restaurants",locale)}</title>
           <MetaSeo
             title='Restaurants'
             desc='Restaurants Page'
@@ -279,7 +286,8 @@ const Restaurants: FC = () => {
               color='white'
               className='absolute left-8 md:relative mb-2 md:bottom-auto md:left-auto w-32 md:mb-0'
             >
-              Restaurants
+              {translate("Restaurants",locale)}
+             
             </Text>
             <InputGroup className='flex flex-wrap justify-end items-center gap-7 w-full md:w-auto mt-4 md:mt-0'>
               <Select
@@ -307,7 +315,8 @@ const Restaurants: FC = () => {
                   onClick={handleRestaurantClick}
                   className='w-full md:w-auto'
                 >
-                  + ADD RESTAURANT
+                  {translate("+ ADD RESTAURANT",locale)}
+                  
                 </Button>
               </Box>
             </InputGroup>

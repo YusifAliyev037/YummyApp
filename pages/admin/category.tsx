@@ -7,8 +7,9 @@ import TableCategory from '@/shared/AdminComponents/TableCategory';
 import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
-import React, { useRef, useState } from 'react';
-// import {translate} from '../../lang/translate'
+import React, { useEffect, useRef, useState } from 'react';
+import { translate } from '@/public/lang/translate';
+import { useRouter } from 'next/router';
 
 function Category() {
  
@@ -109,8 +110,12 @@ function Category() {
   const handleAddCategory = () =>(
     setHidden(false)
   )
-
- 
+const router=useRouter()
+  useEffect(() => {
+    const locale = localStorage.getItem('lang') || 'en';
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
+  const locale = router.locale || 'en';
 
   return (
     <Box className='bg-darkBlue10 h-screen '>
@@ -150,7 +155,8 @@ function Category() {
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end  items-center gap-7'>
               <Button borderRadius={14} colorScheme='pink' onClick={handleAddCategory}>
-                + ADD CATEGORY
+                {translate("+ ADD CATEGORY",locale)}
+               
               </Button>
             </InputGroup>
           </Box>

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
 import { translate } from "../../../public/lang/translate";
 import { search, Products } from "../../AdminComponents/Services/axios";
+import Image from "next/image";
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const ClientHeader: React.FC = () => {
     : "";
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
+
 
   useEffect(() => {
     const locale = localStorage.getItem("lang") || "en";
@@ -95,21 +96,13 @@ const ClientHeader: React.FC = () => {
   const locale = router.locale || "en";
 
   const changeLanguage = (locale: string) => {
-    setSelectedLanguage(locale);
+
     router.push(router.pathname, router.asPath, { locale });
     localStorage.setItem("lang", locale);
     setShowDropdown(false);
   };
 
-  const languageFlagMap: { [key: string]: string } = {
-    en: "/usuk.png",
-    az: "/azerbaijan.png",
-    fr: "/russian.png",
-  };
-
-  const availableLanguages = Object.keys(languageFlagMap).filter(
-    (lang) => lang !== selectedLanguage
-  );
+ 
 
   return (
     <div className="flex items-center mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
@@ -176,7 +169,7 @@ const ClientHeader: React.FC = () => {
                 "/faqs"
               )}`}
             >
-              {translate(" FAQs", locale)}
+              {translate("FAQs", locale)}
             </a>
           </li>
         </ul>
@@ -185,35 +178,52 @@ const ClientHeader: React.FC = () => {
       <div className="flex items-center mr-8" style={{ paddingLeft: "40px" }}>
         <SearchComponent />
 
-        <div className="relative flex items-center mr-8">
+        <div className="relative flex items-center mr-[15px]">
           <div
             className={`cursor-pointer flex items-center ${
               showDropdown ? "active" : ""
             }`}
             onClick={() => setShowDropdown(!showDropdown)}
           >
-            <img
-              src={languageFlagMap[selectedLanguage]}
-              alt={selectedLanguage}
-              className="w-12 h-10 rounded-full transition-transform transform hover:scale-110"
+               <img
+            src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : 'russian.png'}`}
+            alt={locale === 'en' ? 'Eng' : locale === 'az' ? 'Az' : 'Rus'}
+            className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
+            onClick={() => setShowDropdown(!showDropdown)}
             />
-            {showDropdown && (
-              <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-                {availableLanguages.map((lang) => (
-                  <img
-                    key={lang}
-                    src={languageFlagMap[lang]}
-                    alt={lang}
-                    className="w-12 h-10 rounded-full mb-2"
-                    onClick={() => changeLanguage(lang)}
-                  />
-                ))}
+              {showDropdown && (
+                <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+                <img
+            src='/usuk.png'
+            alt='Eng'
+            className='w-12 h-10 rounded-full mb-2'
+            onClick={() => changeLanguage('en')}
+          />
+                    <img
+                      src='/azerbaijan.png'
+                      alt='Az'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('az')}
+                    />
+                    <img
+                      src='/russian.png'
+                      alt='Rus'
+                      className='w-12 h-10 rounded-full'
+                      onClick={() => changeLanguage('fr')}
+                    />
               </div>
             )}
           </div>
         </div>
         {loginState?.username && loginState.username.length !== 0 ? (
-          <Box className="relative flex flex-col items-center    ">
+          <Box  className="relative flex  items-center gap-[15px] ">
+           
+            
+          <Box onClick={()=>router.push("/user/basket")} backgroundColor={"#EB5757"} className="w-[44px] h-[44px] rounded-[22px] flex items-center justify-center cursor-pointer  " >
+          <Image src="/basketicon.svg" alt="Basket Icon" width={24} height={24} />
+          </Box>
+
+
             <Box
               onClick={() => setShow(!show)}
               className="flex  items-center justify-center cursor-pointer "
@@ -269,6 +279,7 @@ const ClientHeader: React.FC = () => {
             )}
           </Box>
         ) : (
+          
           <button
             onClick={() => router.push("/login")}
             className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
@@ -278,7 +289,7 @@ const ClientHeader: React.FC = () => {
         )}
       </div>
     </div>
-    // </div>
+    
   );
 };
 
