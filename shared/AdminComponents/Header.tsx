@@ -6,7 +6,8 @@ import { AdminModal1 } from "./AdminModal1";
 import { Products, addProducts, getRestaurants } from "./Services/axios";
 import { useDispatch } from "react-redux";
 import { translate } from "../../public/lang/translate";
-import { fillProducts } from "../redux/global/globalSlice";
+import { fillProducts} from "../redux/global/globalSlice";
+import { Navbar } from "./Navbar";
 
 function Header() {
   const toast = useToast();
@@ -19,9 +20,12 @@ function Header() {
 
   const [hidden, setHidden] = useState(true);
 
+  const [navHidden, setNavHidden] = useState(true);
+
   const [restaurantArr, setRestaurantArr] = useState<string[]>([]);
 
   const [showDropdown, setShowDropdown] = useState(false);
+
   const [selectedLanguage, setSelectedLanguage] = useState<string>("en");
 
   // const changeLanguage = (locale: string) => {
@@ -43,10 +47,16 @@ function Header() {
   const changeHidden = (): void => {
     setHidden((prev: boolean) => !prev);
   };
+
+  function changeNavHidden(): void {
+    setNavHidden((prev: boolean) => !prev);
+  }
   const handleAddProductClick = () => {
     setHidden(false);
   };
 
+ 
+ 
   async function createProducts() {
     const proName: any = productNameRef.current?.value;
     const proDesc: any = productDescRef.current?.value;
@@ -154,12 +164,16 @@ function Header() {
   const availableLanguages = Object.keys(languageFlagMap).filter(
     (lang) => lang !== selectedLanguage
   );
+  const handleAddCategory = () =>(
+    setNavHidden(false)
+  )
 
   return (
     <Box className="flex justify-between fixed top-0 left-0 right-0 z-10 bg-darkBlue20 py-3 pl-5 pr-4 h-16 mx-6 rounded-b-xl ">
       <Box className=" flex items-center gap-4">
         <Box>
           <Image
+            onClick={handleAddCategory}
             className=" block md:hidden cursor-pointer"
             height={40}
             width={40}
@@ -167,6 +181,10 @@ function Header() {
             src="/ham.svg"
           />
         </Box>
+        <Navbar
+        onClickClose={changeNavHidden}
+        hidden={navHidden}
+        />
         <Box>
           <Text className="font-extrabold text-[28px] text-white10 "  as="h1">
             Yummy

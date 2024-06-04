@@ -31,7 +31,7 @@ const locale = router.locale || 'en';
       <Header />
       <Box className="flex flex-wrap gap-4 pr-4 pl-4 mr-8">
        
-          <PushModul />
+          <PushModul   />
      
         <Box className="flex-1 min-w-[300px]">
           <PieCharts />

@@ -1,19 +1,28 @@
-import { translate } from '@/public/lang/translate';
-import { Box, Button } from '@chakra-ui/react';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { Box,Button, Text } from "@chakra-ui/react";
+import { translate } from "@/public/lang/translate";
 
 
 
 interface Props {
-  hidden: boolean;
-  setHidden: React.Dispatch<React.SetStateAction<boolean>>;
+
+  hidden?: boolean;
+ 
+  onClickClose?: () => void;
+  
 }
 
-const PushModul: React.FC=()=> {
-  const { push, asPath } = useRouter();
-
+export const Navbar = ({
+  
+  hidden = true,
+  
+  onClickClose,
+ 
+ 
+}: Props) => {
+    const { push, asPath } = useRouter();
 
   const isActive = (path: string) => (asPath === path ? '#d25ff5' : 'none');
   const router=useRouter()
@@ -22,24 +31,40 @@ const PushModul: React.FC=()=> {
     router.push(router.pathname, router.asPath, { locale });
   }, []);
   const locale = router.locale || 'en';
+  
 
 
   return (
-    <Box
-      as='section'
-      className='mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5 hidden md:block '
+    <div
+      className={` fixed  z-10  w-3/4 sm:w-3/4    sm:pl-12 ${
+        hidden ? "  -left-full" : "left-0"
+      }  transition-all duration-500 top-0 h-screen`}
+      
     >
-      {/* <Image
-      className=' cursor-pointer'
-      alt='close'
-      src="/closeNavbar.svg"
-      width={20}
-      height={20}
-      onClick={}
-      /> */}
+      <div className=" bg-pink10   flex-col pl-7 pt-7 pb-5 pr-7 lg:pr-14  max-h-screen   overflow-y-auto h-screen">
+        <Box className=" flex gap-10 items-center">
+
+      <button
+        onClick={onClickClose}
+        
+        className=" mb-10    right-5 sm:left-0  "
+      >
+        <Image
+        className="  rounded-full    absolute   sm:left-0  top-9 w-7 h-7 cursor-pointer"
+        
+        alt="close-icon" height={10} width={10} src='/closeNavbar.svg' />
+      </button>
+      <Box >
+          <Text className="font-extrabold text-[28px] text-white10 "  as="h1">
+            Yummy
+            <span className="text-orange">.</span>
+          </Text>
+        </Box>
+        </Box>
+        
       <Box
         as='ul'
-        className=' w-64 flex flex-col  '
+        className=' w-64 flex flex-col gap-4  '
       >
         <Button
           onClick={() => push('/admin')}
@@ -180,8 +205,14 @@ const PushModul: React.FC=()=> {
           
         </Button>
       </Box>
-    </Box>
-  );
-}
 
-export default PushModul;
+        <div className="flex   flex-col   lg:flex-row  w-full mb-36">
+          
+         
+        </div>
+
+        
+      </div>
+    </div>
+  );
+};
