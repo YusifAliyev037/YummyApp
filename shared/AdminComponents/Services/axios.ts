@@ -17,26 +17,23 @@ export type Form = {
 };
 
 export type FormRegister = {
-  
   email?: string | undefined;
   password?: string | undefined;
   fullname?: string | undefined;
   username?: string | undefined;
   img_url?: string | undefined;
   phone?: string | undefined;
-  access_token?:string | undefined;
+  access_token?: string | undefined;
 };
 
 export type FormRegisterGet = {
   email?: string | undefined;
   fullname?: string | undefined;
   username?: string | undefined;
-  id?:string | undefined;
-  refresh_token?:string | undefined;
-  access_token?:string | undefined;
+  id?: string | undefined;
+  refresh_token?: string | undefined;
+  access_token?: string | undefined;
 };
-
-
 
 //! LOGIN
 
@@ -53,33 +50,29 @@ export const completeLogin = async (form: FormRegister) => {
 
 // updateProfile
 
-
-
 export const updateProfile = async (form: FormRegister, token: string) => {
   try {
-    const response = await instanceAxios.put("/auth/user", form, {
+    const response = await instanceAxios.put('/auth/user', form, {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
     return response;
   } catch (error) {
     alert('Check your information');
-
   }
-}
-
+};
 
 // getProfileData
-export const getProfileData = async()=>{
+export const getProfileData = async () => {
   try {
-    const response=await instanceAxios.get("/auth/user")
+    const response = await instanceAxios.get('/auth/user');
     return response;
   } catch (error) {
-    alert ('Check your information')
-    console.log(error)
+    alert('Check your information');
+    console.log(error);
   }
-}
+};
 
 export type Category = {
   id?: string;
@@ -208,9 +201,6 @@ export async function updateRestaurant(id: string, form: Form) {
   }
 }
 
-
-
-
 export type Products = {
   id?: string;
   img_url?: string;
@@ -271,10 +261,9 @@ export async function updateProduct(id: string, form: Products) {
   }
 }
 
-
 //* userBasket
 
-// get 
+// get
 export async function getBasket() {
   try {
     const response = await instanceAxios.get('/basket');
@@ -285,9 +274,7 @@ export async function getBasket() {
   }
 }
 
-
-// post 
-
+// post
 
 export type BasketItemProps = {
   imageSrc: string;
@@ -297,8 +284,7 @@ export type BasketItemProps = {
   onIncrease: () => void;
   onDecrease: () => void;
   // onRemove: () => void;
-}
-
+};
 
 export async function addBasket(form: BasketItemProps) {
   try {
@@ -310,10 +296,84 @@ export async function addBasket(form: BasketItemProps) {
     // throw new Error('Failed to add to basket!');
   }
 }
+// ADDBasket
+
+// export const AddBasket: (
+//   basketProduct: BasketPostDataType
+// ) => AxiosPromise<BasketPostDataType> = (basketProduct) => {
+//   const accessToken = localStorage.getItem("access_token");
+//   return instanceAxios({
+//       method: "POST",
+//       url: `basket/add`,
+//       data: basketProduct,
+//       headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//       },
+//   });
+// };
+export async function AddBasket(id: any) {
+  try {
+    // let tokenObj:any=localStorage.getItem("tokenObj")
+    let tokenObj: any = JSON.parse(
+      typeof localStorage !== 'undefined'
+        ? localStorage.getItem('tokenObj') ?? '{}'
+        : '{}'
+    );
+    let accessToken = tokenObj.access_token;
+    console.log(accessToken, tokenObj);
+
+    const response = await instanceAxios({
+      method: 'POST',
+      url: '/basket/add',
+      data: { product_id: id },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log(response);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+// getbasket
 
 
 
-// delete 
+export async function GetBasket( ) {
+  try {
+    // let tokenObj:any=localStorage.getItem("tokenObj")
+    let tokenObj: any = JSON.parse(
+      typeof localStorage !== 'undefined'
+        ? localStorage.getItem('tokenObj') ?? '{}'
+        : '{}'
+    );
+    let accessToken = tokenObj.access_token;
+    console.log(accessToken, tokenObj);
+
+    const response = await instanceAxios({
+      method: 'GET',
+      url: '/basket',
+
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log(response);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+// delete
 
 export async function deleteBasket(itemId: string) {
   try {
@@ -321,10 +381,7 @@ export async function deleteBasket(itemId: string) {
     const response = await instanceAxios.delete(`/basket/delete`);
     return response.data;
   } catch (error) {
-    console.error(
-      `Error while deleting basket item:`,
-      error
-    );
+    console.error(`Error while deleting basket item:`, error);
     throw new Error('Failed to delete basket item!');
   }
 }
@@ -336,27 +393,21 @@ export async function clearBasket() {
     const response = await instanceAxios.delete(`/basket/clear`);
     return response.data;
   } catch (error) {
-    console.error(
-      `Error while clearing basket :`,
-      error
-    );
+    console.error(`Error while clearing basket :`, error);
     throw new Error('Failed to clear basket!');
   }
 }
 
 // ordersPost
 
-export async function postOrders(){
-  try{
-    const response = await instanceAxios.post("/orders");
-    return response
-  }catch(error){
+export async function postOrders() {
+  try {
+    const response = await instanceAxios.post('/orders');
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
-
-
 
 // !offer
 
@@ -364,62 +415,55 @@ export type OfferValues = {
   titleOffer?: string | undefined;
   descOffer?: string | undefined;
 
-  id?:string | undefined
+  id?: string | undefined;
   name?: string | undefined;
   description?: string | undefined;
 
   img_url?: string | undefined;
 };
 
-export async function getOffer(){
-  try{
-    const response = await instanceAxios.get("/offer");
-    return response
-  }catch(error){
+export async function getOffer() {
+  try {
+    const response = await instanceAxios.get('/offer');
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
-export async function createOffer (OfferValues:OfferValues){
-  try{
-    const response =  instanceAxios.post("/offer", OfferValues);
-    return response
-  }catch(error){
+export async function createOffer(OfferValues: OfferValues) {
+  try {
+    const response = instanceAxios.post('/offer', OfferValues);
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
-export async function getEditOffer (id:string){
-  try{
+export async function getEditOffer(id: string) {
+  try {
     const response = instanceAxios.get(`/offer/${id}`);
-    return response
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
-
-export async function updateOffer (id:any, OfferValues:OfferValues){
-  try{
+export async function updateOffer(id: any, OfferValues: OfferValues) {
+  try {
     const response = instanceAxios.put(`/offer/${id}`, OfferValues);
-    return response
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
-
-export async function delOffer(id:string){
-  try{
+export async function delOffer(id: string) {
+  try {
     const response = instanceAxios.delete(`/offer/${id}`);
-    return response
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
@@ -435,7 +479,6 @@ export async function delOffer(id:string){
 //   }
 // }
 
-
 export async function search(query: string): Promise<Products[]> {
   try {
     const response = await instanceAxios.get('/products', {
@@ -447,4 +490,3 @@ export async function search(query: string): Promise<Products[]> {
     throw new Error('Failed to fetch search!');
   }
 }
-
