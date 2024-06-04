@@ -168,15 +168,15 @@ function Header() {
           />
         </Box>
         <Box>
-          <Text className="font-extrabold text-[28px] text-white10" as="h1">
+          <Text className="font-extrabold text-[28px] text-white10 "  as="h1">
             Yummy
             <span className="text-orange">.</span>
           </Text>
         </Box>
       </Box>
 
-      <Box className="flex gap-5 items-center">
-        <Box className=" flex items-center gap-3">
+      <Box className="flex gap-4 items-center">
+        <Box className=" flex items-center gap-2">
           <Button
             size="xs"
             borderRadius="20px"
@@ -187,7 +187,7 @@ function Header() {
           >
             +<span className=" hidden md:block">ADD PRODUCT</span>
           </Button>
-          <div className="relative flex items-center mr-8">
+          <div className="relative flex items-center mr-8 hidden md:block">
             <div
               className={`cursor-pointer flex items-center ${
                 showDropdown ? "active" : ""
@@ -197,7 +197,7 @@ function Header() {
               <img
                 src={languageFlagMap[selectedLanguage]}
                 alt={selectedLanguage}
-                className="w-12 h-10 rounded-full transition-transform transform hover:scale-110"
+                className="w-10 h-10 rounded-full transition-transform transform hover:scale-110"
               />
               {showDropdown && (
                 <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">

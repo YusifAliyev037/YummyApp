@@ -20,7 +20,7 @@ const AdminDashboard: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Box className="flex flex-wrap gap-4 p-4 mr-8">
+      <Box className="flex flex-wrap gap-4 pr-4 pl-4 mr-8">
        
           <PushModul />
      
@@ -31,8 +31,8 @@ const AdminDashboard: NextPage = () => {
           <LineCharts  />
         </Box>
       </Box>
-      <Box className="flex flex-wrap justify-end gap-4 p-4 mr-4">
-        <Box className=" text-white text-center text-xl pt-8 bg-darkBlue20 rounded-2xl w-64 h-24 ml-5 mt-80 hidden md:block ">Demo Version</Box>
+      <Box className="flex flex-wrap justify-end gap-4 pr-4 pl-4 ml-6 mr-8">
+        <Box className=" text-white text-center text-xl pt-8 bg-darkBlue20 rounded-2xl w-64 h-24  mr-8  mt-80 hidden md:block ">Demo Version</Box>
         <Box className="flex-1 min-w-[300px]">
           <RiskBar />
         </Box>
