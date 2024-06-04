@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
 import { translate } from "../../../public/lang/translate";
 import { search, Products } from "../../AdminComponents/Services/axios";
+import Image from "next/image";
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
@@ -177,7 +178,7 @@ const ClientHeader: React.FC = () => {
       <div className="flex items-center mr-8" style={{ paddingLeft: "40px" }}>
         <SearchComponent />
 
-        <div className="relative flex items-center mr-8">
+        <div className="relative flex items-center mr-[15px]">
           <div
             className={`cursor-pointer flex items-center ${
               showDropdown ? "active" : ""
@@ -215,7 +216,14 @@ const ClientHeader: React.FC = () => {
           </div>
         </div>
         {loginState?.username && loginState.username.length !== 0 ? (
-          <Box className="relative flex flex-col items-center    ">
+          <Box  className="relative flex  items-center gap-[15px] ">
+           
+            
+          <Box onClick={()=>router.push("/user/basket")} backgroundColor={"#EB5757"} className="w-[44px] h-[44px] rounded-[22px] flex items-center justify-center cursor-pointer  " >
+          <Image src="/basketicon.svg" alt="Basket Icon" width={24} height={24} />
+          </Box>
+
+
             <Box
               onClick={() => setShow(!show)}
               className="flex  items-center justify-center cursor-pointer "
@@ -271,6 +279,7 @@ const ClientHeader: React.FC = () => {
             )}
           </Box>
         ) : (
+          
           <button
             onClick={() => router.push("/login")}
             className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
