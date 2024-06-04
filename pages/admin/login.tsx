@@ -196,7 +196,7 @@ function Adminlogin() {
                       src='/russian.png'
                       alt='Rus'
                       className='w-12 h-10 rounded-full'
-                      onClick={() => changeLanguage('fr')}
+                      onClick={() => changeLanguage('tr')}
                     />
                 </div>
               )}
