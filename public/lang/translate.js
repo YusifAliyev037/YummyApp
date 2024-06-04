@@ -1,14 +1,14 @@
 
 import en from './en.json';
 import az from './az.json';
-import fr from './fr.json';
+import tr from './tr.json';
 import de from './de.json';
 
 
 const translations = {
   en,
   az,
-  fr,
+  tr,
   de,
 
 };

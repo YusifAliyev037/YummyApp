@@ -93,6 +93,7 @@ const Profile = () => {
         const response = await updateProfile(formData, formData.access_token);
         dispatch(updateLogin(response?.data));
         dispatch(addlogin(formData));
+console.log(formData.access_token);
 
         toast({
           title: 'Success',
