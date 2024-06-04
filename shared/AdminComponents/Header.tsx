@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AdminModal1 } from "./AdminModal1";
 import { Products, addProducts, getRestaurants } from "./Services/axios";
 import { useDispatch } from "react-redux";
-import { translate } from "../../public/lang/translate";
+import { translate } from "@/public/lang/translate";
 import { fillProducts} from "../redux/global/globalSlice";
 import { Navbar } from "./Navbar";
 
@@ -147,23 +147,21 @@ function Header() {
   useEffect(() => {
     restaurantRender();
   }, []);
+  useEffect(() => {
+    const locale = localStorage.getItem("lang") || "en";
+    router.push(router.pathname, router.asPath, { locale });
+  }, []);
 
   const changeLanguage = (locale: string) => {
-    setSelectedLanguage(locale);
+
     router.push(router.pathname, router.asPath, { locale });
     localStorage.setItem("lang", locale);
     setShowDropdown(false);
   };
 
-  const languageFlagMap: { [key: string]: string } = {
-    en: "/usuk.png",
-    az: "/azerbaijan.png",
-    fr: "/russian.png",
-  };
+  const locale = router.locale || "en";
 
-  const availableLanguages = Object.keys(languageFlagMap).filter(
-    (lang) => lang !== selectedLanguage
-  );
+  
   const handleAddCategory = () =>(
     setNavHidden(false)
   )
@@ -212,24 +210,40 @@ function Header() {
               }`}
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <img
-                src={languageFlagMap[selectedLanguage]}
-                alt={selectedLanguage}
-                className="w-10 h-10 rounded-full transition-transform transform hover:scale-110"
-              />
-              {showDropdown && (
-                <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-                  {availableLanguages.map((lang) => (
-                    <img
-                      key={lang}
-                      src={languageFlagMap[lang]}
-                      alt={lang}
-                      className="w-12 h-10 rounded-full mb-2"
-                      onClick={() => changeLanguage(lang)}
-                    />
-                  ))}
-                </div>
-              )}
+                 <img
+  src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : locale === 'tr' ? 'tr.png' : 'de.png'}`}
+  alt={locale === 'en' ? 'us' : locale === 'az' ? 'Az' : locale === 'tr' ? 'Turk' : 'Ger'}
+  className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
+  onClick={() => setShowDropdown(!showDropdown)}
+/>
+{showDropdown && (
+  <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+    <img
+      src='/usuk.png'
+      alt='us'
+      className='w-12 h-10 rounded-full mb-2'
+      onClick={() => changeLanguage('en')}
+    />
+    <img
+      src='/azerbaijan.png'
+      alt='Az'
+      className='w-12 h-10 rounded-full mb-2'
+      onClick={() => changeLanguage('az')}
+    />
+    <img
+      src='/tr.png'
+      alt='Turk'
+      className='w-12 h-10 rounded-full mb-2'
+      onClick={() => changeLanguage('tr')}
+    />
+    <img
+      src='/de.png'
+      alt='Ger'
+      className='w-12 h-10 rounded-full mb-2'
+      onClick={() => changeLanguage('de')}
+    />
+  </div>
+)}
             </div>
           </div>
 

@@ -149,7 +149,7 @@ const [basket,setBasket]=useState<any>();
                               AddBasket(prod.id);
                               let basket:any=await GetBasket()
                               console.log(basket);
-                              let newBasket=basket.result.data
+                              let newBasket=basket?.result.data
                               console.log(newBasket);
                               setBasket(newBasket)
                               
