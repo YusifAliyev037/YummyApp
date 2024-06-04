@@ -197,6 +197,7 @@ const Login: React.FC = () => {
                       className='w-12 h-10 rounded-full'
                       onClick={() => changeLanguage('fr')}
                     />
+                   
                 </div>
               )}
             </div>
