@@ -30,7 +30,7 @@ function RestaurantIdBasket(props: Props) {
           <Image
             className='w-full'
             boxSize={0}
-            src='/emptyGray.svg'
+            src='/empitygraybasket.svg'
             alt='empty'
           />
           <p className='text-4xl text-white50 font-semibold text-center'>
