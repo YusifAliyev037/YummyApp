@@ -165,7 +165,7 @@ function Adminlogin() {
           as="section"
           className="bg-none md:bg-white20 w-full md:w-1/3 h-auto md:h-96 p-4"
         >
-          <div className="relative flex items-center mr-8">
+          <div className="relative flex  items-center mr-8">
             <div
               className={`cursor-pointer flex items-center ${
                 showDropdown ? "active" : ""
@@ -219,9 +219,10 @@ function Adminlogin() {
             <Image
               width={200}
               height={200}
+              
               alt="login"
               src="/login.png"
-              className=" w-full md:w-5/6 "
+              className=" w-full  md:w-5/6 "
             />
           </Box>
         </Box>
