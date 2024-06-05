@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { translate } from "../../public/lang/translate";
 import { search, Products } from "../AdminComponents/Services/axios";
-
 import { GrClose } from "react-icons/gr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
@@ -17,31 +16,34 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    const debounceSearch = setTimeout(async () => {
+      if (query.trim() !== "") {
+        setLoading(true);
+        setError("");
+        try {
+          const searchData = await search(query);
+          if (Array.isArray(searchData)) {
+            const filteredResults = searchData.slice(0, 3);
+            setResults(filteredResults);
+          } else {
+            setError("Search results are not in the expected format");
+          }
+        } catch (err) {
+          setError("Failed to fetch search results");
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setResults([]);
+      }
+    }, 300);
+
+    return () => clearTimeout(debounceSearch);
+  }, [query]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-  };
-
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      const data = await search(query);
-      if (Array.isArray(data)) {
-        const filteredResults = data
-          .filter((product: Products) =>
-            (product.name as string).toLowerCase().includes(query.toLowerCase())
-          )
-          .slice(0, 3);
-        setResults(filteredResults);
-      } else {
-        setError("Search results are not in the expected format");
-      }
-    } catch (err) {
-      setError("Failed to fetch search results");
-    } finally {
-      setLoading(false);
-    }
   };
 
   const openSearchModal = () => {
@@ -53,7 +55,7 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
   };
 
   return (
-    <div className="relative mr-[40px]">
+    <div className="relative ml-[20px] mr-[40px]">
       <input
         type="text"
         name="searchQuery"
@@ -62,10 +64,10 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
         value={query}
         onChange={handleInputChange}
         onFocus={openSearchModal}
-        onBlur={closeSearchModal} // Close modal when input loses focus
+        onBlur={closeSearchModal}
       />
       {showModal && (
-        <div className="absolute bg-white border border-gray-300 mt-1 p-2 w-[250px] z-10">
+        <div className="absolute bg-white border border-gray300 mt-1 p-2 w-[250px] z-10">
           <button
             onClick={closeSearchModal}
             className="absolute top-0 right-0 m-2"
@@ -74,11 +76,11 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
           </button>
           <div className="max-h-48 overflow-y-auto">
             {loading && <p>Loading...</p>}
-            {error && <p className="text-red-500 mt-2">{error}</p>}
+            {error && <p className="text-red500 mt-2">{error}</p>}
             <ul>
               {results.map((product) => (
                 <li key={product.id} className="p-2">
-                  {product.name} - {product.description}
+                  {product.name} - {product.price}
                 </li>
               ))}
             </ul>
