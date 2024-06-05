@@ -210,25 +210,25 @@ export type Products = {
   rest_id?: string;
 };
 
-// export async function getProducts() {
-//   try {
-//     const response = await instanceAxios.get('/products');
-//     return response;
-//   } catch (error) {
-//     console.error('Error while fetching restaurants:', error);
-//     throw new Error('Failed to fetch products!');
-//   }
-// }
-
-export async function getProducts(): Promise<Products[]> {
+export async function getProducts() {
   try {
     const response = await instanceAxios.get('/products');
-    return response.data; 
+    return response;
   } catch (error) {
-    console.error('Error while fetching products:', error);
+    console.error('Error while fetching restaurants:', error);
     throw new Error('Failed to fetch products!');
   }
 }
+
+// export async function getProducts(): Promise<Products[]> {
+//   try {
+//     const response = await instanceAxios.get('/products');
+//     return response.data; 
+//   } catch (error) {
+//     console.error('Error while fetching products:', error);
+//     throw new Error('Failed to fetch products!');
+//   }
+// }
 
 export async function deleteProducts(id: string) {
   try {

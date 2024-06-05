@@ -48,13 +48,13 @@ const ClientHeader: React.FC = () => {
       try {
         const data = await search(query);
         if (Array.isArray(data)) {
-          const filteredResults = data
-            .filter((product: Products) =>
-              (product.name as string)
-                .toLowerCase()
-                .includes(query.toLowerCase())
-            )
-            .slice(0, 3);
+          const filteredResults = data;
+          // .filter((product: Products) =>
+          //   (product.name as string)
+          //     .toLowerCase()
+          //     .includes(query.toLowerCase())
+          // )
+          // .slice(0, 3);
           setResults(filteredResults);
         } else {
           setError("Search results are not in the expected format");
