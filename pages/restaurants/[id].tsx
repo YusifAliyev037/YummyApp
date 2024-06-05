@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {
-  AddBasket,
-  GetBasket,
+  addBasket,
   getProducts,
   getRestaurants,
 } from '@/shared/AdminComponents/Services/axios';
@@ -16,18 +15,21 @@ import {
   Tr,
   Td,
   Button,
+  useToast,
 } from '@chakra-ui/react';
 import ClientHeader from '@/shared/ClientComponent/ClientHeader';
 import ClientFooter from '@/shared/ClientComponent/ClientFooter';
 import RestaurantIdBasket from '@/shared/ClientComponent/RestaurantIdBasket';
-import { Type } from 'typescript';
+import { useDispatch } from 'react-redux';
+import { fillBasket } from '@/shared/redux/global/globalSlice';
 
 const RestaurantPage: React.FC = () => {
+  const toast = useToast();
+  const dispatch = useDispatch()
   const router = useRouter();
   const { id } = router.query;
   const [local, setLocal] = useState<any>(null);
   const [product, setProducts] = useState<any[]>([]);
-const [basket,setBasket]=useState<any>();
   useEffect(() => {
     if (!id) return;
 
@@ -63,6 +65,67 @@ const [basket,setBasket]=useState<any>();
 
     fetchProducts();
   }, [local]);
+
+  const date: Date = new Date();
+
+
+  function reLogin(){
+    const loginDate:number | null = parseInt(
+      localStorage.getItem("loginDate") || "",
+      10
+    );
+    const currentSecond: number = date.getTime();
+    const timeDifference: number = currentSecond - (loginDate || 0);
+
+    if(!localStorage.getItem("userInfo")){
+      toast({
+        title: "You need to be logged in !",
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
+      });
+      setTimeout(()=>{
+        router.push("/login")
+      },750);
+      return
+    }
+
+    if(timeDifference / 1000 >= 3600){
+      toast({
+        title: "Your browsing session has expired !",
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
+      });
+      setTimeout(()=>{
+        router.push("/login")
+      },750);
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("tokenObj");
+    }else if(timeDifference / 1000 >= 3540){
+      toast({
+        title:  "You will be logged out from the site in the next 1 minutes.!",
+        status: "warning",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
+      });
+    }
+  }
+
+  async function handleButtonClick(id: string | number) {
+    try {
+      const res = await addBasket(id);
+      reLogin();
+      if (res?.status === 201) {
+        dispatch(fillBasket(res?.data))
+      }
+    } catch (error) {
+      console.error("Error adding product to basket:", error);
+    }
+  }
 
   if (!local) {
     return <div>Loading...</div>;
@@ -145,16 +208,7 @@ const [basket,setBasket]=useState<any>();
                         </Td>
                         <Td>
                           <button
-                            onClick={async() => {
-                              AddBasket(prod.id);
-                              let basket:any=await GetBasket()
-                              console.log(basket);
-                              let newBasket=basket?.result.data
-                              console.log(newBasket);
-                              setBasket(newBasket)
-                              
-                              
-                            }}
+                            onClick={(() => handleButtonClick(prod.id))}
                             className='py-2 px-4 rounded-full border-2 border-white50 text-white50 text-2xl hover:border-green hover:bg-green hover:text-white transition-all duration-200'
                           >
                             +
@@ -168,7 +222,7 @@ const [basket,setBasket]=useState<any>();
             </Box>
           </Box>
           <Box className='w-1/3'>
-            <RestaurantIdBasket data={basket}/>
+            <RestaurantIdBasket />
           </Box>
         </Box>
       </Box>
