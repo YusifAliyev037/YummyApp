@@ -6,12 +6,12 @@ import { Box } from "@chakra-ui/react";
 import { translate } from "../../../public/lang/translate";
 import { search, Products } from "../../AdminComponents/Services/axios";
 import Image from "next/image";
+import SearchComponent from "../SearchModal";
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
-
   const [show, setShow] = useState(false);
-
+  const [showDropdown, setShowDropdown] = useState(false);
   const isActive = (route: string) => {
     return router.pathname === route ? "text-red500" : "text-black";
   };
@@ -24,74 +24,10 @@ const ClientHeader: React.FC = () => {
     ? loginState.username.toUpperCase()[0]
     : "";
 
-  const [showDropdown, setShowDropdown] = useState(false);
-
   useEffect(() => {
     const locale = localStorage.getItem("lang") || "en";
     router.push(router.pathname, router.asPath, { locale });
   }, []);
-
-  const SearchComponent = () => {
-    const [query, setQuery] = useState("");
-    const [results, setResults] = useState<Products[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setQuery(e.target.value);
-    };
-
-    const handleSearch = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setLoading(true);
-      setError("");
-      try {
-        const data = await search(query);
-        if (Array.isArray(data)) {
-          const filteredResults = data;
-          // .filter((product: Products) =>
-          //   (product.name as string)
-          //     .toLowerCase()
-          //     .includes(query.toLowerCase())
-          // )
-          // .slice(0, 3);
-          setResults(filteredResults);
-        } else {
-          setError("Search results are not in the expected format");
-        }
-      } catch (err) {
-        setError("Failed to fetch search results");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const locale = router.locale || "en";
-
-    return (
-      <div className="p-4">
-        <form className="hover:scale-105 flex" onSubmit={handleSearch}>
-          <input
-            type="text"
-            name="searchQuery"
-            placeholder={translate("Search", locale)}
-            className="p-2 border border-black pr-8 focus:bg-gray200 focus:border-red500 "
-            value={query}
-            onChange={handleInputChange}
-          />
-        </form>
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-        <ul className="mt-2">
-          {results.map((product) => (
-            <li key={product.id} className="p-2">
-              {product.name} - {product.description}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
 
   const locale = router.locale || "en";
 
@@ -172,10 +108,10 @@ const ClientHeader: React.FC = () => {
         </ul>
       </nav>
 
-      <div className="flex items-center mr-8" style={{ paddingLeft: "40px" }}>
-        <SearchComponent />
+      <div className="flex items-center mr-8 ">
+        <SearchComponent locale={locale} />
 
-        <div className="relative flex items-center mr-[15px]">
+        <div className="relative flex items-center mr-[30px]">
           <div
             className={`cursor-pointer flex items-center ${
               showDropdown ? "active" : ""
