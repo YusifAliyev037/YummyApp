@@ -26,7 +26,6 @@ const ClientHeader: React.FC = () => {
 
   const [showDropdown, setShowDropdown] = useState(false);
 
-
   useEffect(() => {
     const locale = localStorage.getItem("lang") || "en";
     router.push(router.pathname, router.asPath, { locale });
@@ -48,7 +47,18 @@ const ClientHeader: React.FC = () => {
       setError("");
       try {
         const data = await search(query);
-        setResults(data);
+        if (Array.isArray(data)) {
+          const filteredResults = data
+            .filter((product: Products) =>
+              (product.name as string)
+                .toLowerCase()
+                .includes(query.toLowerCase())
+            )
+            .slice(0, 3);
+          setResults(filteredResults);
+        } else {
+          setError("Search results are not in the expected format");
+        }
       } catch (err) {
         setError("Failed to fetch search results");
       } finally {
@@ -69,25 +79,15 @@ const ClientHeader: React.FC = () => {
             value={query}
             onChange={handleInputChange}
           />
-          {/* <button
-            type="submit"
-            className="bg-gray-200 text-white border-none p-2 cursor-pointer"
-          >
-            Search
-          </button> */}
         </form>
         {loading && <p>Loading...</p>}
         {error && <p className="text-red-500 mt-2">{error}</p>}
         <ul className="mt-2">
-          {Array.isArray(results) &&
-            results.map((product) => (
-              <li
-                key={product.id}
-                className="p-2  ${isTyping ? 'border-red500' : ''}`"
-              >
-                {product.name} - {product.description}
-              </li>
-            ))}
+          {results.map((product) => (
+            <li key={product.id} className="p-2">
+              {product.name} - {product.description}
+            </li>
+          ))}
         </ul>
       </div>
     );
@@ -96,13 +96,10 @@ const ClientHeader: React.FC = () => {
   const locale = router.locale || "en";
 
   const changeLanguage = (locale: string) => {
-
     router.push(router.pathname, router.asPath, { locale });
     localStorage.setItem("lang", locale);
     setShowDropdown(false);
   };
-
- 
 
   return (
     <div className="flex items-center mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
@@ -185,58 +182,82 @@ const ClientHeader: React.FC = () => {
             }`}
             onClick={() => setShowDropdown(!showDropdown)}
           >
- <img
-  src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : locale === 'tr' ? 'tr.png' : locale === 'de' ? 'de.png' : 'is.png'}`}
-  alt={locale === 'en' ? 'us' : locale === 'az' ? 'Az' : locale === 'tr' ? 'Turk' : locale === 'de' ? 'Ger' : 'Isp'}
-  className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
-  onClick={() => setShowDropdown(!showDropdown)}
-/>
-{showDropdown && (
-  <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-    <img
-      src='/usuk.png'
-      alt='us'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('en')}
-    />
-    <img
-      src='/azerbaijan.png'
-      alt='Az'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('az')}
-    />
-    <img
-      src='/tr.png'
-      alt='Turk'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('tr')}
-    />
-    <img
-      src='/de.png'
-      alt='Ger'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('de')}
-    />
-    <img
-      src='/is.png'
-      alt='Isp'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('is')}
-    />
-  </div>
-)}
-
-
+            <img
+              src={`/${
+                locale === "en"
+                  ? "usuk.png"
+                  : locale === "az"
+                  ? "azerbaijan.png"
+                  : locale === "tr"
+                  ? "tr.png"
+                  : locale === "de"
+                  ? "de.png"
+                  : "is.png"
+              }`}
+              alt={
+                locale === "en"
+                  ? "us"
+                  : locale === "az"
+                  ? "Az"
+                  : locale === "tr"
+                  ? "Turk"
+                  : locale === "de"
+                  ? "Ger"
+                  : "Isp"
+              }
+              className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110"
+              onClick={() => setShowDropdown(!showDropdown)}
+            />
+            {showDropdown && (
+              <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+                <img
+                  src="/usuk.png"
+                  alt="us"
+                  className="w-12 h-10 rounded-full mb-2"
+                  onClick={() => changeLanguage("en")}
+                />
+                <img
+                  src="/azerbaijan.png"
+                  alt="Az"
+                  className="w-12 h-10 rounded-full mb-2"
+                  onClick={() => changeLanguage("az")}
+                />
+                <img
+                  src="/tr.png"
+                  alt="Turk"
+                  className="w-12 h-10 rounded-full mb-2"
+                  onClick={() => changeLanguage("tr")}
+                />
+                <img
+                  src="/de.png"
+                  alt="Ger"
+                  className="w-12 h-10 rounded-full mb-2"
+                  onClick={() => changeLanguage("de")}
+                />
+                <img
+                  src="/is.png"
+                  alt="Isp"
+                  className="w-12 h-10 rounded-full mb-2"
+                  onClick={() => changeLanguage("is")}
+                />
+              </div>
+            )}
           </div>
         </div>
         {loginState?.username && loginState.username.length !== 0 ? (
-          <Box  className="relative flex  items-center gap-[15px] ">
-           
-            
-          <Box onClick={()=>router.push("/user/basket")} backgroundColor={"#EB5757"} className="w-[44px] h-[44px] rounded-[22px] flex items-center justify-center cursor-pointer  " >
-          <Image src="/basketicon.svg" alt="Basket Icon" width={24} height={24} />
-          </Box>
-
+          <Box className="relative flex  items-center gap-[15px] ">
+            <Box
+              onClick={() => router.push("/user/basket")}
+              backgroundColor={"#EB5757"}
+              className="w-[44px] h-[44px] rounded-[22px] flex items-center justify-center cursor-pointer  "
+            >
+              <Image
+                src="/basketicon.svg"
+                alt="Basket Icon"
+                width={24}
+                height={24}
+              />
+            </Box>
 
             <Box
               onClick={() => setShow(!show)}
@@ -293,7 +314,6 @@ const ClientHeader: React.FC = () => {
             )}
           </Box>
         ) : (
-          
           <button
             onClick={() => router.push("/login")}
             className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
@@ -303,7 +323,6 @@ const ClientHeader: React.FC = () => {
         )}
       </div>
     </div>
-    
   );
 };
 

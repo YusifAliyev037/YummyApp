@@ -209,12 +209,23 @@ export type Products = {
   description?: string;
   rest_id?: string;
 };
-export async function getProducts() {
+
+// export async function getProducts() {
+//   try {
+//     const response = await instanceAxios.get('/products');
+//     return response;
+//   } catch (error) {
+//     console.error('Error while fetching restaurants:', error);
+//     throw new Error('Failed to fetch products!');
+//   }
+// }
+
+export async function getProducts(): Promise<Products[]> {
   try {
     const response = await instanceAxios.get('/products');
-    return response;
+    return response.data; 
   } catch (error) {
-    console.error('Error while fetching restaurants:', error);
+    console.error('Error while fetching products:', error);
     throw new Error('Failed to fetch products!');
   }
 }
@@ -482,7 +493,20 @@ export async function delOffer(id: string) {
 //   }
 // }
 
+// export async function search(query: string): Promise<Products[]> {
+//   try {
+//     const response = await instanceAxios.get('/products', {
+//       params: { query },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error while fetching search:', error);
+//     throw new Error('Failed to fetch search!');
+//   }
+// }
+
 export async function search(query: string): Promise<Products[]> {
+  console.log('Search query:', query); 
   try {
     const response = await instanceAxios.get('/products', {
       params: { query },
@@ -493,3 +517,5 @@ export async function search(query: string): Promise<Products[]> {
     throw new Error('Failed to fetch search!');
   }
 }
+
+
