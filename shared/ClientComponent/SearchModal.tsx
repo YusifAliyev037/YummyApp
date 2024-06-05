@@ -27,7 +27,7 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
             const filteredResults = searchData.slice(0, 3);
             setResults(filteredResults);
           } else {
-            setError("Search results are not in the expected format");
+            setError("Products not found");
           }
         } catch (err) {
           setError("Failed to fetch search results");
