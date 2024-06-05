@@ -4,7 +4,7 @@ import { RootState } from "@/shared/redux/store";
 import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
 import { translate } from "../../../public/lang/translate";
-import { search, Products } from "../../AdminComponents/Services/axios";
+// import { search, Products } from "../../AdminComponents/Services/axios";
 import Image from "next/image";
 import SearchComponent from "../SearchModal";
 
