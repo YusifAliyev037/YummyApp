@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
             </div>
             <p className='text-gray400 ml-[150px] mt-[10px]'>
               {translate(
-                ' Lorem ipsum is placeholder text commonly used in the graphic',
+                'Delicious is just a click away',
                 locale
               )}
             </p>

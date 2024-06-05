@@ -3,6 +3,7 @@ import en from './en.json';
 import az from './az.json';
 import tr from './tr.json';
 import de from './de.json';
+import is from './is.json'
 
 
 const translations = {
@@ -10,6 +11,7 @@ const translations = {
   az,
   tr,
   de,
+  is,
 
 };
 

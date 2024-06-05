@@ -15,8 +15,8 @@ const HomeSection2: React.FC = () => {
         <h1 className="text-4xl font-bold">{translate("Features",locale)}</h1>
 
         <p className="text-lg text-gray300 mt-4 max-w-[800px] ml-[320px] mr-[320px]">
-          Lorem ipsum is placeholder text commonly used in the graphic , print,
-          and publishing industries for previewing layouts and visual mockups.
+          {translate("We are at your service with new and delicious meals from our store every day.",locale)}
+      
         </p>
       </div>
       <div className="flex justify-center mt-20 space-x-8">
@@ -28,7 +28,7 @@ const HomeSection2: React.FC = () => {
           />
           <h2 className="text-2xl font-semibold mt-4">{translate("Discount Boucher",locale)}</h2>
           <p className="text-base text-gray300 mt-2">
-            {translate("Lorem ipsum is placeholder text commonly used in the graphic",locale)}
+            {translate("Delicious is just a click away",locale)}
 
           </p>
         </div>
@@ -36,7 +36,7 @@ const HomeSection2: React.FC = () => {
           <img src="/healthyfood.png" alt="Feature 2" className="w-48 h-48" />
           <h2 className="text-2xl font-semibold mt-4">{translate("Fresh Healthy Food",locale)}</h2>
           <p className="text-base text-gray300 mt-2">
-            {translate("Lorem ipsum is placeholder text commonly used in the graphic",locale)}
+            {translate("Delicious is just a click away",locale)}
           
           </p>
         </div>
@@ -45,7 +45,7 @@ const HomeSection2: React.FC = () => {
           <h2 className="text-2xl font-semibold mt-4">{translate("Fast Home Delivery",locale)}</h2>
           <p className="text-base text-gray300 mt-2">
         
-            {translate("Lorem ipsum is placeholder text commonly used in the graphic",locale)}
+            {translate("Delicious is just a click away",locale)}
           </p>
         </div>
       </div>

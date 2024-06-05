@@ -24,7 +24,7 @@ function HomeSection1() {
            
           </h1>
           <p className="text-lg md:text-2xl mb-[45px] w-[510px] h-[105px] text-gray300 ">
-          {translate(" Lorem ipsum is placeholder text commonly used in the graphic, print,   and publishing industries for previewing layouts and visual mockups.",locale)}
+          {translate("Delicious is just a click away",locale)}
 
            
          
