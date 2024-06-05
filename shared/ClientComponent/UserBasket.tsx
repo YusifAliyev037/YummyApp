@@ -4,9 +4,9 @@ import { FaShoppingBasket } from "react-icons/fa";
 import BasketItem from "./BasketItem";
 import {
   getBasket,
-  addBasket,
+  // addBasket,
   deleteBasket,
-  clearBasket,
+  // clearBasket,
   BasketItemProps,
 } from "../AdminComponents/Services/axios";
 
@@ -17,8 +17,8 @@ const UserBasket: React.FC = () => {
     const fetchBasketItems = async () => {
       try {
         const data = await getBasket();
-        setBasketItems(data);
-        console.log(data, "data");
+        // setBasketItems(data);
+        // console.log(data, "data");
       } catch (error) {
         console.error("Error fetching basket items:", error);
       }

@@ -7,6 +7,22 @@ export interface CategoryItem {
   img_url: string | undefined;
 }
 
+interface BasketItem {
+  id: string | number;
+  name: string;
+  amount: number;
+  count: number;
+  img_url: string;
+}
+
+interface Basket {
+  total_item: number;
+  items: BasketItem[];
+  id: string | number;
+  total_amount: number;
+}
+
+
 interface CategoryState {
   category: CategoryItem[];
   restaurant: Restaurant[];
@@ -17,9 +33,16 @@ interface CategoryState {
   restaurantToDelete: Restaurant | null;
   hidden: boolean;
   editRestaurantModalHidden: boolean;
+  basket:Basket
+  
 }
 
-
+const initialBasket: Basket = {
+  total_item: 0,
+  items: [],
+  id: '',
+  total_amount: 0,
+};
   
 
 const initialState: CategoryState = {
@@ -32,6 +55,9 @@ const initialState: CategoryState = {
   restaurantToDelete: null,
   hidden: true,
   editRestaurantModalHidden: true,
+  basket:initialBasket
+ 
+
 };
 
 export const globalSlice = createSlice({
@@ -56,6 +82,8 @@ export const globalSlice = createSlice({
     fillOffer: (state, action: PayloadAction<OfferValues[]>) => {
       state.offer = action.payload;
     },
+
+   
 
     
     addlogin: (state, action: PayloadAction<FormRegisterGet>) => {
@@ -92,6 +120,26 @@ export const globalSlice = createSlice({
     removeRestaurant: (state, action: PayloadAction<string>) => {
       state.restaurant = state.restaurant.filter((r) => r.id !== action.payload);
     },
+
+    fillBasket: (state, action: PayloadAction<Basket>) => {
+      state.basket = action.payload;
+    },
+    clearBasket: (state) => {
+      state.basket = initialBasket;
+    },
+    addItemToBasket: (state, action: PayloadAction<BasketItem>) => {
+      state.basket.items.push(action.payload);
+      state.basket.total_item += 1;
+      state.basket.total_amount += action.payload.amount;
+    },
+    removeItemFromBasket: (state, action: PayloadAction<string | number>) => {
+      const itemIndex = state.basket.items.findIndex(item => item.id === action.payload);
+      if (itemIndex !== -1) {
+        state.basket.total_amount -= state.basket.items[itemIndex].amount;
+        state.basket.items.splice(itemIndex, 1);
+        state.basket.total_item -= 1;
+      }
+    }
   },
 });
 
@@ -109,6 +157,10 @@ export const {
   setEditRestaurantModalHidden,
   addlogin,
   updateLogin,
+  fillBasket,  // Export fillBasket
+  clearBasket, // Export clearBasket
+  addItemToBasket, // Export addItemToBasket
+  removeItemFromBasket,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;

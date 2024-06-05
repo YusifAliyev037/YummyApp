@@ -274,18 +274,7 @@ export async function updateProduct(id: string, form: Products) {
 
 //* userBasket
 
-// get
-export async function getBasket() {
-  try {
-    const response = await instanceAxios.get('/basket');
-    return response.data;
-  } catch (error) {
-    console.error('Error while fetching basket:', error);
-    throw new Error('Failed to fetch basket!');
-  }
-}
 
-// post
 
 export type BasketItemProps = {
   imageSrc: string;
@@ -296,119 +285,96 @@ export type BasketItemProps = {
   onDecrease: () => void;
   // onRemove: () => void;
 };
+  
 
-export async function addBasket(form: BasketItemProps) {
+//* AddBasket
+export async function addBasket(id:string|number) {
   try {
-    const response = await instanceAxios.post(`/basket/add`, form);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    // console.error('Error while adding to basket:', error);
-    // throw new Error('Failed to add to basket!');
-  }
-}
-// ADDBasket
+    let item: any = localStorage.getItem("userInfo");
 
-// export const AddBasket: (
-//   basketProduct: BasketPostDataType
-// ) => AxiosPromise<BasketPostDataType> = (basketProduct) => {
-//   const accessToken = localStorage.getItem("access_token");
-//   return instanceAxios({
-//       method: "POST",
-//       url: `basket/add`,
-//       data: basketProduct,
-//       headers: {
-//           Authorization: `Bearer ${accessToken}`,
-//       },
-//   });
-// };
+    let access_token = JSON.parse(item);
 
-
-// AddBasket
-export async function AddBasket(id: any) {
-  try {
-    // let tokenObj:any=localStorage.getItem("tokenObj")
-    let tokenObj: any = JSON.parse(
-      typeof localStorage !== 'undefined'
-        ? localStorage.getItem('tokenObj') ?? '{}'
-        : '{}'
-    );
-    let accessToken = tokenObj.access_token;
-    console.log(accessToken, tokenObj);
-
-    const response = await instanceAxios({
-      method: 'POST',
-      url: '/basket/add',
-      data: { product_id: id },
+    const response = await instanceAxios.post(`/basket/add/`,{
+      "product_id": id
+    }, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${access_token.access_token}`,
       },
     });
 
-    console.log(response);
-
-    return response.data;
-  } catch (error) {
-    console.log(error);
+    return response;
+  } catch (err) {
+    console.log(err);
   }
 }
 
 
-// getbasket
+//? GetBasket
 
+export async function getBasket (){
+  try{
+    let item: any = localStorage.getItem("userInfo");
 
+    let access_token = JSON.parse(item);
 
-export async function GetBasket( ) {
-  try {
-    // let tokenObj:any=localStorage.getItem("tokenObj")
-    let tokenObj: any = JSON.parse(
-      typeof localStorage !== 'undefined'
-        ? localStorage.getItem('tokenObj') ?? '{}'
-        : '{}'
-    );
-    let accessToken = tokenObj.access_token;
-    console.log(accessToken, tokenObj);
-
-    const response = await instanceAxios({
-      method: 'GET',
-      url: '/basket',
-
+    const response = instanceAxios.get("/basket" ,{
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${access_token.access_token}`,
+      },
+    });
+    return response
+
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
+//! delete
+
+
+export async function deleteBasket(id: string | number) {
+  try {
+    let item: any = localStorage.getItem("userInfo");
+    let access_token = JSON.parse(item);
+
+    // console.log(access_token);
+
+    const response = await instanceAxios.delete(`/basket/delete/`, {
+      headers: {
+        Authorization: `Bearer ${access_token.access_token}`,
+      },
+      data: {
+        product_id: id,
       },
     });
 
-    console.log(response);
-
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-// -----------------------------------------------
-
-// delete
-
-export async function deleteBasket(itemId: string) {
-  try {
-    // const response = await instanceAxios.delete(`/basket/delete/${itemId}`);
-    const response = await instanceAxios.delete(`/basket/delete`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error while deleting basket item:`, error);
-    throw new Error('Failed to delete basket item!');
+    return response;
+  } catch (err) {
+    console.log(err);
   }
 }
 
 // clear
 
-export async function clearBasket() {
+export async function clearBasket(id:string | number) {
   try {
-    const response = await instanceAxios.delete(`/basket/clear`);
-    return response.data;
+    
+    let item:any = localStorage.getItem("userInfo");
+    let access_token = JSON.parse(item);
+
+    const response = await instanceAxios.delete(`/basket/clear/`, {
+      headers: {
+        Authorization: `Bearer ${access_token.access_token}`,
+      },
+      data: {
+        "basket_id": id,
+      },
+    });
+
+    return response
   } catch (error) {
     console.error(`Error while clearing basket :`, error);
-    throw new Error('Failed to clear basket!');
   }
 }
 
