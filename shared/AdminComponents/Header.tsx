@@ -210,9 +210,9 @@ function Header() {
               }`}
               onClick={() => setShowDropdown(!showDropdown)}
             >
-                 <img
-  src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : locale === 'tr' ? 'tr.png' : 'de.png'}`}
-  alt={locale === 'en' ? 'us' : locale === 'az' ? 'Az' : locale === 'tr' ? 'Turk' : 'Ger'}
+<img
+  src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : locale === 'tr' ? 'tr.png' : locale === 'de' ? 'de.png' : 'is.png'}`}
+  alt={locale === 'en' ? 'us' : locale === 'az' ? 'Az' : locale === 'tr' ? 'Turk' : locale === 'de' ? 'Ger' : 'Isp'}
   className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
   onClick={() => setShowDropdown(!showDropdown)}
 />
@@ -242,8 +242,15 @@ function Header() {
       className='w-12 h-10 rounded-full mb-2'
       onClick={() => changeLanguage('de')}
     />
+    <img
+      src='/is.png'
+      alt='Isp'
+      className='w-12 h-10 rounded-full mb-2'
+      onClick={() => changeLanguage('is')}
+    />
   </div>
 )}
+
             </div>
           </div>
 
