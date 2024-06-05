@@ -66,7 +66,7 @@ const UserBasket: React.FC = () => {
   const isScrollable = basketItems.length > 3;
 
   return (
-    <Box className="w-[970px] h-[730px] bg-gray200 mt-[15px] pb-[40px] mr-[35px] p-8 shadow-lg relative">
+    <Box className="w-[1030px] h-[730px] bg-gray200 ml-[40px] mt-[15px] pb-[40px] mb-[40px] mr-[30px] p-8  relative">
       <Text className="text-2xl font-bold mb-4">Your Basket</Text>
 
       <div className="text-red500 mb-6 flex items-center justify-between">

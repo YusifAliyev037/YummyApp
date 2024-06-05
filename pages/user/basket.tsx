@@ -8,7 +8,7 @@ const Basket: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <ClientHeader />
-      <main className="flex-grow flex space-x-4 p-4">
+      <main className="flex-grow flex space-x-4 gap-[4px]">
         <UserModul />
         <UserBasket />
       </main>
