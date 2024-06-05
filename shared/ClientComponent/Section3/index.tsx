@@ -22,6 +22,7 @@ const HomeSection3: React.FC = () => {
     <div className="space-y-12 pt-[100px]">
       {offer?.map((item, index) => (
         <div
+          data-aos="zoom-in-up"
           key={index}
           className={`flex flex-col gap-2  pb-[120px] md:flex-row items-center md:items-start ${
             index % 2 === 1 ? "md:flex-row-reverse" : ""

@@ -202,8 +202,10 @@ const ClientHeader: React.FC = () => {
               height={"44px"}
               backgroundColor={"#F178B6"}
               borderRadius={"22px"}
+              marginLeft={"20px"}
+              // padding={"5px"}
             >
-              <h1 className="font-roboto font-medium text-white text-center text-2xl leading-6 tracking-wide">
+              <h1 className="font-roboto font-medium text-white text-center text-xl leading-6 tracking-wide ">
                 {firstNameLetter + usernameLetter}
               </h1>
             </Box>
@@ -213,8 +215,11 @@ const ClientHeader: React.FC = () => {
                 className="absolute top-14 z-10000"
                 backgroundColor={"#FFFFFF"}
                 width={"178px"}
+                zIndex={"999"}
+                borderRadius={"20px"}
+                boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
               >
-                <ul className="space-y-2 pl-6 p-2">
+                <ul className="space-y-2 pl-6 p-2 ">
                   <li
                     onClick={() => router.push("/user")}
                     className="font-roboto font-medium text-lg leading-7 tracking-tight text-black cursor-pointer hover:text-blue-500 transition-colors duration-300"
