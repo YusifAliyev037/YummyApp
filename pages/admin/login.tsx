@@ -16,7 +16,6 @@ function Adminlogin() {
 
   const [showDropdown, setShowDropdown] = useState(false);
 
-
   const { push, locale } = useRouter();
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -109,13 +108,10 @@ function Adminlogin() {
   }
 
   const changeLanguage = (locale: string) => {
-
     router.push(router.pathname, router.asPath, { locale });
     localStorage.setItem("lang", locale);
     setShowDropdown(false);
   };
-
-
 
   return (
     <Box className=" bg-darkBlue10  pb-[330px]">
@@ -165,63 +161,76 @@ function Adminlogin() {
           as="section"
           className="bg-none md:bg-white20 w-full md:w-1/3 h-auto md:h-96 p-4"
         >
-          <div className="relative flex items-center mr-8">
-            <div
-              className={`cursor-pointer flex items-center ${
-                showDropdown ? "active" : ""
+          <Box className="relative w-[50px] ml-[380px] flex items-center mr-8">
+            {showDropdown && (
+              <Box className="absolute top-full  right-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
+                <img
+                  src="/usuk.png"
+                  alt="us"
+                  className="w-12 h-10 rounded-full mb-2 cursor-pointer"
+                  onClick={() => changeLanguage("en")}
+                />
+                <img
+                  src="/azerbaijan.png"
+                  alt="Az"
+                  className="w-12 h-10 rounded-full mb-2 cursor-pointer"
+                  onClick={() => changeLanguage("az")}
+                />
+                <img
+                  src="/tr.png"
+                  alt="Turk"
+                  className="w-12 h-10 rounded-full mb-2 cursor-pointer"
+                  onClick={() => changeLanguage("tr")}
+                />
+                <img
+                  src="/de.png"
+                  alt="Ger"
+                  className="w-12 h-10 rounded-full mb-2 cursor-pointer"
+                  onClick={() => changeLanguage("de")}
+                />
+                <img
+                  src="/is.png"
+                  alt="Isp"
+                  className="w-12 h-10 rounded-full mb-2 cursor-pointer"
+                  onClick={() => changeLanguage("is")}
+                />
+              </Box>
+            )}
+            <img
+              src={`/${
+                locale === "en"
+                  ? "usuk.png"
+                  : locale === "az"
+                  ? "azerbaijan.png"
+                  : locale === "tr"
+                  ? "tr.png"
+                  : locale === "de"
+                  ? "de.png"
+                  : "is.png"
               }`}
+              alt={
+                locale === "en"
+                  ? "us"
+                  : locale === "az"
+                  ? "Az"
+                  : locale === "tr"
+                  ? "Turk"
+                  : locale === "de"
+                  ? "Ger"
+                  : "Isp"
+              }
+              className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110 cursor-pointer"
               onClick={() => setShowDropdown(!showDropdown)}
-            >
-<img
-  src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : locale === 'tr' ? 'tr.png' : locale === 'de' ? 'de.png' : 'is.png'}`}
-  alt={locale === 'en' ? 'us' : locale === 'az' ? 'Az' : locale === 'tr' ? 'Turk' : locale === 'de' ? 'Ger' : 'Isp'}
-  className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
-  onClick={() => setShowDropdown(!showDropdown)}
-/>
-{showDropdown && (
-  <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-    <img
-      src='/usuk.png'
-      alt='us'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('en')}
-    />
-    <img
-      src='/azerbaijan.png'
-      alt='Az'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('az')}
-    />
-    <img
-      src='/tr.png'
-      alt='Turk'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('tr')}
-    />
-    <img
-      src='/de.png'
-      alt='Ger'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('de')}
-    />
-    <img
-      src='/is.png'
-      alt='Isp'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('is')}
-    />
-  </div>
-)}
+            />
+          </Box>
 
-            </div>
-          </div>
-          <Box className="flex items-center justify-center mt-4 md:mt-9">
+          <Box className="flex items-center justify-center md:mt-9">
             <Image
               width={200}
               height={200}
               alt="login"
               src="/login.png"
-              className=" w-full md:w-5/6 "
+              className=" w-full h-[300px] pb-[30px] md:w-5/6 "
             />
           </Box>
         </Box>
