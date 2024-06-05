@@ -161,6 +161,12 @@ function Adminlogin() {
           as="section"
           className="bg-none md:bg-white20 w-full md:w-1/3 h-auto md:h-96 p-4"
         >
+
+          <div className="relative flex  items-center mr-8">
+            <div
+              className={`cursor-pointer flex items-center ${
+                showDropdown ? "active" : ""
+
           <Box className="relative w-[50px] ml-[380px] flex items-center mr-8">
             {showDropdown && (
               <Box className="absolute top-full  right-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
@@ -207,6 +213,7 @@ function Adminlogin() {
                   : locale === "de"
                   ? "de.png"
                   : "is.png"
+
               }`}
               alt={
                 locale === "en"
@@ -228,9 +235,14 @@ function Adminlogin() {
             <Image
               width={200}
               height={200}
+              
               alt="login"
               src="/login.png"
+
+              className=" w-full  md:w-5/6 "
+
               className=" w-full h-[300px] pb-[30px] md:w-5/6 "
+
             />
           </Box>
         </Box>
