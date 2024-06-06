@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImageInput } from "./ImageInput";
 import { AdminModalInput } from "./AdminModalInput1";
 import { Button } from "./Button";
@@ -34,6 +34,9 @@ interface Props {
   productRestaurantRef?:any;
   offerNameRef?:any;
   offerDescRef?:any
+  // --
+  productData?: any;
+  // --
 }
 
 export const AdminModal1 = ({
@@ -61,13 +64,27 @@ export const AdminModal1 = ({
   productPriceRef,
   productRestaurantRef,
   offerNameRef,
-  offerDescRef
+  offerDescRef,
+  // --
+  productData
+  // --
  
 }: Props) => {
   const [imgUrl, setImgUrl] = useState<any>("");
 
   const [imgOnload, setImgOnload] = useState(false);
-
+// --
+  useEffect(() => {
+    if (productData) {
+      if (productNameRef?.current) productNameRef.current.value = productData.name;
+      if (productDescRef?.current) productDescRef.current.value = productData.description;
+      if (productPriceRef?.current) productPriceRef.current.value = productData.price.toString();
+      if (productRestaurantRef?.current) productRestaurantRef.current.value = productData.rest_id;
+      setImgUrl(productData.img_url);
+      getImgUrl(productData.img_url);
+    }
+  }, [productData]);
+// --
   function getİmage(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e?.target?.files?.[0]?.name;
     if (!name) {
