@@ -2,13 +2,38 @@ import { translate } from '@/public/lang/translate';
 import { Box, Divider, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { getBasket } from '../AdminComponents/Services/axios';
+import { fillBasket } from '../redux/global/globalSlice';
+
 
 const BoxCheck2 = () => {
+
+  const dispatch = useDispatch();  
         const router=useRouter()
 useEffect(() => {
   const locale = localStorage.getItem('lang') || 'en';
   router.push(router.pathname, router.asPath, { locale });
 }, []);
+
+
+async function fetchBasket() {
+  const res = await getBasket();
+  dispatch(fillBasket(res?.data.result.data));
+}
+
+useEffect(() => {
+  fetchBasket();
+}, []);
+
+useEffect(()=>{
+
+
+})
+
+const basketArr = useSelector((state: RootState) => state.global.basket);
+console.log(basketArr);
 
 const locale = router.locale || 'en';
   return (
@@ -30,32 +55,20 @@ gap='10px'
     >
         <Text  fontSize='2xl' mb='2'>{translate("Your Order",locale)}</Text>
       
-        <Box mb='2' w='full' display='flex' justifyContent='space-between'>
-<Text 
- >1x papa john's pizza restaurant</Text>
-<Text >$11</Text>
-        </Box>
-        <Box mb='2' w='full' display='flex' justifyContent='space-between'>
-<Text >2x papa Caffee</Text>
-<Text >$6</Text>
-        </Box>
-        <Box mb='2' w='full' display='flex' justifyContent='space-between'>
-<Text>2x Coca-cola</Text>
-<Text >$11</Text>
+        {basketArr.items.map((item, index) => {
+  return (
+    <Box key={index} mb='2' w='full' display='flex' justifyContent='space-between'>
+      <Text>{item.count}x {item.name}</Text>
+      <Text>${item.price}</Text>
+    </Box>
+  );
+})}
 
-        </Box>
-        <Box mb='2' w='full' display='flex' justifyContent='space-between'>
-<Text >2x papa Caffee</Text>
-<Text >$6</Text>
-        </Box>
-        <Box mb='2' w='full' display='flex' justifyContent='space-between'>
-<Text >1x papa john's pizza restaurant</Text>
-<Text >$11</Text>
-        </Box>
+
        <Divider borderColor='black' my='4'/>
         <Box  m='auto' w='full' display='flex' justifyContent='space-between'>
             <Text fontWeight='bold'>{translate("Total",locale)}</Text>
-            <Text fontWeight='bold'>$17</Text>
+            <Text fontWeight='bold'>{basketArr.total_amount}</Text>
 
         </Box>
 

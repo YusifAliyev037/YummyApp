@@ -13,6 +13,7 @@ interface BasketItem {
   amount: number;
   count: number;
   img_url: string;
+  price:string;
 }
 
 interface Basket {
