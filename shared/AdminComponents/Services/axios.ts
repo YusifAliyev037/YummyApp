@@ -549,5 +549,3 @@ export async function search(query: string): Promise<Products[]> {
 //     throw new Error('Failed to fetch search!');
 //   }
 // }
-
-
