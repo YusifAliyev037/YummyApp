@@ -4,11 +4,15 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./shared/**/*.{js,ts,jsx,tsx,mdx}",
-
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     colors: {
+      blue: {
+        50: "#eff6ff",
+        100: "#dbeafe",
+        500: "#3b82f6",
+      },
       darkBlue10: "#1E1E30",
       darkBlue20: "#27283C",
       darkblue30: "#38394e",
@@ -20,17 +24,22 @@ module.exports = {
       white10: "#f5f5f5",
       white20: "#fffefe",
       white30: "#f2f2f2",
-      white40: " #F3F4F6",
-      white50:"#BDBDBD",
-      white60:"#E0E0E0",
+      white40: "#F3F4F6",
+      white50: "#BDBDBD",
+      white60: "#E0E0E0",
 
       orange: "#EAAB00",
+      orange100: "rgb(251, 147, 0);",
+      orange200: "rgb(255, 182, 79);",
 
       pink: "#c035a2",
       pink10: "#c74feb",
       pink20: "#FCDDEC",
       pink30: "#d25ff5",
       pink40: "#eb5757",
+      blue10: "#00b2a9",
+      grey10: "#C7C7C7",
+      gray20: "#5a5b70",
 
       blue10: "#00b2a9",
       grey10: "#C7C7C7",
@@ -44,23 +53,22 @@ module.exports = {
       gray400: "#7e7e7e",
       gray500: "rgb(39, 39, 39)",
       gray600: "rgb(79, 79, 79)",
-      gray700:"#4F4F4F",
+      gray700: "#4F4F4F",
+
       black: "#000000",
       black200: "rgb(24, 22, 23)",
       black300: "rgb(51, 51, 51)",
+
+      red100: "rgb(214, 54, 38)",
       red400: "#d63626",
       red500: "#DC2626",
       redUserModul: "#ed5d53",
-
       redUserModul10: "#D63626",
+
       userText: "#828282",
-      ordersBg: " #00072B",
+      ordersBg: "#00072B",
       green: "#6fcf97",
 
-      red100: "rgb(214, 54, 38)",
-      white: "#ffffff",
-      orange100: "rgb(251, 147, 0);",
-      orange200: "rgb(255, 182, 79);",
       yellow100: "rgb(223, 179, 0);",
     },
     screens: {
