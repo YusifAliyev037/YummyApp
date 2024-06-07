@@ -150,7 +150,7 @@ const router=useRouter()
         <Box className='w-full mr-8'>
           <Box
             bg='#27283C'
-            className='flex items-center mb-12 w-full px-8 mt-20 rounded-lg h-16 '
+            className='flex items-center mb-12  w-full px-8 mt-20 rounded-lg h-16 xxl:ml-0  xs:ml-4   '
           >
             <Text color='white'>Category</Text>
             <InputGroup className='flex justify-end  items-center gap-7'>

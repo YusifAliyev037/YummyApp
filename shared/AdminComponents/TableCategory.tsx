@@ -34,9 +34,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   const [categoryId, setCategoryId] = useState<CategoryType | null>(null);
   const [activeId, setActiveId] = useState('');
   
-
   const catRed: CategoryType[] = useSelector((state: any) => state.global.category);
-  
 
   const changeHidden = (): void => {
     setHidden((prev: boolean) => !prev);
@@ -53,7 +51,6 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     const res = await getEditCategies(id);
     console.log(res);
     
-    
     if(res?.status === 200) {
       const currentData = res?.data.result.data;
       if(categoryRef.current && slugRef.current && imgRef.current) {
@@ -64,7 +61,7 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
     }
   };
 
-  async function updateCategory  ()  {
+  async function updateCategory() {
     const category = categoryRef?.current?.value;
     const slug = slugRef?.current?.value;
     const img = imgRef.current?.src;
@@ -86,29 +83,26 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
       return;
     }
 
-      const res = await updateCategories(activeId, form);
+    const res = await updateCategories(activeId, form);
 
-      if (res?.status === 200) {
-            toast({
-              title: 'Category updated successfully!',
-              status: 'success',
-              duration: 2000,
-              position: 'top-right',
-              variant: 'subtle',
-            });
-            changeHidden();
-            const updatedData = catRed.map((item: any) => {
-              if(item.id === activeId){
-                return res.data.data
-              }
-              return item
-              })
-        dispatch(fillCategory(updatedData))
-              
+    if (res?.status === 200) {
+      toast({
+        title: 'Category updated successfully!',
+        status: 'success',
+        duration: 2000,
+        position: 'top-right',
+        variant: 'subtle',
+      });
+      changeHidden();
+      const updatedData = catRed.map((item: any) => {
+        if(item.id === activeId){
+          return res.data.data
+        }
+        return item
+      })
+      dispatch(fillCategory(updatedData))
     }
   };
-
-
 
   const isInputValid = (
     category: string | undefined,
@@ -182,12 +176,12 @@ const TableCategory: React.FC<Props> = ({ customIds }) => {
   };
 
   return (
-    <div className='m-3'>
+    <div className='m-3 xxl:ml-0 xs:ml-10'>
       <AdminModal1
         onClickClose={changeHidden}
         mod='1'
-        p='Edit Category  '
-        p1='Upload  image'
+        p='Edit Category'
+        p1='Upload image'
         p2='Edit your Category information'
         btn='Upload Category'
         hidden={hidden}
