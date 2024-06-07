@@ -83,7 +83,7 @@ function RestaurantIdBasket() {
   }
 
   return (
-    <div className=' bg-gray200 p-4 h-[500px]'>
+    <div className=' bg-gray200 p-4 h-[550px]'>
       {(basketArr?.total_item ?? 0) === 0 ? (
         <>
           {/* FOR WEB EMPTY BASKET */}
@@ -91,8 +91,8 @@ function RestaurantIdBasket() {
             <div className="flex items-center gap-1">
               <Image
                 width={30}
-                height={0}
-                src={"/twitter.svg"}
+                height={30}
+                src={"/emptybasket.svg"}
                 alt="basket"
               />
               <p className="font-medium text-white50 text-lg mt-2">
@@ -102,9 +102,9 @@ function RestaurantIdBasket() {
             <div className="flex flex-col my-5 items-center mx-auto">
               <Image
                 className="w-full "
-                width={0}
-                height={0}
-                src={"/emptyGray.svg"}
+                width={40}
+                height={40}
+                src={"/empitygraybasket.svg"}
                 alt="empty"
               />
               <p className="text-4xl  text-white50 font-semibold text-center">
@@ -127,7 +127,7 @@ function RestaurantIdBasket() {
                   <Image
                     className="mx-auto"
                     width={50}
-                    height={0}
+                    height={50}
                     src={"/closeFilter.svg"}
                     alt="closeFilter"
                     onClick={toggleShowBasket}
@@ -136,8 +136,8 @@ function RestaurantIdBasket() {
                 <div className="flex flex-col my-5 items-center mx-auto">
                   <Image
                     className="w-full "
-                    width={0}
-                    height={0}
+                    width={30}
+                    height={30}
                     src={"/emptyRed.svg"}
                     alt="empty"
                   />
@@ -158,7 +158,7 @@ function RestaurantIdBasket() {
                   <div className="flex items-center gap-1">
                     <Image
                       width={30}
-                      height={0}
+                      height={30}
                       src={"/basketRed.svg"}
                       alt="basket"
                     />
@@ -177,7 +177,7 @@ function RestaurantIdBasket() {
       ) : (
         <>
           <div className="flex items-center gap-1">
-            <Image width={30} height={0} src={"/basketIcon.svg"} alt="basket" />
+            <Image width={30} height={0} src={"/emptyRedBasket.svg"} alt="basket" />
             <p className="font-medium text-red400 mt-1 text-lg">
               {basketArr?.total_item} items
             </p>

@@ -178,7 +178,7 @@ const RestaurantPage: React.FC = () => {
           </Box>
         </Box>
         <hr />
-        <Box className='mt-9 flex gap-12'>
+        <Box className='mt-9 flex mb-44 gap-12'>
           <Box
             as='section'
             className='w-2/3 bg-gray200'
@@ -186,7 +186,7 @@ const RestaurantPage: React.FC = () => {
             <Text className='text-center py-10 font-bold text-2xl text-gray700'>
               Products
             </Text>
-            <Box className='mb-44'>
+            <Box className=''>
               <TableContainer>
                 <Table variant='simple'>
                   <Tbody className='overflow-7-scroll mb-11'>
