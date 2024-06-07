@@ -125,14 +125,7 @@ export async function updateCategories(id: string, form: Form) {
 
 //* categoryPost
 
-export async function postCategory(form: Form) {
-  try {
-    const response = await instanceAxios.post('/category', form);
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-}
+
 
 //! Restaurant
 
@@ -209,6 +202,16 @@ export type Products = {
   description?: string;
   rest_id?: string;
 };
+
+
+export type Order={
+  
+    basket_id: string,
+    delivery_address: string,
+    contact: string,
+    payment_method: string
+  
+}
 
 export async function getProducts() {
   try {
@@ -310,6 +313,54 @@ export async function addBasket(id:string|number) {
 
 
 //? GetBasket
+
+
+export async function postCategory(form: Form) {
+  try {
+    const response = await instanceAxios.post('/category', form);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function postOrder(form: Order) {
+  try {
+    // Получаем данные пользователя из localStorage
+    const item = localStorage.getItem("userInfo");
+
+  
+    if (!item) {
+      throw new Error("User information not found in localStorage");
+    }
+
+   
+    const userInfo = JSON.parse(item);
+
+
+    const accessToken = userInfo.access_token;
+
+  
+    const response = await instanceAxios.post(
+      `/order`, 
+      form,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+console.log(response);
+
+    return response;
+  } catch (err) {
+    console.error("Error posting order:", err);
+    throw err; // Можно выбросить ошибку дальше, если нужно обрабатывать её выше
+  }
+}
+
+
+
 
 export async function getBasket (){
   try{
