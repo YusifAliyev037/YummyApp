@@ -4,14 +4,16 @@ import { RootState } from "@/shared/redux/store";
 import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
 import { translate } from "../../../public/lang/translate";
-// import { search, Products } from "../../AdminComponents/Services/axios";
 import Image from "next/image";
 import SearchComponent from "../SearchModal";
+import { Navbar } from "../Navbar";
 
 const ClientHeader: React.FC = () => {
   const router = useRouter();
   const [show, setShow] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [navHidden, setNavHidden] = useState(true);
+
   const isActive = (route: string) => {
     return router.pathname === route ? "text-red500" : "text-black";
   };
@@ -36,9 +38,28 @@ const ClientHeader: React.FC = () => {
     localStorage.setItem("lang", locale);
     setShowDropdown(false);
   };
+  const handleAddCategory = () =>(
+    setNavHidden(false)
+  )
+  function changeNavHidden(): void {
+    setNavHidden((prev: boolean) => !prev);
+  }
 
   return (
-    <div className="flex items-center mt-[30px] ml-[30px] mr-[30px] px-[60px] pt-[50px] pb-[35px] bg-gray200">
+    <div className="flex items-center  xxl:m-8 px-[60px] pt-[50px] pb-[35px] bg-gray200 gap-2 sm:m-0">
+      <Image
+            onClick={handleAddCategory}
+            className=" block sm:hidden cursor-pointer"
+            height={40}
+            width={40}
+            alt="hamburger"
+            src="/blackHam.svg"
+          />
+       
+        <Navbar
+        onClickClose={changeNavHidden}
+        hidden={navHidden}
+        />
       <h1 className="hover:scale-105 font-mukta text-4xl font-extrabold text-black mr-auto pr-35">
         Yummy<span className="hover:scale-105 text-red500">.</span>
       </h1>
@@ -46,7 +67,7 @@ const ClientHeader: React.FC = () => {
       <nav className="pr-[30px]">
         <ul className="flex list-none p-0 m-0">
           <li
-            className="mr-10 cursor-pointer hover:scale-105"
+            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/")}
           >
             <a
@@ -58,7 +79,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="mr-10 cursor-pointer hover:scale-105"
+            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/restaurants")}
           >
             <a
@@ -70,7 +91,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="mr-10 cursor-pointer hover:scale-105"
+            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/about-us")}
           >
             <a
@@ -82,7 +103,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="mr-10 cursor-pointer hover:scale-105"
+            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/how-it-works")}
           >
             <a
@@ -94,7 +115,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="cursor-pointer hover:scale-105"
+            className="cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/faqs")}
           >
             <a
@@ -108,10 +129,10 @@ const ClientHeader: React.FC = () => {
         </ul>
       </nav>
 
-      <div className="flex items-center mr-8 ">
+      <div className="flex items-center xxl:mr-8   ">
         <SearchComponent locale={locale} />
 
-        <div className="relative flex items-center mr-[30px]">
+        <div className="relative flex items-center xxl:mr-[30px]">
           <div
             className={`cursor-pointer flex items-center ${
               showDropdown ? "active" : ""
@@ -181,7 +202,7 @@ const ClientHeader: React.FC = () => {
           </div>
         </div>
         {loginState?.username && loginState.username.length !== 0 ? (
-          <Box className="relative flex  items-center gap-[15px] ">
+          <Box className="relative flex  items-center gap-[15px]  ">
             <Box
               onClick={() => router.push("/user/basket")}
               backgroundColor={"#EB5757"}
@@ -257,7 +278,7 @@ const ClientHeader: React.FC = () => {
         ) : (
           <button
             onClick={() => router.push("/login")}
-            className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer"
+            className="hover:scale-105 bg-red500 text-white border-none py-2 px-5 rounded-full cursor-pointer hidden md:block"
           >
             {translate("Login", locale)}
           </button>

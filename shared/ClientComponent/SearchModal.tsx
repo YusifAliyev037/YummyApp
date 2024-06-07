@@ -87,7 +87,7 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
   };
 
   return (
-    <div className="relative ml-[20px] mr-[40px]">
+    <div className="relative ml-[20px] mr-[40px] hidden md:block">
       <input
         type="text"
         name="searchQuery"
