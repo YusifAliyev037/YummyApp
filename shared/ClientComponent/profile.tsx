@@ -187,7 +187,7 @@ console.log(formData.access_token);
         name='username'
         value={formData.username}
         onChange={handleInputChange}
-        width={['full', '444px']}
+        width={['100%', '444px']}
         height='53px'
         bg='white'
         type='text'
@@ -215,12 +215,13 @@ console.log(formData.access_token);
         name='email'
         value={formData.email}
         onChange={handleInputChange}
-        width={['full', '444px']}
+        width={['100%', '444px']}
         height='53px'
         bg='white'
         type='email'
         placeholder='aliyev@gmail.com'
         focusBorderColor='red.500'
+
       />
     </Box>
     <Box marginTop='7px'>

@@ -125,15 +125,6 @@ export async function updateCategories(id: string, form: Form) {
 
 //* categoryPost
 
-export async function postCategory(form: Form) {
-  try {
-    const response = await instanceAxios.post('/category', form);
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 //! Restaurant
 
 export type Restaurant = {
@@ -210,6 +201,13 @@ export type Products = {
   rest_id?: string;
 };
 
+export type Order = {
+  basket_id: string;
+  delivery_address: string;
+  contact: string;
+  payment_method: string;
+};
+
 export async function getProducts() {
   try {
     const response = await instanceAxios.get('/products');
@@ -223,7 +221,7 @@ export async function getProducts() {
 // export async function getProducts(): Promise<Products[]> {
 //   try {
 //     const response = await instanceAxios.get('/products');
-//     return response.data; 
+//     return response.data;
 //   } catch (error) {
 //     console.error('Error while fetching products:', error);
 //     throw new Error('Failed to fetch products!');
@@ -274,8 +272,6 @@ export async function updateProduct(id: string, form: Products) {
 
 //* userBasket
 
-
-
 export type BasketItemProps = {
   imageSrc: string;
   name: string;
@@ -285,22 +281,25 @@ export type BasketItemProps = {
   onDecrease: () => void;
   // onRemove: () => void;
 };
-  
 
 //* AddBasket
-export async function addBasket(id:string|number) {
+export async function addBasket(id: string | number) {
   try {
-    let item: any = localStorage.getItem("userInfo");
+    let item: any = localStorage.getItem('userInfo');
 
     let access_token = JSON.parse(item);
 
-    const response = await instanceAxios.post(`/basket/add/`,{
-      "product_id": id
-    }, {
-      headers: {
-        Authorization: `Bearer ${access_token.access_token}`,
+    const response = await instanceAxios.post(
+      `/basket/add/`,
+      {
+        product_id: id,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${access_token.access_token}`,
+        },
+      }
+    );
 
     return response;
   } catch (err) {
@@ -308,34 +307,66 @@ export async function addBasket(id:string|number) {
   }
 }
 
-
 //? GetBasket
 
-export async function getBasket (){
-  try{
-    let item: any = localStorage.getItem("userInfo");
+export async function postCategory(form: Form) {
+  try {
+    const response = await instanceAxios.post('/category', form);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function postOrder(form: Order) {
+  try {
+    // Получаем данные пользователя из localStorage
+    const item = localStorage.getItem('userInfo');
+
+    if (!item) {
+      throw new Error('User information not found in localStorage');
+    }
+
+    const userInfo = JSON.parse(item);
+
+    const accessToken = userInfo.access_token;
+
+    const response = await instanceAxios.post(`/order`, form, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    console.log(response);
+
+    return response;
+  } catch (err) {
+    console.error('Error posting order:', err);
+    throw err; // Можно выбросить ошибку дальше, если нужно обрабатывать её выше
+  }
+}
+
+export async function getBasket() {
+  try {
+    let item: any = localStorage.getItem('userInfo');
 
     let access_token = JSON.parse(item);
 
-    const response = instanceAxios.get("/basket" ,{
+    const response = instanceAxios.get('/basket', {
       headers: {
         Authorization: `Bearer ${access_token.access_token}`,
       },
     });
-    return response
-
-  }catch(error){
+    return response;
+  } catch (error) {
     console.log(error);
-    
   }
 }
 
 //! delete
 
-
 export async function deleteBasket(id: string | number) {
   try {
-    let item: any = localStorage.getItem("userInfo");
+    let item: any = localStorage.getItem('userInfo');
     let access_token = JSON.parse(item);
 
     // console.log(access_token);
@@ -357,10 +388,9 @@ export async function deleteBasket(id: string | number) {
 
 // clear
 
-export async function clearBasket(id:string | number) {
+export async function clearBasket(id: string | number) {
   try {
-    
-    let item:any = localStorage.getItem("userInfo");
+    let item: any = localStorage.getItem('userInfo');
     let access_token = JSON.parse(item);
 
     const response = await instanceAxios.delete(`/basket/clear/`, {
@@ -368,11 +398,11 @@ export async function clearBasket(id:string | number) {
         Authorization: `Bearer ${access_token.access_token}`,
       },
       data: {
-        "basket_id": id,
+        basket_id: id,
       },
     });
 
-    return response
+    return response;
   } catch (error) {
     console.error(`Error while clearing basket :`, error);
   }
@@ -472,7 +502,7 @@ export async function delOffer(id: string) {
 // }
 
 export async function search(query: string): Promise<Products[]> {
-  console.log('Search query:', query); 
+  console.log('Search query:', query);
   try {
     const response = await instanceAxios.get('/products', {
       params: { query },
@@ -483,9 +513,6 @@ export async function search(query: string): Promise<Products[]> {
     throw new Error('Failed to fetch search!');
   }
 }
-
-
-
 
 // export async function searchRestaurant(query: string): Promise<Restaurant[]> {
 //   try {
@@ -498,5 +525,3 @@ export async function search(query: string): Promise<Products[]> {
 //     throw new Error('Failed to fetch search!');
 //   }
 // }
-
-
