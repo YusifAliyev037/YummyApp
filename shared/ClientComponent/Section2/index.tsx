@@ -14,14 +14,14 @@ const HomeSection2: React.FC = () => {
       <div className="text-center">
         <h1 className="text-4xl font-bold">{translate("Features", locale)}</h1>
 
-        <p className="text-lg text-gray300 mt-4 max-w-[800px] ml-[320px] mr-[320px]">
+        <p className="text-lg text-gray300 mt-4  xxl:max-w-[800px] xxl:ml-[320px] xxl:mr-[320px]">
           {translate(
             "We are at your service with new and delicious meals from our store every day.",
             locale
           )}
         </p>
       </div>
-      <div className="flex justify-center mt-20 space-x-8">
+      <div className="flex justify-center flex-column gap-16 mt-20  xs:flex-column">
         <div
           data-aos="fade-right"
           className="hover:scale-105 w-72 h-96 border border-gray200 rounded-lg flex flex-col items-center justify-center text-center px-8 py-6 shadow-md"

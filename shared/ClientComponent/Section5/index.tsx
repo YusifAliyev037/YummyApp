@@ -14,7 +14,7 @@ const HomeSection5: React.FC = () => {
   return (
     <div
       data-aos="flip-down"
-      className="animate-slideIn hover:scale-105 w-100% h-370 xxl:mx-48 mb-[100px] bg-gray500 rounded-[50px] xxl:flex items-center justify-between p-8 sm:my-5"
+      className="animate-slideIn hover:scale-105 w-100% xxl:h-370 xxl:mx-48 mb-[100px] bg-gray500 rounded-[50px] xxl:flex items-center justify-between p-8  sm:my-5 sm:h-52"
     >
       <div className="w-1/4">
         <img

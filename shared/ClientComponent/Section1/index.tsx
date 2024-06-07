@@ -13,16 +13,16 @@ function HomeSection1() {
 
   const locale = router.locale || "en";
   return (
-    <div className="px-[30px] animate-slideIn ">
-      <div className="bg-gray200 mx-6 md:mx-0 md:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
+    <div className=" xxl:px-[30px] sm:px-0 animate-slideIn ">
+      <div className="bg-gray200 xxl:mx-6 sm:mx-0 sm:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
         <div className="md:w-1/2 md:mr-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-black leading-[90px] h-[155px] w-[653px] ">
+          <h1 className="xxl:text-5xl md:text-6xl sm: text-xl font-bold text-black xxl:leading-[90px] sm:leading-5 xxl:text-left sm: text-center h-[155px] w-100% ">
             {translate(
               "Our Food site makes it easy to find local food",
               locale
             )}
           </h1>
-          <p className="text-lg md:text-2xl mb-[45px] w-[510px] h-[105px] text-gray300 ">
+          <p className="text-lg md:text-2xl mb-[45px] w-[510px] h-[105px]  hidden md:block text-gray300 ">
             {translate("Delicious is just a click away", locale)}
           </p>
           <div className="flex gap-8">
@@ -37,28 +37,24 @@ function HomeSection1() {
             </button>
           </div>
         </div>
-        {/* <div className="md:w-1/2 mt-8 md:mt-0">
-          <img className="w-full" src="/hsection1.png" alt="Big Image" />
-        </div> */}
+       
 
         <div className="relative w-[657px] h-[559px] mt-[30px]">
-          {/* Black Background */}
 
-          <div className="absolute top-0 left-0 w-[577px] h-[509px] bg-black rounded-[70px] overflow-hidden">
+          <div className="absolute top-0 left-0 w-[577px] h-[509px] bg-black rounded-[70px]  hidden md:block overflow-hidden">
             {" "}
           </div>
 
-          {/* Background Image */}
 
           <img
             src="/hosec1.png"
             alt="Background Image"
-            className="absolute top-[-70px] left-[0px] w-[607px] h-[619px] object-cover "
+            className="absolute  w-100% xxl:h-[619px] xs:h-100% object-cover "
           />
 
           {/* Box1 */}
 
-          <div className="absolute  top-[-25px]  left-[370px]  rounded-20 shadow-md bg-white w-[278px] h-[91px] flex items-center justify-center  animate-wiggle hover:scale-105 transition-transform duration-300">
+          <div className="absolute  xxl:top-[-25px]  xxl:left-[370px] xs:left-24 xs: top-32   rounded-20 shadow-md bg-white w-[278px] h-[91px] flex items-center justify-center  animate-wiggle hover:scale-105 transition-transform duration-300">
             <img
               src="/margarita.jpg"
               alt="Product Image"
@@ -72,28 +68,28 @@ function HomeSection1() {
 
           {/* Box2 */}
 
-          <div className="absolute  top-[317px]  left-[-120px]  rounded-20 shadow-md bg-white w-[278px] h-[91px] flex items-center justify-center animate-wiggle hover:scale-105 transition-transform duration-300">
+          <div className="absolute    top-[317px]  left-[-120px]  rounded-20 shadow-md bg-white w-[278px] h-[91px] flex items-center justify-center animate-wiggle hover:scale-105 transition-transform duration-300  hidden md:block">
             <img
               src="/fries.png"
               alt="Product Image"
-              className="absolute  w-[75px] h-[75px]  mr-[175px]  "
+              className="absolute  w-[75px] h-[75px] ml-4 mr-[170px]  "
             />
 
-            <h3 className=" w-[136px] h-[42px] mr-[-40px] text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
+            <h3 className=" w-[136px] h-[42px] ml-[100px] mt-5 text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
               {translate("French Fries Yummy ...", locale)}
             </h3>
           </div>
 
           {/* Box3 */}
 
-          <div className="absolute  top-[447px] left-[370px]  rounded-20 shadow-md bg-white w-[278px] h-[91px] flex items-center justify-center  hover:scale-105 transition-transform duration-300 animate-wiggle">
+          <div className="absolute  hidden md:block  top-[447px] left-[370px]  rounded-20 shadow-md bg-white w-[278px] h-[91px] flex items-center justify-center  hover:scale-105 transition-transform duration-300 animate-wiggle">
             <img
               src="/cheseeburger.png"
               alt="Product Image"
-              className="absolute  w-[75px] h-[75px]   mr-[175px]   "
+              className="absolute  w-[75px] h-[75px]  ml-4 mr-[175px]   "
             />
 
-            <h3 className=" w-[136px] h-[42px] mr-[-40px] text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
+            <h3 className=" w-[136px] h-[42px] ml-[100px] mt-5 text-lg flex items-center justify-center text-[16px] font-[500] leading-[24px] tracking-[0.03em] text-custom-gray font-mukta text-center">
               {translate("Cheeseburger Yummy ...", locale)}
             </h3>
           </div>

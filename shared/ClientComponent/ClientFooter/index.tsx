@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Programming', locale)}
                   </a>
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Books for children', locale)}
                   </a>
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Psychology', locale)}
                   </a>
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Business', locale)}
                   </a>
@@ -115,13 +115,13 @@ const Footer: React.FC = () => {
             </nav>
           </div>
           <div>
-            <h3 className='hover:scale-105 font-bold mb-2'>{translate("Store",locale)}</h3>
+            <h3 className='hover:scale-105 hidden md:block font-bold mb-2'>{translate("Store",locale)}</h3>
             <nav>
               <ul>
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Cash', locale)}
                   </a>
@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Delivery', locale)}
                   </a>
@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Payment', locale)}
                   </a>
@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('About the store', locale)}
                   </a>
@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
             </nav>
           </div>
           <div>
-            <h3 className='hover:scale-105 font-bold mb-2'>
+            <h3 className='hover:scale-105 hidden md:block font-bold mb-2'>
               {translate('Support', locale)}
             </h3>
             <nav>
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Help', locale)}
                   </a>
@@ -170,7 +170,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Contact', locale)}
                   </a>
@@ -178,7 +178,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Purchase returns', locale)}
                   </a>
@@ -186,7 +186,7 @@ const Footer: React.FC = () => {
                 <li className='group'>
                   <a
                     href='#'
-                    className='hover:scale-105 text-gray400 hover:underline group-hover:text-orange'
+                    className='hover:scale-105 hidden md:block text-gray400 hover:underline group-hover:text-orange'
                   >
                     {translate('Buyer help', locale)}
                   </a>
