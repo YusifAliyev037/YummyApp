@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import ContactForm from "./PaymentForm";
 import PaymentMethods from "./PaymentMethod";
+import BoxCheck2 from "./BoxCheck2";
 
 const Payment: NextPage = () => {
   const router = useRouter();
@@ -72,10 +73,13 @@ const Payment: NextPage = () => {
           content={translate("Description of Payment", locale)}
         />
       </Head>
-      <ClientHeader />
-      <div className="container mx-auto px-4">
+      {/* <ClientHeader /> */}
+      <div className="container mx-auto px-2">
         <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10">
-          <div className="bg-white p-8 rounded-lg shadow-lg max-w-6xl w-full flex">
+          <div
+            className="bg-gray200 mt-[-22px] p-6 flex"
+            style={{ width: "1025px" }}
+          >
             <ContactForm
               formData={formData}
               handleInputChange={handleInputChange}
@@ -85,10 +89,11 @@ const Payment: NextPage = () => {
               handlePaymentChange={handlePaymentChange}
               handleSubmit={handleSubmit}
             />
+            <BoxCheck2 />
           </div>
         </div>
       </div>
-      <ClientFooter />
+      {/* <ClientFooter /> */}
     </>
   );
 };
