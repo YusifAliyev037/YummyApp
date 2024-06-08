@@ -6,6 +6,18 @@ export interface CategoryItem {
   slug: string | undefined;
   img_url: string | undefined;
 }
+export interface userOrder{
+  id:string | undefined;
+  amount:number | undefined;
+  delivery_address:string | undefined;
+  created:number | undefined;
+  contact:string | undefined;
+  payment_method:string | undefined;
+  products:[]
+
+
+
+}
 
 interface BasketItem {
   id: string | number;
@@ -35,6 +47,7 @@ interface CategoryState {
   hidden: boolean;
   editRestaurantModalHidden: boolean;
   basket:Basket
+  userOrder:userOrder[]
   
 }
 
@@ -52,6 +65,7 @@ const initialState: CategoryState = {
   product:[],
   offer:[],
   login:{},
+  userOrder:[],
   isDeleteModalOpen: false,
   restaurantToDelete: null,
   hidden: true,
@@ -68,6 +82,10 @@ export const globalSlice = createSlice({
 
     fillCategory: (state, action: PayloadAction<CategoryItem[]>) => {
       state.category = action.payload;
+    },
+    
+    filluserOrder: (state, action: PayloadAction<userOrder[]>) => {
+      state.userOrder = action.payload;
     },
 
   
@@ -146,6 +164,7 @@ export const globalSlice = createSlice({
 
 export const {
   fillCategory,
+  filluserOrder,
   fillRestaurants,
   fillProducts,
   fillOffer,
