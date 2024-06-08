@@ -1,9 +1,9 @@
 import { translate } from '@/public/lang/translate';
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, Icon } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-
+import { BsChat } from "react-icons/bs";
 
 
 interface Props {
@@ -29,14 +29,7 @@ const PushModul: React.FC=()=> {
       as='section'
       className='mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5 hidden md:block '
     >
-      {/* <Image
-      className=' cursor-pointer'
-      alt='close'
-      src="/closeNavbar.svg"
-      width={20}
-      height={20}
-      onClick={}
-      /> */}
+      
       <Box
         as='ul'
         className=' w-64 flex flex-col  '
@@ -136,6 +129,42 @@ const PushModul: React.FC=()=> {
             src='/orders.svg'
           />
            {translate("Orders",locale)}
+
+          
+        </Button>
+        <Button
+          onClick={() => push('/admin/chat')}
+          className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52'
+          colorScheme='none'
+          style={{
+            justifyContent: 'flex-start',
+            backgroundColor: isActive('/admin/chat'),
+          }}
+          as='li'
+        >
+          
+          <Icon as={BsChat} w={5} h={5} />
+           {translate("Chats",locale)}
+
+          
+        </Button>
+        <Button
+          onClick={() => push('/admin/history')}
+          className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52'
+          colorScheme='none'
+          style={{
+            justifyContent: 'flex-start',
+            backgroundColor: isActive('/admin/history'),
+          }}
+          as='li'
+        >
+          <Image
+            width={18}
+            alt='products'
+            height={18}
+            src='/offer.svg'
+          />
+           {translate("History",locale)}
 
           
         </Button>
