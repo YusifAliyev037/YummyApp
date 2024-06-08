@@ -1,114 +1,214 @@
-import React, { useState, useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
-import { FaShoppingBasket } from "react-icons/fa";
-import BasketItem from "./BasketItem";
-import {
-  getBasket,
-  // addBasket,
-  deleteBasket,
-  // clearBasket,
-  BasketItemProps,
-} from "../AdminComponents/Services/axios";
+import { Box,  useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { addBasket, clearBasket, deleteBasket, getBasket } from '../AdminComponents/Services/axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fillBasket } from '../redux/global/globalSlice';
+import { RootState } from '../redux/store';
+import Image from 'next/image';
+import { UserBasketId } from './UserBaketId';
 
-const UserBasket: React.FC = () => {
-  const [basketItems, setBasketItems] = useState<BasketItemProps[]>([]);
+interface BasketItem {
+  id: string | number;
+  name: string;
+  amount: number;
+  count: number;
+  img_url: string;
+}
 
-  useEffect(() => {
-    const fetchBasketItems = async () => {
-      try {
-        const data = await getBasket();
-        // setBasketItems(data);
-        // console.log(data, "data");
-      } catch (error) {
-        console.error("Error fetching basket items:", error);
-      }
-    };
+interface Basket {
+  total_item: number;
+  items: BasketItem[];
+  id: string | number;
+  total_amount: number;
+}
 
-    fetchBasketItems();
-  }, []);
-
-  const handleIncrease = (index: number) => {
-    const newItems = [...basketItems];
-    newItems[index].quantity += 1;
-    setBasketItems(newItems);
-  };
-
-  const handleDecrease = (index: number) => {
-    const newItems = [...basketItems];
-    if (newItems[index].quantity > 1) {
-      newItems[index].quantity -= 1;
-    }
-    setBasketItems(newItems);
-  };
-
-  const handleRemove = async (index: number) => {
-    const item = basketItems[index];
-    try {
-      await deleteBasket(item.name);
-      const newItems = basketItems.filter((_, i) => i !== index);
-      setBasketItems(newItems);
-    } catch (error) {
-      console.error("Error removing item:", error);
-    }
-  };
-
-  const calculateTotal = () => {
-    return basketItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  };
-
-  const handleCheckout = () => {
-    window.location.href = "/user/checkout";
-  };
-
-  const isScrollable = basketItems.length > 3;
-
-  return (
-    <Box className="w-[1030px] h-[730px] bg-gray200 ml-[40px] mt-[15px] pb-[40px] mb-[40px] mr-[30px] p-8  relative">
-      <Text className="text-2xl font-bold mb-4">Your Basket</Text>
-
-      <div className="text-red500 mb-6 flex items-center justify-between">
-        <div className="flex items-center">
-          <FaShoppingBasket className="mr-2" />
-          <span>{basketItems.length} items</span>
-        </div>
-      </div>
-
-      <Box
-        className={`overflow-y-auto ${
-          isScrollable
-            ? "h-[470px] scrollbar-thin scrollbar-thumb-red-500 scrollbar-track-red-300"
-            : "h-auto"
-        }`}
-      >
-        {basketItems.map((item, index) => (
-          <BasketItem
-            key={index}
-            imageSrc={item.imageSrc}
-            name={item.name}
-            price={item.price}
-            quantity={item.quantity}
-            onIncrease={() => handleIncrease(index)}
-            onDecrease={() => handleDecrease(index)}
-            onRemove={() => handleRemove(index)}
-          />
-        ))}
-      </Box>
-
-      <Box
-        onClick={handleCheckout}
-        className="absolute bg-red400 cursor-pointer text-white px-6 py-2 w-[936px] h-[58px] rounded-30 flex justify-between items-center p-4 shadow-lg"
-        style={{ bottom: "38px" }}
-      >
-        <Text className="text-xl font-semibold">Checkout</Text>
-        <button className="text-xl font-semibold w-[189px] h-[43px] text-red500 bg-white rounded-50">
-          ${calculateTotal().toFixed(2)}
-        </button>
-      </Box>
-    </Box>
-  );
+const initialBasket: Basket = {
+  total_item: 0,
+  items: [],
+  id: '',
+  total_amount: 0
 };
 
-export default UserBasket;
+function RestaurantIdBasket() {
+  const { push } = useRouter();
+
+  const toast = useToast();
+
+  const dispatch = useDispatch();
+  
+  const [showBasket, setShowBasket] = useState(true);
+
+  const basketArr = useSelector((state: RootState) => state.global.basket) || initialBasket;
+
+  const toggleShowBasket = () => {
+    setShowBasket(!showBasket);
+  }
+
+  async function fetchBasket() {
+    const res = await getBasket();
+    dispatch(fillBasket(res?.data.result.data));
+  }
+
+  useEffect(() => {
+    fetchBasket();
+  }, []);
+
+  async function handleIncreaseButtonClick(id: string | number) {
+    const res = await addBasket(id);
+    if (res?.status === 201) {
+      dispatch(fillBasket(res?.data));
+    }
+  }
+
+  async function handleDecreaseButtonClick(id: string | number) {
+    const res = await deleteBasket(id);
+    if (res?.status === 200) {
+      dispatch(fillBasket(res?.data));
+    }
+  }
+
+  async function handleClearButtonClick(id: string | number) {
+    const res = await clearBasket(id);
+    if (res?.status === 200) {
+      dispatch(fillBasket(res?.data));
+      toast({
+        title: "Basket cleared successfully!",
+        status: "success",
+        duration: 2000,
+        position: "top-right",
+        variant: "subtle"
+      });
+    }
+  }
+
+  return (
+    <div className=' bg-gray200  p-4 h-[510px] rounded-20 mt-4 mb-3'>
+      {(basketArr?.total_item ?? 0) === 0 ? (
+        <>
+          {/* FOR WEB EMPTY BASKET */}
+          <div className="hidden sm:flex flex-col justify-between h-full">
+            <div className="flex items-center gap-1">
+              <Image
+                width={30}
+                height={30}
+                src={"/emptybasket.svg"}
+                alt="basket"
+              />
+              <p className="font-medium text-white50 text-lg mt-2">
+                {basketArr?.total_item} items
+              </p>
+            </div>
+            <div className="flex flex-col my-5 items-center mx-auto">
+              <Image
+                className="w-full "
+                width={40}
+                height={40}
+                src={"/empitygraybasket.svg"}
+                alt="empty"
+              />
+              <p className="text-4xl  text-white50 font-semibold text-center">
+                Opps! <br /> Basket is empty
+              </p>
+            </div>
+            <div className="flex rounded-full mt-auto items-center justify-between p-2 bg-white50">
+              <p className="text-white text-lg font-medium ml-4">Checkout</p>
+              <button
+                className="bg-white text-white50 font-medium py-1 px-10 rounded-full shadow-md hover:scale-95 transition-all duration-500"
+              >0$</button>
+            </div>
+          </div>
+
+          {/* FOR MOBILE EMPTY BASKET */}
+          <div className="block sm:hidden">
+            {showBasket && (
+              <>
+                <div>
+                  <Image
+                    className="mx-auto"
+                    width={50}
+                    height={50}
+                    src={"/closeFilter.svg"}
+                    alt="closeFilter"
+                    onClick={toggleShowBasket}
+                  />
+                </div>
+                <div className="flex flex-col my-5 items-center mx-auto">
+                  <Image
+                    className="w-full "
+                    width={30}
+                    height={30}
+                    src={"/emptyRed.svg"}
+                    alt="empty"
+                  />
+                  <p className="text-4xl  text-red400 font-semibold text-center">
+                    Opps! <br /> Basket is empty
+                  </p>
+                </div>
+              </>
+            )}
+            <div className="flex rounded-full mt-auto items-center justify-between p-2 bg-white50">
+              <p
+                onClick={toggleShowBasket}
+                className="text-white text-lg font-medium ml-4"
+              >
+                {showBasket ? (
+                  "Checkout"
+                ) : (
+                  <div className="flex items-center gap-1">
+                    <Image
+                      width={30}
+                      height={30}
+                      src={"/basketRed.svg"}
+                      alt="basket"
+                    />
+                    <p className="font-medium mt-2 text-red400 text-lg ">
+                      {basketArr?.total_item} items
+                    </p>
+                  </div>
+                )}
+              </p>
+              <button
+                className="bg-white text-white50 font-medium py-1 px-10 rounded-full shadow-md hover:scale-95 transition-all duration-500"
+              >0$</button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex items-center gap-1">
+            <Image width={30} height={0} src={"/emptyRedBasket.svg"} alt="basket" />
+            <p className="font-medium text-red400 mt-1 text-lg">
+              {basketArr?.total_item} items
+            </p>
+          </div>
+          <div className="mb-5">
+            {basketArr?.items?.map((item: BasketItem, index: string | number) => (
+              <UserBasketId
+                key={index}
+                increaseCount={() => handleIncreaseButtonClick(item.id)}
+                decreaseCount={() => handleDecreaseButtonClick(item.id)}
+                clearBasket={() => handleClearButtonClick(basketArr.id)}
+                name={item?.name}
+                price={item.amount}
+                count={item.count}
+                imageSrc={item.img_url}
+              />
+            ))}
+          </div>
+          <div
+            onClick={() => push("/user/checkout")}
+            className="flex rounded-full cursor-pointer mt-auto items-center justify-between p-2 bg-red400"
+          >
+            <p className="text-white text-lg font-medium ml-4">Checkout</p>
+            <button
+              className="bg-white text-red400 font-medium py-1 px-10 rounded-full shadow-md hover:scale-95 transition-all duration-500"
+            >{basketArr?.total_amount + " $"}</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default RestaurantIdBasket;

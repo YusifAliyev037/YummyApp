@@ -10,7 +10,9 @@ const Basket: React.FC = () => {
       <ClientHeader />
       <main className="flex-grow flex space-x-4 gap-[4px]">
         <UserModul />
+        <div className=" w-[1120px] ">
         <UserBasket />
+        </div>
       </main>
       <ClientFooter />
     </div>
