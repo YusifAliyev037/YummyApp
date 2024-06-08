@@ -28,8 +28,7 @@ const register: React.FC = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      addData()
-     
+      addData();
     }
   };
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -111,7 +110,7 @@ const register: React.FC = () => {
               fullname: '',
               username: '',
             });
-            router.push("/login")
+            router.push('/login');
           } else {
             toast({
               title: 'Error',
@@ -180,47 +179,76 @@ const register: React.FC = () => {
                 }`}
                 onClick={handleDropdownClick}
               >
-<img
-  src={`/${locale === 'en' ? 'usuk.png' : locale === 'az' ? 'azerbaijan.png' : locale === 'tr' ? 'tr.png' : locale === 'de' ? 'de.png' : 'is.png'}`}
-  alt={locale === 'en' ? 'us' : locale === 'az' ? 'Az' : locale === 'tr' ? 'Turk' : locale === 'de' ? 'Ger' : 'Isp'}
-  className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
-  onClick={() => setShowDropdown(!showDropdown)}
-/>
-{showDropdown && (
-  <div className="absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50">
-    <img
-      src='/usuk.png'
-      alt='us'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('en')}
-    />
-    <img
-      src='/azerbaijan.png'
-      alt='Az'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('az')}
-    />
-    <img
-      src='/tr.png'
-      alt='Turk'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('tr')}
-    />
-    <img
-      src='/de.png'
-      alt='Ger'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('de')}
-    />
-    <img
-      src='/is.png'
-      alt='Isp'
-      className='w-12 h-10 rounded-full mb-2'
-      onClick={() => changeLanguage('is')}
-    />
-  </div>
-)}
-
+                <img
+                  src={`/${
+                    locale === 'en'
+                    ? 'usuk.png'
+                    : locale === 'az'
+                    ? 'azerbaijan.png'
+                    : locale === 'tr'
+                    ? 'tr.png'
+                    : locale === 'de'
+                    ? 'de.png'
+                    : locale === 'ru'
+                    ? 'russian.png'
+                    : 'is.png'
+                }`}
+                alt={
+                  locale === 'en'
+                    ? 'us'
+                    : locale === 'az'
+                    ? 'Az'
+                    : locale === 'tr'
+                    ? 'Turk'
+                    : locale === 'de'
+                    ? 'Ger'
+                    : locale === 'ru'
+                    ? 'Rus'
+                    : 'Isp'
+                  }
+                  className='w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110'
+                  onClick={() => setShowDropdown(!showDropdown)}
+                />
+                {showDropdown && (
+                  <div className='absolute top-full left-0 mt-2 p-2 bg-gray200 border border-black rounded-md z-50'>
+                    <img
+                      src='/usuk.png'
+                      alt='us'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('en')}
+                    />
+                    <img
+                      src='/azerbaijan.png'
+                      alt='Az'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('az')}
+                    />
+                    <img
+                      src='/tr.png'
+                      alt='Turk'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('tr')}
+                    />
+                    <img
+                      src='/de.png'
+                      alt='Ger'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('de')}
+                    />
+                    <img
+                      src='/is.png'
+                      alt='Isp'
+                      className='w-12 h-10 rounded-full mb-2'
+                      onClick={() => changeLanguage('is')}
+                    />
+                         <img
+                    src='/russian.png'
+                    alt='Rus'
+                    className='w-12 h-10 rounded-full mb-2 cursor-pointer'
+                    onClick={() => changeLanguage('ru')}
+                  />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -259,8 +287,11 @@ const register: React.FC = () => {
                 </Text>
               </Box>
 
-              <Box onKeyDown={handleKeyDown} className='flex flex-col gap-[68px]'>
-                <Box  className='flex flex-col gap-[30px]'>
+              <Box
+                onKeyDown={handleKeyDown}
+                className='flex flex-col gap-[68px]'
+              >
+                <Box className='flex flex-col gap-[30px]'>
                   <Box>
                     <Text
                       color={'#4F4F4F'}
