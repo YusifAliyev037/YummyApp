@@ -12,40 +12,100 @@ import React, { useEffect, useState } from 'react';
 import DeleteUserModul from './DeleteUserModul';
 import { useRouter } from 'next/router';
 import { translate } from '@/public/lang/translate';
+import { GetUserOrder, deleteUserOrder } from '../AdminComponents/Services/axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { filluserOrder } from '../redux/global/globalSlice';
+import { log } from 'console';
+import Login from '@/pages/login';
+import SizeExample from './Section5/ModalOrders';
 
-interface Order {
-  id: number;
-  time: string;
-  deliveryAddress: string;
+ export interface OrderItem {
   amount: number;
-  paymentMethod: string;
-  contact: string;
+  count: number;
+  created: number;
+  description: string;
+  id: string;
+  img_url: string;
+  name: string;
+  price: number;
+  rest_id: string;
 }
+
+
+
+
+
 
 const OrdersTable: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedOrder, setSelectedOrder] = useState<number | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
+  const [isOpenViewModal, setIsOpenViewModal] = useState(false);
+  const [orders, setOrders] = useState<OrderItem[]>([]);
+  
+  const dispatch = useDispatch();
+  const orderArr = useSelector((state: RootState) => state.global.userOrder) ;
 
-  const handleDeleteClick = (orderId: number) => {
+  async function getorder () {
+    let data=await GetUserOrder()
+    dispatch(filluserOrder(data.data.result.data))    
+    
+  }
+
+  useEffect(()=>{
+    getorder()
+
+  },[])
+
+  const handleDeleteClick = (orderId: string) => {
+    console.log(orderId);
+    
     setSelectedOrder(orderId);
+    
+    
     onOpen();
   };
 
   const handleConfirmDelete = () => {
-    console.log('Order deleted', selectedOrder);
+    if (selectedOrder !== null) {
+    
+
+        deleteUserOrder(selectedOrder);
+        const filteredOrders = orderArr.filter(order => order.id !== selectedOrder);
+        dispatch(filluserOrder(filteredOrders))  
+
+
+    
+     
+    }
+    console.log('modal', );
     onClose();
   };
 
-  const orders: Order[] = [
-    {
-      id: 9177,
-      time: '022401',
-      deliveryAddress: '29 Eve Street, 543 Evenue Road, NY 87876',
-      amount: 249.7,
-      paymentMethod: 'Cash On Delivery',
-      contact: '994-51-410-3130',
-    },
-  ];
+  function view(id:string){
+    setIsOpenViewModal(true)
+    const filteredOrders = orderArr.filter(order => order.id == id);
+    setOrders(filteredOrders[0].products)
+
+  
+    
+
+
+  }
+  
+
+function formatTimestampToDate(timestamp:number) {
+  if (!timestamp) {
+    return 'Invalid date'; 
+  }
+  const date = new Date(timestamp);
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}.${month}.${year}`;
+}
 
   const router=useRouter()
   useEffect(() => {
@@ -79,70 +139,52 @@ const OrdersTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
+          {orderArr.map((order,index) => (
             <tr
               key={order.id}
               className='h-[60px] border-b-2 p-8 text-ordersBg'
             >
-              <td className='w-[100px] text-center'>9177</td>
-              <td className='w-[100px] text-center'>022401</td>
-              <td className='w-[100px] text-center'>25 Dec 2021</td>
+              <td className='w-[100px] text-center'>{9100+index}</td>
+              <td className='w-[100px] text-center'>{order.created && formatTimestampToDate(order.created)}</td>
+
               <td className='w-[200px] text-center'>
-                29 Eve Street,543 Evenue Road,Ny 87876
+               {order.delivery_address}
               </td>
-              <td className='w-[100px] text-center'>$249.7</td>
-              <td className='w-[100px] text-center'>{translate("Cash On Delivery",locale)}</td>
-              <td className='w-[100px] text-center'>994-51-410-3130</td>
+              <td className='w-[100px] text-center'>{order.amount}</td>
+              <td className='w-[100px] text-center'>{translate(parseInt(order.payment_method || '0') === 0 ? 'Pay Cash' : 'Credit Card', locale)}</td>
+
+              <td className='w-[100px] text-center'>{order.contact
+              }</td>
               <td className='w-[140px] text-center'>
-                <ButtonGroup>
-                  <IconButton
-                    color='teal'
-                    aria-label='Edit'
-                    icon={<ViewIcon />}
-                  />
+              <ButtonGroup>
+               <IconButton
+               color='teal'
+               aria-label='Edit'
+              icon={<ViewIcon />}
+              onClick={() => view(order.id as string)}
+
+/>
                   <IconButton
                     color='red'
                     aria-label='Delete'
                     icon={<DeleteIcon />}
-                    onClick={() => handleDeleteClick(9177)}
+                    onClick={() => handleDeleteClick(order.id as string)}
                   />
                 </ButtonGroup>
               </td>
             </tr>
           ))}
-          <tr className='h-[60px] border-b-2 p-8 text-ordersBg'>
-            <td className='w-[100px] text-center'>9177</td>
-            <td className='w-[100px] text-center'>022401</td>
-            <td className='w-[100px] text-center'>25 Dec 2021</td>
-            <td className='w-[200px] text-center'>
-              29 Eve Street,543 Evenue Road,Ny 87876
-            </td>{' '}
-            <td className='w-[100px] text-center'>$249.7</td>
-            <td className='w-[100px] text-center'>{translate("Cash On Delivery",locale)}</td>
-            <td className='w-[100px] text-center'>994-51-410-3130</td>
-            <td className='w-[140px] text-center'>
-              <ButtonGroup>
-                <IconButton
-                  color='teal'
-                  aria-label='Edit'
-                  icon={<ViewIcon />}
-                />
-                <IconButton
-                  color='red'
-                  aria-label='Delete'
-                  icon={<DeleteIcon />}
-                  onClick={() => handleDeleteClick(9177)}
-                />
-              </ButtonGroup>
-            </td>
-          </tr>
+        
         </tbody>
       </table>
       <DeleteUserModul
         isOpen={isOpen}
         onClose={onClose}
-        onConfirm={handleConfirmDelete}
+        onConfirm={()=>handleConfirmDelete()}
+        
       />
+
+<SizeExample isOpen={isOpenViewModal} orders={orders} setIsOpenSizeExample={setIsOpenViewModal} onClose={() => setIsOpenViewModal(false)} />
     </Box>
   );
 };

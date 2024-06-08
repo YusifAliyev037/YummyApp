@@ -549,3 +549,38 @@ export async function search(query: string): Promise<Products[]> {
 //     throw new Error('Failed to fetch search!');
 //   }
 // }
+
+
+export async function GetUserOrder() {
+  let item:any = localStorage.getItem("userInfo");
+  let access_token = JSON.parse(item);
+  const response = await instanceAxios.get(`/order/user`, {
+    headers: {
+      Authorization: `Bearer ${access_token.access_token}`,
+    }
+   
+  });
+  console.log(response);
+  return response
+  
+  
+  
+}
+
+
+export async function deleteUserOrder(orderId:string) {
+  let item:any = localStorage.getItem("userInfo");
+  let access_token = JSON.parse(item);
+  const response = await instanceAxios.delete(`/order`, {
+    data: { order_id: orderId },
+    headers: {
+      Authorization: `Bearer ${access_token.access_token}`,
+    }
+   
+  });
+  console.log(response);
+  return response
+  
+  
+  
+}
