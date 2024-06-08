@@ -122,7 +122,7 @@ const ContactForm: React.FC<{
   //   };
 
   return (
-    <div className="w-1/2 pr-8">
+    <div className="w-1/2 pr-4 bg-gray200">
       <h2 className="text-2xl font-bold mb-6">Contact and Address</h2>
       <form>
         <div className="mb-4">
@@ -208,7 +208,7 @@ const ContactForm: React.FC<{
             required
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Address 2 (Optional)
           </label>
@@ -219,7 +219,7 @@ const ContactForm: React.FC<{
             onChange={handleInputChange}
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           />
-        </div>
+        </div> */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Building Number
@@ -233,7 +233,7 @@ const ContactForm: React.FC<{
             required
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Block Number
           </label>
@@ -245,8 +245,8 @@ const ContactForm: React.FC<{
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             required
           />
-        </div>
-        <div className="mb-4">
+        </div> */}
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Floor
           </label>
@@ -258,7 +258,7 @@ const ContactForm: React.FC<{
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             required
           />
-        </div>
+        </div> */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Door Number
@@ -272,7 +272,7 @@ const ContactForm: React.FC<{
             required
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
             Notes for Courier (Optional)
           </label>
@@ -283,7 +283,7 @@ const ContactForm: React.FC<{
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             rows={3}
           />
-        </div>
+        </div> */}
       </form>
     </div>
   );
