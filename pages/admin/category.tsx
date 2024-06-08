@@ -120,7 +120,7 @@ const router=useRouter()
   return (
     <Box className='bg-darkBlue10 h-screen '>
       <Head>
-        <title>Category</title>
+        <title>{translate("Category",locale)}</title>
         <MetaSeo
           title='Category'
           desc='Category Page'
@@ -152,7 +152,7 @@ const router=useRouter()
             bg='#27283C'
             className='flex items-center mb-12  w-full px-8 mt-20 rounded-lg h-16 xxl:ml-0  xs:ml-4   '
           >
-            <Text color='white'>Category</Text>
+            <Text color='white'>{translate("Category",locale)}</Text>
             <InputGroup className='flex justify-end  items-center gap-7'>
               <Button borderRadius={14} colorScheme='pink' onClick={handleAddCategory}>
                 {translate("+ ADD CATEGORY",locale)}

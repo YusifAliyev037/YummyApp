@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fillOffer } from '../redux/global/globalSlice';
 import { AdminModal1 } from './AdminModal1';
 import { shortText } from '../utils/shortText';
+import { useRouter } from 'next/router';
+import { translate } from '@/public/lang/translate';
 
 
 
@@ -195,8 +197,12 @@ const deleteOffer = async () => {
 ): boolean {
   return !!offerName && !!offerDesc && !!img;
 }
-
-
+const router=useRouter()
+useEffect(() => {
+  const locale = localStorage.getItem('lang') || 'en';
+  router.push(router.pathname, router.asPath, { locale });
+}, []);
+const locale = router.locale || 'en';
   return (
     <div className='m-3'>
        <AdminModal1
@@ -216,16 +222,16 @@ const deleteOffer = async () => {
       <table className='w-full bg-white'>
         <thead>
           <tr>
-            <th className='py-4'>ID</th>
-            <th className='py-4'>Image</th>
-            <th className='py-4'>Title</th>
-            <th className='py-4'>Descriptions</th>
+            <th className='py-4'>{translate("ID",locale)}</th>
+            <th className='py-4'>{translate("Image",locale)}</th>
+            <th className='py-4'>{translate("Title",locale)}</th>
+            <th className='py-4'>{translate("Descriptions",locale)}</th>
           </tr>
         </thead>
         <tbody>
           {offerRed.map((item, index) => (
             <tr key={index}>
-              <td className='text-center h-12 text-base'>{ shortText(item.id, 8)}</td>
+              <td className='text-center h-12 text-base'>{ shortText(item.id, 6)}</td>
               <td className='text-center h-12 text-base'>
                 {item.name ? (
                   <Box
