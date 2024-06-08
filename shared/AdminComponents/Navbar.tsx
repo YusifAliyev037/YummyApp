@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Box,Button, Text } from "@chakra-ui/react";
+import { Box,Button, Icon, Text } from "@chakra-ui/react";
 import { translate } from "@/public/lang/translate";
+import { BsChat } from "react-icons/bs";
 
 
 
@@ -161,6 +162,42 @@ export const Navbar = ({
             src='/orders.svg'
           />
            {translate("Orders",locale)}
+
+          
+        </Button>
+        <Button
+          onClick={() => push('/admin/chat')}
+          className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52'
+          colorScheme='none'
+          style={{
+            justifyContent: 'flex-start',
+            backgroundColor: isActive('/admin/chat'),
+          }}
+          as='li'
+        >
+         
+          <Icon as={BsChat} w={5} h={5} />
+           {translate("Chats",locale)}
+
+          
+        </Button>
+        <Button
+          onClick={() => push('/admin/history')}
+          className='flex gap-7 w-52 text-pink20 cursor-pointer hover:bg-pink30 hover:w-52'
+          colorScheme='none'
+          style={{
+            justifyContent: 'flex-start',
+            backgroundColor: isActive('/admin/history'),
+          }}
+          as='li'
+        >
+          <Image
+            width={18}
+            alt='products'
+            height={18}
+            src='/offer.svg'
+          />
+           {translate("History",locale)}
 
           
         </Button>
