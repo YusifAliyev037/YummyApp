@@ -1,6 +1,6 @@
 import { Box, Button, Input, Text, Toast, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-// import BoxCheck2 from "./BoxCheck2";
+import BoxCheck2 from "./BoxCheck2";
 import CheckoutOr from "./CheckoutOr";
 import { translate } from "@/public/lang/translate";
 import { useRouter } from "next/router";
@@ -116,7 +116,9 @@ const BoxCheck1 = () => {
     <Box className="flex" gap="19px" flexDirection="row-reverse">
       {!showCheckoutOr ? (
         <>
-          <Box>{/* <BoxCheck2 /> */}</Box>
+          <Box>
+            <BoxCheck2 />
+          </Box>
           <Box
             className="flex flex-col mt-4 bg-white40"
             width="618px"
