@@ -127,7 +127,7 @@ console.log(formData.access_token);
   
   const locale = router.locale || 'en';
   return (
-    <Box className='flex flex-col  mt-4 mr-8    h-[550px] gap-9  bg-white40'>
+    <Box className='flex flex-col  mr-8 mt-[-16px]   h-[550px] gap-9  bg-white40'>
       <Box className='ml-8 mt-10 '>
         <Text
         fontSize='32px'

@@ -1,5 +1,7 @@
 // import BoxCheck1 from "@/shared/ClientComponent/BoxCheck1";
 // import BoxCheck2 from "@/shared/ClientComponent/BoxCheck2";
+import BoxCheck1 from "@/shared/ClientComponent/BoxCheck1";
+import BoxCheck2 from "@/shared/ClientComponent/BoxCheck2";
 import Footer from "@/shared/ClientComponent/ClientFooter";
 import ClientHeader from "@/shared/ClientComponent/ClientHeader";
 import Payment from "@/shared/ClientComponent/Payment";
@@ -16,9 +18,9 @@ const Checkout = () => {
           <UserModul />
         </Box>
         <Box display="flex">
-          {/* <BoxCheck1/> */}
-          <Payment />
-          {/* <BoxCheck2 /> */}
+          <BoxCheck1/>
+          {/* <Payment /> */}
+          <BoxCheck2 />
         </Box>
       </Box>
 
