@@ -1,5 +1,4 @@
-// import BoxCheck1 from "@/shared/ClientComponent/BoxCheck1";
-// import BoxCheck2 from "@/shared/ClientComponent/BoxCheck2";
+
 import BoxCheck1 from "@/shared/ClientComponent/BoxCheck1";
 import BoxCheck2 from "@/shared/ClientComponent/BoxCheck2";
 import Footer from "@/shared/ClientComponent/ClientFooter";

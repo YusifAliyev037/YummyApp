@@ -1,7 +1,8 @@
 import { translate } from '@/public/lang/translate'
 import Header from '@/shared/AdminComponents/Header'
 import PushModul from '@/shared/AdminComponents/PushModul'
-import TableForOrder from '@/shared/AdminComponents/Table'
+import Chat from '@/shared/ChatComponent/Chat'
+import Sidebar from '@/shared/ChatComponent/Sidebar'
 import MetaSeo from '@/shared/MetaSeo'
 import { Box,Text } from '@chakra-ui/react'
 import Head from 'next/head'
@@ -27,9 +28,10 @@ function chat() {
     <Header />
     <Box display={"flex"} >
       <PushModul />
-      <Box >
-    
-        //chat
+      <Box className='flex'  >
+        <Sidebar/>
+        <Chat/>
+        
       </Box>
     </Box>
   </Box>
