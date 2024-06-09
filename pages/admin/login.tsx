@@ -9,10 +9,13 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { translate } from "@/public/lang/translate";
+import { useDispatch } from "react-redux";
+import { fillLogin } from "@/shared/redux/global/globalSlice";
 
 function Adminlogin() {
   const router = useRouter();
   const toast = useToast();
+  const dispatch = useDispatch()
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -71,6 +74,7 @@ function Adminlogin() {
     };
 
     const res = await completeLogin(form);
+    dispatch(fillLogin(res?.data))
 
     console.log("res", res);
 
