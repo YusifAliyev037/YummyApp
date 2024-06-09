@@ -89,7 +89,7 @@ const Payment: NextPage = () => {
               handlePaymentChange={handlePaymentChange}
               handleSubmit={handleSubmit}
             />
-            <BoxCheck2 />
+            {/* <BoxCheck2 /> */}
           </div>
         </div>
       </div>
