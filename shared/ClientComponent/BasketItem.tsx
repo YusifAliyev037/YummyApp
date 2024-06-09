@@ -19,7 +19,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
   onDecrease,
   onRemove,
 }) => (
-  <Box className="flex items-center justify-between py-2 border-b mr-[35px] w-[900px] h-[130px] border-gray100">
+  <Box className="flex items-center justify-between  py-2 border-b mr-[35px] w-[900px] h-[130px] border-gray100">
     <Image src={imageSrc} alt={name} className=" w-6 h-6" />
     <Box className="flex-1 ml-4">
       <Text className="font-semibold">{name}</Text>

@@ -87,12 +87,12 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
   };
 
   return (
-    <div className="relative ml-[20px] mr-[40px] hidden md:block">
+    <div className="relative ml-[20px] mr-[40px]">
       <input
         type="text"
         name="searchQuery"
         placeholder={translate("Search", locale)}
-        className="p-2 border  rounded-xl pr-8   w-[250px] h-[45px]"
+        className="p-2 border rounded-xl pr-8  w-[250px] h-[45px]"
         value={query}
         onChange={handleInputChange}
         onFocus={openSearchModal}
