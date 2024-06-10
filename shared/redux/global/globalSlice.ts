@@ -77,7 +77,7 @@ export const globalSlice = createSlice({
     fillCategory: (state, action: PayloadAction<CategoryItem[]>) => {
       state.category = action.payload;
     },
-    fillUserOrder: (state, action: PayloadAction<UserOrder[]>) => {
+    filluserOrder: (state, action: PayloadAction<UserOrder[]>) => {
       state.userOrder = action.payload;
     },
     fillRestaurants: (state, action: PayloadAction<Restaurant[]>) => {
@@ -89,7 +89,7 @@ export const globalSlice = createSlice({
     fillOffer: (state, action: PayloadAction<OfferValues[]>) => {
       state.offer = action.payload;
     },
-    addLogin: (state, action: PayloadAction<FormRegisterGet>) => {
+    addlogin: (state, action: PayloadAction<FormRegisterGet>) => {
       state.login = action.payload;
     },
     fillLogin: (state, action: PayloadAction<FormRegisterGet>) => {
@@ -149,7 +149,7 @@ export const globalSlice = createSlice({
 
 export const {
   fillCategory,
-  fillUserOrder,
+  filluserOrder,
   fillRestaurants,
   fillProducts,
   fillOffer,
@@ -160,7 +160,7 @@ export const {
   setRestaurantToDelete,
   setHidden,
   setEditRestaurantModalHidden,
-  addLogin,
+  addlogin,
   updateLogin,
   fillLogin,
   fillBasket,

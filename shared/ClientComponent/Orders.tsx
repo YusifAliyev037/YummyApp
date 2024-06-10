@@ -85,15 +85,15 @@ const OrdersTable: React.FC = () => {
     onClose();
   };
 
-  function view(id:string){
-    setIsOpenViewModal(true)
+  function view(id: string) {
+    setIsOpenViewModal(true);
     const filteredOrders = orderArr.filter(order => order.id == id);
-    setOrders(filteredOrders[0].products)
-
-  
     
-
-
+    if (filteredOrders.length > 0 && filteredOrders[0].products) {
+      setOrders(filteredOrders[0].products);
+    } else {
+      setOrders([]);  // or handle the error case as needed
+    }
   }
   
 

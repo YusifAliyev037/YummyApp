@@ -39,7 +39,7 @@ function history() {
           </Text>
           </Box>
          <Box height={"464px"} overflow={"auto"}>
-         <TableForOrder order={testData} name={TableNames} />
+         {/* <TableForOrder order={testData} name={TableNames} /> */}
          </Box>
         </Box>
       </Box>
