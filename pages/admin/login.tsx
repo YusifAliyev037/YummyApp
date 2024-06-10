@@ -9,10 +9,13 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import { translate } from "@/public/lang/translate";
+import { useDispatch } from "react-redux";
+import { fillLogin } from "@/shared/redux/global/globalSlice";
 
 function Adminlogin() {
   const router = useRouter();
   const toast = useToast();
+  const dispatch = useDispatch()
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -71,6 +74,7 @@ function Adminlogin() {
     };
 
     const res = await completeLogin(form);
+    dispatch(fillLogin(res?.data))
 
     console.log("res", res);
 
@@ -194,30 +198,40 @@ function Adminlogin() {
                   className="w-12 h-10 rounded-full mb-2 cursor-pointer"
                   onClick={() => changeLanguage("is")}
                 />
+                    <img
+                  src="/russian.png"
+                  alt="Rus"
+                  className="w-12 h-10 rounded-full mb-2 cursor-pointer"
+                  onClick={() => changeLanguage("ru")}
+                />
               </Box>
             )}
             <img
               src={`/${
                 locale === "en"
-                  ? "usuk.png"
-                  : locale === "az"
-                  ? "azerbaijan.png"
-                  : locale === "tr"
-                  ? "tr.png"
-                  : locale === "de"
-                  ? "de.png"
-                  : "is.png"
+    ? "usuk.png"
+    : locale === "az"
+    ? "azerbaijan.png"
+    : locale === "tr"
+    ? "tr.png"
+    : locale === "de"
+    ? "de.png"
+    : locale === "ru"
+    ? "russian.png"
+    : "is.png"
               }`}
               alt={
                 locale === "en"
-                  ? "us"
-                  : locale === "az"
-                  ? "Az"
-                  : locale === "tr"
-                  ? "Turk"
-                  : locale === "de"
-                  ? "Ger"
-                  : "Isp"
+                ? "us"
+                : locale === "az"
+                ? "Az"
+                : locale === "tr"
+                ? "Turk"
+                : locale === "de"
+                ? "Ger"
+                : locale === "ru"
+                ? "Rus"
+                : "Isp"
               }
               className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110 cursor-pointer"
               onClick={() => setShowDropdown(!showDropdown)}

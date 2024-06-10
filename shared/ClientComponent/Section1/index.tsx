@@ -13,9 +13,9 @@ function HomeSection1() {
 
   const locale = router.locale || "en";
   return (
-    <div className=" xxl:px-[30px] sm:px-0 animate-slideIn ">
-      <div className="bg-gray200 xxl:mx-6 sm:mx-0 sm:px-16 py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
-        <div className="md:w-1/2 md:mr-8">
+    <div className=" xxl:px-[10px]   sm:px-0 animate-slideIn ">
+      <div className="bg-gray200 xxl:mx-6   py-8 md:py-12 md:flex md:items-center md:justify-between pb-140">
+        <div className="md:w-1/2 md:mr-8 ml-6">
           <h1 className="xxl:text-5xl md:text-6xl sm: text-xl font-bold text-black xxl:leading-[90px] sm:leading-5 xxl:text-left sm: text-center h-[155px] w-100% ">
             {translate(
               "Our Food site makes it easy to find local food",
@@ -25,7 +25,7 @@ function HomeSection1() {
           <p className="text-lg md:text-2xl mb-[45px] w-[510px] h-[105px]  hidden md:block text-gray300 ">
             {translate("Delicious is just a click away", locale)}
           </p>
-          <div className="flex gap-8">
+          <div className="flex  gap-8">
             <button
               onClick={() => router.push("/login/register")}
               className="hover:scale-105 bg-red500 text-white w-[220px] h-[70px] rounded-full text-lg md:text-2xl font-medium px-6 py-3"

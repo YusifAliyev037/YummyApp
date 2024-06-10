@@ -27,6 +27,7 @@ export type FormRegister = {
 };
 
 export type FormRegisterGet = {
+  user?: any;
   email?: string | undefined;
   fullname?: string | undefined;
   username?: string | undefined;
@@ -223,15 +224,7 @@ export async function getProducts() {
   }
 }
 
-// export async function getProducts(): Promise<Products[]> {
-//   try {
-//     const response = await instanceAxios.get('/products');
-//     return response.data; 
-//   } catch (error) {
-//     console.error('Error while fetching products:', error);
-//     throw new Error('Failed to fetch products!');
-//   }
-// }
+
 
 export async function deleteProducts(id: string) {
   try {
@@ -326,7 +319,6 @@ export async function postCategory(form: Form) {
 
 export async function postOrder(form: Order) {
   try {
-    // Получаем данные пользователя из localStorage
     const item = localStorage.getItem("userInfo");
 
   
@@ -586,6 +578,7 @@ export async function deleteUserOrder(orderId:string) {
 }
 
 
+
 export async function getOrdersList() {
   try {
     let item:any = localStorage.getItem("userInfo");
@@ -602,3 +595,15 @@ export async function getOrdersList() {
     throw new Error('Failed to fetch orders!');
   }
 }
+
+//! getuser
+
+// export async function getUser(){
+//   try{
+//     const response = await instanceAxios.get()
+//   }catch(error){
+//     console.log(error);
+    
+//   }
+// }
+

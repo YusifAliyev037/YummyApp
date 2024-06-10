@@ -14,7 +14,7 @@ const User = () => {
         <Box width={'26%'} height='601px'>
         <UserModul />
         </Box>
-        <Box width={'74%'}>
+        <Box  width={'74%'}>
         <Profile/>
         </Box>
    

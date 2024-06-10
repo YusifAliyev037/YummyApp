@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { RootState } from "@/shared/redux/store";
@@ -46,7 +48,7 @@ const ClientHeader: React.FC = () => {
   }
 
   return (
-    <div className="flex items-center  xxl:m-8 px-[60px] pt-[50px] pb-[35px] bg-gray200 gap-2 sm:m-0">
+    <div className="flex items-center  xxl:m-8 px-[60px] pt-[50px] pb-[35px] bg-gray200 sm:m-0">
       <Image
             onClick={handleAddCategory}
             className=" block sm:hidden cursor-pointer"
@@ -60,14 +62,14 @@ const ClientHeader: React.FC = () => {
         onClickClose={changeNavHidden}
         hidden={navHidden}
         />
-      <h1 className="hover:scale-105 font-mukta text-4xl font-extrabold text-black mr-auto pr-35">
+      <h1 className="hover:scale-105 font-mukta text-4xl font-extrabold text-black  mr-auto pr-35">
         Yummy<span className="hover:scale-105 text-red500">.</span>
       </h1>
 
-      <nav className="pr-[30px]">
-        <ul className="flex list-none p-0 m-0">
+<nav className=" ">
+        <ul className="flex list-none  p-0 m-0">
           <li
-            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
+            className="mr-6 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/")}
           >
             <a
@@ -79,7 +81,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
+            className="mr-6 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/restaurants")}
           >
             <a
@@ -91,7 +93,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
+            className="mr-6 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/about-us")}
           >
             <a
@@ -103,7 +105,7 @@ const ClientHeader: React.FC = () => {
             </a>
           </li>
           <li
-            className="mr-10 cursor-pointer hover:scale-105 hidden md:block"
+            className="mr-6 cursor-pointer hover:scale-105 hidden md:block"
             onClick={() => router.push("/how-it-works")}
           >
             <a
@@ -129,10 +131,10 @@ const ClientHeader: React.FC = () => {
         </ul>
       </nav>
 
-      <div className="flex items-center xxl:mr-8   ">
+      <div className="flex items-center ml-10  gap-[5px] ">
         <SearchComponent locale={locale} />
 
-        <div className="relative flex items-center xxl:mr-[30px]">
+        <div className="relative flex items-center ">
           <div
             className={`cursor-pointer flex items-center ${
               showDropdown ? "active" : ""
@@ -142,25 +144,29 @@ const ClientHeader: React.FC = () => {
             <img
               src={`/${
                 locale === "en"
-                  ? "usuk.png"
-                  : locale === "az"
-                  ? "azerbaijan.png"
-                  : locale === "tr"
-                  ? "tr.png"
-                  : locale === "de"
-                  ? "de.png"
-                  : "is.png"
-              }`}
-              alt={
-                locale === "en"
-                  ? "us"
-                  : locale === "az"
-                  ? "Az"
-                  : locale === "tr"
-                  ? "Turk"
-                  : locale === "de"
-                  ? "Ger"
-                  : "Isp"
+                ? 'usuk.png'
+                : locale === 'az'
+                ? 'azerbaijan.png'
+                : locale === 'tr'
+                ? 'tr.png'
+                : locale === 'de'
+                ? 'de.png'
+                : locale === 'ru'
+                ? 'russian.png'
+                : 'is.png'
+            }`}
+            alt={
+              locale === 'en'
+                ? 'us'
+                : locale === 'az'
+                ? 'Az'
+                : locale === 'tr'
+                ? 'Turk'
+                : locale === 'de'
+                ? 'Ger'
+                : locale === 'ru'
+                ? 'Rus'
+                : 'Isp'
               }
               className="w-12 h-10 rounded-full mr-2 transition-transform transform hover:scale-110"
               onClick={() => setShowDropdown(!showDropdown)}
@@ -197,16 +203,22 @@ const ClientHeader: React.FC = () => {
                   className="w-12 h-10 rounded-full mb-2"
                   onClick={() => changeLanguage("is")}
                 />
+                     <img
+                    src='/russian.png'
+                    alt='Rus'
+                    className='w-12 h-10 rounded-full mb-2 cursor-pointer'
+                    onClick={() => changeLanguage('ru')}
+                  />
               </div>
             )}
           </div>
         </div>
         {loginState?.username && loginState.username.length !== 0 ? (
-          <Box className="relative flex  items-center gap-[15px]  ">
+          <Box className="relative flex  items-center  ">
             <Box
               onClick={() => router.push("/user/basket")}
               backgroundColor={"#EB5757"}
-              className="w-[44px] h-[44px] rounded-[22px] flex items-center justify-center cursor-pointer  "
+              className="w-[44px] h-[44px] rounded-[22px]  flex items-center justify-center cursor-pointer  "
             >
               <Image
                 src="/basketicon.svg"
@@ -284,7 +296,10 @@ const ClientHeader: React.FC = () => {
           </button>
         )}
       </div>
-    </div>
+
+</div>
+    
+ 
   );
 };
 

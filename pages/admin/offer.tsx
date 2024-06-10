@@ -113,7 +113,7 @@ const Offer: React.FC = () => {
     <Box className=' bg-darkBlue10 h-screen  z-5'>
       <Box as='header'>
         <Head>
-          <title>Offer</title>
+          <title>{translate("Offer",locale)}</title>
           <MetaSeo title="Offer" desc="Offer Page" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -143,7 +143,7 @@ const Offer: React.FC = () => {
             height={73}
           >
             
-            <Text color='white'>Offers</Text>
+            <Text color='white'>{translate("Offers",locale)}</Text>
             <InputGroup className='flex justify-end items-center gap-7'>
               <Box>
                 <Button
