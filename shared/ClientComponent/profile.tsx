@@ -1,13 +1,13 @@
-import { Box, Button, Input, Text, Toast, useToast } from '@chakra-ui/react';
-import React, { ChangeEvent, useState, FormEvent, useEffect } from 'react';
-import { updateProfile } from '../AdminComponents/Services/axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/store';
-import { addlogin, updateLogin } from '../redux/global/globalSlice';
+import { Box, Button, Input, Text, useToast } from "@chakra-ui/react";
+import React, { ChangeEvent, useState, FormEvent, useEffect } from "react";
+import { updateProfile } from "../AdminComponents/Services/axios";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../redux/store";
+import { addlogin, updateLogin } from "../redux/global/globalSlice";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { fileStorage } from "../../server/configs/firebase";
-import { useRouter } from 'next/router';
-import { translate } from '@/public/lang/translate';
+import { useRouter } from "next/router";
+import { translate } from "@/public/lang/translate";
 
 interface FormRegister {
   phone?: string;
@@ -29,17 +29,14 @@ const Profile = () => {
   const [imgOnload, setImgOnload] = useState(false);
 
   const [formData, setFormData] = useState<FormRegister>({
-    phone: '',
-    username: '',
-    fullname: '',
-    email: '',
-    address: '',
-    password: '',
-    img_url: '',
+    phone: "",
+    username: "",
+    fullname: "",
+    email: "",
+    address: "",
+    password: "",
+    img_url: "",
   });
-
- 
-  
 
   const getİmage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -63,7 +60,7 @@ const Profile = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    if (name === 'email') return;
+    if (name === "email") return;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -84,8 +81,8 @@ const Profile = () => {
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email || '')) {
-      alert('Please enter a valid email address.');
+    if (!emailRegex.test(formData.email || "")) {
+      alert("Please enter a valid email address.");
       return;
     }
     try {
@@ -93,19 +90,19 @@ const Profile = () => {
         const response = await updateProfile(formData, formData.access_token);
         dispatch(updateLogin(response?.data));
         dispatch(addlogin(formData));
-console.log(formData.access_token);
+        console.log(formData.access_token);
 
         toast({
-          title: 'Success',
-          status: 'success',
+          title: "Success",
+          status: "success",
           isClosable: true,
-          position: 'top-right',
+          position: "top-right",
         });
 
         console.log(response);
       }
     } catch (error) {
-      console.error('Error updating profile:', error);
+      console.error("Error updating profile:", error);
     }
     console.log(formData);
   };
@@ -118,142 +115,124 @@ console.log(formData.access_token);
       }));
     }
   }, [loginState]);
+
   // translate
-  const router=useRouter()
+  const router = useRouter();
   useEffect(() => {
-    const locale = localStorage.getItem('lang') || 'en';
+    const locale = localStorage.getItem("lang") || "en";
     router.push(router.pathname, router.asPath, { locale });
   }, []);
-  
-  const locale = router.locale || 'en';
+
+  const locale = router.locale || "en";
   return (
-    <Box className='flex flex-col  mr-8 mt-[-16px]   h-[550px] gap-9  bg-white40'>
-      <Box className='ml-8 mt-10 '>
-        <Text
-        fontSize='32px'
-          // width='164px'
-          height='32px'
-          color='#4F4F4F'
-        >
-          {translate(" Profile",locale)}
-         
+    <Box className="flex flex-col items-center mx-2 mt-[-16px] h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
+      <Box className="mt-10">
+        <Text fontSize="32px" height="32px" color="#4F4F4F">
+          {translate(" Profile", locale)}
         </Text>
       </Box>
       <Box>
-        <Box className='flex flex-col justify-center md:flex-row '>
-          <label htmlFor='file-input'>
+        <Box className="flex flex-col items-center sm:flex-row">
+          <label htmlFor="file-input">
             {imgUrl ? (
               <img
                 src={imgUrl}
-                alt='Profile'
-                style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-                className='w-24 h-24 md:w-32 md:h-32 rounded-full'
+                alt="Profile"
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full"
               />
             ) : (
-              <Box className='relative'>
-                <input onChange={getİmage} type='file' id='file' accept='image/*'
-                className='absolute opacity-0 cursor-pointer'
+              <Box className="relative">
+                <input
+                  onChange={getİmage}
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  className="absolute opacity-0 cursor-pointer"
                 />
                 <img src="/uploaduser.svg" alt="Upload" />
               </Box>
             )}
           </label>
           <Input
-            type='file'
-            id='file-input'
-            style={{ display: 'none' }}
+            type="file"
+            id="file-input"
+            className="hidden"
             onChange={handleImageChange}
           />
         </Box>
       </Box>
-      <Box className='flex flex-wrap justify-center'>
-  <Box mr='8' mb='8' width={['full', 'auto']}>
-    <Box>
-      <Text color='#4F4F4F'>{translate("Contact",locale)}</Text>
-      <Input
-        name='phone'
-        value={formData.phone}
-        onChange={handleInputChange}
-        width={['full', '444px']}
-        height='53px'
-        bg='white'
-        type='number'
-        placeholder='+994'
-      />
-    </Box>
-    <Box marginTop='7px'>
-      <Text color='#4F4F4F'>{translate("User Name",locale)}</Text>
-      <Input
-        name='username'
-        value={formData.username}
-        onChange={handleInputChange}
-        width={['100%', '444px']}
-        height='53px'
-        bg='white'
-        type='text'
-        placeholder='aliyevAli'
-      />
-    </Box>
-    <Box marginTop='7px'>
-      <Text color='#4F4F4F'>{translate("Full Name",locale)}</Text>
-      <Input
-        name='fullname'
-        value={formData.fullname}
-        onChange={handleInputChange}
-        width={['full', '444px']}
-        height='53px'
-        bg='white'
-        type='text'
-        placeholder='Aliyev Ali'
-      />
-    </Box>
-  </Box>
-  <Box ml={['0', '8']} mb='8' width={['full', 'auto']}>
-    <Box>
-      <Text color='#4F4F4F'>{translate("Email",locale)}</Text>
-      <Input
-        name='email'
-        value={formData.email}
-        onChange={handleInputChange}
-        width={['100%', '444px']}
-        height='53px'
-        bg='white'
-        type='email'
-        placeholder='aliyev@gmail.com'
-        focusBorderColor='red.500'
-
-      />
-    </Box>
-    <Box marginTop='7px'>
-      <Text color='#4F4F4F'>{translate("Address",locale)}</Text>
-      <Input
-        name='address'
-        value={formData.address}
-        onChange={handleInputChange}
-        width={['full', '444px']}
-        height='53px'
-        bg='white'
-        type='text'
-        placeholder='Yasamal 104, Baku'
-      />
-    </Box>
-    <Button
-      onClick={handleSubmit}
-      type='submit'
-      marginTop='32px'
-      width={['full', '444px']}
-      height='53px'
-      bg='#6FCF97'
-    >
-      {translate("Save",locale)}
-    </Button>
-  </Box>
-</Box>
-
+      <Box className="flex flex-wrap justify-center">
+        <Box className="mb-8 w-full sm:w-auto sm:mr-8">
+          <Box>
+            <Text color="#4F4F4F">{translate("Contact", locale)}</Text>
+            <Input
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              type="number"
+              placeholder="+994"
+            />
+          </Box>
+          <Box mt="7px">
+            <Text color="#4F4F4F">{translate("User Name", locale)}</Text>
+            <Input
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              type="text"
+              placeholder="Your Username"
+            />
+          </Box>
+          <Box mt="7px">
+            <Text color="#4F4F4F">{translate("Full Name", locale)}</Text>
+            <Input
+              name="fullname"
+              value={formData.fullname}
+              onChange={handleInputChange}
+              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              type="text"
+              placeholder="Your Fullname"
+            />
+          </Box>
+        </Box>
+        <Box className="w-full mb-8 sm:w-auto sm:ml-8">
+          <Box>
+            <Text color="#4F4F4F">{translate("Email", locale)}</Text>
+            <Input
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              type="email"
+              placeholder="yourmail@mail.com"
+              focusBorderColor="red.500"
+            />
+          </Box>
+          <Box mt="7px">
+            <Text color="#4F4F4F">{translate("Address", locale)}</Text>
+            <Input
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              type="text"
+              placeholder="Yasamal 104, Baku"
+            />
+          </Box>
+          <Button
+            onClick={handleSubmit}
+            type="submit"
+            className="w-[286px] h-[79px] mt-8 sm:w-[444px] sm:h-[79px] bg-green-500"
+            sx={{ backgroundColor: "#6FCF97 !important" }}
+          >
+            {translate("Save", locale)}
+          </Button>
+        </Box>
+      </Box>
     </Box>
   );
 };
 
 export default Profile;
-
-
