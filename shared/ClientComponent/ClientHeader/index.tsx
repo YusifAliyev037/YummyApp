@@ -48,7 +48,7 @@ const ClientHeader: React.FC = () => {
   }
 
   return (
-    <div className="flex items-center  xxl:m-8 px-[60px] pt-[50px] pb-[35px] bg-gray200 sm:m-0">
+    <div className="flex items-center  xxl:mt-8 xxl:mx-8 px-[60px] pt-[50px] pb-[35px] bg-gray200 sm:m-0">
       <Image
             onClick={handleAddCategory}
             className=" block sm:hidden cursor-pointer"
