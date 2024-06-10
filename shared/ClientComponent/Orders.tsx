@@ -20,6 +20,8 @@ import { log } from 'console';
 import Login from '@/pages/login';
 import SizeExample from './Section5/ModalOrders';
 
+
+
  export interface OrderItem {
   amount: number;
   count: number;
@@ -30,6 +32,7 @@ import SizeExample from './Section5/ModalOrders';
   name: string;
   price: number;
   rest_id: string;
+ 
 }
 
 

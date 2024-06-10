@@ -584,3 +584,21 @@ export async function deleteUserOrder(orderId:string) {
   
   
 }
+
+
+export async function getOrdersList() {
+  try {
+    let item:any = localStorage.getItem("userInfo");
+    let access_token = JSON.parse(item);
+    const response = await instanceAxios.get(`/order`, {
+      headers: {
+        Authorization: `Bearer ${access_token.access_token}`,
+      }
+     
+    });
+    return response;
+  } catch (error) {
+    console.error('Error while fetching restaurants:', error);
+    throw new Error('Failed to fetch orders!');
+  }
+}
