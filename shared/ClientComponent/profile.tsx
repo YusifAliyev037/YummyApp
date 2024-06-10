@@ -125,7 +125,7 @@ const Profile = () => {
 
   const locale = router.locale || "en";
   return (
-    <Box className="flex flex-col items-center mx-2 mt-[-16px] h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
+    <Box className="flex flex-col items-center mx-2 mt-4 h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
       <Box className="mt-10">
         <Text fontSize="32px" height="32px" color="#4F4F4F">
           {translate(" Profile", locale)}
@@ -161,17 +161,20 @@ const Profile = () => {
           />
         </Box>
       </Box>
-      <Box className="flex flex-wrap justify-center">
-        <Box className="mb-8 w-full sm:w-auto sm:mr-8">
+      <Box className="flex flex-wrap justify-around gap-10">
+        <Box className="mb-8 w-full sm:w-auto xxl:mr-0 sm:mr-8">
           <Box>
             <Text color="#4F4F4F">{translate("Contact", locale)}</Text>
             <Input
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              className="   bg-gray200"
               type="number"
               placeholder="+994"
+              width={444}
+              height={53}
+              backgroundColor="#ffff"
             />
           </Box>
           <Box mt="7px">
@@ -183,6 +186,9 @@ const Profile = () => {
               className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
               type="text"
               placeholder="Your Username"
+              backgroundColor="#ffff"
+              height={53}
+
             />
           </Box>
           <Box mt="7px">
@@ -194,10 +200,13 @@ const Profile = () => {
               className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
               type="text"
               placeholder="Your Fullname"
+              backgroundColor="#ffff"
+              height={53}
+
             />
           </Box>
         </Box>
-        <Box className="w-full mb-8 sm:w-auto sm:ml-8">
+        <Box className="w-full mb-8 xxl:ml-0 sm:w-auto sm:ml-8">
           <Box>
             <Text color="#4F4F4F">{translate("Email", locale)}</Text>
             <Input
@@ -208,6 +217,9 @@ const Profile = () => {
               type="email"
               placeholder="yourmail@mail.com"
               focusBorderColor="red.500"
+              backgroundColor="#ffff"
+              height={53}
+
             />
           </Box>
           <Box mt="7px">
@@ -219,6 +231,9 @@ const Profile = () => {
               className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
               type="text"
               placeholder="Yasamal 104, Baku"
+              backgroundColor="#ffff"
+              height={53}
+
             />
           </Box>
           <Button
@@ -226,6 +241,8 @@ const Profile = () => {
             type="submit"
             className="w-[286px] h-[79px] mt-8 sm:w-[444px] sm:h-[79px] bg-green-500"
             sx={{ backgroundColor: "#6FCF97 !important" }}
+            height={53}
+
           >
             {translate("Save", locale)}
           </Button>

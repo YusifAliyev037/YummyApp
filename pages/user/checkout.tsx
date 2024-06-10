@@ -12,14 +12,14 @@ const Checkout = () => {
   return (
     <Box>
       <ClientHeader />
-      <Box className="flex" height="790px" gap="5px">
+      <Box className="flex" height="790px" gap="17px">
         <Box>
           <UserModul />
         </Box>
         <Box display="flex">
           <BoxCheck1/>
           {/* <Payment /> */}
-          <BoxCheck2 />
+          {/* <BoxCheck2 /> */}
         </Box>
       </Box>
 
