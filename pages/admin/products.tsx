@@ -4,12 +4,12 @@ import Header from '@/shared/AdminComponents/Header';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 import Pagination from '@/shared/AdminComponents/Pagination';
 import PushModul from '@/shared/AdminComponents/PushModul';
-import { Category, Products, deleteProducts, getCategories, getProducts, getRestaurants, updateProduct } from '@/shared/AdminComponents/Services/axios';
+import { Category, Products, Restaurant, deleteProducts, getCategories, getProducts, getRestaurants, updateProduct } from '@/shared/AdminComponents/Services/axios';
 import MetaSeo from '@/shared/MetaSeo';
 import { fillProducts } from '@/shared/redux/global/globalSlice';
 import { RootState } from '@/shared/redux/store';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { Box, ButtonGroup, Card, CardBody, Heading, IconButton, Image, InputGroup, Select, Stack, Text, useToast } from '@chakra-ui/react';
+import { Box, ButtonGroup, Card, CardBody, Heading, IconButton, Image, InputGroup, Select, Stack, Text, Tooltip, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
@@ -41,6 +41,8 @@ function ProductsPage() {
   const ImgRef = useRef<HTMLInputElement>(null);
 
   const productsArr: Products[] = useSelector((state: RootState) => state.global.product) || [];
+
+  
 
   function getImgUrl(url: string): void {
     setImgUrl(url);
@@ -114,7 +116,10 @@ function ProductsPage() {
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+   
+    
     const selectedValue = event.target.value;
+    console.log(selectedValue);
     if (selectedValue.length == 0) {
       dispatch(fillProducts(originalProducts));
     } else {
@@ -260,8 +265,8 @@ function ProductsPage() {
             </Text>
             <InputGroup className='flex md:justify-end justify-center items-center md:gap-7'>
               <Select bgColor='#5A5B70' borderRadius={{ base: "8px", md: "200px" }} height={35} width={{ base: "267px", md: "200px" }} placeholder='Product type' onChange={handleSelectChange} mr='2'>
-                {category.map((item, id) => {
-                  return <option key={id} value={item.id}>{item.name}</option>;
+                {originalProducts.map((item, id) => {
+                  return <option key={id} value={item.rest_id}>{item.rest_id}</option>;
                 })}
               </Select>
               <Box></Box>
@@ -275,7 +280,24 @@ function ProductsPage() {
                     <Image src={item.img_url} alt={item.name} borderRadius='sm' className='h-[179px] w-[193px] md:w-[160px] md:h-[160px]' />
                     <Stack spacing='4' height="100%">
                       <Text color={"#1E1E30"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"18px"} height="24px">{item.name}</Text>
-                      <Text color={"#8E8E93"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"14px"} height="24px">{item.description}</Text>
+
+<Tooltip label={item.description ?? ''} aria-label='Full description'>
+  <Text 
+    color={"#8E8E93"} 
+    fontWeight={"500"} 
+    fontFamily={"Roboto"} 
+    lineHeight={"20px"} 
+    size={"14px"} 
+    height="24px"
+  >
+    {item.description 
+      ? (item.description.length > 18 
+        ? `${item.description.substring(0, 18)}...` 
+        : item.description) 
+      : ''}
+  </Text>
+</Tooltip>
+
                       <Box className="flex">
                         <Text color={"#00B2A9"} fontWeight={"500"} fontFamily={"Roboto"} lineHeight={"20px"} size={"12px"} height="24px">${item.price}</Text>
                         <ButtonGroup spacing='1' display={"flex"} ml='auto' gap={"8px"}>
