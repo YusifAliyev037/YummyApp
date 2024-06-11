@@ -265,7 +265,7 @@ const register: React.FC = () => {
           >
             <img
               src='/registerImg.svg'
-              className='md:w-[75%] w-[50%] '
+              className='md:w-[75%] w-[40%] '
             />
           </Box>
 
