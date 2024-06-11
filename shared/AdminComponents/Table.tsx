@@ -96,7 +96,7 @@ const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
                 <Tbody>
                     {order.map((item, index) => (
                         <Tr key={index}>
-                            <Td height={"70px"} fontSize={"17px"} lineHeight={"20px"} textAlign={"center"}>{item.id}</Td>
+                            <Td height={"70px"} fontSize={"17px"} lineHeight={"20px"} textAlign={"center"}>{9110+index}</Td>
                             <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{item.customer_id}</Td>
                             <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{formatTimestampToDate(item.created)}</Td>
                             <Td height={"70px"} fontSize={"17px"} flexWrap={"wrap"} textAlign={"center"}>{item.delivery_address}</Td>
