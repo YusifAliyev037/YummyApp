@@ -144,7 +144,7 @@ const Login: React.FC = () => {
 
   return (
     <Box>
-      <Box className='m-[33px] flex flex-col gap-[20px] '>
+      <Box className="ml-0 mr-0 md:m-[33px] flex flex-col md:gap-[20px]">
         <Head>
           <title>{translate('Client Login', locale)}</title>
           <MetaSeo
@@ -156,8 +156,8 @@ const Login: React.FC = () => {
             href='/favicon.ico'
           />
         </Head>
-        <header className='bg-pink40 flex items-center h-[122px] justify-between '>
-          <Text className='font-mukta font-extrabold ml-9 text-3xl leading-6 tracking-wide text-white pl-[36px ]'>
+        <header  className='bg-pink40 flex items-center md:h-[122px] justify-between h-[59px]  md:w-auto w-[100%]   '>
+          <Text className='font-mukta font-extrabold ml-9 md:text-3xl text--2xl leading-6 tracking-wide text-white pl-[36px ]'>
             {translate('Yummy.', locale)}
           </Text>
 
@@ -244,21 +244,22 @@ const Login: React.FC = () => {
 
         <Box
           width={'100%'}
-          className='flex items-center'
+         className="flex flex-col md:flex-row items-center p-[12px] "
         >
           <Box
-            width={'55%'}
-            className='bg-pink40 flex items-center justify-center'
+            width={{ base: "100%", md: "55%" }}
+             height={{ base: "160px", md: "auto" }} 
+            className='bg-pink40 flex items-center justify-center w-[55%] '
           >
             <img
               src='/loginclient.svg'
-              className='w-[567px]'
+              className='md:w-[75%] w-[55%] '
             />
           </Box>
 
-          <Box width={'45%'}>
-            <Box className='ml-[39px] '>
-              <Box className='flex justify-center gap-[65px] pb-[72px]'>
+          <Box width={{ base: '100%', md: '45%' }}>
+            <Box className='md:ml-[39px] pt-[40px]  '>
+              <Box  className='flex justify-center md:gap-[65px] gap-[34px] md:pb-[72px] pb-[44px] '>
                 <Text className='font-roboto text-lg font-medium leading-6 tracking-wide text-pink40 cursor-pointer  '>
                   {translate('Login', locale)}
                 </Text>
@@ -274,10 +275,11 @@ const Login: React.FC = () => {
 
               <Box
                 onKeyDown={handleKeyDown}
-                className='flex flex-col gap-[67px]'
+             
+                className='flex flex-col md:gap-[67px] gap-[48px]'
               >
-                <Box className='flex flex-col gap-[30px]'>
-                  <Box>
+                <Box  className='flex flex-col gap-[30px]  '   width={{ base: '98%', md: 'auto' }} >
+                  <Box  >
                     <Text
                       color={'#4F4F4F'}
                       className='font-roboto text-base font-medium leading-6 tracking-wide pb-[10px]  '
@@ -289,7 +291,11 @@ const Login: React.FC = () => {
                       name='email'
                       borderRadius={'5px'}
                       backgroundColor={'#FFE7E7'}
-                      height={'68px'}
+                      height={{ base: '48px', md: '68px' }}
+                     
+                    
+                      
+                      
                     />
                   </Box>
                   <Box position='relative'>
@@ -305,8 +311,9 @@ const Login: React.FC = () => {
                         name='password'
                         borderRadius='5px'
                         backgroundColor='#FFE7E7'
-                        height='68px'
+                        
                         type={passwordShow ? 'text' : 'password'}
+                        height={{ base: '48px', md: '68px' }}
                       />
                       <img
                         onClick={() => setpasswordShow(!passwordShow)}
@@ -324,8 +331,8 @@ const Login: React.FC = () => {
                   fontWeight={'500'}
                   size={'22px'}
                   lineHeight={'22px'}
-                  height={'68px'}
                   width={'100%'}
+                  height={{ base: '48px', md: '68px' }}
                 >
                   {translate('Login', locale)}
                 </Button>

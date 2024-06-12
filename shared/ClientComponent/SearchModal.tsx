@@ -92,7 +92,7 @@ const SearchComponent: React.FC<SearchProps> = ({ locale }) => {
         type="text"
         name="searchQuery"
         placeholder={translate("Search", locale)}
-        className="p-2 border border-black pr-8 focus:bg-gray200 focus:border-red500 w-[250px] h-[45px]"
+        className="p-2 border rounded-xl pr-8  w-[250px] h-[45px]"
         value={query}
         onChange={handleInputChange}
         onFocus={openSearchModal}
