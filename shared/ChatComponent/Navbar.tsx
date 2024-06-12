@@ -14,8 +14,8 @@ function Navbar() {
    
     
   return (
-    <div className='flex items-center bg-black200 h-12 p-2 content-between '>
-        <span className=' font-bold'> Yummy Chat</span>
+    <div className='flex items-center flex-row bg-black200 h-12 p-2 '>
+        <span className=' font-bold mx-2'> Yummy Chat</span>
         <div className='flex gap-2 '>
         <Image 
         src="/user.png"

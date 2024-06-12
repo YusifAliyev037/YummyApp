@@ -15,10 +15,13 @@ import React from "react";
 import { animated, useSpring, useSprings } from "@react-spring/web";
 import { useGesture } from "@use-gesture/react";
 import { styled } from "@/style/stitches.config";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 const BUTTON_SIZE = 56
 
-const COLORS = ['#669EF2', '#F9DB6D', '#DC602E', '#83BB70']
+const COLORS = ['#669EF2', '#CC8899', '#DC602E', '#83BB70'];
+const ICONS = [<FaFacebook />, <FaInstagram />, <SiGmail />, <FaWhatsapp />]
 
 const Home = () => {
 
@@ -183,16 +186,25 @@ const Home = () => {
             />
           </svg>
         </GrabberButton>
-        {avatarSprings.map((springs, index) => (
-          <AvatarIcon
-            key={COLORS[index]}
-            // ref={ref => (avatarRefs.current[index] = ref!)}
-            css={{
-              backgroundColor: COLORS[index],
-            }}
-            style={springs}
-          />
-        ))}
+        {avatarSprings.map((springs, index) =>  {
+   const IconComponent = ICONS[index];
+   return (
+      <AvatarIcon
+        key={COLORS[index]}
+        css={{
+          backgroundColor: COLORS[index],
+          cursor: "pointer"
+        }}
+        style={springs}
+        // ref={(el) => (avatarRefs.current[index] = el!)}
+      >
+        <IconContainer>
+
+        {IconComponent }
+        </IconContainer>
+      </AvatarIcon>
+   )
+})}
         <FloatingButton
           ref={buttonRef}
           onPointerEnter={onPointerEnter}
@@ -202,7 +214,7 @@ const Home = () => {
             boxShadow: opacity.to(o => `0px 3px 8px 2px rgba(0,0,0,${0.4 * 1 - o})`),
           }}>
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#1a1a1a" viewBox="0 0 256 256">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" className=" cursor-pointer" height="40" fill="#1a1a1a" viewBox="0 0 256 256">
               <rect width="256" height="256" fill="none"></rect>
               <path d="M128,24A104,104,0,0,0,36.8,178l-8.5,29.9a16.1,16.1,0,0,0,4,15.8,15.8,15.8,0,0,0,15.7,4l30-8.5A104,104,0,1,0,128,24Zm32,128H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"></path>
             </svg>
@@ -278,6 +290,13 @@ const FloatingButton = styled(animated.div, {
     backgroundColor: '#fafafa',
   },
 })
+const IconContainer = styled("div", {
+  width: "55px", 
+  height: "55px", 
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
 
 
 
