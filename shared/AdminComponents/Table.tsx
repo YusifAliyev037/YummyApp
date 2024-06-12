@@ -87,23 +87,23 @@ const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
         <TableContainer margin={"3px"}>
             <Table size='sm' backgroundColor={"white"}>
                 <Thead>
-                    <Tr>
+                    <Tr >
                         {name.map((item, index) => (
-                            <Th height={"70px"} fontSize={"12px"} padding={"0px"} textAlign={"center"} key={index}>{item}</Th>
+                            <Th height={"70px"} fontSize={"12px"} padding={"auto"} textAlign={"center"} key={index}>{item}</Th>
                         ))}
                     </Tr>
                 </Thead>
                 <Tbody>
                     {order.map((item, index) => (
                         <Tr key={index}>
-                            <Td height={"70px"} fontSize={"17px"} lineHeight={"20px"} textAlign={"center"}>{9110+index}</Td>
-                            <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{item.customer_id}</Td>
-                            <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{formatTimestampToDate(item.created)}</Td>
-                            <Td height={"70px"} fontSize={"17px"} flexWrap={"wrap"} textAlign={"center"}>{item.delivery_address}</Td>
-                            <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{item.amount}</Td>
-                            <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{parseInt(item.payment_method) === 0 ? 'Pay Cash' : 'Credit Card'}</Td>
-                            <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>{item.contact}</Td>
-                            <Td height={"70px"} fontSize={"17px"} textAlign={"center"}>
+                            <Td height={"70px"} fontSize={"15px"} lineHeight={"20px"} textAlign={"center"}>{9110+index}</Td>
+                            <Td height={"70px"} fontSize={"15px"} textAlign={"center"}>{item.customer_id}</Td>
+                            <Td height={"70px"} fontSize={"15px"} textAlign={"center"}>{formatTimestampToDate(item.created)}</Td>
+                            <Td height={"70px"} fontSize={"15px"} flexWrap={"wrap"} textAlign={"center"}>{item.delivery_address}</Td>
+                            <Td height={"70px"} fontSize={"15px"} textAlign={"center"}>{item.amount}</Td>
+                            <Td height={"70px"} fontSize={"15px"} textAlign={"center"}>{parseInt(item.payment_method) === 0 ? 'Pay Cash' : 'Credit Card'}</Td>
+                            <Td height={"70px"} fontSize={"15px"} textAlign={"center"}>{item.contact}</Td>
+                            <Td height={"70px"} fontSize={"15px"} textAlign={"center"} display={"flex"} gap={"4px"} >
                                 <IconButton color='teal' aria-label='View' icon={<ViewIcon />} onClick={() => view(item.id)} />
                                 <IconButton color='red' aria-label='Delete' icon={<DeleteIcon />} onClick={() => handleDeleteClick(item.id)} />
                             </Td>
