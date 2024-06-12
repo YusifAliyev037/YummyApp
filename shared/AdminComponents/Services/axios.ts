@@ -579,11 +579,17 @@ export async function deleteUserOrder(orderId:string) {
 
 //! getuser
 
-// export async function getUser(){
-//   try{
-//     const response = await instanceAxios.get()
-//   }catch(error){
-//     console.log(error);
-    
-//   }
-// }
+export async function getUser(){
+    let item: any = localStorage.getItem("userInfo");
+    let access_token = JSON.parse(item);
+  
+    const response = await instanceAxios.get(`/auth/user/`, {
+      headers: {
+        Authorization: `Bearer ${access_token.access_token}`,
+      },
+    });
+    console.log(response);
+  
+    return response;
+  
+}
