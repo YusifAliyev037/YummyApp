@@ -11,6 +11,7 @@ import React, { useRef, useState } from "react";
 import { translate } from "@/public/lang/translate";
 import { useDispatch } from "react-redux";
 import { fillLogin } from "@/shared/redux/global/globalSlice";
+import { log } from "console";
 
 function Adminlogin() {
   const router = useRouter();
@@ -31,6 +32,8 @@ function Adminlogin() {
     access_token: string;
     refresh_token: string;
   };
+
+
 
   let tokenObj: token = JSON.parse(
     typeof localStorage !== "undefined"

@@ -20,6 +20,8 @@ import { log } from 'console';
 import Login from '@/pages/login';
 import SizeExample from './Section5/ModalOrders';
 
+
+
  export interface OrderItem {
   amount: number;
   count: number;
@@ -30,6 +32,7 @@ import SizeExample from './Section5/ModalOrders';
   name: string;
   price: number;
   rest_id: string;
+ 
 }
 
 
@@ -82,15 +85,15 @@ const OrdersTable: React.FC = () => {
     onClose();
   };
 
-  function view(id:string){
-    setIsOpenViewModal(true)
+  function view(id: string) {
+    setIsOpenViewModal(true);
     const filteredOrders = orderArr.filter(order => order.id == id);
-    setOrders(filteredOrders[0].products)
-
-  
     
-
-
+    if (filteredOrders.length > 0 && filteredOrders[0].products) {
+      setOrders(filteredOrders[0].products);
+    } else {
+      setOrders([]);  // or handle the error case as needed
+    }
   }
   
 
@@ -127,15 +130,15 @@ function formatTimestampToDate(timestamp:number) {
         </Text>
       </Box>
       <table className='bg-white m-5'>
-        <thead className='h-[50px] border-b-2 text-ordersBg'>
+        <thead className=' h-16 border-b-2 text-lg  text-ordersBg'>
           <tr className='p-8'>
-            <th className='w-[100px] text-center'>{translate("ID",locale)}</th>
-            <th className='w-[120px] text-center'>{translate("Time",locale)}</th>
-            <th className='w-[120px] text-center'>{translate("Delivery Address",locale)}</th>
+            <th className='w-36 text-center text-xl'>{translate("ID",locale)}</th>
+            <th className='w-36 text-center text-xl'>{translate("Time",locale)}</th>
+            <th className='w-36 text-center text-xl'>{translate("Delivery Address",locale)}</th>
 
-            <th className='w-[150px] text-center'>{translate("Amount",locale)}</th>
-            <th className='w-[150px] text-center'>{translate("Payment Method",locale)}</th>
-            <th className='w-[150px] text-center'>{translate("Contact",locale)}</th>
+            <th className='w-36 text-center text-xl'>{translate("Amount",locale)}</th>
+            <th className='w-36 text-center text-xl'>{translate("Payment Method",locale)}</th>
+            <th className='w-36 text-center text-xl'>{translate("Contact",locale)}</th>
           </tr>
         </thead>
         <tbody>

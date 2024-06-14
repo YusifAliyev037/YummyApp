@@ -24,7 +24,7 @@ function UserModul() {
   return (
     <Box
       as="section"
-      className="bg-white40 rounded-xl p-5 ml-7 mt-4 "
+      className="bg-white40 rounded-xl mt-4 p-5 ml-7  "
       width="325px"
       height="515px"
     >
