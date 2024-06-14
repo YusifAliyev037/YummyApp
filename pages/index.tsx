@@ -17,6 +17,8 @@ import { useGesture } from "@use-gesture/react";
 import { styled } from "@/style/stitches.config";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import ChatModal from "@/shared/ChatComponent/ChatModal";
+import { useDisclosure } from "@chakra-ui/react";
 
 const BUTTON_SIZE = 56
 
@@ -32,6 +34,7 @@ const Home = () => {
   const containerRef = React.useRef<HTMLDivElement>(null!)
 
   const isVisible = React.useRef(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [{ x, y, opacity }, api] = useSpring(
     () => ({
@@ -214,7 +217,7 @@ const Home = () => {
             boxShadow: opacity.to(o => `0px 3px 8px 2px rgba(0,0,0,${0.4 * 1 - o})`),
           }}>
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" className=" cursor-pointer" height="40" fill="#1a1a1a" viewBox="0 0 256 256">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" className=" cursor-pointer" onClick={onOpen} height="40" fill="#1a1a1a" viewBox="0 0 256 256">
               <rect width="256" height="256" fill="none"></rect>
               <path d="M128,24A104,104,0,0,0,36.8,178l-8.5,29.9a16.1,16.1,0,0,0,4,15.8,15.8,15.8,0,0,0,15.7,4l30-8.5A104,104,0,1,0,128,24Zm32,128H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"></path>
             </svg>
@@ -227,6 +230,7 @@ const Home = () => {
       <HomeSection4 />
       <HomeSection5 />
       <ClientFooter />
+      <ChatModal isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
     </>
   );
 };
