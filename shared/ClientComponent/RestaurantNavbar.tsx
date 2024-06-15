@@ -34,7 +34,7 @@ const RestaurantNavbar:FC<RestaurantNavProps> = ({onClick}) => {
     return (
         <Box
             as='section'
-            className='bg-white40 rounded-xl p-5 m-7 mt-4 overflow-y-scroll '
+            className='bg-white40 rounded-xl p-5 m-7 mt-4 overflow-y-scroll hidden md:block '
             width='250px'
             height='650px'
         >
