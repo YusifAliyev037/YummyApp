@@ -28,16 +28,16 @@ const HomeSection3: React.FC = () => {
             index % 2 === 1 ? "md:flex-row-reverse" : ""
           }`}
         >
-          <div className="w-[650px] md:w-1/2 pl-[100px]">
-            <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl text-black font-bold mb-4">
+          <div className=" md:w-1/2 xxl:pl-[100px] xs:pl-0">
+            <h2 className="font-roboto text-[50px] leading-[70px] tracking-[3%] text-left text-2xl text-black font-bold mb-4 xs:text-center">
               {item.name}
             </h2>
-            <p className="text-gray300 text-base mb-4 font-roboto text-[22px] font-normal leading-[30px] tracking-[3%] text-left">
+            <p className="text-gray300 text-base mb-4 font-roboto text-[22px] font-normal leading-[30px] tracking-[3%] text-left xs:text-center">
               {item.description}
             </p>
           </div>
-          <div className="w-full md:w-1/2 pt-[30px] pr-[150px] flex items-center justify-center">
-            <div className="relative w-350 h-420 rotate-22.82 bg-red100 rounded-50 overflow-visible">
+          <div className="w-full md:w-1/2 pt-[30px]  flex items-center justify-center">
+            <div className="relative xxl:w-350 xxl:h-420 xs:w-[250px] xs:h-[300px] rotate-22.82 bg-red100 rounded-50 overflow-visible">
               <img
                 src={item.img_url}
                 alt="Image 1"

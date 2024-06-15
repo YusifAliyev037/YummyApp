@@ -10,17 +10,17 @@ const HomeSection4: React.FC = () => {
 
   const locale = router.locale || "en";
   return (
-    <div className="animate-slideIn px-8 py-32">
+    <div className="animate-slideIn  px-8 py-32">
       <div className="text-center">
-        <h1 className="text-4xl font-bold max-w-[400px] ml-[520px] mr-[520px]">
+        <h1 className="text-4xl font-bold max-w-100% text-center ">
           {translate("Our Popular Update New Foods", locale)}
         </h1>
 
-        <p className="text-lg text-gray300 mt-4 max-w-[800px] ml-[320px] mr-[320px]">
+        <p className="text-lg text-gray300 mt-4 max-w-100%">
           {translate("Delicious is just a click away", locale)}
         </p>
       </div>
-      <div className="flex justify-center mt-20 space-x-8">
+      <div className="flex justify-center mt-20 space-x-8 xs:flex-wrap">
         <div
           data-aos="fade-right"
           className="hover:scale-105 w-72 h-96 border border-gray-200 rounded-lg flex flex-col items-center justify-center text-center px-8 py-6 shadow-md"

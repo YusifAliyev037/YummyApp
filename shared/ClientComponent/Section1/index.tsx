@@ -39,7 +39,7 @@ function HomeSection1() {
         </div>
        
 
-        <div className="relative w-[657px] h-[559px] mt-[30px]">
+        <div className="relative xxl:w-[657px] h-[559px] mt-[30px]">
 
           <div className="absolute top-0 left-0 w-[577px] h-[509px] bg-black rounded-[70px]  hidden md:block overflow-hidden">
             {" "}
@@ -49,7 +49,7 @@ function HomeSection1() {
           <img
             src="/hosec1.png"
             alt="Background Image"
-            className="absolute  w-100% xxl:h-[619px] xs:h-100% object-cover "
+            className="absolute  xxl:w-[619px] xxl:h-[619px] xs:h-100%  xs:w-[400px] object-cover "
           />
 
           {/* Box1 */}

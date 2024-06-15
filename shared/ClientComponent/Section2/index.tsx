@@ -21,7 +21,7 @@ const HomeSection2: React.FC = () => {
           )}
         </p>
       </div>
-      <div className="flex justify-center flex-column gap-16 mt-20  xs:flex-column">
+      <div className="flex justify-center flex-column xxl:gap-16 xs:gap-5 mt-20  xs:flex-wrap">
         <div
           data-aos="fade-right"
           className="hover:scale-105 w-72 h-96 border border-gray200 rounded-lg flex flex-col items-center justify-center text-center px-8 py-6 shadow-md"
