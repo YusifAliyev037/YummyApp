@@ -74,10 +74,10 @@ const Index: React.FC = () => {
               <RestaurantNavbar onClick={filterRes} />
             </Box>
             <div
-            className="flex sm:hidden items-center mt-4 justify-center gap-2 shadow-lg p-4"
+            className="flex sm:hidden items-center mt-4 justify-center gap-2 w-[350px] shadow-lg p-4"
             onClick={handleOpenFilterModal}
           >
-            <Image width={25} height={0} src={"/filter.svg"} alt="filter" />
+            <Image width={25} height={10} src={"/filterRes.svg"} alt="filter" />
             <p className="font-medium text-2xl text-grayText2">Filters</p>
           </div>
           <Box className="flex">
