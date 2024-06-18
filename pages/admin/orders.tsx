@@ -64,7 +64,7 @@ function Orders() {
   const locale = router.locale || 'en';
 
   return (
-    <Box className="bg-darkBlue10 h-screen">
+    <Box className="bg-darkBlue10 h-screen w-[100%]" >
       <Head>
         <title>{translate("Orders", locale)}</title>
         <MetaSeo title="Orders" desc="Orders Page" />
@@ -73,14 +73,16 @@ function Orders() {
       <Header />
       <Box display={"flex"}>
         <PushModul />
-        <Box>
+        <Box className='md:w-[78%] w-[100%] '>
           <Box display={"flex"} justifyContent={"flex-end"} height={"660px"} flexDirection={"column"} gap={"41px"}>
             <Box bg={"#27283C"} height={"73px"} borderRadius={"14px"} display={"flex"} alignItems={"center"}>
               <Text color="#F2F2F2DE" fontSize="21px" fontFamily="Roboto" lineHeight="21px" paddingLeft={"33px"}>
                 {translate("Orders", locale)}
               </Text>
             </Box>
-            <Box height={"464px"} overflow={"auto"}>
+            <Box       height={{ base: '70vh', md: "464px" }} 
+            overflowY="auto" 
+            overflowX="auto" >
               {isLoading ? (
                 <Flex justifyContent="center" alignItems="center" height="100%">
                   <Spinner size="xl" />
