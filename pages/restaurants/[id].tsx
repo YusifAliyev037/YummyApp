@@ -169,10 +169,10 @@ const RestaurantPage: React.FC = () => {
                 <Text className='font-normal text-red400'>Delivery</Text>
               </Box>
               <Box
-                className='border border-2 cursor-pointer border-red400 bg-red400 rounded-md p-1 px-2'
+                className='border border-2 cursor-pointer border-red400 bg-red400 rounded-md p-1 px-2 hidden md:block'
                 onClick={() => router.push('/restaurants')}
               >
-                <Text className='text-white text-left'>Go Back</Text>
+                <Text className='text-white text-left '>Go Back</Text>
               </Box>
             </Box>
           </Box>

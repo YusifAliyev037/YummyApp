@@ -83,7 +83,7 @@ function RestaurantIdBasket() {
   }
 
   return (
-    <div className=' bg-gray200 p-4 h-[550px]'>
+    <div className=' bg-gray200 p-4 h-[550px] hidden md:block'>
       {(basketArr?.total_item ?? 0) === 0 ? (
         <>
           {/* FOR WEB EMPTY BASKET */}

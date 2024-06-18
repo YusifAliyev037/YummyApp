@@ -83,7 +83,7 @@ const BoxCheck1 = () => {
         try {
           const response = await postOrder(newdata);
           setShowCheckoutOr(true);
-          ROUTER.push("Payment.tsx");
+          // ROUTER.push("Payment.tsx");
         } catch (error) {
           toast({
             title: "Order submission failed",
