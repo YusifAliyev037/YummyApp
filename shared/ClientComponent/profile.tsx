@@ -126,9 +126,9 @@ const Profile = () => {
   const locale = router.locale || "en";
   return (
     <Box className="flex flex-col items-center mx-2 mt-4 h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
-      <Box className="mt-10">
-        <Text fontSize="32px" height="32px" color="#4F4F4F">
-          {translate(" Profile", locale)}
+      <Box className="mt-10 w-full sm:w-auto text-left ">
+        <Text fontSize="32px" height="32px" color="#4F4F4F" textAlign='left'>
+          {translate("Profile", locale)}
         </Text>
       </Box>
       <Box>
@@ -161,7 +161,7 @@ const Profile = () => {
           />
         </Box>
       </Box>
-      <Box className="flex flex-wrap justify-around gap-10">
+      <Box className="flex flex-wrap justify-around gap-10 ">
         <Box className="mb-8 w-full sm:w-auto xxl:mr-0 sm:mr-8">
           <Box>
             <Text color="#4F4F4F">{translate("Contact", locale)}</Text>
@@ -175,6 +175,7 @@ const Profile = () => {
               width={444}
               height={53}
               backgroundColor="#ffff"
+              
             />
           </Box>
           <Box mt="7px">
