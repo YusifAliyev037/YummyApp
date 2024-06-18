@@ -1,4 +1,4 @@
-import { Box, Button, Input, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Input, Text, useToast, Flex } from "@chakra-ui/react";
 import React, { ChangeEvent, useState, FormEvent, useEffect } from "react";
 import { updateProfile } from "../AdminComponents/Services/axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -126,9 +126,9 @@ const Profile = () => {
   const locale = router.locale || "en";
   return (
     <Box className="flex flex-col items-center mx-2 mt-4 h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
-      <Box className="mt-10">
+      <Box className="mt-10 self-start pl-6 w-full sm:w-auto ">
         <Text fontSize="32px" height="32px" color="#4F4F4F">
-          {translate(" Profile", locale)}
+          {translate("Profile", locale)}
         </Text>
       </Box>
       <Box>
@@ -161,93 +161,111 @@ const Profile = () => {
           />
         </Box>
       </Box>
-      <Box className="flex flex-wrap justify-around gap-10">
-        <Box className="mb-8 w-full sm:w-auto xxl:mr-0 sm:mr-8">
-          <Box>
-            <Text color="#4F4F4F">{translate("Contact", locale)}</Text>
+      <Flex
+        flexDirection={['column', 'column', 'row']}
+        alignItems="center"
+        gap={10}
+        width="100%"
+        px={4}
+      >
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          gap={5}
+          width="100%"
+          maxWidth="500px"
+        >
+          <Box width="100%">
+            <Text color="#4F4F4F" pb={2}>{translate("Contact", locale)}</Text>
             <Input
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="   bg-gray200"
+              bg="gray.200"
               type="number"
               placeholder="+994"
-              width={444}
+              width="100%"
               height={53}
-              backgroundColor="#ffff"
+              backgroundColor="#fff"
             />
           </Box>
-          <Box mt="7px">
-            <Text color="#4F4F4F">{translate("User Name", locale)}</Text>
+          <Box width="100%">
+            <Text color="#4F4F4F" pb={2}>{translate("User Name", locale)}</Text>
             <Input
               name="username"
               value={formData.username}
               onChange={handleInputChange}
-              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              bg="gray.200"
               type="text"
               placeholder="Your Username"
-              backgroundColor="#ffff"
+              backgroundColor="#fff"
               height={53}
-
+              width="100%"
             />
           </Box>
-          <Box mt="7px">
-            <Text color="#4F4F4F">{translate("Full Name", locale)}</Text>
+          <Box width="100%">
+            <Text color="#4F4F4F" pb={2}>{translate("Full Name", locale)}</Text>
             <Input
               name="fullname"
               value={formData.fullname}
               onChange={handleInputChange}
-              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              bg="gray.200"
               type="text"
               placeholder="Your Fullname"
-              backgroundColor="#ffff"
+              backgroundColor="#fff"
               height={53}
-
+              width="100%"
             />
           </Box>
-        </Box>
-        <Box className="w-full mb-8 xxl:ml-0 sm:w-auto sm:ml-8">
-          <Box>
-            <Text color="#4F4F4F">{translate("Email", locale)}</Text>
+        </Flex>
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          gap={5}
+          width="100%"
+          maxWidth="500px"
+        >
+          <Box width="100%">
+            <Text color="#4F4F4F" pb={2}>{translate("Email", locale)}</Text>
             <Input
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              bg="gray.200"
               type="email"
               placeholder="yourmail@mail.com"
               focusBorderColor="red.500"
-              backgroundColor="#ffff"
+              backgroundColor="#fff"
               height={53}
-
+              width="100%"
             />
           </Box>
-          <Box mt="7px">
-            <Text color="#4F4F4F">{translate("Address", locale)}</Text>
+          <Box width="100%">
+            <Text color="#4F4F4F" pb={2}>{translate("Address", locale)}</Text>
             <Input
               name="address"
               value={formData.address}
               onChange={handleInputChange}
-              className="w-[286px] h-[79px] sm:w-[444px] sm:h-[79px] bg-gray200"
+              bg="gray.200"
               type="text"
               placeholder="Yasamal 104, Baku"
-              backgroundColor="#ffff"
+              backgroundColor="#fff"
               height={53}
-
+              width="100%"
             />
           </Box>
           <Button
             onClick={handleSubmit}
             type="submit"
-            className="w-[286px] h-[79px] mt-8 sm:w-[444px] sm:h-[79px] bg-green-500"
+            bg="green.500"
             sx={{ backgroundColor: "#6FCF97 !important" }}
             height={53}
-
+            width="100%"
           >
             {translate("Save", locale)}
           </Button>
-        </Box>
-      </Box>
+        </Flex>
+      </Flex>
     </Box>
   );
 };

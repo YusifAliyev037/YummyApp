@@ -29,7 +29,7 @@ const locale = router.locale || 'en';
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Box className="flex flex-wrap gap-4 pr-4 pl-4 mr-8">
+      <Box className="flex flex-wrap gap-4 pr-4  mr-8">
        
           <PushModul   />
      

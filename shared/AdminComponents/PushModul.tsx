@@ -27,7 +27,7 @@ const PushModul: React.FC=()=> {
   return (
     <Box
       as='section'
-      className='mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5 hidden md:block '
+      className='mt-20 bg-pink10 w-64 rounded-xl h-96 p-5 m-5  hidden md:block '
     >
       
       <Box
