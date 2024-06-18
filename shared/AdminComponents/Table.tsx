@@ -84,7 +84,7 @@ const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
     }
 
     return (
-        <TableContainer margin={"3px"}>
+        <TableContainer margin={"3px"}  >
             <Table size='sm' backgroundColor={"white"}>
                 <Thead>
                     <Tr >
