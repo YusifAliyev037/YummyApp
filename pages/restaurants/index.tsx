@@ -1,11 +1,13 @@
-import ClientHeader from "@/shared/ClientComponent/ClientHeader";
-import ClientFooter from "@/shared/ClientComponent/ClientFooter";
 import React, { useEffect, useState } from "react";
 import { Box, Card, CardBody, Image, Stack, Text, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { Restaurant, getRestaurants } from "@/shared/AdminComponents/Services/axios";
 import RestaurantNavbar from "@/shared/ClientComponent/RestaurantNavbar";
 import { RestaurantFilterModal } from "@/shared/ClientComponent/RestaurantFilterModal";
+import dynamic from "next/dynamic";
+
+const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
 
 const Index: React.FC = () => {
   const router = useRouter();

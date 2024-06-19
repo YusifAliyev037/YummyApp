@@ -1,14 +1,15 @@
 import { translate } from '@/public/lang/translate';
-import Header from '@/shared/AdminComponents/Header';
-import PushModul from '@/shared/AdminComponents/PushModul';
-import { deleteUserOrder, getOrdersList } from '@/shared/AdminComponents/Services/axios';
+import {  getOrdersList } from '@/shared/AdminComponents/Services/axios';
 import TableForOrder from '@/shared/AdminComponents/Table';
-import DeleteUserModul from '@/shared/ClientComponent/DeleteUserModul';
-import MetaSeo from '@/shared/MetaSeo';
-import { Box, Flex, Text, Spinner, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Text, Spinner } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+
+const Header = dynamic(() => import("@/shared/AdminComponents/Header"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+const PushModul = dynamic(() => import("@/shared/AdminComponents/PushModul"))
 
 function Orders() {
   let TableNames = ["ID", "Customer ID", "Time", "Delivery Address", "Amount", "Payment Method", "Contact"];

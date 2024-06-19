@@ -1,9 +1,12 @@
-import Footer from '@/shared/ClientComponent/ClientFooter'
-import ClientHeader from '@/shared/ClientComponent/ClientHeader'
-import OrdersTable from '@/shared/ClientComponent/Orders'
-import UserModul from '@/shared/ClientComponent/UserModul'
 import { Box } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import React from 'react'
+
+const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
+const Footer = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
+const UserModul = dynamic(() => import("@/shared/ClientComponent/UserModul"))
+const OrdersTable = dynamic(() => import("@/shared/ClientComponent/Orders"))
+
 
 const Orders = () => {
   return (

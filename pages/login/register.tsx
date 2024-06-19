@@ -1,12 +1,13 @@
 import { translate } from '@/public/lang/translate';
 import { postRegisterData } from '@/shared/AdminComponents/Services/axios';
-import MetaSeo from '@/shared/MetaSeo';
-
 import { Box, Button, Flex, Input, Text, useToast } from '@chakra-ui/react';
-
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+
 
 interface FormValues {
   email?: string | undefined;

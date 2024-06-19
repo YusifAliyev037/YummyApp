@@ -1,17 +1,19 @@
-
-import BarCharts from "@/shared/AdminComponents/BarCharts";
-import Header from "@/shared/AdminComponents/Header";
-import LineCharts from "@/shared/AdminComponents/LineChart";
-import PieCharts from "@/shared/AdminComponents/PieChart";
-import PushModul from "@/shared/AdminComponents/PushModul";
-import RiskBar from "@/shared/AdminComponents/RiskBar";
-import MetaSeo from "@/shared/MetaSeo";
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { translate } from "@/public/lang/translate";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+
+const BarCharts = dynamic(() => import("@/shared/AdminComponents/BarCharts"))
+const Header = dynamic(() => import("@/shared/AdminComponents/Header"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+const LineCharts = dynamic(() => import("@/shared/AdminComponents/LineChart"))
+const PushModul = dynamic(() => import("@/shared/AdminComponents/PushModul"))
+const RiskBar = dynamic(() => import("@/shared/AdminComponents/RiskBar"))
+const PieCharts = dynamic(() => import("@/shared/AdminComponents/PieChart"))
 const AdminDashboard: NextPage = () => {
 const router=useRouter()
 

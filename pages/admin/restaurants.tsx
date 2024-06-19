@@ -1,4 +1,3 @@
-import Header from '@/shared/AdminComponents/Header';
 import {
   InputGroup,
   Button,
@@ -8,8 +7,6 @@ import {
  
   useToast,
 } from '@chakra-ui/react';
-import PushModul from '@/shared/AdminComponents/PushModul';
-import MetaSeo from '@/shared/MetaSeo';
 import Head from 'next/head';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +29,11 @@ import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 import RestaurantCard from '@/shared/AdminComponents/RestaurantCard';
 import { useRouter } from 'next/router';
 import { translate } from '@/public/lang/translate';
+import dynamic from 'next/dynamic';
+
+const Header = dynamic(() => import("@/shared/AdminComponents/Header"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+const PushModul = dynamic(() => import("@/shared/AdminComponents/PushModul"))
 
 const Restaurants: FC = () => {
 

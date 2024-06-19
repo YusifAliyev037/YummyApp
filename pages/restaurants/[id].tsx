@@ -14,14 +14,15 @@ import {
   Tbody,
   Tr,
   Td,
-  Button,
   useToast,
 } from '@chakra-ui/react';
-import ClientHeader from '@/shared/ClientComponent/ClientHeader';
-import ClientFooter from '@/shared/ClientComponent/ClientFooter';
 import RestaurantIdBasket from '@/shared/ClientComponent/RestaurantIdBasket';
 import { useDispatch } from 'react-redux';
 import { fillBasket } from '@/shared/redux/global/globalSlice';
+import dynamic from 'next/dynamic';
+
+const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
 
 const RestaurantPage: React.FC = () => {
   const toast = useToast();

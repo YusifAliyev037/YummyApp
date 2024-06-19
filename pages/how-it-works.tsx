@@ -1,10 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import ClientHeader from "../shared/ClientComponent/ClientHeader";
-import ClientFooter from "../shared/ClientComponent/ClientFooter";
 import { translate } from "@/public/lang/translate";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+
+const ClientHeader = dynamic(() => import("../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../shared/ClientComponent/ClientFooter"))
+
 const HOWITWORKS: NextPage = () => {
   const router = useRouter();
   useEffect(() => {

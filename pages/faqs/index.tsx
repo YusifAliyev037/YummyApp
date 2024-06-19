@@ -5,13 +5,13 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import React from "react";
-import Head from "next/head";
-import Image from "next/image";
-import axios from "axios";
-import ClientHeader from "../../shared/ClientComponent/ClientHeader";
-import ClientFooter from "../../shared/ClientComponent/ClientFooter";
 import { translate } from "@/public/lang/translate";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
+
 
 const Faq: React.FC = () => {
   const router = useRouter();

@@ -1,13 +1,16 @@
 import { translate } from '@/public/lang/translate'
-import Header from '@/shared/AdminComponents/Header'
-import PushModul from '@/shared/AdminComponents/PushModul'
 import Chat from '@/shared/ChatComponent/Chat'
 import Sidebar from '@/shared/ChatComponent/Sidebar'
-import MetaSeo from '@/shared/MetaSeo'
-import { Box,Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+
+const Header = dynamic(() => import("@/shared/AdminComponents/Header"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+const PushModul = dynamic(() => import("@/shared/AdminComponents/PushModul"))
+
 function chat() {
 
 

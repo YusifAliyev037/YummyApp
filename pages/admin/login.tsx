@@ -2,7 +2,6 @@ import {
   FormRegister,
   completeLogin,
 } from "@/shared/AdminComponents/Services/axios";
-import MetaSeo from "@/shared/MetaSeo";
 import { Box, Text, useToast } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
@@ -11,7 +10,11 @@ import React, { useRef, useState } from "react";
 import { translate } from "@/public/lang/translate";
 import { useDispatch } from "react-redux";
 import { fillLogin } from "@/shared/redux/global/globalSlice";
-import { log } from "console";
+import dynamic from "next/dynamic";
+
+
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+
 
 function Adminlogin() {
   const router = useRouter();

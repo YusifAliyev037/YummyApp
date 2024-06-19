@@ -1,11 +1,12 @@
-import BoxCheck1 from "@/shared/ClientComponent/BoxCheck1";
-import BoxCheck2 from "@/shared/ClientComponent/BoxCheck2";
-import Footer from "@/shared/ClientComponent/ClientFooter";
-import ClientHeader from "@/shared/ClientComponent/ClientHeader";
-// import Payment from "@/shared/ClientComponent/Payment";
-import UserModul from "@/shared/ClientComponent/UserModul";
 import { Box } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
+const Footer = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
+const UserModul = dynamic(() => import("@/shared/ClientComponent/UserModul"))
+const BoxCheck1 = dynamic(() => import("@/shared/ClientComponent/BoxCheck1"))
+
 
 const Checkout = () => {
   return (
@@ -17,8 +18,7 @@ const Checkout = () => {
         </Box>
         <Box display="flex">
           <BoxCheck1 />
-          {/* <Payment /> */}
-          {/* <BoxCheck2 /> */}
+        
         </Box>
       </Box>
 

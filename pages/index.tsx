@@ -1,24 +1,21 @@
-import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import axios from "axios";
-import ClientHeader from "../shared/ClientComponent/ClientHeader";
-import ClientFooter from "../shared/ClientComponent/ClientFooter";
-
-import HomeSection1 from "../shared/ClientComponent/Section1/index";
-import HomeSection2 from "../shared/ClientComponent/Section2/index";
-import HomeSection3 from "../shared/ClientComponent/Section3/index";
-import HomeSection4 from "../shared/ClientComponent/Section4/index";
-import HomeSection5 from "../shared/ClientComponent/Section5/index";
 import React from "react";
 import { animated, useSpring, useSprings } from "@react-spring/web";
 import { useGesture } from "@use-gesture/react";
 import { styled } from "@/style/stitches.config";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
-import ChatModal from "@/shared/ChatComponent/ChatModal";
 import { useDisclosure } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+
+const ClientHeader = dynamic(() => import("../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../shared/ClientComponent/ClientFooter"))
+const HomeSection1 = dynamic(() => import("../shared/ClientComponent/Section1/index"))
+const HomeSection2 = dynamic(() => import("../shared/ClientComponent/Section2/index"))
+const HomeSection3 = dynamic(() => import("../shared/ClientComponent/Section3/index"))
+const HomeSection4 = dynamic(() => import("../shared/ClientComponent/Section4/index"))
+const HomeSection5 = dynamic(() => import("../shared/ClientComponent/Section5/index"))
+const ChatModal = dynamic(() => import("@/shared/ChatComponent/ChatModal"))
 
 const BUTTON_SIZE = 56
 

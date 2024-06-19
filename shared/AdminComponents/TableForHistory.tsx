@@ -8,11 +8,8 @@ import {
     Td,
     TableContainer,
     IconButton,
-    useDisclosure,
 } from '@chakra-ui/react';
-import { DeleteIcon, ViewIcon } from '@chakra-ui/icons';
-import DeleteUserModul from '../ClientComponent/DeleteUserModul';
-import { deleteUserOrder } from './Services/axios';
+import { ViewIcon } from '@chakra-ui/icons';
 import SizeExample from '../ClientComponent/Section5/ModalOrders';
 
 interface Props {
@@ -44,16 +41,11 @@ interface Order {
     products: Product[];
 }
 
-const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+const TableForHistory: React.FC<Props> = ({ name, order, setOrders }) => {
     const [isOpenViewModal, setIsOpenViewModal] = useState(false);
-    const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
     const [selectedOrderProducts, setSelectedOrderProducts] = useState<Product[]>([]);
 
-    const handleDeleteClick = (orderId: string) => {
-        setSelectedOrder(orderId);
-        onOpen();
-    };
+   
 
     function formatTimestampToDate(timestamp: number) {
         if (!timestamp) {
@@ -66,14 +58,7 @@ const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
         return `${day}.${month}.${year}`;
     }
 
-    const handleConfirmDelete = () => {
-        if (selectedOrder !== null) {
-            deleteUserOrder(selectedOrder);
-            const filteredOrders = order.filter(order => order.id !== selectedOrder);
-            setOrders(filteredOrders);
-        }
-        onClose();
-    };
+   
 
     function view(id: string) {
         setIsOpenViewModal(true);
@@ -105,13 +90,11 @@ const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
                             <Td height={"70px"} fontSize={"15px"} textAlign={"center"}>{item.contact}</Td>
                             <Td height={"70px"} fontSize={"15px"} textAlign={"center"} display={"flex"} gap={"4px"} >
                                 <IconButton color='teal' aria-label='View' icon={<ViewIcon />} onClick={() => view(item.id)} />
-                                <IconButton color='red' aria-label='Delete' icon={<DeleteIcon />} onClick={() => handleDeleteClick(item.id)} />
                             </Td>
                         </Tr>
                     ))}
                 </Tbody>
             </Table>
-            <DeleteUserModul isOpen={isOpen} onClose={onClose} onConfirm={handleConfirmDelete} />
             <SizeExample 
                 isOpen={isOpenViewModal} 
                 orders={selectedOrderProducts} 
@@ -122,4 +105,4 @@ const TableForOrder: React.FC<Props> = ({ name, order, setOrders }) => {
     );
 };
 
-export default TableForOrder;
+export default TableForHistory;

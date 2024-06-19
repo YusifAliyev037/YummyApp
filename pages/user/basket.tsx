@@ -1,8 +1,10 @@
-import UserModul from "@/shared/ClientComponent/UserModul";
 import React from "react";
-import ClientHeader from "@/shared/ClientComponent/ClientHeader";
-import ClientFooter from "@/shared/ClientComponent/ClientFooter";
-import UserBasket from "@/shared/ClientComponent/UserBasket";
+import dynamic from "next/dynamic";
+
+const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
+const UserModul = dynamic(() => import("@/shared/ClientComponent/UserModul"))
+const UserBasket = dynamic(() => import("@/shared/ClientComponent/UserBasket"))
 
 const Basket: React.FC = () => {
   return (

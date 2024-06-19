@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import ClientHeader from "../shared/ClientComponent/ClientHeader";
-import ClientFooter from "../shared/ClientComponent/ClientFooter";
 import { translate } from "@/public/lang/translate";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+
+const ClientHeader = dynamic(() => import("../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../shared/ClientComponent/ClientFooter"))
 
 const AboutUs: NextPage = () => {
   const router = useRouter();

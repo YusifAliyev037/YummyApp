@@ -1,6 +1,3 @@
-import Header from '@/shared/AdminComponents/Header';
-import PushModul from '@/shared/AdminComponents/PushModul';
-import MetaSeo from '@/shared/MetaSeo';
 import { Box, Button, InputGroup, Text, useToast } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useEffect, useRef, useState } from 'react';
@@ -9,8 +6,11 @@ import { OfferValues, createOffer } from '@/shared/AdminComponents/Services/axio
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
 import { useRouter } from 'next/router';
 import { translate } from '@/public/lang/translate';
+import dynamic from 'next/dynamic';
 
-
+const Header = dynamic(() => import("@/shared/AdminComponents/Header"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+const PushModul = dynamic(() => import("@/shared/AdminComponents/PushModul"))
 
 const Offer: React.FC = () => {
 

@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import ClientHeader from "../shared/ClientComponent/ClientHeader";
-import ClientFooter from "../shared/ClientComponent/ClientFooter";
+import dynamic from "next/dynamic";
+
+const ClientHeader = dynamic(() => import("../shared/ClientComponent/ClientHeader"))
+const ClientFooter = dynamic(() => import("../shared/ClientComponent/ClientFooter"))
+
 
 const NOTFOUND: NextPage = () => {
   return (

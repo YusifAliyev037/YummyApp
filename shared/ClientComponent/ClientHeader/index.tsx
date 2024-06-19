@@ -62,7 +62,7 @@ const ClientHeader: React.FC = () => {
         onClickClose={changeNavHidden}
         hidden={navHidden}
         />
-      <h1 className="hover:scale-105 font-mukta text-4xl font-extrabold text-black  mr-auto pr-35">
+      <h1 onClick={() => router.push("/")} className="hover:scale-105 font-mukta text-4xl cursor-pointer font-extrabold text-black  mr-auto pr-35">
         Yummy<span className="hover:scale-105 text-red500">.</span>
       </h1>
 

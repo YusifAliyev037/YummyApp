@@ -1,19 +1,21 @@
 import { translate } from '@/public/lang/translate';
 import { AdminModal1 } from '@/shared/AdminComponents/AdminModal1';
-import Header from '@/shared/AdminComponents/Header';
 import ModulDelete from '@/shared/AdminComponents/ModulDelete';
 import Pagination from '@/shared/AdminComponents/Pagination';
-import PushModul from '@/shared/AdminComponents/PushModul';
-import { Category, Products, Restaurant, deleteProducts, getCategories, getProducts, getRestaurants, updateProduct } from '@/shared/AdminComponents/Services/axios';
-import MetaSeo from '@/shared/MetaSeo';
+import { Category, Products, deleteProducts, getCategories, getProducts, getRestaurants, updateProduct } from '@/shared/AdminComponents/Services/axios';
 import { fillProducts } from '@/shared/redux/global/globalSlice';
 import { RootState } from '@/shared/redux/store';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { Box, ButtonGroup, Card, CardBody, Heading, IconButton, Image, InputGroup, Select, Stack, Text, Tooltip, useToast } from '@chakra-ui/react';
+import { Box, ButtonGroup, Card, CardBody, IconButton, Image, InputGroup, Select, Stack, Text, Tooltip, useToast } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+const Header = dynamic(() => import("@/shared/AdminComponents/Header"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
+const PushModul = dynamic(() => import("@/shared/AdminComponents/PushModul"))
 
 function ProductsPage() {
   const toast = useToast();
