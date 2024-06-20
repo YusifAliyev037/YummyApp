@@ -118,27 +118,29 @@ function formatTimestampToDate(timestamp:number) {
   
   const locale = router.locale || 'en';
   return (
-    <Box className='flex flex-col  mt-4 mr-8   h-[550px] gap-9  bg-white40'>
-      <Box className='ml-8 mt-10 '>
+    <Box   className='    md:mt-4 md:mr-8 md:bg-white40 ' display={"flex"} flexDirection={"column"} alignItems={{base:"cente",md:"start"}} justifyContent={{base:"center",md:"start"}}  >
+      <Box className='m-8  '>
         <Text
-          width='164px'
-          height='32px'
-          color='#4F4F4F'
+       fontSize={{ base: "24px", md: "32px" }} 
+       height={{ base: "24px", md: "32px" }}
+       color="#4F4F4F"
         >
           {translate("Your Orders",locale)}
           
         </Text>
       </Box>
-      <table className='bg-white m-5'>
+     
+ <Box  className='overflow-auto   overflowX-auto overflowY-auto h-[300px] md:h-[400px] m-4' >
+ <table className='bg-white    '>
         <thead className=' h-16 border-b-2 text-lg  text-ordersBg'>
           <tr className='p-8'>
-            <th className='w-36 text-center text-xl'>{translate("ID",locale)}</th>
-            <th className='w-36 text-center text-xl'>{translate("Time",locale)}</th>
-            <th className='w-36 text-center text-xl'>{translate("Delivery Address",locale)}</th>
+            <th className='md:w-36 md:text-center md:text-xl text-sm '>{translate("ID",locale)}</th>
+            <th className='md:w-36 md:text-center md:text-xl text-sm '>{translate("Time",locale)}</th>
+            <th className='md:w-36 md:text-center md:text-xl text-sm '>{translate("Delivery Address",locale)}</th>
 
-            <th className='w-36 text-center text-xl'>{translate("Amount",locale)}</th>
-            <th className='w-36 text-center text-xl'>{translate("Payment Method",locale)}</th>
-            <th className='w-36 text-center text-xl'>{translate("Contact",locale)}</th>
+            <th className='md:w-36 md:text-center md:text-xl text-sm p-4'>{translate("Amount",locale)}</th>
+            <th className='md:w-36 md:text-center md:text-xl text-sm '>{translate("Payment Method",locale)}</th>
+            <th className='md:w-36 md:text-center md:text-xl text-sm '>{translate("Contact",locale)}</th>
           </tr>
         </thead>
         <tbody>
@@ -180,6 +182,8 @@ function formatTimestampToDate(timestamp:number) {
         
         </tbody>
       </table>
+
+     </Box>
       <DeleteUserModul
         isOpen={isOpen}
         onClose={onClose}
