@@ -185,7 +185,7 @@ const Profile = () => {
               type="number"
               placeholder="+994"
               width="100%"
-              height={53}
+              height='53px'
               backgroundColor="#fff"
             />
           </Box>
@@ -199,7 +199,7 @@ const Profile = () => {
               type="text"
               placeholder="Your Username"
               backgroundColor="#fff"
-              height={53}
+              height='53px'
               width="100%"
             />
           </Box>
@@ -213,7 +213,7 @@ const Profile = () => {
               type="text"
               placeholder="Your Fullname"
               backgroundColor="#fff"
-              height={53}
+              height='53px'
               width="100%"
             />
           </Box>
@@ -236,7 +236,7 @@ const Profile = () => {
               placeholder="yourmail@mail.com"
               focusBorderColor="red.500"
               backgroundColor="#fff"
-              height={53}
+              height='53px'
               width="100%"
             />
           </Box>
@@ -250,7 +250,7 @@ const Profile = () => {
               type="text"
               placeholder="Yasamal 104, Baku"
               backgroundColor="#fff"
-              height={53}
+              height='53px'
               width="100%"
             />
           </Box>
@@ -259,7 +259,7 @@ const Profile = () => {
             type="submit"
             bg="green.500"
             sx={{ backgroundColor: "#6FCF97 !important" }}
-            height={53}
+            height='53px'
             width="100%"
           >
             {translate("Save", locale)}
