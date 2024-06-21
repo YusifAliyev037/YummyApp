@@ -1,5 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import { Box } from "@chakra-ui/react";
 
 const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
 const ClientFooter = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
@@ -11,7 +12,10 @@ const Basket: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <ClientHeader />
       <main className="flex-grow flex space-x-4 gap-[4px]">
-        <UserModul />
+        {/* <UserModul /> */}
+        <Box className="w-full md:w-1/4 h-auto md:h-[601px] hidden md:block">
+          <UserModul />
+        </Box>
         <div className=" w-[1120px] ">
         <UserBasket />
         </div>
