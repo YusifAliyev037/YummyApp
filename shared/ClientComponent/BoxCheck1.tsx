@@ -125,20 +125,19 @@ const BoxCheck1 = () => {
   return (
     <Box className="flex" gap="19px" flexDirection="row-reverse">
       {!showCheckoutOr ? (
-        <>
-          <Box>
-            <BoxCheck2 />
-          </Box>
-          <Box
-            className="flex flex-col mt-4 bg-white40"
-            width="618px"
+        <Box className="flex flex-col-reverse md:flex-row gap-4 md:gap-[19px]" >
+          
+            <Box
+            className="flex flex-col mt-4  md:bg-white40 md:w-[618px] w-screen "
+           
             height="515px"
           >
-            <Box className="ml-10 mt-10">
+            <Box className="ml-10 mt-10 " display={{ base: "none", md: "block" }} >
               <Text
                 marginBottom="23px"
                 fontSize="3xl"
                 className="text-color-#4F4F4F"
+               
               >
                 {translate("Checkout", locale)}
               </Text>
@@ -150,7 +149,7 @@ const BoxCheck1 = () => {
                     {translate("Delivery Address", locale)}
                   </Text>
                   <Input
-                    width="542px"
+                   width={{ base: "100%", md: "542px" }}
                     height="53px"
                     bg="white"
                     type="text"
@@ -164,7 +163,7 @@ const BoxCheck1 = () => {
                     {translate("Contact Number", locale)}
                   </Text>
                   <Input
-                    width="542px"
+                   width={{ base: "100%", md: "542px" }}
                     height="53px"
                     bg="white"
                     type="text"
@@ -236,7 +235,7 @@ const BoxCheck1 = () => {
                   </Box>
                   <Button
                     marginTop="32px"
-                    width="542px"
+                    width={{ base: "100%", md: "542px" }}
                     height="53px"
                     bg="#6FCF97"
                     textColor="white"
@@ -248,7 +247,11 @@ const BoxCheck1 = () => {
               </Box>
             </Box>
           </Box>
-        </>
+          <Box>
+            <BoxCheck2 />
+          </Box>
+          
+        </Box>
       ) : (
         <CheckoutOr />
       )}

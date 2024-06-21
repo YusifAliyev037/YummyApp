@@ -38,10 +38,10 @@ console.log(basketArr);
 const locale = router.locale || 'en';
   return (
     <Box 
-    bg='#F3F4F6'
+    bg={{ base: "white", md: '#F3F4F6' }}
    mt='20px'
     width='397px'
-    height='372px'
+    height={{ base: "auto  ", md: '372px' }}
 gap='10px'
     boxShadow='md'
     borderRadius='md'
@@ -49,11 +49,29 @@ gap='10px'
     display='flex'
     flexDirection='column'
     justifyContent='center'
-    alignItems='center'
-    textAlign='center'
+    alignItems={{ base: 'left', md: 'center' }}
+   
     color=' #828282'
     >
-        <Text  fontSize='2xl' mb='2'>{translate("Your Order",locale)}</Text>
+
+
+
+<Box  display={{ base: "block", md: "none" }} >
+              <Text
+                marginBottom="23px"
+                fontSize="5xl"
+                className="text-color-#4F4F4F"
+                color={"black"}
+               
+              >
+                {translate("Checkout", locale)}
+              </Text>
+            </Box>
+
+
+ 
+
+        <Text textAlign={{ base: 'left', md: 'center' }} fontSize={{ base: '3xl', md: '2xl' }} mb='2'>{translate("Your Order",locale)}</Text>
       
         {basketArr.items.map((item, index) => {
   return (
@@ -66,7 +84,7 @@ gap='10px'
 
 
        <Divider borderColor='black' my='4'/>
-        <Box  m='auto' w='full' display='flex' justifyContent='space-between'>
+        <Box  m={{ base: "0", md: 'auto' }}     w='full' display='flex' justifyContent='space-between'>
             <Text fontWeight='bold'>{translate("Total",locale)}</Text>
             <Text fontWeight='bold'>{basketArr.total_amount}</Text>
 

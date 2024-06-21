@@ -12,8 +12,8 @@ const Checkout = () => {
   return (
     <Box>
       <ClientHeader />
-      <Box className="flex" height="790px" gap="17px">
-        <Box>
+      <Box  className="flex" height={{ base: 'auto', md: '790px' }} gap="17px ">
+         <Box className="w-full md:w-1/4 h-auto md: hidden md:block">
           <UserModul />
         </Box>
         <Box display="flex">
