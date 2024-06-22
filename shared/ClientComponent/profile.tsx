@@ -125,7 +125,7 @@ const Profile = () => {
 
   const locale = router.locale || "en";
   return (
-    <Box className="flex flex-col items-center mx-2 mt-4 h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
+    <Box className="flex flex-col items-center mx-2 mt-4 pb-5 h-auto gap-9 sm:mr-8 sm:bg-white40 bg-transparent">
       <Box className="mt-10 self-start pl-6 w-full sm:w-auto ">
         <Text fontSize="32px" height="32px" color="#4F4F4F">
           {translate("Profile", locale)}
@@ -176,7 +176,7 @@ const Profile = () => {
           maxWidth="500px"
         >
           <Box width="100%">
-            <Text color="#4F4F4F" pb={2}>{translate("Contact", locale)}</Text>
+            <Text color="#4F4F4F" >{translate("Contact", locale)}</Text>
             <Input
               name="phone"
               value={formData.phone}
@@ -190,7 +190,7 @@ const Profile = () => {
             />
           </Box>
           <Box width="100%">
-            <Text color="#4F4F4F" pb={2}>{translate("User Name", locale)}</Text>
+            <Text color="#4F4F4F" >{translate("User Name", locale)}</Text>
             <Input
               name="username"
               value={formData.username}
@@ -204,7 +204,7 @@ const Profile = () => {
             />
           </Box>
           <Box width="100%">
-            <Text color="#4F4F4F" pb={2}>{translate("Full Name", locale)}</Text>
+            <Text color="#4F4F4F" >{translate("Full Name", locale)}</Text>
             <Input
               name="fullname"
               value={formData.fullname}
@@ -226,7 +226,7 @@ const Profile = () => {
           maxWidth="500px"
         >
           <Box width="100%">
-            <Text color="#4F4F4F" pb={2}>{translate("Email", locale)}</Text>
+            <Text color="#4F4F4F" >{translate("Email", locale)}</Text>
             <Input
               name="email"
               value={formData.email}
@@ -241,7 +241,7 @@ const Profile = () => {
             />
           </Box>
           <Box width="100%">
-            <Text color="#4F4F4F" pb={2}>{translate("Address", locale)}</Text>
+            <Text color="#4F4F4F" >{translate("Address", locale)}</Text>
             <Input
               name="address"
               value={formData.address}
@@ -252,6 +252,7 @@ const Profile = () => {
               backgroundColor="#fff"
               height='53px'
               width="100%"
+              mb={6}
             />
           </Box>
           <Button

@@ -28,7 +28,7 @@ const locale = router.locale || 'en';
       <Head>
         <title>{translate("Dashboard",locale)}</title>
         <MetaSeo title="Dashboard" desc="Welcome to admin main page!" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/adminn.ico" />
       </Head>
       <Header />
       <Box className="flex flex-wrap gap-4 pr-4  mr-8">

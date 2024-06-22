@@ -69,7 +69,7 @@ function Orders() {
       <Head>
         <title>{translate("Orders", locale)}</title>
         <MetaSeo title="Orders" desc="Orders Page" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/adminn.ico" />
       </Head>
       <Header />
       <Box display={"flex"}>

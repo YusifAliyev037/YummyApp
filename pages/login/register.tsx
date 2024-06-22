@@ -164,7 +164,7 @@ const register: React.FC = () => {
           />
           <link
             rel='icon'
-            href='/favicon.ico'
+            href='/burger.ico'
           />
         </Head>
         <header className='bg-pink40 flex items-center md:h-[122px] justify-between h-[59px]  md:w-auto w-[100%]  '>

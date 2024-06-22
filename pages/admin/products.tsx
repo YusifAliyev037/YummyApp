@@ -234,7 +234,7 @@ function ProductsPage() {
         <Head>
           <title>{translate("Products", locale)}</title>
           <MetaSeo title="Products" desc="Products Page" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/adminn.ico" />
         </Head>
         <Header />
         <AdminModal1

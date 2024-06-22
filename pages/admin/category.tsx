@@ -128,7 +128,7 @@ const router=useRouter()
         />
         <link
           rel='icon'
-          href='/favicon.ico'
+          href="/adminn.ico"
         />
       </Head>
       <Header />

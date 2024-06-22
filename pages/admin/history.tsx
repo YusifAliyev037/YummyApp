@@ -69,7 +69,7 @@ function history() {
       <Head>
         <title>{translate("History", locale)}</title>
         <MetaSeo title="History" desc="History Page" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/adminn.ico" />
       </Head>
       <Header />
       <Box display={"flex"}>

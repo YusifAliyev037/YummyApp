@@ -8,6 +8,8 @@ import React from "react";
 import { translate } from "@/public/lang/translate";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import MetaSeo from "@/shared/MetaSeo";
 
 const ClientHeader = dynamic(() => import("../../shared/ClientComponent/ClientHeader"))
 const ClientFooter = dynamic(() => import("../../shared/ClientComponent/ClientFooter"))
@@ -18,6 +20,17 @@ const Faq: React.FC = () => {
   const locale = router.locale || "en";
   return (
     <>
+    <Head>
+          <title>{translate('FAQ', locale)}</title>
+          <MetaSeo
+            title={translate('FAQ')}
+            desc='Welcome to FAQ!'
+          />
+          <link
+            rel='icon'
+            href='/burger.ico'
+          />
+        </Head>
       <ClientHeader />
       <div className="animate-slideIn  faqCont">
         <h4 className="text-black font-roboto text-5xl font-medium leading-8 text-center mt-16">

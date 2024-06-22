@@ -115,7 +115,7 @@ const Offer: React.FC = () => {
         <Head>
           <title>{translate("Offer",locale)}</title>
           <MetaSeo title="Offer" desc="Offer Page" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/adminn.ico" />
         </Head>
         <Header />
         <AdminModal1
