@@ -128,7 +128,7 @@ function Adminlogin() {
       <Head>
         <title>{translate("Admin Login", locale)}</title>
         <MetaSeo title="Admin Login" desc="Welcome to Login for Admins!" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/adminn.ico" />
       </Head>
       <Box as="header" className="pl-[15px] pt-[17px] pb-[55px]">
         <Text className="font-extrabold text-[28px] text-white10" as="h1">

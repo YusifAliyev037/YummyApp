@@ -7,6 +7,7 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { useDisclosure } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
+import MetaSeo from "@/shared/MetaSeo";
 
 const ClientHeader = dynamic(() => import("../shared/ClientComponent/ClientHeader"))
 const ClientFooter = dynamic(() => import("../shared/ClientComponent/ClientFooter"))
@@ -163,7 +164,7 @@ const Home = () => {
     <>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Home" />
+        <MetaSeo title="Yummyy" desc="Welcome to admin Home page!" img_url="/homepagee.png" />
       </Head>
       <ClientHeader />
       <BlurredBackground
