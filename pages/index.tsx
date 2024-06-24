@@ -7,9 +7,9 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { useDisclosure } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import MetaSeo from "@/shared/MetaSeo";
 
 const ClientHeader = dynamic(() => import("../shared/ClientComponent/ClientHeader"))
+const MetaSeo = dynamic(() => import("@/shared/MetaSeo"))
 const ClientFooter = dynamic(() => import("../shared/ClientComponent/ClientFooter"))
 const HomeSection1 = dynamic(() => import("../shared/ClientComponent/Section1/index"))
 const HomeSection2 = dynamic(() => import("../shared/ClientComponent/Section2/index"))
