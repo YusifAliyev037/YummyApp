@@ -3,17 +3,19 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import {getFirestore} from "firebase/firestore"
 const firebaseConfig = {
-  apiKey: "AIzaSyCmrtMRa9_ydMuxrby9nboGZLOonLn2twk",
-  authDomain: "yummyapp-f2354.firebaseapp.com",
-  projectId: "yummyapp-f2354",
-  storageBucket: "yummyapp-f2354.appspot.com",
-  messagingSenderId: "788871399581",
-  appId: "1:788871399581:web:7a0653bde35cc704376c74"
+  apiKey: "AIzaSyCD8O5Viib_qA_y-D97jX1ayr3HivrCfR4",
+  authDomain: "yummyapp-37477.firebaseapp.com",
+  projectId: "yummyapp-37477",
+  storageBucket: "yummyapp-37477.appspot.com",
+  messagingSenderId: "257840248967",
+  appId: "1:257840248967:web:0d63f2064640039d24a022"
 };
+
+
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const fileStorage = getStorage(app);
 export const db = getFirestore(app)
+export const fileStorage = getStorage(app);
 
 
